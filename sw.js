@@ -1,5 +1,5 @@
 // Tempo : fonctionnement hors connexion
-const CACHE = 'tempo-36984721';
+const CACHE = 'tempo-1657245';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon-64.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 const warmNews = () => caches.open(CACHE).then(c => fetch('news/index.json', { cache: 'no-store' }).then(r => r.ok ? (c.put('news/index.json', r.clone()), r.json()) : { dates: [] })
@@ -13,6 +13,9 @@ self.addEventListener('fetch', e => {
   if (url.origin === location.origin && url.pathname.includes('/news/')) { e.respondWith(fetch(req, { cache: 'no-store' }).then(r => store(req, r)).catch(() => caches.match(req))); return; }
   // Polices : cache d'abord
   if (/fonts\.(googleapis|gstatic)\.com$/.test(url.hostname)) { e.respondWith(caches.match(req).then(m => m || fetch(req).then(r => store(req, r)))); return; }
-  // Appli : réponse immédiate depuis le cache, mise à jour en arrière-plan pour le lancement suivant
+  // Page de l'appli : toujours la dernière version en ligne, la copie en cache sert hors connexion
+  if (req.mode === 'navigate' || (url.origin === location.origin && /\/(index\.html)?$/.test(url.pathname))) {
+    e.respondWith(fetch(req, { cache: 'no-store' }).then(r => store(req, r)).catch(() => caches.match(req, { ignoreSearch: true }).then(m => m || caches.match('./index.html')))); return; }
+  // Icônes et manifeste : cache d'abord, mis à jour en arrière-plan
   if (url.origin === location.origin) { e.respondWith(caches.match(req, { ignoreSearch: true }).then(m => { const net = fetch(req).then(r => store(req, r)).catch(() => m); return m || net; })); }
 });
