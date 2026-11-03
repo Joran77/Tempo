@@ -4214,7 +4214,10 @@ function hFoodSheet(meal){
         const shot = (sx, sy, sw, sh, maxW, rot) => { const k = Math.min(1, maxW / sw), dw = Math.round(sw*k), dh = Math.round(sh*k);
           if (rot){ cv.width = dh; cv.height = dw; ctx.save(); ctx.translate(dh/2, dw/2); ctx.rotate(Math.PI/2); ctx.drawImage(video, sx, sy, sw, sh, -dw/2, -dh/2, dw, dh); ctx.restore(); }
           else { cv.width = dw; cv.height = dh; ctx.drawImage(video, sx, sy, sw, sh, 0, 0, dw, dh); }
-          return det.detect(cv); };
+          const id = ctx.getImageData(0, 0, cv.width, cv.height);
+          if (n % 10 === 0){ let sum = 0; for (let i = 0; i < id.data.length; i += 4*97) sum += id.data[i]; lum = Math.round(sum / (id.data.length/(4*97))); }
+          return det.detect(id); };
+        let lum = -1, errs = 0, lastErr = '';
         const tick = async () => {
           if (done || !stream) return;
           const w = video.videoWidth, h = video.videoHeight;
@@ -4225,8 +4228,8 @@ function hFoodSheet(meal){
               else if (m === 3) r = await shot(0, 0, w, h, 960);
               else { const cw = w*.5, ch = h*.84; r = await shot((w-cw)/2, (h-ch)/2, cw, ch, 1000, true); }
               if (r && r.length) return found(r[0].rawValue);
-            } catch(_){}
-            if (diag && n % 5 === 0) diag.textContent = `${engine} · image ${w}×${h} · ${n} analyses`;
+            } catch(e){ errs++; lastErr = String(e && (e.name || e.message) || e).slice(0, 40); }
+            if (diag && n % 5 === 0) diag.textContent = `${engine} · image ${w}×${h} · ${n} analyses · lum ${lum}${errs ? ` · ${errs} erreurs (${lastErr})` : ''}`;
             if (n === 50) cs.textContent = 'Toujours rien : éloigne un peu le téléphone (20–30 cm) puis rapproche doucement, ou utilise « Photo du code ».';
           }
           setTimeout(tick, 90);
