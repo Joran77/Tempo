@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
+[hidden]{display:none!important}
 /* Layout : appli mobile une colonne, en-tête collant, barre d'onglets fixée en bas */
 :root{
   --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#E3EAE5; --fg:#16201C; --muted:#5B6A63; --line:#D3DDD7;
@@ -815,6 +816,59 @@ pre.iex.prompt{font-family:var(--f-body,inherit);font-size:13px}
 .folder[open]>summary>i{transform:rotate(180deg)}
 .folder .foldin{padding:0 14px 14px}
 .folder .link{border:0;background:none;color:var(--accent);font:inherit;font-weight:700;font-size:13px;cursor:pointer;padding:4px 0;text-align:left}
+:root[data-mode="health"][data-tm="light"][data-pal]{--accent:#B4532A;--accent-ink:#FFFFFF;--accent-soft:#F6DFD3}
+:root[data-mode="health"][data-tm="dark"][data-pal]{--accent:#F09A72;--accent-ink:#1C0F09;--accent-soft:#3B2318}
+:root[data-mode="health"] nav.tabs [data-tab]:not(.hm), :root:not([data-mode="health"]) nav.tabs .hm{display:none}
+:root[data-mode="health"] #btn-search{display:none}
+.modebtn .m-s{display:none} :root[data-mode="health"] .modebtn .m-h{display:none} :root[data-mode="health"] .modebtn .m-s{display:block}
+.modebtn{color:var(--accent)} :root:not([data-mode="health"]) .modebtn{color:#C2553A}
+.hdate{display:flex;align-items:center;gap:10px}
+.hdate .hdl{flex:1;border:0;background:none;font:inherit;font-weight:700;font-size:16px;color:var(--fg);text-transform:capitalize;cursor:pointer}
+.hsum{display:flex;align-items:center;gap:16px;padding:16px}
+.hring{position:relative;width:132px;height:132px;flex:none}.hring svg{width:100%;height:100%}
+.hring .arc{transition:stroke-dashoffset .6s ease}
+.hring .lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.hring .lbl b{font-size:26px}.hring .lbl span{font-size:12px;color:var(--muted);max-width:80px;line-height:1.2}
+.hnums{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.hnums div{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.hnums div:last-child{border:0}.hnums span{font-size:13px;color:var(--muted)}.hnums b{font-size:17px}
+.hmac{display:flex;flex-direction:column;gap:10px}
+.mbar .bct{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}.mbar .bct span:first-child{font-weight:700}
+.mbar .bar i,.hmini .bar i{background:var(--bc,var(--accent))}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hmini{padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}.hmini b{font-size:18px}
+.hmini .btns{margin-top:auto}
+.hglass{display:flex;flex-wrap:wrap;gap:4px}.hglass i{width:10px;height:16px;border-radius:3px 3px 5px 5px;border:1.5px solid var(--accent);opacity:.45}.hglass i.on{background:var(--accent);opacity:1}
+.hmeals{list-style:none;margin:0;padding:0}
+.hmeals li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line)}.hmeals li:first-child{border:0}
+.hmeals li>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.hmeals li>div span{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hmeals .icon-btn{width:34px;height:34px;box-shadow:none}
+.hline{display:flex;flex-direction:column;gap:2px;padding:12px 14px}.hline b{font-size:20px}
+.hk{font-size:13px;color:var(--muted);font-weight:500}
+.hfood{list-style:none;margin:0;padding:0}
+.hfood li{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid var(--line)}.hfood li:first-child{border:0}
+.hfood li>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}.hfood li>div span{font-size:12px;color:var(--muted)}
+.icon-btn.sm{width:30px;height:30px;box-shadow:none;border-radius:9px}.icon-btn.sm svg{width:14px;height:14px}
+.hadd{display:block;width:100%;padding:12px 14px;border:0;border-top:1px dashed var(--line);background:none;color:var(--accent);font:inherit;font-weight:700;text-align:left;cursor:pointer}
+.hfood + .hadd{margin-top:0}.card>.hadd:first-child{border-top:0}
+.hlist2{display:flex;flex-direction:column;gap:6px;max-height:46vh;overflow:auto;margin:-4px 0 4px}
+.hres{display:flex;align-items:center;gap:10px;text-align:left;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font:inherit;color:var(--fg);cursor:pointer}
+.hres>span:first-child{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}.hres small{color:var(--muted);font-size:12px}
+.hres .mono{font-size:14px;text-align:right}.hres .mono small{display:block}
+.hpick{display:flex;flex-direction:column;gap:2px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hbars{position:relative;display:flex;align-items:flex-end;gap:6px;height:170px;padding-top:4px}
+.hb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}
+.hb i{width:100%;max-width:30px;border-radius:7px 7px 3px 3px;background:var(--accent);min-height:2px;flex:none}.hb i.hi{background:var(--amber)}
+.hb span{font-size:10px;color:var(--muted)}.hb small{font-size:12px;color:var(--muted);text-transform:capitalize}
+.hgoal{position:absolute;left:0;right:0;border-top:1.5px dashed var(--muted);opacity:.6}
+.wchart{width:100%;height:auto;margin-top:8px}.wchart .wt{font-size:9px;fill:var(--muted)}
+.hprof{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hprof>div{display:flex;flex-direction:column;gap:2px}.hprof span{font-size:12px;color:var(--muted)}.hprof b{font-size:16px}.hprof p{grid-column:1/-1;margin:0}
+.hwel strong{font-size:18px}
+.hwbtn{display:flex;gap:6px;margin-top:auto}.hwbtn .btn{flex:none;padding:0 12px}.hwbtn .btn.primary{flex:1;white-space:nowrap}
+.hmic{width:38px;height:38px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}.hmic svg{width:20px;height:20px}
+:root[data-mode="health"] nav.tabs .in{grid-template-columns:repeat(4,1fr)}
+@media (max-width:400px){.icon-btn{width:33px;height:33px;border-radius:10px}.icon-btn svg{width:18px;height:18px}.hbtns{gap:4px}.brand{min-width:0}.brand h1{font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 /* Interactions */
 
 
@@ -890,7 +944,10 @@ html.nomotion *,html.nomotion *::before{animation:none!important;transition:none
 <div class="app">
   <header class="top">
     <div class="brand"><small id="hdr-sub"></small><h1 id="hdr-title">Tempo</h1></div>
-    <div class="hbtns"><button class="icon-btn" id="btn-help" aria-label="Aide sur cette page">
+    <div class="hbtns"><button class="icon-btn modebtn" id="btn-mode" aria-label="Passer à Tempo Santé" aria-pressed="false">
+      <svg class="m-h" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+      <svg class="m-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>
+    </button><button class="icon-btn" id="btn-help" aria-label="Aide sur cette page">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>
     </button><button class="icon-btn" id="btn-search" aria-label="Rechercher">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -915,6 +972,10 @@ html.nomotion *,html.nomotion *::before{animation:none!important;transition:none
     <button data-tab="sudoku"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span>Sudoku</button>
     <button data-tab="cartes"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="14" height="13" rx="2"/><path d="M7 4h12a2 2 0 0 1 2 2v11"/></svg></span>Cartes</button>
     <button data-tab="actu"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14a1 1 0 0 0 1 1H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v9a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5M8 16h3"/></svg></span>Actu</button>
+    <button class="hm" data-tab="h-jour"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Aujourd’hui</button>
+    <button class="hm" data-tab="h-repas"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5M9 3v5M17 3c-2 0-3 2.5-3 6s1 4 3 4v8"/></svg></span>Repas</button>
+    <button class="hm" data-tab="h-sport"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="1.8"/><path d="m6 21 3.5-6 3 2.5V21M8 12l2.5-4 4 1.5 2 3.5H20M10.5 8 9 12.5l3.5 2.5"/></svg></span>Activité</button>
+    <button class="hm" data-tab="h-suivi"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M5 15l4-5 4 3 6-7"/></svg></span>Suivi</button>
   </div>
 </nav>
 
@@ -2534,6 +2595,7 @@ const BI = {
   tasks:'<path d="M9 6h11M9 12h11M9 18h11"/><path d="m3.5 6 1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5L7.5 17"/>',
   sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
   flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
   moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
   bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/>',
   shuffle:'<path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',
@@ -2999,7 +3061,7 @@ const HELP = {
     ['tasks','Tes tâches','Coche une tâche, ou glisse-la : vers la droite pour la marquer faite, vers la gauche pour la reporter au lendemain.'],
     ['moon','Bilan du soir','À partir de 17 h : ce que tu as appris, ce qui a été difficile, et une chose à faire demain, ajoutée à l’agenda.'],
     ['trophy','Badges et semaine','Les badges se débloquent en bronze, argent et or. Le bilan de la semaine résume ton temps de travail et tes révisions.'],
-    ['check','Les boutons du haut','Loupe : rechercher. Palette : thèmes clair et sombre. Flèche : prénom, sauvegarde et transfert entre appareils. Point d’interrogation : cette aide.'] ] },
+    ['check','Les boutons du haut','Cœur : passer à Tempo Santé (repas, sport, poids). Loupe : rechercher. Palette : thèmes clair et sombre. Flèche : prénom, sauvegarde et transfert entre appareils. Point d’interrogation : cette aide.'] ] },
   agenda: { t:'L’agenda', i:'Tes tâches, tes objectifs et tes examens, organisés au jour et à la semaine.', s:[
     ['calendar','Jour et Semaine','Navigue avec les flèches. Touche la date pour revenir à aujourd’hui, ou un jour de la semaine pour l’ouvrir.'],
     ['tasks','Ajouter une tâche','Bouton « + Tâche ». « Quand » = le jour où tu comptes la faire (aujourd’hui, demain ou une autre date) ; « Cette semaine » = sans jour précis, à caser quand tu veux. Puis répétition (chaque jour, du lundi au vendredi, certains jours), catégorie, priorité et cartes liées.'],
@@ -3031,6 +3093,23 @@ const HELP = {
     ['flag','Pack Culture générale','En bas de l’onglet : pays à placer sur la carte (touche le pays ; les petits sont marqués d’un point), capitales, monnaies, zone euro et UE, institutions, éco et fiscalité. Choisis les thèmes : chacun devient un chapitre, validable avec un examen /20.'],
     ['grid','Dossiers','Regroupe plusieurs matières dans un dossier (ex. « Semestre 5 », « UE Finance ») : ouvre une matière, « Modifier », puis tape le nom du dossier. Le dossier se replie, affiche ses statistiques et propose « Réviser le dossier ».'],
     ['star','Outils d’une matière','Bouton « Modifier » : renommer, changer la couleur, ajouter les cartes inverses (réponse → question) ou partager la matière avec un camarade.'] ] },
+  'h-jour': { t:'Tempo Santé', i:'Une deuxième appli dans Tempo : repas, activité, eau et poids. Le cœur en haut passe d’un côté à l’autre.', s:[
+    ['heart','Ton objectif','Calculé depuis ton profil (formule de Mifflin-St Jeor) : métabolisme de base × activité, puis −400 kcal pour perdre, +300 pour prendre. Il ne descend jamais sous ton métabolisme de base.'],
+    ['target','L’anneau','Les kcal restantes pour la journée. Le sport du jour s’ajoute à l’objectif.'],
+    ['check','Protéines, glucides, lipides','Repères : environ 1,6 g de protéines par kg, 30 % de lipides, le reste en glucides.'],
+    ['sun','Eau et pas','Un verre = 25 cl. Les pas se saisissent à la main depuis ton téléphone ou ta montre.'],
+    ['calendar','Autres jours','Les flèches pour compléter hier ou un jour passé.'] ] },
+  'h-repas': { t:'Les repas', i:'Ce que tu manges, repas par repas.', s:[
+    ['tasks','Ajouter','Cherche un aliment parmi plus de 100 aliments courants (valeurs moyennes pour 100 g), règle la quantité, et c’est ajouté. Les récents reviennent en premier.'],
+    ['star','Ajout rapide','Si tu connais seulement les kcal (resto, plat du CROUS), ou crée ton propre aliment à partir de l’étiquette.'],
+    ['check','Supprimer','La croix à droite d’un aliment.'] ] },
+  'h-sport': { t:'L’activité', i:'Tes séances de sport et tes pas.', s:[
+    ['bolt','Séances','Les kcal sont estimées : intensité (MET) × poids × durée. Elles s’ajoutent à l’objectif du jour.'],
+    ['sun','Pas','Une indication. Ils ne s’ajoutent pas à l’objectif, car ta marche quotidienne est déjà comptée dans ton niveau d’activité.'] ] },
+  'h-suivi': { t:'Le suivi', i:'Ta tendance sur plusieurs jours.', s:[
+    ['flag','Poids','Pèse-toi le matin, à jeun, une à deux fois par semaine : c’est la tendance qui compte. Chaque pesée met ton objectif à jour.'],
+    ['grid','Calories','Les 7 derniers jours, avec ta moyenne et la ligne de ton objectif.'],
+    ['heart','Profil','Modifier âge, taille, activité ou objectif, ou fixer ton objectif à la main.'] ] },
   actu: { t:'L’actualité', i:'Un point factuel sur la politique et l’économie, préparé chaque matin vers 6 h 50.', s:[
     ['sun','Le point du jour','L’essentiel en deux phrases, les chiffres clés, puis les infos par thème avec « Pourquoi c’est important ».'],
     ['check','Des sources variées','Agences de presse, sources officielles et médias de différentes sensibilités. Chaque info a ses liens pour vérifier.'],
@@ -3801,17 +3880,357 @@ function folderSheet(fo){
     s.querySelector('#fo-del').addEventListener('click', () => { ds.forEach(d => delete d.folder); close(); commit(); toast('Dossier défait : les matières sont conservées'); });
   });
 }
+/* ---------- Tempo Santé ---------- */
+// nom | kcal/100 g | protéines | glucides | lipides | portion (g) | libellé portion | catégorie
+const FOODS_RAW = `Pain (baguette)|270|9|55|1.2|50|1/5 de baguette|Petit-déjeuner
+Pain complet|240|9|44|2.5|40|1 tranche épaisse|Petit-déjeuner
+Pain de mie|270|8|49|4|25|1 tranche|Petit-déjeuner
+Biscotte|400|11|74|6|10|1 biscotte|Petit-déjeuner
+Croissant|410|8|45|21|60|1 croissant|Petit-déjeuner
+Pain au chocolat|420|8|46|22|70|1 pièce|Petit-déjeuner
+Céréales (corn flakes)|375|7|84|1|40|1 bol|Petit-déjeuner
+Muesli|370|9|64|7|50|1 bol|Petit-déjeuner
+Flocons d’avoine|370|13|59|7|40|4 c. à soupe|Petit-déjeuner
+Beurre|745|0.7|0.7|82|10|1 noisette|Petit-déjeuner
+Confiture|250|0.4|60|0.1|20|1 c. à soupe|Petit-déjeuner
+Miel|320|0.4|80|0|15|1 c. à soupe|Petit-déjeuner
+Pâte à tartiner chocolat-noisette|540|6|57|31|15|1 c. à soupe|Petit-déjeuner
+Œuf|140|12.5|0.5|9.5|55|1 œuf|Viandes, poissons, œufs
+Lait demi-écrémé|46|3.3|4.8|1.6|250|1 bol (250 ml)|Produits laitiers
+Yaourt nature|62|4.3|5.3|2.6|125|1 pot|Produits laitiers
+Yaourt aux fruits|95|3.5|14|2.5|125|1 pot|Produits laitiers
+Fromage blanc 3 %|75|7.5|4|3|100|1 pot de 100 g|Produits laitiers
+Skyr|63|11|4|0.2|150|1 pot|Produits laitiers
+Emmental|380|28|0.5|29|30|1 portion|Produits laitiers
+Camembert|270|20|0.5|21|30|1 portion|Produits laitiers
+Comté|410|27|0.5|34|30|1 portion|Produits laitiers
+Mozzarella|250|18|1|19|60|1/2 boule|Produits laitiers
+Crème fraîche 30 %|290|2.4|3|30|15|1 c. à soupe|Produits laitiers
+Riz blanc (cuit)|145|2.8|31|0.3|200|1 assiette|Féculents
+Pâtes (cuites)|150|5.5|29|1|200|1 assiette|Féculents
+Semoule (cuite)|115|4|23|0.4|200|1 assiette|Féculents
+Quinoa (cuit)|120|4.4|21|1.9|150|1 portion|Féculents
+Pommes de terre vapeur|80|2|17|0.1|200|1 portion|Féculents
+Frites|300|3.5|37|15|150|1 portion moyenne|Féculents
+Purée de pommes de terre|90|2|13|3.5|200|1 portion|Féculents
+Lentilles (cuites)|115|9|17|0.5|200|1 portion|Féculents
+Pois chiches (cuits)|140|7.5|19|2.5|150|1 portion|Féculents
+Haricots rouges (cuits)|115|8|15|0.5|150|1 portion|Féculents
+Tortilla (wrap)|310|8|51|7.5|60|1 galette|Féculents
+Blanc de poulet (cuit)|150|30|0|3|120|1 filet|Viandes, poissons, œufs
+Cuisse de poulet (cuite)|210|25|0|12|150|1 cuisse|Viandes, poissons, œufs
+Steak haché 5 % (cuit)|155|26|0|5.5|100|1 steak|Viandes, poissons, œufs
+Steak haché 15 % (cuit)|230|23|0|15|100|1 steak|Viandes, poissons, œufs
+Bœuf, rumsteck (cuit)|160|28|0|5|150|1 pièce|Viandes, poissons, œufs
+Côte de porc (cuite)|210|27|0|11|150|1 côte|Viandes, poissons, œufs
+Jambon blanc|115|21|0.5|3|45|1 tranche|Viandes, poissons, œufs
+Lardons|300|15|0.5|27|50|1 petite barquette|Viandes, poissons, œufs
+Saucisse de Toulouse|300|15|1|26|100|1 saucisse|Viandes, poissons, œufs
+Saumon (cuit)|210|22|0|13|125|1 pavé|Viandes, poissons, œufs
+Thon au naturel|115|26|0|1|80|1 petite boîte égouttée|Viandes, poissons, œufs
+Cabillaud (cuit)|90|20|0|1|150|1 filet|Viandes, poissons, œufs
+Crevettes|95|21|0|1|100|1 portion|Viandes, poissons, œufs
+Tofu|125|13|2|7.5|100|1 portion|Viandes, poissons, œufs
+Salade verte|15|1.3|1.5|0.2|50|1 bol|Légumes
+Tomate|20|0.8|3|0.3|120|1 tomate|Légumes
+Carotte|35|0.8|7|0.3|100|1 carotte|Légumes
+Courgette (cuite)|20|1.2|2.5|0.3|200|1 portion|Légumes
+Brocoli (cuit)|30|2.8|2.5|0.4|150|1 portion|Légumes
+Haricots verts (cuits)|30|2|4|0.2|150|1 portion|Légumes
+Concombre|13|0.7|2|0.1|100|1/3 de concombre|Légumes
+Avocat|205|2|3|20|80|1/2 avocat|Légumes
+Poêlée de légumes|50|1.8|6|2|200|1 portion|Légumes
+Soupe de légumes|35|1|5|1|300|1 bol|Légumes
+Champignons|25|3|1|0.3|100|1 portion|Légumes
+Pomme|55|0.3|12|0.3|150|1 pomme|Fruits
+Banane|90|1.1|20|0.3|120|1 banane|Fruits
+Orange|47|0.9|9|0.2|150|1 orange|Fruits
+Clémentine|47|0.8|10|0.2|60|1 clémentine|Fruits
+Poire|55|0.4|12|0.2|150|1 poire|Fruits
+Fraises|33|0.7|6|0.3|150|1 barquette|Fruits
+Raisin|70|0.6|16|0.2|125|1 grappe|Fruits
+Kiwi|55|1|10.5|0.5|75|1 kiwi|Fruits
+Compote sans sucre ajouté|55|0.3|12|0.2|100|1 gourde|Fruits
+Amandes|610|25|7|53|30|1 poignée|Fruits
+Noix|700|15|7|65|30|1 poignée|Fruits
+Pizza margherita|250|10|30|9|250|1/2 pizza|Plats et snacks
+Burger classique|250|13|26|10|220|1 burger|Plats et snacks
+Sandwich jambon-beurre|270|12|33|10|200|1 sandwich|Plats et snacks
+Kebab (sandwich)|230|12|22|11|350|1 kebab|Plats et snacks
+Sushis et makis|150|5|28|2|200|8 pièces|Plats et snacks
+Croque-monsieur|250|13|22|12|150|1 croque|Plats et snacks
+Quiche lorraine|280|10|18|19|150|1 part|Plats et snacks
+Lasagnes|160|8|13|8|300|1 part|Plats et snacks
+Salade composée|110|5|8|6.5|300|1 saladier|Plats et snacks
+Chips|540|6|51|34|30|1 petit paquet|Plats et snacks
+Barre chocolatée|480|5|63|23|50|1 barre|Sucré
+Chocolat noir 70 %|580|8|33|43|20|2 carrés|Sucré
+Biscuits secs|440|7|74|12|25|3 biscuits|Sucré
+Gâteau, brownie|430|5|50|23|70|1 part|Sucré
+Glace|210|3.5|25|10|60|1 boule|Sucré
+Barre de céréales|400|6|70|10|25|1 barre|Sucré
+Sucre|400|0|100|0|5|1 morceau|Sucré
+Huile d’olive|900|0|0|100|10|1 c. à soupe|Sauces et matières grasses
+Mayonnaise|700|1|1|77|15|1 c. à soupe|Sauces et matières grasses
+Ketchup|110|1.2|25|0.2|15|1 c. à soupe|Sauces et matières grasses
+Vinaigrette|450|0.5|3|48|15|1 c. à soupe|Sauces et matières grasses
+Café noir|2|0.2|0.3|0|100|1 tasse|Boissons
+Thé|1|0|0.2|0|250|1 tasse|Boissons
+Jus d’orange|45|0.7|10|0.1|200|1 verre|Boissons
+Soda (type cola)|42|0|10.6|0|330|1 canette|Boissons
+Soda zéro|0.5|0|0|0|330|1 canette|Boissons
+Bière|43|0.4|3.5|0|250|1 demi|Boissons
+Vin rouge|85|0.1|2.6|0|125|1 verre|Boissons
+Boisson énergisante|45|0|11|0|250|1 canette|Boissons
+Lait chocolaté|75|3.2|10|2.3|250|1 bol|Boissons
+Smoothie|55|0.6|12|0.3|250|1 verre|Boissons
+Protéine en poudre (whey)|380|75|8|6|30|1 dose|Boissons`;
+const FOODS = FOODS_RAW.split('\n').map(l => { const [n,k,p,c,f,g,pl,cat] = l.split('|'); return { n, k:+k, p:+p, c:+c, f:+f, g:+g, pl, cat }; });
+const MEALS = [['pdj','Petit-déjeuner','sun'],['dej','Déjeuner','calendar'],['din','Dîner','moon'],['col','Collations','star']];
+const SPORTS = [['Marche',3.5],['Marche rapide',4.3],['Course à pied (8 km/h)',8.3],['Course à pied (10 km/h)',9.8],['Vélo tranquille',4],['Vélo sportif',8],['Natation',6],['Musculation',5],['HIIT, cross-training',8],['Football',7],['Basket',6.5],['Tennis',7],['Badminton',5.5],['Boxe',9],['Danse',5],['Yoga',2.5],['Corde à sauter',11],['Escalade',8]];
+const ACT_LVL = [[1.2,'Sédentaire','Assis la plupart du temps'],[1.375,'Légèrement actif','Marche, sport 1 à 3 fois par semaine'],[1.55,'Actif','Sport 3 à 5 fois par semaine'],[1.725,'Très actif','Sport intense presque tous les jours']];
+const GOALS_H = [['lose','Perdre du poids','≈ −400 kcal par jour, perte lente et durable'],['keep','Maintenir','Autant que ta dépense estimée'],['gain','Prendre du muscle','≈ +300 kcal par jour, avec de la musculation']];
+function ensureHealth(){
+  if (!state.health) state.health = { profile:null, days:{}, weights:[], custom:[], recent:[] };
+  const H = state.health; H.days = H.days || {}; H.weights = H.weights || []; H.custom = H.custom || []; H.recent = H.recent || [];
+  return H;
+}
+const hDay = k => { const H = ensureHealth(); return H.days[k] || (H.days[k] = { food:[], sport:[], water:0, steps:0 }); };
+const hPeek = k => (ensureHealth().days[k]) || { food:[], sport:[], water:0, steps:0 };
+const lastWeight = () => { const W = ensureHealth().weights; return W.length ? W[W.length-1].kg : (state.health.profile ? state.health.profile.weight : null); };
+function hTargets(){
+  const P = ensureHealth().profile; if (!P) return null;
+  const w = lastWeight() || P.weight, bmr = Math.round(10*w + 6.25*P.height - 5*P.age + (P.sex==='h' ? 5 : -161)), tdee = Math.round(bmr * P.act);
+  let kcal = P.goal==='lose' ? tdee - 400 : P.goal==='gain' ? tdee + 300 : tdee;
+  const floor = Math.max(bmr, P.sex==='h' ? 1500 : 1200); if (kcal < floor) kcal = floor;
+  if (P.manual) kcal = P.manual;
+  kcal = Math.round(kcal/10)*10;
+  const p = Math.round(w * (P.goal==='gain' ? 1.8 : 1.6)), f = Math.round(kcal*0.3/9), c = Math.max(0, Math.round((kcal - p*4 - f*9)/4));
+  return { kcal, bmr, tdee, p, f, c, water: Math.round(w*0.033*4)/4 > 1.5 ? Math.round(w*0.033*4)/4 : 1.5, steps:8000 };
+}
+const sumDay = D => D.food.reduce((a,x) => ({ kcal:a.kcal+x.kcal, p:a.p+x.p, c:a.c+x.c, f:a.f+x.f }), { kcal:0, p:0, c:0, f:0 });
+const sportKcal = D => D.sport.reduce((a,x)=>a+x.kcal, 0);
+const r0 = n => Math.round(n), r1 = n => Math.round(n*10)/10;
+const defMeal = () => { const h = new Date().getHours(); return h < 11 ? 'pdj' : h < 15 ? 'dej' : h < 18 ? 'col' : 'din'; };
+function hRing(val, goal, label){
+  const r = 52, c = 2*Math.PI*r, p = goal ? Math.min(1, val/goal) : 0, over = goal && val > goal;
+  return `<div class="hring ${over?'over':''}"><svg viewBox="0 0 124 124"><circle cx="62" cy="62" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="11"/>
+    <circle class="arc" cx="62" cy="62" r="${r}" fill="none" stroke="${over ? 'var(--amber)' : 'var(--accent)'}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}" transform="rotate(-90 62 62)"/></svg>
+    <div class="lbl"><b class="mono">${nf(r0(Math.abs(goal - val)))}</b><span>${label || (over ? 'kcal au-dessus' : 'kcal restantes')}</span></div></div>`;
+}
+const macroBar = (lab, v, g, col) => `<div class="mbar"><div class="bct"><span>${lab}</span><span class="mono">${r0(v)} / ${g} g</span></div><div class="bar" style="--bc:var(--${col})"><i style="width:${Math.min(100, g ? 100*v/g : 0)}%"></i></div></div>`;
+function hDateBar(){
+  const k = ui.hday, d = parse(k), tk = todayKey();
+  const lab = k===tk ? "Aujourd'hui" : k===key(addDays(new Date(),-1)) ? 'Hier' : fmt(d,{weekday:'long',day:'numeric',month:'long'});
+  return `<div class="hdate"><button class="icon-btn" data-h="prev" aria-label="Jour précédent">${CHEV_L}</button><button class="hdl" data-h="today">${lab}</button><button class="icon-btn" data-h="next" aria-label="Jour suivant" ${k>=tk?'disabled':''}>${CHEV_R}</button></div>`;
+}
+function vHealth(){
+  ensureHealth(); if (!ui.hday) ui.hday = todayKey();
+  const T = hTargets();
+  if (!T) return `<div class="card hero hwel"><div><strong>Bienvenue dans Tempo Santé</strong><p>Suis tes repas, ton activité, ton eau et ton poids. Commence par ton profil : Tempo estime ta dépense et te propose un objectif réaliste.</p></div></div>
+    <button class="btn primary bigbtn" data-h="profile">Créer mon profil</button>
+    <p class="help">Les estimations (formule de Mifflin-St Jeor, tables nutritionnelles moyennes) sont des repères, pas un avis médical. Tes données restent sur ce téléphone.</p>`;
+  const D = hPeek(ui.hday), S = sumDay(D), sp = sportKcal(D), goal = T.kcal + sp;
+  if (ui.tab==='h-jour'){
+    return `${hDateBar()}
+    <div class="card hsum">${hRing(S.kcal, goal)}<div class="hnums"><div><span>Objectif</span><b class="mono">${nf(T.kcal)}</b></div><div><span>Mangé</span><b class="mono">${nf(r0(S.kcal))}</b></div><div><span>Sport</span><b class="mono">+${nf(r0(sp))}</b></div></div></div>
+    <div class="card pad hmac">${macroBar('Protéines', S.p, T.p, 'accent')}${macroBar('Glucides', S.c, T.c, 'amber')}${macroBar('Lipides', S.f, T.f, 'c-alt')}</div>
+    <div class="hgrid">
+      <div class="card hmini"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} / ${nf(T.water)} L</b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div><div class="hwbtn"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm primary" data-h="water+">+ 1 verre</button></div></div>
+      <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><button class="btn sm" data-h="steps">Saisir</button></div>
+    </div>
+    <section><h2>Repas <button class="link" data-h="go-repas">Détail</button></h2><div class="card"><ul class="hmeals">${MEALS.map(([k,l,ic]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
+      return `<li><span class="hmic">${bicon(ic)}</span><div><b>${l}</b><span>${it.length ? esc(it.map(x=>x.name).slice(0,3).join(', ')) + (it.length>3?'…':'') : 'Rien pour l’instant'}</span></div><span class="mono">${it.length ? nf(r0(kc)) : ''}</span><button class="icon-btn" data-h-add="${k}" aria-label="Ajouter au ${l}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></li>`; }).join('')}</ul></div></section>
+    ${hInsight(T)}`;
+  }
+  if (ui.tab==='h-repas'){
+    return `${hDateBar()}
+    <div class="card hline"><span><b class="mono">${nf(r0(S.kcal))}</b> / ${nf(goal)} kcal</span><span class="fine">P ${r0(S.p)} g · G ${r0(S.c)} g · L ${r0(S.f)} g</span></div>
+    ${MEALS.map(([k,l]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
+      return `<section><h2>${l} <span class="mono hk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span></h2><div class="card">${it.length ? `<ul class="hfood">${it.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.g ? nf(x.g) + ' g · ' : ''}P ${nf(r1(x.p))} · G ${nf(r1(x.c))} · L ${nf(r1(x.f))}</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-del="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : ''}
+        <button class="hadd" data-h-add="${k}">+ Ajouter un aliment</button></div></section>`; }).join('')}`;
+  }
+  if (ui.tab==='h-sport'){
+    const w = lastWeight() || 70, stepK = r0(D.steps * 0.0005 * w);
+    return `${hDateBar()}
+    <div class="card hline"><span><b class="mono">${nf(r0(sp))}</b> kcal dépensées en séance</span><span class="fine">Elles s’ajoutent à ton objectif du jour.</span></div>
+    <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.min} min</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
+      <button class="hadd" data-h="sport">+ Ajouter une séance</button></div></section>
+    <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div><div class="btns"><button class="btn sm" data-h="steps">Saisir mes pas</button></div></div></section>
+    <p class="help">Calories des séances = intensité (MET) × poids × durée. C’est une estimation : une montre connectée peut donner des chiffres différents.</p>`;
+  }
+  // Suivi
+  const W = ensureHealth().weights, last7 = Array.from({length:7}, (_,i) => key(addDays(new Date(), i-6)));
+  const k7 = last7.map(k => r0(sumDay(hPeek(k)).kcal)), logged = k7.filter(x=>x>0), avg = logged.length ? r0(logged.reduce((a,b)=>a+b,0)/logged.length) : 0, mx = Math.max(T.kcal*1.3, ...k7);
+  const P = state.health.profile;
+  return `<section><h2>Poids <button class="link" data-h="weight">+ Pesée</button></h2><div class="card pad">${W.length ? `<div class="bct"><span class="mono"><b>${nf(W[W.length-1].kg)} kg</b></span><span class="fine">${W.length>1 ? `${(W[W.length-1].kg - W[0].kg) > 0 ? '+' : ''}${nf(r1(W[W.length-1].kg - W[0].kg))} kg depuis le ${fmt(parse(W[0].d),{day:'numeric',month:'short'})}` : 'Première pesée'}</span></div>${weightChart(W)}` : '<p class="fine">Pèse-toi le matin, à jeun, une à deux fois par semaine : la tendance compte plus qu’un chiffre isolé.</p>'}</div></section>
+    <section><h2>Calories, 7 derniers jours</h2><div class="card pad"><div class="hbars">${last7.map((k,i)=>`<div class="hb"><span class="mono">${k7[i] ? nf(k7[i]) : ''}</span><i style="height:${Math.round(78*k7[i]/mx)}%" class="${k7[i] > T.kcal*1.1 ? 'hi' : ''}"></i><small>${fmt(parse(k),{weekday:'narrow'})}</small></div>`).join('')}<div class="hgoal" style="bottom:calc(${(78*T.kcal/mx).toFixed(1)}% + 21px)"></div></div>
+      <p class="fine">Moyenne des jours renseignés : <b>${nf(avg)} kcal</b> pour un objectif de ${nf(T.kcal)} kcal.</p></div></section>
+    <section><h2>Mon profil <button class="link" data-h="profile">Modifier</button></h2><div class="card pad hprof">
+      <div><span>Métabolisme de base</span><b class="mono">${nf(T.bmr)} kcal</b></div><div><span>Dépense estimée</span><b class="mono">${nf(T.tdee)} kcal</b></div><div><span>Objectif</span><b class="mono">${nf(T.kcal)} kcal</b></div><div><span>Protéines</span><b class="mono">${T.p} g</b></div>
+      <p class="fine">${P.sex==='h'?'Homme':'Femme'}, ${P.age} ans, ${P.height} cm, ${nf(lastWeight())} kg · ${ACT_LVL.find(a=>a[0]===P.act)[1].toLowerCase()} · ${GOALS_H.find(g=>g[0]===P.goal)[1].toLowerCase()}${P.manual ? ' · objectif fixé à la main' : ''}</p></div></section>`;
+}
+function hInsight(T){
+  const days = Array.from({length:7}, (_,i) => key(addDays(new Date(), -i))).map(k => hPeek(k)).filter(D => D.food.length);
+  if (days.length < 3) return '<p class="help">Astuce : note tes repas juste après les avoir pris, c’est le plus fiable. Les aliments récents se retrouvent en un geste.</p>';
+  const p = days.reduce((a,D)=>a+sumDay(D).p,0)/days.length;
+  return `<p class="help">Sur tes ${days.length} derniers jours renseignés : ${r0(p)} g de protéines en moyenne pour un repère de ${T.p} g.${p < T.p*0.75 ? ' Œufs, skyr, poulet, thon ou lentilles aident à t’en rapprocher.' : ' Bon équilibre.'}</p>`;
+}
+function weightChart(W){
+  const L = W.slice(-30); if (L.length < 2) return '';
+  const xs = L.map(x => parse(x.d).getTime()), ys = L.map(x=>x.kg), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys) - .5, y1 = Math.max(...ys) + .5;
+  const X = t => 8 + 284*(x1===x0 ? .5 : (t-x0)/(x1-x0)), Y = v => 8 + 104*(1 - (v-y0)/(y1-y0));
+  const pts = L.map((x,i)=>`${X(xs[i]).toFixed(1)},${Y(ys[i]).toFixed(1)}`).join(' ');
+  return `<svg class="wchart" viewBox="0 0 300 120"><polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${L.map((x,i)=>`<circle cx="${X(xs[i]).toFixed(1)}" cy="${Y(ys[i]).toFixed(1)}" r="3" fill="var(--accent)"/>`).join('')}
+    <text x="4" y="12" class="wt">${nf(r1(y1-.5))}</text><text x="4" y="116" class="wt">${nf(r1(y0+.5))}</text></svg>`;
+}
+function hProfileSheet(){
+  const H = ensureHealth(), P = H.profile || { sex:'h', age:20, height:175, weight:70, act:1.375, goal:'keep', manual:null };
+  let sex = P.sex, act = P.act, goal = P.goal;
+  sheet(`<form id="hp" style="display:contents"><h3>Mon profil santé</h3>
+    <div class="field"><span class="lab">Sexe (pour la formule)</span><div class="seg" id="hp-sex"><button type="button" data-v="h">Homme</button><button type="button" data-v="f">Femme</button></div></div>
+    <div class="three"><div class="field"><label for="hp-age">Âge</label><input id="hp-age" type="number" inputmode="numeric" min="16" max="99" required value="${P.age}"></div>
+      <div class="field"><label for="hp-h">Taille (cm)</label><input id="hp-h" type="number" inputmode="numeric" min="120" max="230" required value="${P.height}"></div>
+      <div class="field"><label for="hp-w">Poids (kg)</label><input id="hp-w" type="number" inputmode="decimal" step="0.1" min="35" max="250" required value="${lastWeight() || P.weight}"></div></div>
+    <div class="field"><span class="lab">Activité au quotidien</span><div class="packl" id="hp-act">${ACT_LVL.map(([v,l,d])=>`<button type="button" class="packi" data-v="${v}"><i></i><span><b>${l}</b><small>${d}</small></span></button>`).join('')}</div></div>
+    <div class="field"><span class="lab">Objectif</span><div class="packl" id="hp-goal">${GOALS_H.map(([v,l,d])=>`<button type="button" class="packi" data-v="${v}"><i></i><span><b>${l}</b><small>${d}</small></span></button>`).join('')}</div></div>
+    <div class="field"><label for="hp-man">Objectif calorique fixé à la main (facultatif)</label><input id="hp-man" type="number" inputmode="numeric" min="1200" max="5000" value="${P.manual || ''}" placeholder="Laisser vide pour le calcul automatique"></div>
+    <p class="ppreview" id="hp-prev"></p>
+    <div class="btns"><button type="button" class="btn" data-close>Annuler</button><button class="btn primary" type="submit">Enregistrer</button></div></form>`, s => {
+    const val = () => ({ sex, act, goal, age:+s.querySelector('#hp-age').value, height:+s.querySelector('#hp-h').value, weight:+String(s.querySelector('#hp-w').value).replace(',','.'), manual: +s.querySelector('#hp-man').value || null });
+    const sync = () => { s.querySelectorAll('#hp-sex button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===sex));
+      s.querySelectorAll('#hp-act button').forEach(b=>b.setAttribute('aria-pressed', +b.dataset.v===act));
+      s.querySelectorAll('#hp-goal button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===goal));
+      const v = val(); if (v.age && v.height && v.weight){ const keep = H.profile, kw = H.weights; H.profile = v; const tw = H.weights; H.weights = []; const T = hTargets(); H.profile = keep; H.weights = kw;
+        s.querySelector('#hp-prev').textContent = `Dépense estimée ${nf(T.tdee)} kcal par jour · objectif ${nf(T.kcal)} kcal · ${T.p} g de protéines.`; } };
+    s.querySelector('#hp-sex').addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (b){ sex = b.dataset.v; sync(); } });
+    s.querySelector('#hp-act').addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (b){ act = +b.dataset.v; sync(); } });
+    s.querySelector('#hp-goal').addEventListener('click', e => { const b = e.target.closest('[data-v]'); if (b){ goal = b.dataset.v; sync(); } });
+    s.querySelectorAll('input').forEach(i => i.addEventListener('input', sync)); sync();
+    s.querySelector('#hp').addEventListener('submit', e => { e.preventDefault(); const v = val(); if (!(v.age>=16 && v.height>=120 && v.weight>=35)) return;
+      const first = !H.profile; H.profile = v; if (first || !H.weights.length || Math.abs(lastWeight() - v.weight) > 0.05) addWeight(v.weight);
+      close(); commit(); toast(first ? 'Profil créé' : 'Profil enregistré'); });
+  });
+}
+function addWeight(kg){ const H = ensureHealth(), tk = todayKey(); H.weights = H.weights.filter(x=>x.d!==tk); H.weights.push({ d:tk, kg:Math.round(kg*10)/10 }); H.weights.sort((a,b)=>a.d.localeCompare(b.d)); if (H.profile) H.profile.weight = H.weights[H.weights.length-1].kg; }
+function hNumberSheet(title, label, cur, step, onSave, unit){
+  sheet(`<form id="hn" style="display:contents"><h3>${title}</h3><div class="field"><label for="hn-v">${label}</label><input id="hn-v" type="number" inputmode="decimal" step="${step}" min="0" value="${cur || ''}" required></div>
+    <div class="btns"><button type="button" class="btn" data-close>Annuler</button><button class="btn primary" type="submit">Enregistrer</button></div></form>`, s => {
+    setTimeout(() => s.querySelector('#hn-v').focus(), 50);
+    s.querySelector('#hn').addEventListener('submit', e => { e.preventDefault(); const v = +String(s.querySelector('#hn-v').value).replace(',','.'); if (!(v >= 0)) return; onSave(v); close(); commit(); });
+  });
+}
+function hFoodSheet(meal){
+  const H = ensureHealth(); let m = meal || defMeal(), pick = null;
+  const all = () => [...H.custom.map(x=>({ ...x, mine:true })), ...FOODS];
+  const byName = n => all().find(x=>x.n===n);
+  const list = q => { const nq = normN(q); if (!nq) { const rec = H.recent.map(byName).filter(Boolean); return { rec, res: rec.length ? [] : FOODS.slice(0, 12) }; }
+    return { rec:[], res: all().filter(x => normN(x.n).includes(nq) || normN(x.cat||'').includes(nq)).slice(0, 40) }; };
+  const row = x => `<button type="button" class="hres" data-fn="${esc(x.n)}"><span><b>${esc(x.n)}</b><small>${x.pl ? esc(x.pl) + ' · ' : ''}${nf(r0(x.k*x.g/100))} kcal${x.mine ? ' · perso' : ''}</small></span><span class="mono">${nf(x.k)}<small>/100 g</small></span></button>`;
+  sheet(`<h3>Ajouter un aliment</h3>
+    <div class="seg" id="hf-meal">${MEALS.map(([k,l])=>`<button type="button" data-m="${k}">${l.replace('Petit-déjeuner','P.-déj.')}</button>`).join('')}</div>
+    <div id="hf-step1"><div class="field"><input id="hf-q" type="search" placeholder="Rechercher : pâtes, pomme, kebab…" autocomplete="off"></div>
+      <div id="hf-list" class="hlist2"></div>
+      <div class="btns"><button type="button" class="btn sm" id="hf-quick">Ajout rapide (kcal)</button><button type="button" class="btn sm" id="hf-new">Créer un aliment</button></div></div>
+    <div id="hf-step2" hidden></div>`, s => {
+    const L = s.querySelector('#hf-list'), q = s.querySelector('#hf-q'), st1 = s.querySelector('#hf-step1'), st2 = s.querySelector('#hf-step2');
+    const syncM = () => s.querySelectorAll('#hf-meal button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.m===m));
+    s.querySelector('#hf-meal').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (b){ m = b.dataset.m; syncM(); } }); syncM();
+    const draw = () => { const { rec, res } = list(q.value); L.innerHTML = (rec.length ? `<span class="lab">Récents</span>${rec.map(row).join('')}` : '') + (res.length ? (q.value.trim() ? '' : '<span class="lab">Suggestions</span>') + res.map(row).join('') : (q.value.trim() ? '<p class="fine">Aucun aliment trouvé : utilise « Ajout rapide » ou « Créer un aliment ».</p>' : '')); };
+    q.addEventListener('input', draw); draw();
+    const add = (it) => { const D = hDay(ui.hday); D.food.push({ id:uid(), meal:m, ...it }); if (it.ref){ H.recent = [it.ref, ...H.recent.filter(x=>x!==it.ref)].slice(0, 15); } close(); commit(); toast(`${it.name} ajouté · ${nf(r0(it.kcal))} kcal`); };
+    L.addEventListener('click', e => { const b = e.target.closest('[data-fn]'); if (!b) return; pick = byName(b.dataset.fn); if (!pick) return;
+      st1.hidden = true; st2.hidden = false;
+      st2.innerHTML = `<div class="card pad hpick"><b>${esc(pick.n)}</b><span class="fine">${nf(pick.k)} kcal pour 100 g · P ${nf(pick.p)} · G ${nf(pick.c)} · L ${nf(pick.f)}</span></div>
+        <div class="field"><label for="hf-g">Quantité (g ou ml)</label><input id="hf-g" type="number" inputmode="decimal" min="1" max="3000" value="${pick.g}"></div>
+        <div class="opts" id="hf-mult">${[[.5,'½'],[1,'1'],[1.5,'1½'],[2,'2']].map(([v,l])=>`<button type="button" data-x="${v}">${l} × ${esc(pick.pl || pick.g + ' g')}</button>`).join('')}</div>
+        <p class="ppreview" id="hf-prev"></p>
+        <div class="btns"><button type="button" class="btn" id="hf-back">Retour</button><button type="button" class="btn primary" id="hf-ok">Ajouter</button></div>`;
+      const gi = st2.querySelector('#hf-g'), prev = st2.querySelector('#hf-prev');
+      const calc = () => { const g = +String(gi.value).replace(',','.') || 0; prev.textContent = `${nf(r0(pick.k*g/100))} kcal · P ${nf(r1(pick.p*g/100))} g · G ${nf(r1(pick.c*g/100))} g · L ${nf(r1(pick.f*g/100))} g`; return g; };
+      gi.addEventListener('input', calc); calc();
+      st2.querySelector('#hf-mult').addEventListener('click', e => { const b = e.target.closest('[data-x]'); if (b){ gi.value = r0(pick.g * +b.dataset.x); calc(); } });
+      st2.querySelector('#hf-back').addEventListener('click', () => { st2.hidden = true; st1.hidden = false; });
+      st2.querySelector('#hf-ok').addEventListener('click', () => { const g = calc(); if (!g) return; add({ name:pick.n, ref:pick.n, g, kcal:pick.k*g/100, p:pick.p*g/100, c:pick.c*g/100, f:pick.f*g/100 }); });
+    });
+    s.querySelector('#hf-quick').addEventListener('click', () => { st1.hidden = true; st2.hidden = false;
+      st2.innerHTML = `<div class="field"><label for="hq-n">Nom</label><input id="hq-n" maxlength="60" placeholder="Ex. Plat du restaurant U"></div>
+        <div class="field"><label for="hq-k">Calories (kcal)</label><input id="hq-k" type="number" inputmode="numeric" min="0" max="5000"></div>
+        <div class="btns"><button type="button" class="btn" id="hf-back">Retour</button><button type="button" class="btn primary" id="hq-ok">Ajouter</button></div>`;
+      st2.querySelector('#hf-back').addEventListener('click', () => { st2.hidden = true; st1.hidden = false; });
+      st2.querySelector('#hq-ok').addEventListener('click', () => { const k = +st2.querySelector('#hq-k').value; if (!k) return; add({ name: st2.querySelector('#hq-n').value.trim() || 'Ajout rapide', g:0, kcal:k, p:0, c:0, f:0 }); }); });
+    s.querySelector('#hf-new').addEventListener('click', () => { st1.hidden = true; st2.hidden = false;
+      st2.innerHTML = `<p class="fine">Recopie les valeurs pour 100 g de l’étiquette nutritionnelle.</p>
+        <div class="field"><label for="hn-n">Nom</label><input id="hn-n" maxlength="60" value="${esc(q.value.trim())}"></div>
+        <div class="two"><div class="field"><label for="hn-k">kcal / 100 g</label><input id="hn-k" type="number" inputmode="decimal" min="0"></div><div class="field"><label for="hn-g">Portion habituelle (g)</label><input id="hn-g" type="number" inputmode="decimal" min="1" value="100"></div></div>
+        <div class="three"><div class="field"><label for="hn-p">Protéines</label><input id="hn-p" type="number" inputmode="decimal" min="0" value="0"></div><div class="field"><label for="hn-c">Glucides</label><input id="hn-c" type="number" inputmode="decimal" min="0" value="0"></div><div class="field"><label for="hn-f">Lipides</label><input id="hn-f" type="number" inputmode="decimal" min="0" value="0"></div></div>
+        <div class="btns"><button type="button" class="btn" id="hf-back">Retour</button><button type="button" class="btn primary" id="hn-ok">Créer</button></div>`;
+      const v = id => +String(st2.querySelector(id).value).replace(',','.') || 0;
+      st2.querySelector('#hf-back').addEventListener('click', () => { st2.hidden = true; st1.hidden = false; });
+      st2.querySelector('#hn-ok').addEventListener('click', () => { const n = st2.querySelector('#hn-n').value.trim(); if (!n || !v('#hn-k')) return;
+        H.custom = H.custom.filter(x=>x.n!==n); H.custom.unshift({ n, k:v('#hn-k'), p:v('#hn-p'), c:v('#hn-c'), f:v('#hn-f'), g:v('#hn-g') || 100, pl:'', cat:'Mes aliments' });
+        st2.hidden = true; st1.hidden = false; q.value = n; draw(); toast('Aliment créé : touche-le pour l’ajouter'); }); });
+  });
+}
+function hSportSheet(){
+  const w = lastWeight() || 70; let sel = 0;
+  sheet(`<h3>Ajouter une séance</h3>
+    <div class="field"><label for="hs-t">Activité</label><select id="hs-t">${SPORTS.map(([n],i)=>`<option value="${i}">${n}</option>`).join('')}<option value="-1">Autre (je connais les kcal)</option></select></div>
+    <div class="field" id="hs-min-f"><label for="hs-m">Durée (minutes)</label><input id="hs-m" type="number" inputmode="numeric" min="1" max="600" value="45"></div>
+    <div class="field" id="hs-k-f" hidden><label for="hs-k">Calories dépensées (kcal)</label><input id="hs-k" type="number" inputmode="numeric" min="0" max="3000"></div>
+    <p class="ppreview" id="hs-prev"></p>
+    <div class="btns"><button class="btn" data-close>Annuler</button><button class="btn primary" id="hs-ok">Ajouter</button></div>`, s => {
+    const t = s.querySelector('#hs-t'), mi = s.querySelector('#hs-m'), ki = s.querySelector('#hs-k'), prev = s.querySelector('#hs-prev');
+    const calc = () => { sel = +t.value; s.querySelector('#hs-k-f').hidden = sel >= 0; if (sel < 0){ prev.textContent = ''; return +ki.value || 0; }
+      const k = r0(SPORTS[sel][1] * w * (+mi.value||0) / 60); prev.textContent = `≈ ${nf(k)} kcal (intensité ${nf(SPORTS[sel][1])} MET, ${nf(w)} kg)`; return k; };
+    [t, mi, ki].forEach(x => x.addEventListener('input', calc)); t.addEventListener('change', calc); calc();
+    s.querySelector('#hs-ok').addEventListener('click', () => { const k = calc(), m = +mi.value || 0; if (!k) return;
+      hDay(ui.hday).sport.push({ id:uid(), name: sel >= 0 ? SPORTS[sel][0] : 'Autre activité', min:m, kcal:k }); close(); commit(); toast(`Séance ajoutée · ${nf(k)} kcal`); });
+  });
+}
+function healthClick(e){
+  const b = e.target.closest('[data-h],[data-h-add],[data-h-del],[data-h-sdel]'); if (!b) return false;
+  if (b.dataset.hAdd){ hFoodSheet(b.dataset.hAdd); return true; }
+  if (b.dataset.hDel){ const D = hDay(ui.hday); D.food = D.food.filter(x=>x.id!==b.dataset.hDel); commit(); return true; }
+  if (b.dataset.hSdel){ const D = hDay(ui.hday); D.sport = D.sport.filter(x=>x.id!==b.dataset.hSdel); commit(); return true; }
+  const a = b.dataset.h, D = () => hDay(ui.hday);
+  if (a==='prev'){ ui.hday = key(addDays(parse(ui.hday), -1)); render(); }
+  else if (a==='next'){ if (ui.hday < todayKey()){ ui.hday = key(addDays(parse(ui.hday), 1)); render(); } }
+  else if (a==='today'){ ui.hday = todayKey(); render(); }
+  else if (a==='profile') hProfileSheet();
+  else if (a==='water+'){ D().water++; commit(); }
+  else if (a==='water-'){ D().water = Math.max(0, D().water-1); commit(); }
+  else if (a==='steps') hNumberSheet('Pas du jour', 'Nombre de pas (podomètre, montre…)', D().steps, 1, v => { D().steps = Math.round(v); });
+  else if (a==='weight') hNumberSheet('Nouvelle pesée', 'Poids du jour (kg)', lastWeight(), 0.1, v => { if (v >= 30) addWeight(v); });
+  else if (a==='sport') hSportSheet();
+  else if (a==='go-repas'){ ui.tab = 'h-repas'; render(); window.scrollTo(0,0); }
+  return true;
+}
+/* Bascule Études ↔ Santé */
+let appMode = (() => { try { return localStorage.getItem('tempo.mode') === 'health' ? 'health' : 'study'; } catch(_) { return 'study'; } })();
+const lastTab = { study:'accueil', health:'h-jour' };
+function setMode(m, silent){
+  if (m === appMode && !silent) return;
+  if (!silent) lastTab[appMode] = ui.tab;
+  appMode = m; try { localStorage.setItem('tempo.mode', m); } catch(_) {}
+  document.documentElement.dataset.mode = m;
+  if (m==='health' && !ui.tab.startsWith('h-')) ui.tab = lastTab.health || 'h-jour';
+  if (m==='study' && ui.tab.startsWith('h-')) ui.tab = lastTab.study || 'accueil';
+  const b = document.getElementById('btn-mode'); if (b){ b.setAttribute('aria-label', m==='health' ? 'Passer à Tempo Études' : 'Passer à Tempo Santé'); b.setAttribute('aria-pressed', m==='health'); }
+  if (!silent){ render(); window.scrollTo(0,0); toast(m==='health' ? 'Tempo Santé' : 'Tempo Études'); }
+}
+
 /* ---------- Rendu ---------- */
-const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
+const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi' };
 function render(){
   const now = new Date();
-  $('#hdr-title').textContent = TITLES[ui.tab];
+  $('#hdr-title').textContent = innerWidth < 400 && ui.tab==='calcul' ? 'Calcul' : TITLES[ui.tab];
   $('#hdr-sub').textContent = fmt(now, innerWidth < 420 ? {weekday:'short',day:'numeric',month:'short'} : {weekday:'long',day:'numeric',month:'long'}).replace(/\./g,'') + ` · S${isoWeek(now)}`;
   document.querySelectorAll('nav.tabs button').forEach(b => b.dataset.tab===ui.tab ? b.setAttribute('aria-current','page') : b.removeAttribute('aria-current'));
   ensureCalc(); ensureSudoku(); ensureFc(); ensurePartiels(); ensureFocus(); ensureExtras();
   const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='accueil' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
   isEntering = vk !== lastVK; lastVK = vk;
-  view.innerHTML = ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes();
+  view.innerHTML = ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes();
   view.classList.remove('anim');
   if (isEntering && motionOK()){ void view.offsetWidth; [...view.children].forEach((c,i)=>c.style.setProperty('--i', Math.min(i,8))); view.classList.add('anim'); clearTimeout(animT); animT = setTimeout(()=>view.classList.remove('anim'), 1400); }
   ui.justId = null; ui.fc.anim = null; ui.su.placed = -1; ui.su.wave = null; ui.calc.anim = null; if (ui.express) ui.express.anim = null; hydrateImgs(view);
@@ -3829,6 +4248,7 @@ function toast(m){ let t = $('.toast'); if(!t){ t = document.createElement('div'
 document.querySelector('nav.tabs').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if(!b) return; ui.tab = b.dataset.tab; ui.open=null; render(); window.scrollTo(0,0); });
 
 view.addEventListener('click', e => {
+  if (ui.tab.startsWith('h-') && healthClick(e)) return;
   const fs = e.target.closest('[data-fo-start]'); if (fs){ ensureFocus(); if (state.focus.run){ focusOpen = true; drawFocus(); } else focusStart(null); return; }
   const fp = e.target.closest('[data-fp]'); if (fp){ const [w,sh,l] = FOCUS_PRESETS[+fp.dataset.fp]; state.focus.prefs = { work:w, short:sh, long:l }; commit(); return; }
   const bl = e.target.closest('[data-bilan]'); if (bl){ ui.bilan = +bl.dataset.bilan; render(); return; }
@@ -3869,6 +4289,7 @@ $('#btn-settings').addEventListener('click', settingsSheet);
 $('#btn-look').addEventListener('click', lookSheet);
 $('#btn-search').addEventListener('click', searchSheet);
 $('#btn-help').addEventListener('click', helpSheet);
+$('#btn-mode').addEventListener('click', () => setMode(appMode==='health' ? 'study' : 'health'));
 
 /* ---------- Feuilles ---------- */
 const root = $('#modal-root');
@@ -3999,7 +4420,7 @@ function goalSheet(g){
 
 function exportData(){
   ensureFc(); ensureFocus(); ensureRoutines();
-  const base = { app:'tempo', v:2, exportedAt:new Date().toISOString(), tasks:state.tasks, goals:state.goals, profile:state.profile||null, routines:state.routines, partiels:state.partiels||[], journal:state.journal||{}, stats:state.stats||{}, badges:state.badges||{}, badgeBest:state.badgeBest||{}, mit:state.mit||null, calc:state.calc, sudoku:state.sudoku, fc:state.fc, focus:{ ...state.focus, run:null } };
+  const base = { app:'tempo', v:2, exportedAt:new Date().toISOString(), tasks:state.tasks, goals:state.goals, profile:state.profile||null, routines:state.routines, partiels:state.partiels||[], journal:state.journal||{}, stats:state.stats||{}, badges:state.badges||{}, badgeBest:state.badgeBest||{}, mit:state.mit||null, calc:state.calc, sudoku:state.sudoku, fc:state.fc, focus:{ ...state.focus, run:null }, health:state.health||null };
   const ids = [...new Set(state.fc.cards.map(c=>c.img).filter(Boolean))];
   return Promise.all(ids.map(id => IMG.get(id).then(v=>[id,v]).catch(()=>[id,null]))).then(arr => ({ ...base, images:Object.fromEntries(arr.filter(x=>x[1])) }));
 }
@@ -4053,8 +4474,12 @@ function settingsSheet(){
       if (replace){
         SNAP.before('Avant import');
         state.tasks = d.tasks; state.goals = goals; if (dc) state.calc = dc; if (ds) state.sudoku = ds; if (df) state.fc = df;
-        if (dr) state.routines = dr; if (dfo) state.focus = { ...dfo, run:null }; if (Array.isArray(d.partiels)) state.partiels = d.partiels; ['journal','stats','badges','badgeBest'].forEach(k => { if (d[k]) state[k] = d[k]; }); if (d.mit) state.mit = d.mit;
+        if (dr) state.routines = dr; if (dfo) state.focus = { ...dfo, run:null }; if (Array.isArray(d.partiels)) state.partiels = d.partiels; ['journal','stats','badges','badgeBest'].forEach(k => { if (d[k]) state[k] = d[k]; }); if (d.mit) state.mit = d.mit; if (d.health) state.health = d.health;
       } else {
+        if (d.health && d.health.days){ const H = ensureHealth(); if (!H.profile && d.health.profile) H.profile = d.health.profile;
+          Object.entries(d.health.days).forEach(([k,v]) => { if (!H.days[k] || (!H.days[k].food.length && !H.days[k].sport.length)) H.days[k] = v; });
+          const wd = new Set(H.weights.map(x=>x.d)); H.weights.push(...(d.health.weights||[]).filter(x=>!wd.has(x.d))); H.weights.sort((a,b)=>a.d.localeCompare(b.d));
+          const cn = new Set(H.custom.map(x=>x.n)); H.custom.push(...(d.health.custom||[]).filter(x=>!cn.has(x.n))); }
         const ids = new Set(state.tasks.map(t=>t.id)), gids = new Set(state.goals.map(g=>g.id));
         ensureExtras(); Object.entries(d.journal||{}).forEach(([k,v]) => { if (!state.journal[k]) state.journal[k] = v; });
         Object.entries(d.stats||{}).forEach(([k,v]) => { state.stats[k] = Math.max(state.stats[k]||0, v||0); });
@@ -4094,6 +4519,7 @@ function settingsSheet(){
 }
 
 ensureExtras(); checkBadges(true); badgesReady = true; save();
+setMode(appMode, true);
 render();
 drawFocus();
 SNAP.now();
