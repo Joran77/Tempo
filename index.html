@@ -2102,16 +2102,16 @@ function vFcExamRes(){
 function vFcReview(){
   const U = ui.fc, c = U.cur, d = deckOf(c.deck), done = U.res.reduce((a,b)=>a+b,0), left = U.queue.length + 1, mode = state.fc.prefs.mode;
   let opts = null;
-  if (mode==='qcm' || isQcmCard(c)){ if (U.optsFor !== c.id){ U.opts = qcmOptions(c); U.optsFor = c.id; U.picked = null; } opts = U.opts; }
+  if (mode==='qcm'){ if (U.optsFor !== c.id){ U.opts = qcmOptions(c); U.optsFor = c.id; U.picked = null; } opts = U.opts; }
   const img = c.img ? `<img class="cimg" data-img="${c.img}" alt="">` : '';
   const head = `<div class="playhead"><button class="back" data-f="home">${CHEV_L}Arrêter</button><span class="lab">${U.mixed ? 'Révision mélangée' : U.deck ? esc(deckOf(U.deck).name) : 'Toutes les matières'}</span><span class="mono">${left} restante${left>1?'s':''}</span></div>
   <div class="bar"><i style="width:${Math.min(100, 100*done/(done+left))}%"></i></div>
   <div class="seg rmode" role="group" aria-label="Mode de révision">${[['flip','Retourner'],['qcm','QCM'],['explain','Explique-le']].map(([k,l])=>`<button data-f-mode="${k}" aria-pressed="${mode===k}">${l}</button>`).join('')}</div>`;
-  if (c.map && MAPG[c.map] && MAPC[c.map]){ if (U.mpickFor !== c.id){ U.mpickFor = c.id; U.mpick = null; } return vMapReview(head.replace(/<div class="seg rmode"[\s\S]*$/, ''), c, d); }
+  if (c.map && MAPG[c.map] && MAPC[c.map] && !opts){ if (U.mpickFor !== c.id){ U.mpickFor = c.id; U.mpick = null; } return vMapReview(head, c, d); }
   if (opts){
     const p = U.picked, right = opts.indexOf(c.a.trim());
     return head + `<div class="card fcard ${U.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">${esc(d ? d.name : '')}${c.chap?' · '+esc(c.chap):''}${c.rev?' · sens inverse':''}${c.seen?'':' · nouvelle'}</span>
-      <div class="fq">${fmtText(c.q)}</div>${c.img && (c.imgSide!=='a' || p!=null) ? img : ''}</div>
+      ${c.map && MAPG[c.map] ? `<div class="fq">Quel est ce pays ?</div>${mapSvg(c.map, { hl:c.map })}` : `<div class="fq">${fmtText(c.q)}</div>`}${c.img && (c.imgSide!=='a' || p!=null) ? img : ''}</div>
     <div class="qopts">${opts.map((o,k)=>`<button class="qopt ${p==null ? '' : k===right ? 'right' : k===p ? 'wrong' : 'dim'}" data-f-pick="${k}" ${p!=null?'disabled':''}><span class="ql">${'ABCD'[k]}</span><span class="qt">${fmtText(o)}</span></button>`).join('')}</div>
     ${p!=null ? whyHtml(c, opts[p]) : ''}
     ${p!=null ? `<button class="btn primary bigbtn" data-f="qnext">${p===right ? 'Bien joué, carte suivante' : 'Compris, carte suivante'}</button>
@@ -2218,7 +2218,7 @@ function fcCardSheet(card, prefill){
 }
 view.addEventListener('click', e => {
   if (ui.tab !== 'cartes') return; let b; const U = ui.fc;
-  if ((b = e.target.closest('[data-f-mode]'))){ state.fc.prefs.mode = b.dataset.fMode; U.optsFor = null; U.flipped = false; U.explText = ''; commit(); return; }
+  if ((b = e.target.closest('[data-f-mode]'))){ state.fc.prefs.mode = b.dataset.fMode; U.optsFor = null; U.mpickFor = null; U.flipped = false; U.explText = ''; commit(); return; }
   if ((b = e.target.closest('[data-f-pick]'))){ U.picked = +b.dataset.fPick; render(); const w = document.querySelector('#view .why, .why'); if (w) setTimeout(() => w.scrollIntoView({ behavior:'smooth', block:'center' }), 60); return; }
   if ((b = e.target.closest('[data-mc]')) && U.view==='review' && U.mpick==null){ U.mpick = b.dataset.mc; render(); return; }
   if ((b = e.target.closest('[data-f-ex]'))){ examAnswer(+b.dataset.fEx); return; }
@@ -2960,7 +2960,7 @@ const HELP = {
     ['star','Progresser','La page « Techniques pour progresser » explique les méthodes, du balayage au pointage. Sur ordinateur : chiffres, flèches, N pour les notes.'] ] },
   cartes: { t:'Les flashcards', i:'La répétition espacée : chaque carte revient au bon moment pour ne pas l’oublier.', s:[
     ['cards','Matières et chapitres','À l’import, chaque carte part automatiquement dans la matière indiquée en 3e colonne (créée si besoin) ; sinon dans la matière par défaut choisie à l’import. Pour une carte écrite à la main, tu choisis la matière ; pour la déplacer, ouvre-la et change de matière.'],
-    ['check','Réviser','Trois modes : Retourner (tu notes ta réponse de « À revoir » à « Facile »), QCM, et Explique-le (tu écris ton explication avant de voir la réponse). Sois honnête : c’est ce qui règle les intervalles.'],
+    ['check','Réviser','Trois modes, valables pour toutes les cartes : Retourner (tu cherches la réponse de tête, puis tu te notes de « À revoir » à « Facile »), QCM (4 propositions) et Explique-le (tu écris ton explication avant de voir la réponse). Pour les pays : Retourner = toucher le pays sur la carte, QCM = reconnaître le pays coloré. Sois honnête : c’est ce qui règle les intervalles.'],
     ['calendar','Chaque carte revue dans la semaine','Aucune carte n’attend plus de 7 jours, et les nouvelles cartes sont toutes découvertes en 7 jours. Le panneau « Ta semaine de révision » montre la charge des 7 prochains jours.'],
     ['trophy','Examens /20','Sur une matière, « Valider » un chapitre lance un QCM noté : chapitre validé à partir de 12/20.'],
     ['shuffle','Révision mélangée','Onglet en haut : les cartes alternent entre plusieurs matières, ce qui fait mieux retenir à long terme.'],
