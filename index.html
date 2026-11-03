@@ -252,6 +252,7 @@ hr.sep{border:0;border-top:1px solid var(--line);margin:4px 0}
 .corr .tip{margin-top:6px;font-size:13px;background:var(--surface-2);border-radius:8px;padding:6px 10px;overflow-wrap:anywhere}
 .corr .tip b{color:var(--accent);margin-right:4px}
 .corr li.ok .tip{opacity:.8}
+.corr li.ok .msteps[open]{opacity:1}
 
 /* Sudoku */
 .back{border:0;background:none;display:inline-flex;align-items:center;gap:2px;font-weight:700;color:var(--accent);padding:4px 6px 4px 0}
@@ -723,6 +724,15 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .tipcard li b{font-size:13px;color:var(--tc)}
 .tipcard li span{font-size:14px;overflow-wrap:anywhere}
 
+.msteps summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline}
+.msteps summary::-webkit-details-marker{display:none}
+.msteps summary::after{content:'Détailler ▾';margin-left:auto;font-size:12px;color:var(--accent);font-weight:600}
+.msteps[open] summary::after{content:'Masquer ▴'}
+.msteps[open] summary .fine{display:none}
+ol.steps{list-style:none;margin:8px 0 2px;padding:0;counter-reset:st;display:grid;gap:6px}
+ol.steps li,.corr ol.steps li{counter-increment:st;position:relative;display:block;border:0;margin:0;padding:0 0 0 28px;line-height:1.45;font-variant-numeric:tabular-nums}
+ol.steps li::before{content:counter(st);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);font:700 11px/20px var(--mono,ui-monospace,monospace);text-align:center}
+ol.steps li:not(:first-child)::after{content:'';position:absolute;left:9.5px;top:-6px;height:7px;border-left:1px solid var(--line)}
 /* Interactions */
 
 
@@ -1253,7 +1263,7 @@ function vCalcResult(){
     <div class="card">${rows.length?`<ul class="corr">${rows.map(({q,a,i})=>`<li class="${a.ok?'ok':'bad'}"><span class="mark">${a.ok?ICON_CHECK:ICON_X}</span><div style="min-width:0">
       ${q.show ? `<div class="cq">${esc(q.q)}<br><span class="ansl">Réponse :</span> <b class="mono">${esc(q.show)}</b></div>` : `<div class="cq mono">${esc(q.q)} = <b>${nf(q.a)}</b></div>`}
       <div class="meta"><span>${catName(q.cat)}</span><span>·</span>${a.skipped?'<span>passé</span>':`<span>ta réponse : <b class="${a.ok?'':'wrong'}">${esc(a.given)}</b></span>`}</div>
-      <div class="tip"><b>Méthode</b> ${esc(q.tip)}</div><div class="tip rule"><b>Le principe</b> ${esc(ruleFor(q))}</div>${H.has(i) ? '<span class="hused">Astuce utilisée pendant la série</span>' : ''}</div></li>`).join('')}</ul>`:'<div class="empty"><b>Aucune erreur</b>Tout est juste sur cette série.</div>'}</div></section>
+      ${a.ok ? `<details class="tip msteps"><summary><b>Méthode pas à pas</b><span class="fine">${esc(q.tip)}</span></summary>${stepsHtml(q)}</details>` : `<div class="tip msteps"><b>Méthode pas à pas</b>${stepsHtml(q)}</div>`}<div class="tip rule"><b>Le principe</b> ${esc(ruleFor(q))}</div>${H.has(i) ? '<span class="hused">Astuce utilisée pendant la série</span>' : ''}</div></li>`).join('')}</ul>`:'<div class="empty"><b>Aucune erreur</b>Tout est juste sur cette série.</div>'}</div></section>
   <button class="btn" data-c="home">Retour à l'accueil du calcul</button>`;
 }
 function startSession(opts){ ui.calc.s = buildSession(opts); ui.calc.phase = 'play'; ui.calc.filter = 'all'; render(); window.scrollTo(0,0); }
@@ -2550,7 +2560,7 @@ function vExpress(){
   if (X.step==='q') return head + `<div class="card qcard ${X.anim ? 'simq next' : ''}"><span class="lab">Calcul · ${catName(q.cat)}</span><div class="calc-q mono">${esc(qText(q))}</div>
     <form id="x-form" class="ans"><input id="x-ans" class="mono" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="Ta réponse" placeholder="Ta réponse"><button class="btn primary" type="submit">Valider</button></form></div>
     <button class="btn" data-x="skip">Passer</button>`;
-  return head + `<div class="card qcard ${X.last ? 'good' : 'badf'}"><span class="lab">${X.last ? 'Juste' : 'Pas tout à fait'}</span><div class="calc-q mono">${esc(q.q)} = ${nf(q.a)}</div><div class="xtip"><b>Méthode</b> ${esc(q.tip)}</div></div>
+  return head + `<div class="card qcard ${X.last ? 'good' : 'badf'}"><span class="lab">${X.last ? 'Juste' : 'Pas tout à fait'}</span><div class="calc-q mono">${esc(q.q)} = ${nf(q.a)}</div><div class="xtip"><b>Méthode pas à pas</b>${stepsHtml(q)}</div></div>
     <button class="btn primary bigbtn" data-x="next">Suivant</button>`;
 }
 function expressNext(){ const X = ui.express; X.i++; X.step = 'q'; X.anim = 'next'; if (X.i >= X.items.length) return expressFinish(false); render(); window.scrollTo(0,0); }
@@ -3039,6 +3049,145 @@ function tipSheetsHtml(){
   return `<section><h2>Fiches d’astuces</h2><div class="tipgrid">${TIP_SHEETS.map(T=>`<details class="card tipcard" style="--tc:var(--${T.col})"><summary><span class="medal hic tico">${bicon(T.ic)}</span><b>${T.title}</b><span class="tipn">${T.tips.length} astuces</span></summary>
     <ul>${T.tips.map(([h,ex])=>`<li><b>${esc(h)}</b><span class="mono">${esc(ex)}</span></li>`).join('')}</ul></details>`).join('')}</div></section>`;
 }
+
+/* ---------- Méthode pas à pas ---------- */
+const pN = x => Number(String(x).replace(/[\s  ]/g,'').replace(',','.'));
+const nf4 = n => Number(n).toLocaleString('fr-FR', { maximumFractionDigits:4 });
+const NUM = '(\\d[\\d\\s\\u202f\\u00a0]*(?:,\\d+)?)';
+const placeParts = b => String(b).split('').reverse().map((d,i)=>+d*10**i).filter(Boolean).reverse();
+const sgn = v => (v >= 0 ? '+ ' : '− ') + nf(Math.abs(v));
+function stepsFor(q){ try { const S = stepsCore(q); return S && S.length ? S : [q.tip]; } catch(e){ return [q.tip]; } }
+function pctSteps(p, B, r){
+  const v10 = B/10, v1 = B/100;
+  const k = {
+    10:[`10 %, c’est diviser par 10 : ${nf(B)} ÷ 10 = ${nf(r)}`],
+    50:[`50 %, c’est la moitié : ${nf(B)} ÷ 2 = ${nf(r)}`],
+    25:[`25 %, c’est un quart, donc la moitié de la moitié.`, `${nf(B)} ÷ 2 = ${nf(B/2)}`, `${nf(B/2)} ÷ 2 = ${nf(r)}`],
+    75:[`75 % = 50 % + 25 %.`, `50 % : ${nf(B)} ÷ 2 = ${nf(B/2)}`, `25 % : ${nf(B/2)} ÷ 2 = ${nf(B/4)}`, `${nf(B/2)} + ${nf(B/4)} = ${nf(r)}`],
+    5:[`10 % de ${nf(B)} : ${nf(B)} ÷ 10 = ${nf(v10)}`, `5 %, c’est la moitié de 10 % : ${nf(v10)} ÷ 2 = ${nf(r)}`],
+    15:[`10 % de ${nf(B)} : ${nf(B)} ÷ 10 = ${nf(v10)}`, `5 % = la moitié de 10 % : ${nf(v10)} ÷ 2 = ${nf(v10/2)}`, `15 % = 10 % + 5 % = ${nf(v10)} + ${nf(v10/2)} = ${nf(r)}`],
+    45:[`45 % = 50 % − 5 %.`, `50 % : ${nf(B)} ÷ 2 = ${nf(B/2)}`, `5 % : la moitié de 10 % (${nf(v10)}) = ${nf(B/20)}`, `${nf(B/2)} − ${nf(B/20)} = ${nf(r)}`],
+    35:[`35 % = 25 % + 10 %.`, `25 % : ${nf(B)} ÷ 4 = ${nf(B/4)}`, `10 % : ${nf(B)} ÷ 10 = ${nf(v10)}`, `${nf(B/4)} + ${nf(v10)} = ${nf(r)}`],
+    65:[`65 % = 50 % + 15 %.`, `50 % : ${nf(B)} ÷ 2 = ${nf(B/2)}`, `15 % = 10 % + 5 % = ${nf(v10)} + ${nf(v10/2)} = ${nf(B*.15)}`, `${nf(B/2)} + ${nf(B*.15)} = ${nf(r)}`]
+  }[p];
+  if (k) return k;
+  const pt = Math.floor(p/10), pu = p%10, S = [`10 % de ${nf(B)} = ${nf(v10)} et 1 % = ${nf(v1)}`];
+  if (pt > 1) S.push(`${pt*10} % = ${pt} × ${nf(v10)} = ${nf(pt*v10)}`);
+  if (pu) S.push(`${pu} % = ${pu} × ${nf(v1)} = ${nf(pu*v1)}`);
+  if (pt && pu) S.push(`${p} % = ${nf(pt*v10)} + ${nf(pu*v1)} = ${nf(r)}`);
+  return S;
+}
+function stepsCore(q){
+  const t = q.q, c = q.cat; let m;
+  if (c==='add' && (m = t.match(new RegExp('^'+NUM+' \\+ '+NUM+'$')))){
+    const a = pN(m[1]), b = pN(m[2]), u = b%10, S = [];
+    if (b < 100 && u >= 6){ const up = b+10-u;
+      S.push(`On arrondit ${nf(b)} à ${nf(up)} : on ajoute ainsi ${10-u} de trop.`, `${nf(a)} + ${nf(up)} = ${nf(a+up)}`, `On retire les ${10-u} en trop : ${nf(a+up)} − ${10-u} = ${nf(a+b)}`); }
+    else { const parts = placeParts(b); if (parts.length > 1) S.push(`On découpe ${nf(b)} en ${parts.map(nf).join(' + ')}, puis on ajoute morceau par morceau.`);
+      let acc = a; parts.forEach(p => { S.push(`${nf(acc)} + ${nf(p)} = ${nf(acc+p)}`); acc += p; }); }
+    S.push(`Vérification : ${nf(a+b)} − ${nf(b)} = ${nf(a)}`); return S;
+  }
+  if (c==='sub' && (m = t.match(new RegExp('^'+NUM+' − '+NUM+'$')))){
+    const a = pN(m[1]), b = pN(m[2]), u = b%10, S = [];
+    if (b < 100 && u >= 6){ const up = b+10-u;
+      S.push(`On arrondit ${nf(b)} à ${nf(up)} : on retire ainsi ${10-u} de trop.`, `${nf(a)} − ${nf(up)} = ${nf(a-up)}`, `On rend les ${10-u} retirés en trop : ${nf(a-up)} + ${10-u} = ${nf(a-b)}`); }
+    else { const parts = placeParts(b); if (parts.length > 1) S.push(`On découpe ${nf(b)} en ${parts.map(nf).join(' + ')}, puis on retire morceau par morceau.`);
+      let acc = a; parts.forEach(p => { S.push(`${nf(acc)} − ${nf(p)} = ${nf(acc-p)}`); acc -= p; }); }
+    S.push(`Vérification : ${nf(a-b)} + ${nf(b)} = ${nf(a)}`); return S;
+  }
+  if (c==='mul' && (m = t.match(new RegExp('^'+NUM+' × '+NUM+'$')))){
+    let a = pN(m[1]), b = pN(m[2]); const r = a*b, S = [], SP = [5,9,11,15,25];
+    if (SP.includes(a) && !SP.includes(b)) [a,b] = [b,a];
+    if (b===5 && a > 10) S.push(`× 5, c’est × 10 puis ÷ 2.`, `${nf(a)} × 10 = ${nf(a*10)}`, `${nf(a*10)} ÷ 2 = ${nf(r)}`);
+    else if (b===9 && a > 10) S.push(`× 9, c’est × 10 moins une fois le nombre.`, `${nf(a)} × 10 = ${nf(a*10)}`, `${nf(a*10)} − ${nf(a)} = ${nf(r)}`);
+    else if (b===11){ S.push(`× 11, c’est × 10 plus une fois le nombre.`, `${nf(a)} × 10 = ${nf(a*10)}`, `${nf(a*10)} + ${nf(a)} = ${nf(r)}`);
+      if (a >= 10 && a < 100){ const d1 = Math.floor(a/10), d2 = a%10, s2 = d1+d2;
+        S.push(s2 < 10 ? `Raccourci : ${d1} + ${d2} = ${s2}, qu’on glisse entre ${d1} et ${d2} → ${nf(r)}` : `Raccourci : ${d1} + ${d2} = ${s2} ; on garde ${s2%10} au milieu et la retenue 1 s’ajoute au ${d1} → ${nf(r)}`); } }
+    else if (b===25) S.push(`× 25, c’est × 100 puis ÷ 4, soit deux fois la moitié.`, `${nf(a)} × 100 = ${nf(a*100)}`, `${nf(a*100)} ÷ 2 = ${nf(a*50)}`, `${nf(a*50)} ÷ 2 = ${nf(r)}`);
+    else if (b===15) S.push(`× 15, c’est × 10 plus la moitié de ce résultat.`, `${nf(a)} × 10 = ${nf(a*10)}`, `La moitié : ${nf(a*10)} ÷ 2 = ${nf(a*5)}`, `${nf(a*10)} + ${nf(a*5)} = ${nf(r)}`);
+    else if (a <= 10 && b <= 10){ const big = Math.max(a,b), small = Math.min(a,b);
+      S.push(`Point d’appui dans une table connue : ${big} × ${small-1} = ${big*(small-1)}`, `On ajoute ${big} une fois de plus : ${big*(small-1)} + ${big} = ${r}`); }
+    else { if (a < b) [a,b] = [b,a];
+      if (b < 10){ const at = a - a%10, au = a%10;
+        S.push(`On découpe ${a} en ${at} + ${au}.`, `${at} × ${b} = ${nf(at*b)}`); if (au) S.push(`${au} × ${b} = ${au*b}`, `${nf(at*b)} + ${au*b} = ${nf(r)}`); }
+      else { const bt = b - b%10, bu = b%10;
+        S.push(`On découpe ${b} en ${bt}${bu ? ' + '+bu : ''} : ${a} × ${b} = ${a} × ${bt}${bu ? ' + '+a+' × '+bu : ''}.`, `${a} × ${bt} = ${a} × ${bt/10} × 10 = ${nf(a*bt/10)} × 10 = ${nf(a*bt)}`);
+        if (bu) S.push(`${a} × ${bu} = ${nf(a*bu)}`, `${nf(a*bt)} + ${nf(a*bu)} = ${nf(r)}`); } }
+    S.push(`Vérification : ${nf(r)} ÷ ${nf(b)} = ${nf(a)}`); return S;
+  }
+  if (c==='div' && (m = t.match(new RegExp('^'+NUM+' ÷ '+NUM+'$')))){
+    const n = pN(m[1]), d = pN(m[2]), r = n/d, S = [];
+    if (d===5) S.push(`÷ 5, c’est ÷ 10 puis × 2.`, `${nf(n)} ÷ 10 = ${nf(n/10)}`, `${nf(n/10)} × 2 = ${nf(r)}`);
+    else if (r <= 10) S.push(`On cherche le nombre qui, multiplié par ${d}, donne ${nf(n)}.`, `Dans la table de ${d} : ${d} × ${r} = ${nf(n)}`);
+    else { const rt = r - r%10, ru = r%10;
+      S.push(`On prend d’abord un gros morceau facile : ${d} × ${rt} = ${nf(d*rt)}`);
+      if (ru) S.push(`Il reste ${nf(n)} − ${nf(d*rt)} = ${nf(n-d*rt)}`, `${nf(n-d*rt)} ÷ ${d} = ${ru}, car ${d} × ${ru} = ${nf(d*ru)}`, `Au total : ${rt} + ${ru} = ${r}`);
+      else S.push(`Le morceau tombe juste : ${nf(n)} ÷ ${d} = ${r}`); }
+    S.push(`Vérification : ${d} × ${r} = ${nf(n)}`); return S;
+  }
+  if (c==='pct' && (m = t.match(new RegExp('^(?:TVA à )?'+NUM+' % (?:de|sur) '+NUM)))){
+    const p = pN(m[1]), B = pN(m[2]), S = pctSteps(p, B, p*B/100);
+    if (/TVA/.test(t)) S.unshift(`La TVA à 20 %, c’est 20 % du prix hors taxes.`);
+    return S;
+  }
+  if (c==='pow'){
+    if ((m = t.match(/^(\d+)³$/))){ const n = +m[1]; return [`${n}³ = ${n} × ${n} × ${n}`, `${n} × ${n} = ${n*n}`, `${n*n} × ${n} = ${nf(n**3)}`]; }
+    if ((m = t.match(/^(\d+)²$/))){ const n = +m[1], r = n*n;
+      if (n <= 10) return [`${n}² = ${n} × ${n} = ${r}`];
+      if (n <= 12) return [`${n}² = ${n} × ${n} = ${n} × 10 + ${n} × ${n-10}`, `${n*10} + ${n*(n-10)} = ${r}`];
+      if (n%10===5){ const tt = (n-5)/10; return [`${n} finit par 5 : on garde le nombre de dizaines, ${tt}.`, `On le multiplie par le suivant : ${tt} × ${tt+1} = ${tt*(tt+1)}`, `On colle 25 à droite : ${nf(r)}`]; }
+      const u = n%10, d = u <= 5 ? u : 10-u, lo = n-d, hi = n+d, ten = lo%10===0 ? lo : hi, oth = ten===lo ? hi : lo;
+      return [`On s’écarte de ${d} de chaque côté pour tomber sur une dizaine : ${lo} et ${hi}.`, `${oth} × ${ten} = ${oth} × ${ten/10} × 10 = ${nf(oth*ten/10)} × 10 = ${nf(lo*hi)}`, `On ajoute ${d}² = ${d*d}`, `${nf(lo*hi)} + ${d*d} = ${nf(r)}`]; }
+  }
+  if (c==='evol'){
+    if ((m = t.match(new RegExp('Un prix de '+NUM+' € augmente de (\\d+) % puis baisse de (\\d+) %')))){ const P = pN(m[1]), h = +m[2], b = +m[3], c1 = 1+h/100, c2 = 1-b/100, A = P*c1;
+      return [`Une hausse de ${h} % revient à multiplier par ${nf4(c1)}.`, `${nf(P)} × ${nf4(c1)} = ${nf(A)} €`, `Une baisse de ${b} % revient à multiplier par ${nf4(c2)}.`, `${nf(A)} × ${nf4(c2)} = ${nf(r2(A*c2))} €`, `Piège : faire ${h} − ${b} = ${h-b} % donnerait ${nf(r2(P*(1+(h-b)/100)))} €, ce qui est faux.`]; }
+    if ((m = t.match(/augmente de (\d+) % puis de (\d+) %/))){ const h = +m[1], b = +m[2], c1 = 1+h/100, c2 = 1+b/100, X = c1*c2;
+      return [`Coefficients multiplicateurs : ${nf4(c1)} et ${nf4(c2)}.`, `${nf4(c1)} × ${nf4(c2)} = ${nf4(X)}`, `${nf4(X)} − 1 = ${nf4(X-1)}, soit ${nf(r2((X-1)*100))} %`, `Piège : additionner donnerait ${h+b} % ; il manque les ${b} % appliqués aux ${h} % déjà gagnés.`]; }
+  }
+  if (c==='r3'){
+    if ((m = t.match(new RegExp('^(\\d+) stylos coûtent '+NUM+' €\\. Combien coûtent (\\d+) stylos')))){ const n = +m[1], X = pN(m[2]), k = +m[3], u = X/n;
+      return [`On calcule d’abord le prix d’un stylo : ${nf(X)} ÷ ${n} = ${nf(u)} €`, `Puis pour ${k} stylos : ${k} × ${nf(u)} = ${nf(r2(k*u))} €`]; }
+    if ((m = t.match(/^(\d+) ouvriers font un chantier en (\d+) jours\. Combien de jours faut-il à (\d+) ouvriers/))){ const w1 = +m[1], d1 = +m[2], w2 = +m[3];
+      return [`Plus d’ouvriers, moins de jours : c’est inversement proportionnel.`, `Travail total : ${w1} × ${d1} = ${w1*d1} jours de travail`, `Avec ${w2} ouvriers : ${w1*d1} ÷ ${w2} = ${nf(w1*d1/w2)} jours`, `Piège : une règle de trois « directe » donnerait ${nf(d1*w2/w1)} jours, absurde : plus de monde ne peut pas prendre plus de temps.`]; }
+  }
+  if (c==='suite' && (m = t.match(/suite : (.+) ; … \?/))){
+    const xs = m[1].split(' ; ').map(pN), d = xs.slice(1).map((v,i)=>v-xs[i]), a = q.a, last = xs[xs.length-1];
+    const S = [`On regarde les écarts entre deux termes : ${d.map(sgn).join(', ')}`];
+    const ratio = xs[1]/xs[0];
+    if (d.every(v=>v===d[0])) S.push(`L’écart est toujours le même : ${nf(last)} ${sgn(d[0])} = ${nf(a)}`);
+    else if (Number.isInteger(ratio) && xs.every((v,i)=>i===0 || v===xs[i-1]*ratio)) S.push(`Chaque terme est multiplié par ${ratio} : ${nf(last)} × ${ratio} = ${nf(a)}`);
+    else if (xs.every(v=>Number.isInteger(Math.sqrt(v)))) S.push(`Les écarts augmentent de 2 à chaque fois : ce sont des carrés, ${xs.map(v=>Math.sqrt(v)+'²').join(', ')}.`, `Le suivant est ${Math.sqrt(a)}² = ${nf(a)}`);
+    else if (xs.every((v,i)=>i===0 || v===2*xs[i-1]+1)) S.push(`Les écarts doublent : chaque terme vaut le précédent × 2 + 1.`, `${nf(last)} × 2 + 1 = ${nf(a)}`);
+    else S.push(`Les écarts alternent : ${sgn(d[0])}, puis ${sgn(d[1])}.`, `Le prochain écart est ${sgn(d[0])} : ${nf(last)} ${sgn(d[0])} = ${nf(a)}`);
+    return S;
+  }
+  if (c==='frac' && (m = t.match(new RegExp('les (\\d+)/(\\d+) des (\\d+)/(\\d+) de '+NUM)))){
+    const [p1,q1,p2,q2] = [1,2,3,4].map(i=>+m[i]), N = pN(m[5]), D = q1*q2, P = p1*p2;
+    return [`« Les ${p1}/${q1} des ${p2}/${q2} » : on multiplie les deux fractions.`, `${p1}/${q1} × ${p2}/${q2} = ${P}/${D}`, `On divise d’abord : ${nf(N)} ÷ ${D} = ${nf(N/D)}`, `Puis on multiplie : ${nf(N/D)} × ${P} = ${nf(q.a)}`];
+  }
+  if (c==='vit' && (m = t.match(new RegExp('parcourt '+NUM+' km en (.+)\\. Quelle')))){
+    const d = pN(m[1]), lab = m[2], hm = lab.match(/^(\d+) h(?: (\d+))?$/), mm = lab.match(/^(\d+) min$/);
+    const h = hm ? +hm[1] : 0, mi = hm ? +(hm[2]||0) : mm ? +mm[1] : 0, tm = h*60 + mi, g = gcd(tm, 60), num = tm/g, den = 60/g;
+    const S = [`On convertit la durée en heures : ${mm ? '' : lab+' = '}${tm} min = ${tm}/60 h = ${num}/${den} h${den>1 ? ' (soit '+nf4(tm/60)+' h)' : ''}.`, `Vitesse = distance ÷ durée = ${nf(d)} ÷ ${num}/${den}`];
+    S.push(num===1 ? `Diviser par 1/${den}, c’est multiplier par ${den} : ${nf(d)} × ${den} = ${nf(q.a)} km/h` : `Diviser par ${num}/${den}, c’est multiplier par ${den} puis diviser par ${num} : ${nf(d)} × ${den} = ${nf(d*den)}, puis ${nf(d*den)} ÷ ${num} = ${nf(q.a)} km/h`);
+    if (h && mi) S.push(`Piège : ${lab} ne vaut pas ${h},${pad(mi)} h mais ${nf4(tm/60)} h.`);
+    return S;
+  }
+  if (c==='inter' && (m = t.match(new RegExp('^'+NUM+' € sont placés à (\\d+) %')))){
+    const C = pN(m[1]), tx = +m[2], A = C*(1+tx/100), B = A*(1+tx/100);
+    return [`Année 1 : intérêts = ${nf(C)} × ${tx} % = ${nf(C*tx/100)} €, capital ${nf(A)} €`, `Année 2 : intérêts = ${nf(A)} × ${tx} % = ${nf(r2(A*tx/100))} €, capital ${nf(r2(B))} €`, `Formule directe : ${nf(C)} × ${nf4(1+tx/100)}² = ${nf(r2(B))} €`, `Piège : avec des intérêts simples, on obtiendrait ${nf(C*(1+2*tx/100))} €.`];
+  }
+  if (c==='moy' && (m = t.match(/notes (\d+), (\d+) et x ont une moyenne de (\d+)/))){
+    const v1 = +m[1], v2 = +m[2], mo = +m[3];
+    return [`Moyenne de ${mo} sur 3 notes : la somme des notes vaut 3 × ${mo} = ${3*mo}.`, `On retire les notes connues : ${3*mo} − ${v1} − ${v2} = ${3*mo-v1-v2}`, `Vérification : (${v1} + ${v2} + ${q.a}) ÷ 3 = ${mo}`];
+  }
+  if (c==='part' && (m = t.match(new RegExp('Sur '+NUM+' étudiants, (\\d+) %')))){
+    const N = pN(m[1]), p = +m[2]; return pctSteps(p, N, p*N/100);
+  }
+  return null;
+}
+const stepsHtml = q => `<ol class="steps">${stepsFor(q).map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`;
 
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
