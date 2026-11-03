@@ -686,6 +686,13 @@ nav.tabs .pill{padding:3px 11px}
 .hlist b{font-size:15px}
 .hlist p{margin:2px 0 0;font-size:14px;color:var(--muted);line-height:1.5}
 
+.snaps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.snaps li{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px}
+.snaps li.fine{border:0;background:none;padding:0}
+.snaps b{display:block;font-size:14px}
+.snaps b::first-letter{text-transform:uppercase}
+.snaps span{font-size:12px;color:var(--muted)}
+
 /* Interactions */
 
 
@@ -2858,6 +2865,61 @@ function helpSheet(){
     <div class="btns"><button class="btn primary" data-close>Compris</button></div>`);
 }
 
+/* ---------- Copies automatiques ---------- */
+const SNAP = (() => {
+  let dbp;
+  const db = () => dbp || (dbp = new Promise((res, rej) => { try { const r = indexedDB.open('tempo-copies', 1); r.onupgradeneeded = () => r.result.createObjectStore('s'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch(e){ rej(e); } }));
+  const tx = (mode, f) => db().then(d => new Promise((res, rej) => { const t = d.transaction('s', mode), rq = f(t.objectStore('s')); t.oncomplete = () => res(rq && rq.result); t.onerror = () => rej(t.error); }));
+  const put = (k, v) => tx('readwrite', s => s.put(v, k));
+  const all = () => db().then(d => new Promise((res, rej) => { const out = [], t = d.transaction('s', 'readonly'), c = t.objectStore('s').openCursor();
+    c.onsuccess = () => { const cur = c.result; if (cur){ out.push({ key:cur.key, ...cur.value }); cur.continue(); } }; t.oncomplete = () => res(out); t.onerror = () => rej(t.error); }));
+  const del = k => tx('readwrite', s => s.delete(k));
+  async function prune(){
+    const L = await all(), days = L.filter(x=>x.kind==='day').sort((a,b)=>b.key.localeCompare(a.key)), before = L.filter(x=>x.kind==='before').sort((a,b)=>b.at.localeCompare(a.at));
+    await Promise.all([...days.slice(7), ...before.slice(3)].map(x => del(x.key)));
+  }
+  const summary = st => ({ tasks:(st.tasks||[]).length, cards:(st.fc && st.fc.cards || []).length, goals:(st.goals||[]).length });
+  async function save(kind, label){
+    const at = new Date().toISOString(), data = JSON.stringify(state), k = kind==='day' ? todayKey() : 'avant-' + at;
+    await put(k, { kind, at, label: label || '', data, sum: summary(state) }); await prune();
+  }
+  let t = null;
+  return {
+    later(){ clearTimeout(t); t = setTimeout(() => save('day').catch(()=>{}), 4000); },
+    now: () => save('day').catch(()=>{}),
+    before: label => save('before', label).catch(()=>{}),
+    list: () => all().then(L => L.sort((a,b)=>b.at.localeCompare(a.at))).catch(() => []),
+    get: k => tx('readonly', s => s.get(k))
+  };
+})();
+let storageProtected = null;
+(async () => {
+  try {
+    if (navigator.storage && navigator.storage.persisted){
+      storageProtected = await navigator.storage.persisted();
+      if (!storageProtected && navigator.storage.persist) storageProtected = await navigator.storage.persist();
+    }
+  } catch(e){ storageProtected = null; }
+})();
+function snapLabel(x){
+  const d = x.at.slice(0,10), loc = new Date(x.at), k = key(loc), tk = todayKey();
+  const day = k===tk ? "Aujourd'hui" : k===key(addDays(new Date(),-1)) ? 'Hier' : fmt(loc,{weekday:'long',day:'numeric',month:'short'});
+  const h = fmt(loc,{hour:'2-digit',minute:'2-digit'});
+  return x.kind==='before' ? `${x.label || 'Avant une opération'} · ${day.toLowerCase()} à ${h}` : `${day} · dernière copie à ${h}`;
+}
+async function fillSnaps(el){
+  const L = await SNAP.list();
+  el.innerHTML = L.length ? L.map(x => `<li><div style="min-width:0"><b>${esc(snapLabel(x))}</b><span>${x.sum ? `${x.sum.tasks} tâche${x.sum.tasks>1?'s':''} · ${x.sum.cards} carte${x.sum.cards>1?'s':''} · ${x.sum.goals} objectif${x.sum.goals>1?'s':''}` : ''}</span></div><button class="btn sm" data-snap="${esc(x.key)}">Restaurer</button></li>`).join('')
+    : '<li class="fine">La première copie sera prise dans quelques secondes.</li>';
+  el.onclick = async e => { const b = e.target.closest('[data-snap]'); if (!b) return;
+    if (!b.dataset.armed){ b.dataset.armed = '1'; b.textContent = 'Confirmer'; return; }
+    const x = await SNAP.get(b.dataset.snap); if (!x){ toast('Copie introuvable'); return; }
+    let d; try { d = JSON.parse(x.data); } catch(_) { toast('Cette copie est illisible'); return; }
+    await SNAP.before('Avant restauration');
+    state = d; ensureCalc(); ensureSudoku(); ensureFc(); ensureExtras();
+    close(); save(); render(); drawFocus(); toast('Version restaurée'); };
+}
+
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
 function render(){
@@ -2878,7 +2940,7 @@ function render(){
   fab.hidden = ui.tab!=='agenda';
   $('#fab-lbl').textContent = ui.tab==='agenda' && ui.seg==='objectifs' ? 'Objectif' : ui.tab==='agenda' && ui.seg==='examens' ? 'Examen' : 'Tâche';
 }
-function commit(){ checkBadges(!badgesReady); save(); render(); }
+function commit(){ checkBadges(!badgesReady); save(); render(); SNAP.later(); }
 let toastT;
 function toast(m){ let t = $('.toast'); if(!t){ t = document.createElement('div'); t.className='toast'; t.setAttribute('role','status'); document.body.appendChild(t); } t.textContent = m; t.hidden=false; t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=>t.hidden=true, 2200); }
 
@@ -3070,7 +3132,12 @@ function settingsSheet(){
     <div class="btns"><button class="btn" id="s-merge">Ajouter aux miennes</button><button class="btn" id="s-replace">Remplacer tout</button></div>
     <p id="s-msg" role="status"></p>
     <hr class="sep">
+    <div class="field"><span class="lab">Copies automatiques</span>
+      <p class="fine">${storageProtected ? 'Ce téléphone protège les données de Tempo contre l\u2019effacement automatique.' : storageProtected===false ? 'Ce navigateur ne garantit pas la conservation des données : garde aussi une sauvegarde hors du téléphone.' : 'Tempo demande au navigateur de conserver ses données.'} Une copie est prise chaque jour (7 derniers jours), et avant chaque import ou effacement. Elles restent sur cet appareil.</p>
+      <ul class="snaps" id="s-snaps"><li class="fine">Chargement…</li></ul></div>
+    <hr class="sep">
     <div class="btns"><button class="btn danger" id="s-wipe">Tout effacer</button><button class="btn" data-close>Fermer</button></div>`, s => {
+    fillSnaps(s.querySelector('#s-snaps'));
     const msg = s.querySelector('#s-msg'), inp = s.querySelector('#s-in'), out = s.querySelector('#s-out');
     const nm = s.querySelector('#s-name'); nm.addEventListener('change', () => { state.profile = { ...(state.profile||{}), name: nm.value.trim().slice(0,30) }; commit(); toast('Prénom enregistré'); });
     let data = '';
@@ -3095,6 +3162,7 @@ function settingsSheet(){
       const dfo = d.focus && Array.isArray(d.focus.sessions) ? d.focus : null;
       Object.entries(d.images || {}).forEach(([id,v]) => IMG.put(id, v).catch(()=>{}));
       if (replace){
+        SNAP.before('Avant import');
         state.tasks = d.tasks; state.goals = goals; if (dc) state.calc = dc; if (ds) state.sudoku = ds; if (df) state.fc = df;
         if (dr) state.routines = dr; if (dfo) state.focus = { ...dfo, run:null }; if (Array.isArray(d.partiels)) state.partiels = d.partiels; ['journal','stats','badges','badgeBest'].forEach(k => { if (d[k]) state[k] = d[k]; }); if (d.mit) state.mit = d.mit;
       } else {
@@ -3129,6 +3197,7 @@ function settingsSheet(){
     rep.addEventListener('click', () => { if (rep.dataset.armed) doImport(true); else { rep.dataset.armed='1'; rep.textContent='Confirmer le remplacement'; } });
     const wipe = s.querySelector('#s-wipe');
     wipe.addEventListener('click', () => { if (wipe.dataset.armed){
+        SNAP.before('Avant effacement');
         state = { v:1, examples:false, tasks:[], goals:[], routines:[], partiels:[], journal:{}, stats:{}, badges:{}, badgeBest:{}, meta:{ created:todayKey(), lastBackup:null }, fc:{ decks:[], cards:[], newDay:{ d:'', n:0 }, log:{}, exams:[], prefs:{ mode:'flip' } } };
         close(); commit(); drawFocus(); toast('Données effacées'); }
       else { wipe.dataset.armed='1'; wipe.textContent='Confirmer l’effacement'; } });
@@ -3138,6 +3207,7 @@ function settingsSheet(){
 ensureExtras(); checkBadges(true); badgesReady = true; save();
 render();
 drawFocus();
+SNAP.now();
 if (!state.profile) setTimeout(welcomeSheet, 450);
 })();
 </script>
