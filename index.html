@@ -897,6 +897,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 .hcam-frame i{position:absolute;left:6%;right:6%;top:50%;height:2px;background:var(--danger);opacity:.85;animation:scanl 1.6s ease-in-out infinite alternate}
 @keyframes scanl{from{transform:translateY(-28px)}to{transform:translateY(28px)}}
 .hcam-torch{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;display:grid;place-items:center}.hcam-torch svg{width:20px;height:20px}.hcam-torch.on{background:#ffd34d;color:#000}
+.hcam-zoom{top:auto;bottom:10px;font:700 13px/1 var(--f-body,inherit)}.hdiag{margin:4px 0 0;font-size:11px;opacity:.7}
 /* Interactions */
 
 
@@ -4110,7 +4111,7 @@ let detP = null;
 function getDetector(){
   return detP || (detP = (async () => {
     const F = ['ean_13','ean_8','upc_a','upc_e'];
-    if ('BarcodeDetector' in window){ try { const sup = await BarcodeDetector.getSupportedFormats(); if (sup.includes('ean_13')) return new BarcodeDetector({ formats:F.filter(f=>sup.includes(f)) }); } catch(_){} }
+    if ('BarcodeDetector' in window){ try { const sup = await BarcodeDetector.getSupportedFormats(); if (sup.includes('ean_13')){ const d = new BarcodeDetector({ formats:F.filter(f=>sup.includes(f)) }); d.__native = true; return d; } } catch(_){} }
     await loadScript(BD_URL); return new window.BarcodeDetectionAPI.BarcodeDetector({ formats:F });
   })().catch(e => { detP = null; throw e; }));
 }
@@ -4182,7 +4183,7 @@ function hFoodSheet(meal){
         st2.querySelector('#hf-back').addEventListener('click', back); st2.querySelector('#hf-label2').addEventListener('click', () => labelFlow(code)); }
       catch(_) { st2.innerHTML = `<p class="warnt">Connexion impossible à Open Food Facts.</p><div class="btns"><button type="button" class="btn" id="hf-back">Retour</button></div>`; st2.querySelector('#hf-back').addEventListener('click', back); } };
     s.querySelector('#hf-scan').addEventListener('click', async () => { st1.hidden = true; st2.hidden = false;
-      st2.innerHTML = `<div class="hcam"><video id="hf-video" playsinline muted autoplay></video><div class="hcam-frame"><i></i></div><button type="button" class="hcam-torch" id="hf-torch" hidden aria-label="Lampe">${bicon('bolt')}</button></div>
+      st2.innerHTML = `<div class="hcam"><video id="hf-video" playsinline muted autoplay></video><div class="hcam-frame"><i></i></div><button type="button" class="hcam-torch" id="hf-torch" hidden aria-label="Lampe">${bicon('bolt')}</button><button type="button" class="hcam-torch hcam-zoom" id="hf-zoom" hidden aria-label="Zoom">1×</button></div><p class="fine hdiag" id="hf-diag"></p>
         <p class="ppreview" id="hf-cs">Ouverture de la caméra…</p>
         <p class="fine">Code bien à plat et éclairé, dans le cadre, à 15–25 cm : trop près, l’iPhone n’arrive pas à faire la mise au point.</p>
         <div class="field"><label for="hf-code">ou tape le code-barres</label><input id="hf-code" inputmode="numeric" maxlength="14" placeholder="3017620422003"></div>
@@ -4203,24 +4204,32 @@ function hFoodSheet(meal){
         if (done || !document.body.contains(video)){ stopCam(); return; }
         video.srcObject = stream; await video.play().catch(()=>{});
         const track = stream.getVideoTracks()[0], caps = track.getCapabilities ? track.getCapabilities() : {};
-        const adv = []; if (caps.focusMode && caps.focusMode.includes('continuous')) adv.push({ focusMode:'continuous' });
-        if (caps.zoom && caps.zoom.max >= 1.5) adv.push({ zoom: Math.min(2, caps.zoom.max) });
-        if (adv.length) track.applyConstraints({ advanced:adv }).catch(()=>{});
+        if (caps.focusMode && caps.focusMode.includes('continuous')) track.applyConstraints({ advanced:[{ focusMode:'continuous' }] }).catch(()=>{});
         if (caps.torch){ const tb = st2.querySelector('#hf-torch'); let on = false; tb.hidden = false; tb.addEventListener('click', () => { on = !on; tb.classList.toggle('on', on); track.applyConstraints({ advanced:[{ torch:on }] }).catch(()=>{}); }); }
+        let zoom = 1; const zb = st2.querySelector('#hf-zoom');
+        if (caps.zoom && caps.zoom.max >= 1.5){ zb.hidden = false; zb.addEventListener('click', () => { zoom = zoom === 1 ? Math.min(2, caps.zoom.max) : 1; zb.textContent = (zoom === 1 ? '1×' : nf(zoom) + '×'); track.applyConstraints({ advanced:[{ zoom }] }).catch(()=>{}); }); }
         cs.textContent = 'Vise le code-barres dans le cadre…';
+        const diag = st2.querySelector('#hf-diag'), engine = det.__native ? 'lecteur natif' : 'lecteur zxing-cpp';
         const cv = document.createElement('canvas'), ctx = cv.getContext('2d', { willReadFrequently:true }); let n = 0;
+        const shot = (sx, sy, sw, sh, maxW, rot) => { const k = Math.min(1, maxW / sw), dw = Math.round(sw*k), dh = Math.round(sh*k);
+          if (rot){ cv.width = dh; cv.height = dw; ctx.save(); ctx.translate(dh/2, dw/2); ctx.rotate(Math.PI/2); ctx.drawImage(video, sx, sy, sw, sh, -dw/2, -dh/2, dw, dh); ctx.restore(); }
+          else { cv.width = dw; cv.height = dh; ctx.drawImage(video, sx, sy, sw, sh, 0, 0, dw, dh); }
+          return det.detect(cv); };
         const tick = async () => {
           if (done || !stream) return;
           const w = video.videoWidth, h = video.videoHeight;
           if (w && h){ n++;
-            try { let r;
-              if (n % 3){ const cw = Math.round(w*.8), ch = Math.round(h*.45); cv.width = cw; cv.height = ch; ctx.drawImage(video, (w-cw)/2, (h-ch)/2, cw, ch, 0, 0, cw, ch); r = await det.detect(cv); }
-              else r = await det.detect(video);
+            try { let r; const m = n % 4;
+              if (m === 1){ const cw = w*.84, ch = h*.5; r = await shot((w-cw)/2, (h-ch)/2, cw, ch, 1100); }
+              else if (m === 2){ const cw = w*.6, ch = h*.3; r = await shot((w-cw)/2, (h-ch)/2, cw, ch, 900); }
+              else if (m === 3) r = await shot(0, 0, w, h, 960);
+              else { const cw = w*.5, ch = h*.84; r = await shot((w-cw)/2, (h-ch)/2, cw, ch, 1000, true); }
               if (r && r.length) return found(r[0].rawValue);
             } catch(_){}
-            if (n === 40) cs.textContent = 'Toujours rien : recule un peu le téléphone, ou utilise « Photo du code ».';
+            if (diag && n % 5 === 0) diag.textContent = `${engine} · image ${w}×${h} · ${n} analyses`;
+            if (n === 50) cs.textContent = 'Toujours rien : éloigne un peu le téléphone (20–30 cm) puis rapproche doucement, ou utilise « Photo du code ».';
           }
-          setTimeout(tick, 120);
+          setTimeout(tick, 90);
         };
         tick();
       } catch(err){ cs.textContent = 'Caméra indisponible : autorise-la pour Tempo (Réglages → Safari → Caméra), ou utilise « Photo du code ».'; }
