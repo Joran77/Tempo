@@ -56,7 +56,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background
   padding-block:14px 10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;flex-direction:column;min-width:0}
-.brand small{color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
 .brand h1{margin:0;font-family:var(--f-display);font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
 .hbtns{display:flex;gap:8px}
 .icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;box-shadow:var(--shadow)}
@@ -670,6 +670,22 @@ nav.tabs .pill{padding:3px 11px}
 .wlogo{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink)}
 .wlogo svg{width:34px;height:34px}
 
+/* Aide */
+.icon-btn{width:38px;height:38px}
+.hbtns{gap:6px}
+.brand h1{font-size:clamp(21px,6.4vw,26px)}
+@media (max-width:380px){.icon-btn{width:34px;height:34px;border-radius:10px}.icon-btn svg{width:18px;height:18px}.hbtns{gap:5px}}
+.hhead{display:flex;gap:14px;align-items:flex-start}
+.hq{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-family:var(--f-display);font-weight:800;font-size:24px}
+.hhead h3{margin:0}
+.hhead p{margin:4px 0 0}
+.hlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.hlist li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:flex-start}
+.hlist .hic{width:36px;height:36px;--mc:var(--accent);border-style:solid;opacity:1}
+.hlist .hic svg{width:18px;height:18px}
+.hlist b{font-size:15px}
+.hlist p{margin:2px 0 0;font-size:14px;color:var(--muted);line-height:1.5}
+
 /* Interactions */
 
 
@@ -745,7 +761,9 @@ html.nomotion *,html.nomotion *::before{animation:none!important;transition:none
 <div class="app">
   <header class="top">
     <div class="brand"><small id="hdr-sub"></small><h1 id="hdr-title">Tempo</h1></div>
-    <div class="hbtns"><button class="icon-btn" id="btn-search" aria-label="Rechercher">
+    <div class="hbtns"><button class="icon-btn" id="btn-help" aria-label="Aide sur cette page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>
+    </button><button class="icon-btn" id="btn-search" aria-label="Rechercher">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     </button><button class="icon-btn" id="btn-look" aria-label="Apparence et thèmes">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-.9-.6-1.3-.6-2.1 0-.9.7-1.5 1.6-1.5H17a4 4 0 0 0 4-4c0-4.4-4-8.8-9-8.8z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10.5" cy="7" r="1.2" fill="currentColor"/><circle cx="15" cy="7.5" r="1.2" fill="currentColor"/></svg>
@@ -2788,12 +2806,64 @@ function welcomeSheet(){
   });
 }
 
+/* ---------- Aide ---------- */
+const HELP = {
+  accueil: { t:'L’accueil', i:'Ton tableau de bord du jour : ce qu’il reste à faire et des raccourcis vers tout le reste.', s:[
+    ['sun','Le résumé du jour','L’anneau montre tes tâches du jour cochées, et la pastille orange tes jours actifs d’affilée.'],
+    ['calendar','Examens et actualité','Les examens des 60 prochains jours affichent leur compte à rebours. Le point d’actualité apparaît dès qu’il est prêt, vers 6 h 50.'],
+    ['target','Les raccourcis','Pomodoro, défi de calcul, sudoku et flashcards. Une coche verte apparaît quand c’est fait pour la journée.'],
+    ['bolt','Révision express','5 minutes de cartes et de calculs mélangés, pour les temps morts (transports, pauses).'],
+    ['star','Priorité du jour','Choisis la tâche qui compte le plus. Tu peux aussi la désigner depuis le menu ⋯ d’une tâche.'],
+    ['tasks','Tes tâches','Coche une tâche, ou glisse-la : vers la droite pour la marquer faite, vers la gauche pour la reporter au lendemain.'],
+    ['moon','Bilan du soir','À partir de 17 h : ce que tu as appris, ce qui a été difficile, et une chose à faire demain, ajoutée à l’agenda.'],
+    ['trophy','Badges et semaine','Les badges se débloquent en bronze, argent et or. Le bilan de la semaine résume ton temps de travail et tes révisions.'],
+    ['check','Les boutons du haut','Loupe : rechercher. Palette : thèmes clair et sombre. Flèche : prénom, sauvegarde et transfert entre appareils. Point d’interrogation : cette aide.'] ] },
+  agenda: { t:'L’agenda', i:'Tes tâches, tes objectifs et tes examens, organisés au jour et à la semaine.', s:[
+    ['calendar','Jour et Semaine','Navigue avec les flèches. Touche la date pour revenir à aujourd’hui, ou un jour de la semaine pour l’ouvrir.'],
+    ['tasks','Ajouter une tâche','Bouton « + Tâche » : date ou « cette semaine », répétition (chaque jour, du lundi au vendredi, certains jours), catégorie, priorité et cartes liées.'],
+    ['check','Le menu ⋯','Lancer un Pomodoro sur la tâche, en faire la priorité du jour, la reporter, la modifier ou la supprimer. Une tâche répétée n’est supprimée que pour ce jour-là.'],
+    ['bolt','Glisser','Vers la droite : faite. Vers la gauche : reportée au lendemain.'],
+    ['flag','Objectifs','Objectifs de semaine, de mois ou à long terme. Avance avec les boutons + et −.'],
+    ['clock','Examens','Ajoute un examen avec ses chapitres : Tempo répartit les révisions dans ton agenda (apprendre, puis revoir quelques jours plus tard). En cas de retard, « Replanifier » redistribue la suite.'] ] },
+  calcul: { t:'Le calcul mental', i:'Des séries générées automatiquement pour garder des automatismes rapides.', s:[
+    ['sun','Défi du jour','10 calculs mélangés, identiques toute la journée. Tente de battre ton score ; le compteur suit tes jours d’affilée.'],
+    ['calc','Entraînement libre','Choisis une catégorie ou le Mix (coche les catégories à inclure), le niveau et le nombre de calculs.'],
+    ['check','La correction','Pour chaque calcul : ta réponse, la bonne, et une méthode rapide. Puis « Refaire mes erreurs ».'],
+    ['trophy','Prépa Score IAE Message','10 questions en QCM en 10 minutes : pourcentages, proportionnalité, suites logiques, fractions, vitesses, intérêts, moyennes.'],
+    ['target','Progression','Le graphique suit ta réussite ou ta vitesse sur tes dernières séries ; les statistiques montrent ta catégorie à travailler.'] ] },
+  sudoku: { t:'Le sudoku', i:'Des grilles générées sur ton téléphone, chacune avec une solution unique.', s:[
+    ['calendar','Grille du jour ou nouvelle grille','Une grille du jour par niveau, la même toute la journée, ou autant de nouvelles grilles que tu veux.'],
+    ['grid','Jouer','Touche une case, puis un chiffre en bas. Le petit nombre sous chaque chiffre indique combien il en reste à placer.'],
+    ['check','Les outils','Notes : écrire des petits chiffres possibles. Notes auto : les remplir toutes. Annuler, Effacer, et Vérifier pour voir les erreurs en rouge.'],
+    ['bulb','Indices en 3 temps','D’abord la zone où chercher, puis la technique expliquée avec la case, enfin le chiffre placé. Une erreur est toujours signalée en premier.'],
+    ['star','Progresser','La page « Techniques pour progresser » explique les méthodes, du balayage au pointage. Sur ordinateur : chiffres, flèches, N pour les notes.'] ] },
+  cartes: { t:'Les flashcards', i:'La répétition espacée : chaque carte revient au bon moment pour ne pas l’oublier.', s:[
+    ['cards','Matières et chapitres','À l’import, chaque carte part automatiquement dans la matière indiquée en 3e colonne (créée si besoin) ; sinon dans la matière par défaut choisie à l’import. Pour une carte écrite à la main, tu choisis la matière ; pour la déplacer, ouvre-la et change de matière.'],
+    ['check','Réviser','Trois modes : Retourner (tu notes ta réponse de « À revoir » à « Facile »), QCM, et Explique-le (tu écris ton explication avant de voir la réponse). Sois honnête : c’est ce qui règle les intervalles.'],
+    ['calendar','Chaque carte revue dans la semaine','Aucune carte n’attend plus de 7 jours, et les nouvelles cartes sont toutes découvertes en 7 jours. Le panneau « Ta semaine de révision » montre la charge des 7 prochains jours.'],
+    ['trophy','Examens /20','Sur une matière, « Valider » un chapitre lance un QCM noté : chapitre validé à partir de 12/20.'],
+    ['shuffle','Révision mélangée','Onglet en haut : les cartes alternent entre plusieurs matières, ce qui fait mieux retenir à long terme.'],
+    ['tasks','Ajouter des cartes','Écris une carte (question/réponse ou QCM), ou importe un fichier : question ; réponse ; matière ; chapitre ; mauvaises réponses séparées par |. Envoie un cours à Claude pour obtenir un fichier prêt à importer.'],
+    ['star','Outils d’une matière','Bouton « Modifier » : renommer, changer la couleur, ajouter les cartes inverses (réponse → question) ou partager la matière avec un camarade.'] ] },
+  actu: { t:'L’actualité', i:'Un point factuel sur la politique et l’économie, préparé chaque matin vers 6 h 50.', s:[
+    ['sun','Le point du jour','L’essentiel en deux phrases, les chiffres clés, puis les infos par thème avec « Pourquoi c’est important ».'],
+    ['check','Des sources variées','Agences de presse, sources officielles et médias de différentes sensibilités. Chaque info a ses liens pour vérifier.'],
+    ['calendar','Les jours précédents','Flèches pour passer d’un jour à l’autre ; touche la date pour voir tous les points archivés.'],
+    ['bulb','Teste-toi','Trois questions sur l’actualité du jour. « Ajouter à mes flashcards » les range dans la matière « Actualité ».'] ] }
+};
+function helpSheet(){
+  const H = HELP[ui.tab] || HELP.accueil;
+  sheet(`<div class="hhead"><span class="hq" aria-hidden="true">?</span><div><h3>${H.t}</h3><p>${H.i}</p></div></div>
+    <ul class="hlist">${H.s.map(([ic,t,x])=>`<li><span class="medal t0 hic">${bicon(ic)}</span><div><b>${t}</b><p>${x}</p></div></li>`).join('')}</ul>
+    <div class="btns"><button class="btn primary" data-close>Compris</button></div>`);
+}
+
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
 function render(){
   const now = new Date();
   $('#hdr-title').textContent = TITLES[ui.tab];
-  $('#hdr-sub').textContent = fmt(now,{weekday:'long',day:'numeric',month:'long'}) + ` · S${isoWeek(now)}`;
+  $('#hdr-sub').textContent = fmt(now, innerWidth < 420 ? {weekday:'short',day:'numeric',month:'short'} : {weekday:'long',day:'numeric',month:'long'}).replace(/\./g,'') + ` · S${isoWeek(now)}`;
   document.querySelectorAll('nav.tabs button').forEach(b => b.dataset.tab===ui.tab ? b.setAttribute('aria-current','page') : b.removeAttribute('aria-current'));
   ensureCalc(); ensureSudoku(); ensureFc(); ensurePartiels(); ensureFocus(); ensureExtras();
   const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='accueil' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
@@ -2854,6 +2924,7 @@ $('#fab').addEventListener('click', () => (ui.tab==='agenda' && ui.seg==='object
 $('#btn-settings').addEventListener('click', settingsSheet);
 $('#btn-look').addEventListener('click', lookSheet);
 $('#btn-search').addEventListener('click', searchSheet);
+$('#btn-help').addEventListener('click', helpSheet);
 
 /* ---------- Feuilles ---------- */
 const root = $('#modal-root');
