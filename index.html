@@ -869,6 +869,21 @@ pre.iex.prompt{font-family:var(--f-body,inherit);font-size:13px}
 .hmic{width:38px;height:38px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}.hmic svg{width:20px;height:20px}
 :root[data-mode="health"] nav.tabs .in{grid-template-columns:repeat(4,1fr)}
 @media (max-width:400px){.icon-btn{width:33px;height:33px;border-radius:10px}.icon-btn svg{width:18px;height:18px}.hbtns{gap:4px}.brand{min-width:0}.brand h1{font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.hstreak{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;padding:6px 12px;border-radius:99px;background:var(--amber-soft);color:var(--amber);font-weight:700;font-size:13px}
+.hstreak svg{width:16px;height:16px}
+.hmacr{display:grid;grid-template-columns:repeat(3,1fr);padding:14px 8px;gap:4px}
+.hmr{display:flex;flex-direction:column;align-items:center;gap:2px}
+.hmrr{position:relative;width:64px;height:64px}.hmrr svg{width:100%;height:100%}.hmrr b{position:absolute;inset:0;display:grid;place-items:center;font-size:15px}
+.hmr span{font-size:13px;font-weight:700}.hmr small{font-size:11px;color:var(--muted)}
+.hmk{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1}.hmk b{font-size:14px}.hmk small{font-size:11px;color:var(--muted)}
+.hfast{padding:14px;display:flex;flex-direction:column;gap:12px}
+.hft{display:flex;align-items:center;gap:12px}.hft>div:last-child{display:flex;flex-direction:column;gap:2px;min-width:0}.hft span{font-size:13px;color:var(--muted)}
+.hfr{position:relative;width:72px;height:72px;flex:none}.hfr svg{width:100%;height:100%}.hfr b{position:absolute;inset:0;display:grid;place-items:center;font-size:12px}
+.hfast .opts button{flex:1}
+.hcopy{font-weight:600;font-size:13px;color:var(--muted)}
+.htw{margin-bottom:14px}
+.hmini .hwbtn .btn svg{width:16px;height:16px}
+.hmini .hwbtn .btn{min-width:0}.hsimp{display:inline-flex;align-items:center;justify-content:center;gap:5px}.hmini .hsimp svg,.hmini .hwbtn .btn svg{width:16px!important;height:16px!important;flex:none}
 /* Interactions */
 
 
@@ -3097,12 +3112,15 @@ const HELP = {
     ['heart','Ton objectif','Calculé depuis ton profil (formule de Mifflin-St Jeor) : métabolisme de base × activité, puis −400 kcal pour perdre, +300 pour prendre. Il ne descend jamais sous ton métabolisme de base.'],
     ['target','L’anneau','Les kcal restantes pour la journée. Le sport du jour s’ajoute à l’objectif.'],
     ['check','Protéines, glucides, lipides','Repères : environ 1,6 g de protéines par kg, 30 % de lipides, le reste en glucides.'],
-    ['sun','Eau et pas','Un verre = 25 cl. Les pas se saisissent à la main depuis ton téléphone ou ta montre.'],
+    ['sun','Eau et pas','Un verre = 25 cl. Pour les pas : « Importer de Santé » après avoir lancé le raccourci « Pas Tempo » (à créer une fois, voir Activité → Configurer), ou saisie à la main.'],
+    ['clock','Jeûne intermittent','Facultatif : choisis 12:12, 14:10 ou 16:8, puis « Commencer ». L’anneau suit le temps écoulé.'],
     ['calendar','Autres jours','Les flèches pour compléter hier ou un jour passé.'] ] },
   'h-repas': { t:'Les repas', i:'Ce que tu manges, repas par repas.', s:[
     ['tasks','Ajouter','Cherche un aliment parmi plus de 100 aliments courants (valeurs moyennes pour 100 g), règle la quantité, et c’est ajouté. Les récents reviennent en premier.'],
     ['star','Ajout rapide','Si tu connais seulement les kcal (resto, plat du CROUS), ou crée ton propre aliment à partir de l’étiquette.'],
-    ['check','Supprimer','La croix à droite d’un aliment.'] ] },
+    ['check','Supprimer','La croix à droite d’un aliment.'],
+    ['calendar','Copier d’hier','Un repas vide propose de recopier celui de la veille, pratique pour les petits-déjeuners qui se répètent.'],
+    ['target','Repères par repas','L’objectif est réparti : 25 % petit-déjeuner, 35 % déjeuner, 30 % dîner, 10 % collations.'] ] },
   'h-sport': { t:'L’activité', i:'Tes séances de sport et tes pas.', s:[
     ['bolt','Séances','Les kcal sont estimées : intensité (MET) × poids × durée. Elles s’ajoutent à l’objectif du jour.'],
     ['sun','Pas','Une indication. Ils ne s’ajoutent pas à l’objectif, car ta marche quotidienne est déjà comptée dans ton niveau d’activité.'] ] },
@@ -4033,14 +4051,16 @@ function vHealth(){
   const D = hPeek(ui.hday), S = sumDay(D), sp = sportKcal(D), goal = T.kcal + sp;
   if (ui.tab==='h-jour'){
     return `${hDateBar()}
+    ${hStreak() >= 2 ? `<div class="hstreak"><span>${bicon('bolt')}</span>${hStreak()} jours renseignés d’affilée</div>` : ''}
     <div class="card hsum">${hRing(S.kcal, goal)}<div class="hnums"><div><span>Objectif</span><b class="mono">${nf(T.kcal)}</b></div><div><span>Mangé</span><b class="mono">${nf(r0(S.kcal))}</b></div><div><span>Sport</span><b class="mono">+${nf(r0(sp))}</b></div></div></div>
-    <div class="card pad hmac">${macroBar('Protéines', S.p, T.p, 'accent')}${macroBar('Glucides', S.c, T.c, 'amber')}${macroBar('Lipides', S.f, T.f, 'c-alt')}</div>
+    <div class="card hmacr">${hMacroRing('Glucides', S.c, T.c, 'amber')}${hMacroRing('Protéines', S.p, T.p, 'accent')}${hMacroRing('Lipides', S.f, T.f, 'c-alt')}</div>
     <div class="hgrid">
       <div class="card hmini"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} / ${nf(T.water)} L</b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div><div class="hwbtn"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm primary" data-h="water+">+ 1 verre</button></div></div>
-      <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><button class="btn sm" data-h="steps">Saisir</button></div>
+      <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><div class="hwbtn"><button class="btn sm" data-h="steps" aria-label="Saisir à la main">${bicon('tasks')}</button><button class="btn sm primary hsimp" data-h="steps-import" aria-label="Importer de Santé">${bicon('heart')}Santé</button></div></div>
     </div>
+    ${ui.hday===todayKey() ? fastCard() : ''}
     <section><h2>Repas <button class="link" data-h="go-repas">Détail</button></h2><div class="card"><ul class="hmeals">${MEALS.map(([k,l,ic]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
-      return `<li><span class="hmic">${bicon(ic)}</span><div><b>${l}</b><span>${it.length ? esc(it.map(x=>x.name).slice(0,3).join(', ')) + (it.length>3?'…':'') : 'Rien pour l’instant'}</span></div><span class="mono">${it.length ? nf(r0(kc)) : ''}</span><button class="icon-btn" data-h-add="${k}" aria-label="Ajouter au ${l}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></li>`; }).join('')}</ul></div></section>
+      return `<li><span class="hmic">${bicon(ic)}</span><div><b>${l}</b><span>${it.length ? esc(it.map(x=>x.name).slice(0,3).join(', ')) + (it.length>3?'…':'') : 'Rien pour l’instant'}</span></div><span class="hmk"><b class="mono">${nf(r0(kc))}</b><small>/ ${nf(Math.round(T.kcal*MEAL_SHARE[k]/10)*10)}</small></span><button class="icon-btn" data-h-add="${k}" aria-label="Ajouter au ${l}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></li>`; }).join('')}</ul></div></section>
     ${hInsight(T)}`;
   }
   if (ui.tab==='h-repas'){
@@ -4048,7 +4068,7 @@ function vHealth(){
     <div class="card hline"><span><b class="mono">${nf(r0(S.kcal))}</b> / ${nf(goal)} kcal</span><span class="fine">P ${r0(S.p)} g · G ${r0(S.c)} g · L ${r0(S.f)} g</span></div>
     ${MEALS.map(([k,l]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
       return `<section><h2>${l} <span class="mono hk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span></h2><div class="card">${it.length ? `<ul class="hfood">${it.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.g ? nf(x.g) + ' g · ' : ''}P ${nf(r1(x.p))} · G ${nf(r1(x.c))} · L ${nf(r1(x.f))}</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-del="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : ''}
-        <button class="hadd" data-h-add="${k}">+ Ajouter un aliment</button></div></section>`; }).join('')}`;
+        <button class="hadd" data-h-add="${k}">+ Ajouter un aliment</button>${!it.length ? (() => { const yk = key(addDays(parse(ui.hday), -1)), y = hPeek(yk).food.filter(x=>x.meal===k); return y.length ? `<button class="hadd hcopy" data-h-copy="${k}">Copier ${l.toLowerCase()} d’hier · ${esc(y.map(x=>x.name).slice(0,2).join(', '))}${y.length>2?'…':''} (${nf(r0(y.reduce((a,x)=>a+x.kcal,0)))} kcal)</button>` : ''; })() : ''}</div></section>`; }).join('')}`;
   }
   if (ui.tab==='h-sport'){
     const w = lastWeight() || 70, stepK = r0(D.steps * 0.0005 * w);
@@ -4056,14 +4076,15 @@ function vHealth(){
     <div class="card hline"><span><b class="mono">${nf(r0(sp))}</b> kcal dépensées en séance</span><span class="fine">Elles s’ajoutent à ton objectif du jour.</span></div>
     <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.min} min</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
       <button class="hadd" data-h="sport">+ Ajouter une séance</button></div></section>
-    <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div><div class="btns"><button class="btn sm" data-h="steps">Saisir mes pas</button></div></div></section>
+    <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div><div class="btns"><button class="btn sm primary" data-h="steps-import">Importer de Santé</button><button class="btn sm" data-h="steps">Saisir à la main</button><button class="btn sm" data-h="steps-help">Configurer</button></div></div></section>
     <p class="help">Calories des séances = intensité (MET) × poids × durée. C’est une estimation : une montre connectée peut donner des chiffres différents.</p>`;
   }
   // Suivi
   const W = ensureHealth().weights, last7 = Array.from({length:7}, (_,i) => key(addDays(new Date(), i-6)));
   const k7 = last7.map(k => r0(sumDay(hPeek(k)).kcal)), logged = k7.filter(x=>x>0), avg = logged.length ? r0(logged.reduce((a,b)=>a+b,0)/logged.length) : 0, mx = Math.max(T.kcal*1.3, ...k7);
   const P = state.health.profile;
-  return `<section><h2>Poids <button class="link" data-h="weight">+ Pesée</button></h2><div class="card pad">${W.length ? `<div class="bct"><span class="mono"><b>${nf(W[W.length-1].kg)} kg</b></span><span class="fine">${W.length>1 ? `${(W[W.length-1].kg - W[0].kg) > 0 ? '+' : ''}${nf(r1(W[W.length-1].kg - W[0].kg))} kg depuis le ${fmt(parse(W[0].d),{day:'numeric',month:'short'})}` : 'Première pesée'}</span></div>${weightChart(W)}` : '<p class="fine">Pèse-toi le matin, à jeun, une à deux fois par semaine : la tendance compte plus qu’un chiffre isolé.</p>'}</div></section>
+  return `<section><h2>Poids <button class="link" data-h="weight">+ Pesée</button></h2><div class="card pad">${P.target && W.length ? (() => { const st = W[0].kg, cur = W[W.length-1].kg, tg = P.target, tot = Math.abs(st - tg), done = tot ? Math.max(0, Math.min(1, (st - cur)/(st - tg))) : 1;
+      return `<div class="htw"><div class="bct"><span>Objectif <b class="mono">${nf(tg)} kg</b></span><span class="fine">${Math.abs(cur-tg) < 0.1 ? 'atteint' : `encore ${nf(r1(Math.abs(cur-tg)))} kg`}</span></div><div class="bar"><i style="width:${Math.round(done*100)}%"></i></div></div>`; })() : ''}${W.length ? `<div class="bct"><span class="mono"><b>${nf(W[W.length-1].kg)} kg</b></span><span class="fine">${W.length>1 ? `${(W[W.length-1].kg - W[0].kg) > 0 ? '+' : ''}${nf(r1(W[W.length-1].kg - W[0].kg))} kg depuis le ${fmt(parse(W[0].d),{day:'numeric',month:'short'})}` : 'Première pesée'}</span></div>${weightChart(W)}` : '<p class="fine">Pèse-toi le matin, à jeun, une à deux fois par semaine : la tendance compte plus qu’un chiffre isolé.</p>'}</div></section>
     <section><h2>Calories, 7 derniers jours</h2><div class="card pad"><div class="hbars">${last7.map((k,i)=>`<div class="hb"><span class="mono">${k7[i] ? nf(k7[i]) : ''}</span><i style="height:${Math.round(78*k7[i]/mx)}%" class="${k7[i] > T.kcal*1.1 ? 'hi' : ''}"></i><small>${fmt(parse(k),{weekday:'narrow'})}</small></div>`).join('')}<div class="hgoal" style="bottom:calc(${(78*T.kcal/mx).toFixed(1)}% + 21px)"></div></div>
       <p class="fine">Moyenne des jours renseignés : <b>${nf(avg)} kcal</b> pour un objectif de ${nf(T.kcal)} kcal.</p></div></section>
     <section><h2>Mon profil <button class="link" data-h="profile">Modifier</button></h2><div class="card pad hprof">
@@ -4094,10 +4115,11 @@ function hProfileSheet(){
       <div class="field"><label for="hp-w">Poids (kg)</label><input id="hp-w" type="number" inputmode="decimal" step="0.1" min="35" max="250" required value="${lastWeight() || P.weight}"></div></div>
     <div class="field"><span class="lab">Activité au quotidien</span><div class="packl" id="hp-act">${ACT_LVL.map(([v,l,d])=>`<button type="button" class="packi" data-v="${v}"><i></i><span><b>${l}</b><small>${d}</small></span></button>`).join('')}</div></div>
     <div class="field"><span class="lab">Objectif</span><div class="packl" id="hp-goal">${GOALS_H.map(([v,l,d])=>`<button type="button" class="packi" data-v="${v}"><i></i><span><b>${l}</b><small>${d}</small></span></button>`).join('')}</div></div>
+    <div class="field"><label for="hp-tw">Poids visé (kg, facultatif)</label><input id="hp-tw" type="number" inputmode="decimal" step="0.1" min="35" max="250" value="${P.target || ''}"></div>
     <div class="field"><label for="hp-man">Objectif calorique fixé à la main (facultatif)</label><input id="hp-man" type="number" inputmode="numeric" min="1200" max="5000" value="${P.manual || ''}" placeholder="Laisser vide pour le calcul automatique"></div>
     <p class="ppreview" id="hp-prev"></p>
     <div class="btns"><button type="button" class="btn" data-close>Annuler</button><button class="btn primary" type="submit">Enregistrer</button></div></form>`, s => {
-    const val = () => ({ sex, act, goal, age:+s.querySelector('#hp-age').value, height:+s.querySelector('#hp-h').value, weight:+String(s.querySelector('#hp-w').value).replace(',','.'), manual: +s.querySelector('#hp-man').value || null });
+    const val = () => ({ sex, act, goal, age:+s.querySelector('#hp-age').value, height:+s.querySelector('#hp-h').value, weight:+String(s.querySelector('#hp-w').value).replace(',','.'), manual: +s.querySelector('#hp-man').value || null, target: +String(s.querySelector('#hp-tw').value).replace(',','.') || null });
     const sync = () => { s.querySelectorAll('#hp-sex button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===sex));
       s.querySelectorAll('#hp-act button').forEach(b=>b.setAttribute('aria-pressed', +b.dataset.v===act));
       s.querySelectorAll('#hp-goal button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===goal));
@@ -4189,7 +4211,9 @@ function hSportSheet(){
   });
 }
 function healthClick(e){
-  const b = e.target.closest('[data-h],[data-h-add],[data-h-del],[data-h-sdel]'); if (!b) return false;
+  const b = e.target.closest('[data-h],[data-h-add],[data-h-del],[data-h-sdel],[data-h-plan],[data-h-copy]'); if (!b) return false;
+  if (b.dataset.hPlan){ ensureHealth(); state.health.fast = state.health.fast || { plan:16, start:null, log:[] }; state.health.fast.plan = +b.dataset.hPlan; commit(); return true; }
+  if (b.dataset.hCopy){ copyMealFrom(key(addDays(parse(ui.hday), -1)), b.dataset.hCopy); return true; }
   if (b.dataset.hAdd){ hFoodSheet(b.dataset.hAdd); return true; }
   if (b.dataset.hDel){ const D = hDay(ui.hday); D.food = D.food.filter(x=>x.id!==b.dataset.hDel); commit(); return true; }
   if (b.dataset.hSdel){ const D = hDay(ui.hday); D.sport = D.sport.filter(x=>x.id!==b.dataset.hSdel); commit(); return true; }
@@ -4203,9 +4227,68 @@ function healthClick(e){
   else if (a==='steps') hNumberSheet('Pas du jour', 'Nombre de pas (podomètre, montre…)', D().steps, 1, v => { D().steps = Math.round(v); });
   else if (a==='weight') hNumberSheet('Nouvelle pesée', 'Poids du jour (kg)', lastWeight(), 0.1, v => { if (v >= 30) addWeight(v); });
   else if (a==='sport') hSportSheet();
+  else if (a==='steps-import') importStepsFromHealth();
+  else if (a==='steps-help') stepsHelpSheet(false);
+  else if (a==='fast-start'){ const F = state.health.fast || (state.health.fast = { plan:16, start:null, log:[] }); F.start = new Date().toISOString(); commit(); toast(`Jeûne ${F.plan}:${24-F.plan} lancé`); }
+  else if (a==='fast-stop'){ const F = state.health.fast; if (F && F.start){ const h = (Date.now() - new Date(F.start))/3600000; F.log.push({ s:F.start, h, plan:F.plan }); F.log = F.log.slice(-60); F.start = null; commit(); toast(`Jeûne terminé : ${fmtH(h)}`); } }
   else if (a==='go-repas'){ ui.tab = 'h-repas'; render(); window.scrollTo(0,0); }
   return true;
 }
+/* ---------- Santé : extras inspirés de Yazio ---------- */
+const MEAL_SHARE = { pdj:.25, dej:.35, din:.30, col:.10 };
+function hMacroRing(lab, v, g, col){
+  const r = 26, c = 2*Math.PI*r, p = g ? Math.min(1, v/g) : 0;
+  return `<div class="hmr"><div class="hmrr"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="7"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="var(--${col})" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}" transform="rotate(-90 32 32)"/></svg><b class="mono">${r0(v)}</b></div><span>${lab}</span><small class="mono">/ ${g} g</small></div>`;
+}
+function hStreak(){ let n = 0, d = new Date(); if (!hPeek(key(d)).food.length) d = addDays(d, -1); while (hPeek(key(d)).food.length){ n++; d = addDays(d, -1); } return n; }
+function fastCard(){
+  const F = ensureHealth().fast || (state.health.fast = { plan:16, start:null, log:[] });
+  if (!F.start){ const last = F.log[F.log.length-1];
+    return `<div class="card hfast"><div class="hft"><span class="hmic">${bicon('clock')}</span><div><b>Jeûne intermittent</b><span>${last ? `Dernier : ${fmtH(last.h)} sur ${last.plan} h` : 'Optionnel : une fenêtre sans manger, puis une fenêtre de repas.'}</span></div></div>
+      <div class="opts" id="hf-plan">${[12,14,16].map(h=>`<button data-h-plan="${h}" aria-pressed="${F.plan===h}">${h}:${24-h}</button>`).join('')}</div>
+      <button class="btn primary" data-h="fast-start">Commencer maintenant</button></div>`; }
+  const el = (Date.now() - new Date(F.start)) / 3600000, p = Math.min(1, el/F.plan), end = new Date(new Date(F.start).getTime() + F.plan*3600000);
+  const r = 30, c = 2*Math.PI*r;
+  return `<div class="card hfast on"><div class="hft"><div class="hfr"><svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="${r}" fill="none" stroke="var(--surface-2)" stroke-width="8"/><circle cx="36" cy="36" r="${r}" fill="none" stroke="${p>=1?'var(--ok)':'var(--accent)'}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}" transform="rotate(-90 36 36)"/></svg><b class="mono" id="hf-el">${fmtH(el)}</b></div>
+    <div><b>${p>=1 ? 'Objectif de jeûne atteint' : `Jeûne ${F.plan}:${24-F.plan} en cours`}</b><span>${p>=1 ? 'Tu peux ouvrir ta fenêtre de repas.' : `Fin prévue à ${fmt(end,{hour:'2-digit',minute:'2-digit'})}${key(end)!==todayKey() ? ' demain' : ''}`}</span></div></div>
+    <button class="btn ${p>=1?'primary':''}" data-h="fast-stop">${p>=1 ? 'Terminer le jeûne' : 'Arrêter'}</button></div>`;
+}
+const fmtH = h => { const m = Math.max(0, Math.round(h*60)); return `${Math.floor(m/60)} h ${pad(m%60)}`; };
+setInterval(() => { const e = document.getElementById('hf-el'), F = state.health && state.health.fast; if (e && F && F.start) e.textContent = fmtH((Date.now() - new Date(F.start))/3600000); }, 30000);
+/* Pas depuis l’app Santé (Raccourci iOS → presse-papiers) */
+async function importStepsFromHealth(){
+  let txt = '';
+  try { txt = await navigator.clipboard.readText(); } catch(_) { txt = ''; }
+  const m = String(txt||'').match(/TEMPO[\s-]*PAS\D*?(\d[\d\s  .,]*)/i) || String(txt||'').trim().match(/^(\d[\d\s  ]*)$/);
+  if (!m){ stepsHelpSheet(true); return; }
+  const n = parseInt(m[1].replace(/[^\d]/g,''), 10); if (!(n >= 0 && n < 200000)){ stepsHelpSheet(true); return; }
+  ui.hday = todayKey(); hDay(ui.hday).steps = n; commit(); toast(`${nf(n)} pas importés depuis Santé`);
+}
+function stepsHelpSheet(failed){
+  sheet(`<h3>Pas automatiques depuis Santé</h3>
+    ${failed ? '<p class="warnt">Je n’ai pas trouvé de nombre de pas dans le presse-papiers. Lance d’abord le raccourci « Pas Tempo », puis reviens toucher « Importer de Santé ».</p>' : ''}
+    <p>Une appli web ne peut pas lire l’app Santé directement : Apple le réserve aux applis de l’App Store. Un raccourci iPhone fait le pont en un geste.</p>
+    <span class="lab">Créer le raccourci (une seule fois)</span>
+    <ol class="steps">
+      <li>Ouvre l’app <b>Raccourcis</b>, touche <b>+</b>, nomme-le « Pas Tempo ».</li>
+      <li>Ajoute l’action <b>Rechercher des échantillons de santé</b> : Type <b>Nombre de pas</b>, filtre <b>Date de début est aujourd’hui</b>, <b>Grouper par : Jour</b>.</li>
+      <li>Ajoute <b>Calculer des statistiques</b> : <b>Somme</b> des échantillons.</li>
+      <li>Ajoute <b>Arrondir le nombre</b>.</li>
+      <li>Ajoute <b>Texte</b> et écris <b>TEMPO-PAS</b> suivi d’un espace et de la variable <b>Nombre arrondi</b>.</li>
+      <li>Ajoute <b>Copier dans le presse-papiers</b>. Au premier lancement, autorise l’accès à Santé.</li>
+    </ol>
+    <span class="lab">Au quotidien</span>
+    <ol class="steps"><li>Lance « Pas Tempo » (widget, écran d’accueil ou Toucher le dos de l’iPhone).</li><li>Ouvre Tempo Santé et touche <b>Importer de Santé</b>, puis <b>Coller</b> si l’iPhone le demande.</li></ol>
+    <p class="fine">« Grouper par jour » évite de compter deux fois les pas de l’iPhone et de l’Apple Watch.</p>
+    <div class="btns"><button class="btn" data-close>Fermer</button>${failed ? '<button class="btn primary" data-h-retry="1">Réessayer</button>' : ''}</div>`, s => {
+    const r = s.querySelector('[data-h-retry]'); r && r.addEventListener('click', () => { close(); setTimeout(importStepsFromHealth, 220); });
+  });
+}
+function copyMealFrom(k, meal){
+  const src = hPeek(k).food.filter(x=>x.meal===meal); if (!src.length) return;
+  const D = hDay(ui.hday); src.forEach(x => D.food.push({ ...x, id:uid() })); commit(); toast(`${src.length} aliment${src.length>1?'s':''} copié${src.length>1?'s':''}`);
+}
+
 /* Bascule Études ↔ Santé */
 let appMode = (() => { try { return localStorage.getItem('tempo.mode') === 'health' ? 'health' : 'study'; } catch(_) { return 'study'; } })();
 const lastTab = { study:'accueil', health:'h-jour' };
