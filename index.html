@@ -884,6 +884,8 @@ pre.iex.prompt{font-family:var(--f-body,inherit);font-size:13px}
 .htw{margin-bottom:14px}
 .hmini .hwbtn .btn svg{width:16px;height:16px}
 .hmini .hwbtn .btn{min-width:0}.hsimp{display:inline-flex;align-items:center;justify-content:center;gap:5px}.hmini .hsimp svg,.hmini .hwbtn .btn svg{width:16px!important;height:16px!important;flex:none}
+.schart{width:100%;height:110px;display:block}.schart rect{fill:var(--accent);opacity:.8}.schart rect.ok{fill:var(--ok);opacity:1}.schart .goal{stroke:var(--muted);stroke-dasharray:4 4;stroke-width:1;opacity:.6}
+.iguide code{font-size:12px;background:var(--surface-2);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
 /* Interactions */
 
 
@@ -3123,6 +3125,7 @@ const HELP = {
     ['target','Repères par repas','L’objectif est réparti : 25 % petit-déjeuner, 35 % déjeuner, 30 % dîner, 10 % collations.'] ] },
   'h-sport': { t:'L’activité', i:'Tes séances de sport et tes pas.', s:[
     ['bolt','Séances','Les kcal sont estimées : intensité (MET) × poids × durée. Elles s’ajoutent à l’objectif du jour.'],
+    ['heart','Pas automatiques','« Automatiser avec Santé » : un raccourci iPhone envoie tes pas plusieurs fois par jour dans un gist GitHub secret, et Tempo les récupère à chaque ouverture, historique compris. Sans configuration : « Importer (presse-papiers) » ou saisie à la main.'],
     ['sun','Pas','Une indication. Ils ne s’ajoutent pas à l’objectif, car ta marche quotidienne est déjà comptée dans ton niveau d’activité.'] ] },
   'h-suivi': { t:'Le suivi', i:'Ta tendance sur plusieurs jours.', s:[
     ['flag','Poids','Pèse-toi le matin, à jeun, une à deux fois par semaine : c’est la tendance qui compte. Chaque pesée met ton objectif à jour.'],
@@ -4056,7 +4059,7 @@ function vHealth(){
     <div class="card hmacr">${hMacroRing('Glucides', S.c, T.c, 'amber')}${hMacroRing('Protéines', S.p, T.p, 'accent')}${hMacroRing('Lipides', S.f, T.f, 'c-alt')}</div>
     <div class="hgrid">
       <div class="card hmini"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} / ${nf(T.water)} L</b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div><div class="hwbtn"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm primary" data-h="water+">+ 1 verre</button></div></div>
-      <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><div class="hwbtn"><button class="btn sm" data-h="steps" aria-label="Saisir à la main">${bicon('tasks')}</button><button class="btn sm primary hsimp" data-h="steps-import" aria-label="Importer de Santé">${bicon('heart')}Santé</button></div></div>
+      <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><div class="hwbtn"><button class="btn sm" data-h="steps" aria-label="Saisir à la main">${bicon('tasks')}</button>${(state.health.sync||{}).id ? `<button class="btn sm primary hsimp" data-h="sync-now" aria-label="Synchroniser avec Santé">${bicon('heart')}Sync</button>` : `<button class="btn sm primary hsimp" data-h="steps-import" aria-label="Importer de Santé">${bicon('heart')}Santé</button>`}</div></div>
     </div>
     ${ui.hday===todayKey() ? fastCard() : ''}
     <section><h2>Repas <button class="link" data-h="go-repas">Détail</button></h2><div class="card"><ul class="hmeals">${MEALS.map(([k,l,ic]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
@@ -4076,7 +4079,7 @@ function vHealth(){
     <div class="card hline"><span><b class="mono">${nf(r0(sp))}</b> kcal dépensées en séance</span><span class="fine">Elles s’ajoutent à ton objectif du jour.</span></div>
     <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.min} min</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
       <button class="hadd" data-h="sport">+ Ajouter une séance</button></div></section>
-    <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div><div class="btns"><button class="btn sm primary" data-h="steps-import">Importer de Santé</button><button class="btn sm" data-h="steps">Saisir à la main</button><button class="btn sm" data-h="steps-help">Configurer</button></div></div></section>
+    <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div>${syncLine()}<div class="btns">${(state.health.sync||{}).id ? '<button class="btn sm primary" data-h="sync-now">Synchroniser</button>' : '<button class="btn sm primary" data-h="sync">Automatiser avec Santé</button><button class="btn sm" data-h="steps-import">Importer (presse-papiers)</button>'}<button class="btn sm" data-h="steps">Saisir à la main</button>${(state.health.sync||{}).id ? '<button class="btn sm" data-h="sync">Réglages</button>' : ''}</div></div></section>
     <p class="help">Calories des séances = intensité (MET) × poids × durée. C’est une estimation : une montre connectée peut donner des chiffres différents.</p>`;
   }
   // Suivi
@@ -4085,6 +4088,7 @@ function vHealth(){
   const P = state.health.profile;
   return `<section><h2>Poids <button class="link" data-h="weight">+ Pesée</button></h2><div class="card pad">${P.target && W.length ? (() => { const st = W[0].kg, cur = W[W.length-1].kg, tg = P.target, tot = Math.abs(st - tg), done = tot ? Math.max(0, Math.min(1, (st - cur)/(st - tg))) : 1;
       return `<div class="htw"><div class="bct"><span>Objectif <b class="mono">${nf(tg)} kg</b></span><span class="fine">${Math.abs(cur-tg) < 0.1 ? 'atteint' : `encore ${nf(r1(Math.abs(cur-tg)))} kg`}</span></div><div class="bar"><i style="width:${Math.round(done*100)}%"></i></div></div>`; })() : ''}${W.length ? `<div class="bct"><span class="mono"><b>${nf(W[W.length-1].kg)} kg</b></span><span class="fine">${W.length>1 ? `${(W[W.length-1].kg - W[0].kg) > 0 ? '+' : ''}${nf(r1(W[W.length-1].kg - W[0].kg))} kg depuis le ${fmt(parse(W[0].d),{day:'numeric',month:'short'})}` : 'Première pesée'}</span></div>${weightChart(W)}` : '<p class="fine">Pèse-toi le matin, à jeun, une à deux fois par semaine : la tendance compte plus qu’un chiffre isolé.</p>'}</div></section>
+    <section><h2>Pas <span class="seg mini">${[7,30].map(n=>`<button data-h="steps-n" data-n="${n}" aria-pressed="${(ui.hsteps||7)===n}">${n} j</button>`).join('')}</span></h2><div class="card pad">${stepsChart(ui.hsteps||7)}${syncLine()}</div></section>
     <section><h2>Calories, 7 derniers jours</h2><div class="card pad"><div class="hbars">${last7.map((k,i)=>`<div class="hb"><span class="mono">${k7[i] ? nf(k7[i]) : ''}</span><i style="height:${Math.round(78*k7[i]/mx)}%" class="${k7[i] > T.kcal*1.1 ? 'hi' : ''}"></i><small>${fmt(parse(k),{weekday:'narrow'})}</small></div>`).join('')}<div class="hgoal" style="bottom:calc(${(78*T.kcal/mx).toFixed(1)}% + 21px)"></div></div>
       <p class="fine">Moyenne des jours renseignés : <b>${nf(avg)} kcal</b> pour un objectif de ${nf(T.kcal)} kcal.</p></div></section>
     <section><h2>Mon profil <button class="link" data-h="profile">Modifier</button></h2><div class="card pad hprof">
@@ -4228,6 +4232,9 @@ function healthClick(e){
   else if (a==='weight') hNumberSheet('Nouvelle pesée', 'Poids du jour (kg)', lastWeight(), 0.1, v => { if (v >= 30) addWeight(v); });
   else if (a==='sport') hSportSheet();
   else if (a==='steps-import') importStepsFromHealth();
+  else if (a==='sync') syncSheet();
+  else if (a==='sync-now') syncSteps(true);
+  else if (a==='steps-n'){ ui.hsteps = +b.dataset.n; render(); }
   else if (a==='steps-help') stepsHelpSheet(false);
   else if (a==='fast-start'){ const F = state.health.fast || (state.health.fast = { plan:16, start:null, log:[] }); F.start = new Date().toISOString(); commit(); toast(`Jeûne ${F.plan}:${24-F.plan} lancé`); }
   else if (a==='fast-stop'){ const F = state.health.fast; if (F && F.start){ const h = (Date.now() - new Date(F.start))/3600000; F.log.push({ s:F.start, h, plan:F.plan }); F.log = F.log.slice(-60); F.start = null; commit(); toast(`Jeûne terminé : ${fmtH(h)}`); } }
@@ -4287,6 +4294,72 @@ function stepsHelpSheet(failed){
 function copyMealFrom(k, meal){
   const src = hPeek(k).food.filter(x=>x.meal===meal); if (!src.length) return;
   const D = hDay(ui.hday); src.forEach(x => D.food.push({ ...x, id:uid() })); commit(); toast(`${src.length} aliment${src.length>1?'s':''} copié${src.length>1?'s':''}`);
+}
+
+/* ---------- Synchronisation automatique des pas (Santé → Raccourci → gist GitHub → Tempo) ---------- */
+const gistId = s => { const m = String(s||'').trim().match(/([0-9a-f]{20,})\/?(?:#.*)?$/i); return m ? m[1] : ''; };
+let syncBusy = false;
+async function syncSteps(manual){
+  const H = ensureHealth(), S = H.sync; if (!S || !S.id || syncBusy) return;
+  if (!manual && S.at && Date.now() - S.at < 10*60000) return;
+  syncBusy = true;
+  try {
+    const r = await fetch(`https://api.github.com/gists/${S.id}`, { cache:'no-store', headers:{ Accept:'application/vnd.github+json' } });
+    if (!r.ok) throw new Error(r.status===404 ? 'Gist introuvable : vérifie le lien.' : r.status===403 ? 'GitHub limite les lectures pour l’instant, réessaie dans une heure.' : 'Erreur GitHub ' + r.status);
+    const j = await r.json(), files = Object.values(j.files || {}), f = files.find(x => /pas/i.test(x.filename)) || files[0];
+    const txt = f ? (f.content || '') : '', tk = todayKey(); let n = 0, newest = null;
+    txt.split(/\r?\n/).forEach(l => { const m = l.match(/(\d{4})-(\d{2})-(\d{2})\D+(\d[\d\s  ]*)/); if (!m) return;
+      const k = `${m[1]}-${m[2]}-${m[3]}`, v = parseInt(m[4].replace(/[^\d]/g,''), 10); if (k > tk || !(v >= 0 && v < 200000)) return;
+      if (!v && !H.days[k]) return; const D = hDay(k); if (D.steps !== v){ D.steps = v; n++; } if (!newest || k > newest) newest = k; });
+    S.at = Date.now(); S.ok = new Date().toISOString(); S.err = null; S.newest = newest;
+    if (n || manual){ commit(); if (manual) toast(n ? `${n} jour${n>1?'s':''} de pas mis à jour` : 'Déjà à jour'); } else save();
+  } catch(e){ S.at = Date.now(); S.err = e && e.message && !/fetch|network|Load failed/i.test(e.message) ? e.message : 'Pas de connexion à GitHub pour l’instant.'; save(); if (manual){ render(); toast(S.err); } }
+  syncBusy = false;
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncSteps(false); });
+setTimeout(() => syncSteps(false), 1500);
+const syncLine = () => { const S = (state.health||{}).sync; if (!S || !S.id) return '';
+  return S.err ? `<p class="fine warnt">Synchronisation : ${esc(S.err)}</p>` : S.ok ? `<p class="fine">Synchronisé avec Santé ${fmt(new Date(S.ok),{weekday:'short',hour:'2-digit',minute:'2-digit'})}${S.newest ? ` · données jusqu’au ${fmt(parse(S.newest),{day:'numeric',month:'short'})}` : ''}</p>` : ''; };
+const SC_SHORTCUT = (id, tok) => `<ol class="steps">
+  <li>App <b>Raccourcis</b> → <b>+</b> → nomme-le <b>Pas Tempo Sync</b>.</li>
+  <li>Action <b>Rechercher des échantillons de santé</b> : Type <b>Nombre de pas</b> · filtre <b>Date de début</b> <b>est dans les derniers</b> <b>7 jours</b> · <b>Grouper par : Jour</b> · Trier par Date de début.</li>
+  <li>Action <b>Répéter avec chaque élément</b> (des échantillons). À l’intérieur :<br>– <b>Formater la date</b> : la <b>Date de début</b> de l’élément de répétition, format <b>Personnalisé</b> <code>yyyy-MM-dd</code><br>– <b>Texte</b> : <code>Date formatée;Valeur</code> (les deux variables séparées par un point-virgule ; « Valeur » est une propriété de l’élément de répétition).</li>
+  <li>Après « Fin de la répétition » : <b>Combiner le texte</b> (Résultats de la répétition) avec <b>Nouvelle ligne</b>.</li>
+  <li>Action <b>Obtenir le contenu de l’URL</b> :<br>– URL <code>https://api.github.com/gists/${esc(id || 'ID_DU_GIST')}</code><br>– Méthode <b>PATCH</b><br>– En-têtes : <code>Authorization</code> = <code>Bearer ${esc(tok || 'TON_JETON')}</code> et <code>Accept</code> = <code>application/vnd.github+json</code><br>– Corps de la requête <b>JSON</b> : champ <code>files</code> (Dictionnaire) → champ <code>tempo-pas.txt</code> (Dictionnaire) → champ <code>content</code> (Texte) = <b>Texte combiné</b>.</li>
+  <li>Lance-le une fois et autorise l’accès à Santé.</li></ol>`;
+function syncSheet(){
+  const H = ensureHealth(), S = H.sync || {};
+  sheet(`<h3>Pas automatiques</h3>
+    <p>Ton iPhone envoie tes pas plusieurs fois par jour dans un petit fichier secret sur GitHub ; Tempo le lit à chaque ouverture et remplit les jours tout seul, historique compris.</p>
+    <details class="iguide" ${S.id ? '' : 'open'}><summary><span><b>1. Le fichier et la clé GitHub</b><small>Une seule fois, depuis Safari</small></span><i aria-hidden="true"></i></summary><div class="foldin"><ol class="steps">
+      <li>Va sur <b>gist.github.com</b> (connecté à ton compte). Nom du fichier <code>tempo-pas.txt</code>, contenu <code>0</code>, puis <b>Create secret gist</b>.</li>
+      <li>Copie l’adresse de la page (gist.github.com/…/<i>code</i>) et colle-la ci-dessous.</li>
+      <li>Crée la clé : GitHub → photo → <b>Settings</b> → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Tokens (classic)</b> → <b>Generate new token (classic)</b>. Coche seulement <b>gist</b>, expiration au choix, puis copie le jeton (ghp_…). Il ne sert qu’au raccourci : ne le colle pas ailleurs.</li></ol></div></details>
+    <div class="field"><label for="sy-url">Adresse du gist</label><input id="sy-url" value="${esc(S.url || '')}" placeholder="https://gist.github.com/…" autocomplete="off" autocapitalize="off"></div>
+    <details class="iguide"><summary><span><b>2. Le raccourci « Pas Tempo Sync »</b><small>Lit Santé et envoie les 7 derniers jours</small></span><i aria-hidden="true"></i></summary><div class="foldin" id="sy-sc">${SC_SHORTCUT(S.id)}</div></details>
+    <details class="iguide"><summary><span><b>3. L’automatisation</b><small>Pour que ça tourne sans toi</small></span><i aria-hidden="true"></i></summary><div class="foldin"><ol class="steps">
+      <li>Raccourcis → onglet <b>Automatisation</b> → <b>+</b> → <b>Heure de la journée</b> : 12:00, quotidien.</li>
+      <li>Choisis <b>Exécuter immédiatement</b> et désactive la notification, puis l’action <b>Exécuter le raccourci</b> → Pas Tempo Sync.</li>
+      <li>Refais-le pour 18:00 et 22:00. Si l’iPhone est verrouillé à ce moment-là, iOS peut bloquer Santé : les autres horaires prennent le relais.</li></ol></div></details>
+    <details class="iguide"><summary><span><b>4. Récupérer l’historique</b><small>Une seule fois</small></span><i aria-hidden="true"></i></summary><div class="foldin"><ol class="steps">
+      <li>Dans le raccourci, remplace temporairement <b>7 jours</b> par <b>90 jours</b> (ou 365) et lance-le.</li>
+      <li>Ouvre Tempo et touche <b>Synchroniser maintenant</b> : tout l’historique arrive dans Suivi.</li>
+      <li>Remets <b>7 jours</b> dans le raccourci.</li></ol></div></details>
+    ${syncLine()}
+    <p class="fine" id="sy-msg"></p>
+    <div class="btns">${S.id ? '<button class="btn danger" id="sy-off">Désactiver</button>' : ''}<button class="btn" data-close>Fermer</button><button class="btn primary" id="sy-go">Synchroniser maintenant</button></div>`, s => {
+    const inp = s.querySelector('#sy-url'), msg = s.querySelector('#sy-msg'), sc = s.querySelector('#sy-sc');
+    inp.addEventListener('input', () => { const id = gistId(inp.value); msg.textContent = inp.value.trim() && !id ? 'Adresse non reconnue : copie celle de la page du gist.' : ''; sc.innerHTML = SC_SHORTCUT(id); });
+    s.querySelector('#sy-go').addEventListener('click', async () => { const id = gistId(inp.value); if (!id){ msg.textContent = 'Colle d’abord l’adresse de ton gist.'; return; }
+      H.sync = { ...(H.sync||{}), url:inp.value.trim(), id, at:0 }; save(); msg.textContent = 'Lecture du gist…'; await syncSteps(true); close(); });
+    const off = s.querySelector('#sy-off'); off && off.addEventListener('click', () => { delete H.sync; close(); commit(); toast('Synchronisation désactivée'); });
+  });
+}
+function stepsChart(n){
+  const ks = Array.from({length:n}, (_,i) => key(addDays(new Date(), i-n+1))), v = ks.map(k => hPeek(k).steps||0), mx = Math.max(10000, ...v), filled = v.filter(x=>x>0), avg = filled.length ? Math.round(filled.reduce((a,b)=>a+b,0)/filled.length) : 0;
+  const w = 300, bw = w/n;
+  return `<svg class="schart" viewBox="0 0 ${w} 110" preserveAspectRatio="none">${v.map((x,i)=>`<rect x="${(i*bw+bw*.15).toFixed(1)}" y="${(100-90*x/mx).toFixed(1)}" width="${(bw*.7).toFixed(1)}" height="${(90*x/mx).toFixed(1)}" rx="${n>10?1:3}" class="${x>=8000?'ok':''}"/>`).join('')}<line x1="0" x2="${w}" y1="${(100-90*8000/mx).toFixed(1)}" y2="${(100-90*8000/mx).toFixed(1)}" class="goal"/></svg>
+    <div class="bct"><span class="fine">${fmt(parse(ks[0]),{day:'numeric',month:'short'})}</span><span class="fine">Moyenne <b>${nf(avg)}</b> pas · ${filled.filter(x=>x>=8000).length}/${filled.length} jours à 8 000</span><span class="fine">auj.</span></div>`;
 }
 
 /* Bascule Études ↔ Santé */
