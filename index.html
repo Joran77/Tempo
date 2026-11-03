@@ -913,9 +913,13 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 .pex em{font-style:normal;font-weight:700;font-size:13px;min-width:52px;text-align:right;color:var(--muted)}
 .spark{width:70px;height:34px;flex:none}.spark.big{width:100%;height:90px}
 .bodymap{width:100%;max-width:440px;display:block;margin:0 auto}.bodymap .bmt{font-size:8px;fill:var(--muted);text-anchor:middle;font-weight:600}
-.bmp{stroke:var(--surface);stroke-width:.5;stroke-linejoin:round;cursor:pointer;transition:opacity .2s}.bmp:active{opacity:.7}
+.bodymap{--bm-skin:#E6C3A5;--bm-rest:#D9B497;--bm-warm:#E0844F;--bm-hot:#C8372D}
+:root[data-tm="dark"] .bodymap{--bm-skin:#8E6F5B;--bm-rest:#7E5F4C;--bm-warm:#F08A4B;--bm-hot:#F0473A}
+.bmsil path{fill:var(--bm-skin);stroke:var(--bm-skin);stroke-width:3.2;stroke-linejoin:round}
+.bmp{stroke:color-mix(in srgb,var(--bm-rest) 60%,#5a3a28);stroke-width:.45;stroke-linejoin:round;cursor:pointer;transition:opacity .2s}.bmp:active{opacity:.75}
+.bmsh{pointer-events:none}
 .bmleg{display:flex;justify-content:center;gap:14px;font-size:12px;color:var(--muted);margin-top:6px}.bmleg span{display:inline-flex;align-items:center;gap:5px}
-.bmleg i{width:12px;height:12px;border-radius:4px;display:inline-block}.bmleg .l0{background:var(--surface-2);border:1px solid var(--line)}.bmleg .l1{background:color-mix(in srgb,var(--accent) 65%,var(--surface-2))}.bmleg .l2{background:var(--danger)}
+.bmleg i{width:12px;height:12px;border-radius:4px;display:inline-block}.bmleg{--bm-rest:#D9B497;--bm-warm:#E0844F;--bm-hot:#C8372D}:root[data-tm="dark"] .bmleg{--bm-rest:#7E5F4C;--bm-warm:#F08A4B;--bm-hot:#F0473A}.bmleg .l0{background:var(--bm-rest)}.bmleg .l1{background:var(--bm-warm)}.bmleg .l2{background:var(--bm-hot)}
 .pwarn2{padding:12px 14px;border-left:4px solid var(--amber)}.pwarn2 b{color:var(--amber)}.pwarn2 p,.pok p{margin:4px 0 0;font-size:14px}
 .pok{padding:12px 14px;border-left:4px solid var(--ok)}.pok b{color:var(--ok)}
 .pmus{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
@@ -4573,21 +4577,26 @@ const BODY_POLY = {"a":[["chest",["51.8 41.6 51 55.1 58 58 67.8 55.5 70.6 47.3 6
 const BH_MAP = { 'chest':['chest'], 'obliques':['abdominals'], 'abs':['abdominals'], 'biceps':['biceps'], 'triceps':['triceps'], 'front-deltoids':['shoulders'], 'back-deltoids':['shoulders'],
   'abductors':['abductors'], 'abductor':['adductors'], 'quadriceps':['quadriceps'], 'calves':['calves'], 'left-soleus':['calves'], 'right-soleus':['calves'], 'forearm':['forearms'],
   'trapezius':['traps'], 'upper-back':['upper_back','lats'], 'lower-back':['lower_back'], 'gluteal':['glutes'], 'hamstring':['hamstrings'], 'neck':['neck'] };
+function smoothPath(pts, it){
+  let P = pts.trim().split(/\s+/).map(Number).reduce((a,v,i)=>(i%2 ? a[a.length-1].push(v) : a.push([v]), a), []);
+  for (let k = 0; k < it; k++){ const Q = []; for (let i = 0; i < P.length; i++){ const a = P[i], b = P[(i+1)%P.length]; Q.push([a[0]*.75+b[0]*.25, a[1]*.75+b[1]*.25], [a[0]*.25+b[0]*.75, a[1]*.25+b[1]*.75]); } P = Q; }
+  return 'M' + P.map(p => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L') + 'Z';
+}
+let BODY_PATHS = null;
+function bodyPaths(){ return BODY_PATHS || (BODY_PATHS = { a:BODY_POLY.a.map(([t,ps]) => [t, ps.map(p=>smoothPath(p, 3))]), p:BODY_POLY.p.map(([t,ps]) => [t, ps.map(p=>smoothPath(p, 3))]) }); }
 function bodyMap(ms){
-  const mx = Math.max(8, ...Object.values(ms));
+  const mx = Math.max(8, ...Object.values(ms)), B = bodyPaths();
   const val = t => Math.max(0, ...(BH_MAP[t]||[]).map(k => ms[k]||0));
-  const fill = t => { if (t==='head' || t==='knees') return 'url(#bmSkin)'; const v = val(t); if (!v) return 'url(#bmIdle)'; const p = Math.min(1, v/mx);
-    return `color-mix(in srgb, ${p > .66 ? 'var(--danger)' : 'var(--accent)'} ${Math.round(45 + 55*p)}%, var(--surface-2))`; };
+  const fill = t => { if (t==='head' || t==='knees' || t==='neck') return 'var(--bm-skin)'; const v = val(t); if (!v) return 'var(--bm-rest)'; const p = Math.min(1, v/mx);
+    return `color-mix(in srgb, ${p > .66 ? 'var(--bm-hot)' : 'var(--bm-warm)'} ${Math.round(50 + 50*p)}%, var(--bm-rest))`; };
   const name = t => (BH_MAP[t]||[]).map(k=>MUSC[k]).filter(Boolean).join(' / ');
-  const view = (data, dx, label) => `<g transform="translate(${dx} 0)">${data.map(([t, polys]) => polys.map(p => `<polygon points="${p}" fill="${fill(t)}" class="bmp" ${name(t) ? `data-bm="${esc(name(t))}" data-bv="${nf(r1(val(t)))}"` : ''}/>`).join('')).join('')}</g>`;
+  const view = (data, dx) => `<g transform="translate(${dx} 0)">
+      <g class="bmsil">${data.map(([t, ps]) => ps.map(d => `<path d="${d}"/>`).join('')).join('')}</g>
+      ${data.map(([t, ps]) => ps.map(d => `<path d="${d}" fill="${fill(t)}" class="bmp" ${name(t) ? `data-bm="${esc(name(t))}" data-bv="${nf(r1(val(t)))}"` : ''}/><path d="${d}" class="bmsh" fill="url(#bmShade)"/>`).join('')).join('')}</g>`;
   return `<svg class="bodymap" viewBox="0 0 225 222" role="img" aria-label="Muscles travaillés">
-    <defs><filter id="bmRelief" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="b"/>
-      <feSpecularLighting in="b" surfaceScale="2.2" specularConstant=".55" specularExponent="18" lighting-color="#fff" result="s"><fePointLight x="-40" y="-60" z="90"/></feSpecularLighting>
-      <feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="SourceGraphic" in2="s2" operator="arithmetic" k1="0" k2="1" k3=".55" k4="0" result="lit"/>
-      <feDropShadow in="lit" dx="0" dy="1.2" stdDeviation="1" flood-opacity=".35"/></filter>
-      <linearGradient id="bmIdle" x1="0" x2="1"><stop offset="0" stop-color="var(--surface-2)"/><stop offset="1" stop-color="color-mix(in srgb, var(--fg) 14%, var(--surface-2))"/></linearGradient>
-      <linearGradient id="bmSkin" x1="0" x2="1"><stop offset="0" stop-color="color-mix(in srgb, var(--fg) 10%, var(--surface))"/><stop offset="1" stop-color="color-mix(in srgb, var(--fg) 20%, var(--surface))"/></linearGradient></defs>
-    <g filter="url(#bmRelief)">${view(BODY_POLY.a, 6, 'Face')}${view(BODY_POLY.p, 119, 'Dos')}</g><text x="56" y="214" class="bmt">Face</text><text x="169" y="214" class="bmt">Dos</text></svg>
+    <defs><radialGradient id="bmShade" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".45" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></radialGradient>
+      <filter id="bmSoft" x="-10%" y="-5%" width="120%" height="110%"><feDropShadow dx="0" dy="1.5" stdDeviation="1.6" flood-opacity=".28"/></filter></defs>
+    <g filter="url(#bmSoft)">${view(B.a, 6)}${view(B.p, 119)}</g><text x="56" y="214" class="bmt">Face</text><text x="169" y="214" class="bmt">Dos</text></svg>
     <div class="bmleg"><span><i class="l0"></i>Repos</span><span><i class="l1"></i>Travaillé</span><span><i class="l2"></i>Très sollicité</span></div>`;
 }
 function sparkline(vals, h){
