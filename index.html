@@ -4297,7 +4297,7 @@ function copyMealFrom(k, meal){
 }
 
 /* ---------- Synchronisation automatique des pas (Santé → Raccourci → gist GitHub → Tempo) ---------- */
-const gistId = s => { const m = String(s||'').trim().match(/([0-9a-f]{20,})\/?(?:#.*)?$/i); return m ? m[1] : ''; };
+const gistId = s => { const m = String(s||'').trim().match(/(?:^|\/)([0-9a-f]{20,})(?=$|[\/.#?])/i); return m ? m[1] : ''; };
 let syncBusy = false;
 async function syncSteps(manual){
   const H = ensureHealth(), S = H.sync; if (!S || !S.id || syncBusy) return;
