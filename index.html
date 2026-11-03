@@ -782,6 +782,11 @@ svg.wmap{display:block;width:100%;height:auto;margin-top:10px;border-radius:12px
 .why p{margin:0}.why .wn{margin-top:6px;color:var(--muted)}
 .qopts + .why{margin-top:4px}
 .corr .why{font-size:13px;margin-top:6px}
+.xlink{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--surface-2)}
+.xlink>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.xlink b{font-size:14px}.xlink span{font-size:13px;color:var(--muted)}
+.xlink .link{border:0;background:none;color:var(--accent);font-weight:700;font:inherit;font-weight:700;cursor:pointer}
+.packi.xc b{font-weight:600;font-size:14px}
 /* Interactions */
 
 
@@ -1030,7 +1035,7 @@ function taskRow(t){
   return `<li class="task ${t.done?'done':''} ${ui.justId===t.id?'just':''}" data-id="${t.id}">
     <button class="check" data-act="toggle" aria-label="${t.done?'Marquer à faire':'Marquer comme fait'}">${ICON_CHECK}</button>
     <div class="body"><div class="title"><span>${esc(t.title)}</span></div>
-      <div class="meta"><span class="chip ${t.cat}">${CATS[t.cat]||'Perso'}</span>${t.routine?`<span class="repi" title="Tâche répétée">${ICON_REP}</span>`:''}${t.prio?'<span class="prio">Prioritaire</span>':''}${t.pomos?`<span class="pomo">${t.pomos} pomodoro${t.pomos>1?'s':''}</span>`:''}${t.ex?'<span>exemple</span>':''}${t.deck && deckOf(t.deck) ? `<button class="study" data-act="study">Réviser ${esc(deckOf(t.deck).name)}</button>` : ''}</div></div>
+      <div class="meta"><span class="chip ${t.cat}">${CATS[t.cat]||'Perso'}</span>${t.routine?`<span class="repi" title="Tâche répétée">${ICON_REP}</span>`:''}${t.prio?'<span class="prio">Prioritaire</span>':''}${t.pomos?`<span class="pomo">${t.pomos} pomodoro${t.pomos>1?'s':''}</span>`:''}${t.ex?'<span>exemple</span>':''}${t.examId && (state.partiels||[]).some(x=>x.id===t.examId) && t.plan!=='E' ? (() => { const ex = state.partiels.find(x=>x.id===t.examId), k = /^[LR]:/.test(t.plan||'') ? t.plan.slice(2) : null, n = notionCards(ex, k).length; return n ? `<button class="study" data-act="study">Réviser ${n} carte${n>1?'s':''}</button>` : ''; })() : t.deck && deckOf(t.deck) ? `<button class="study" data-act="study">Réviser ${esc(deckOf(t.deck).name)}</button>` : ''}</div></div>
     <button class="more" data-act="menu" aria-label="Actions" aria-expanded="${open}">${ICON_MORE}</button>
     ${open?`<div class="actions">
       <button data-act="mit">Priorité du jour</button>
@@ -1659,7 +1664,7 @@ function grade(g){
 function startReview(deckId){
   const { all } = dueCards(deckId); if (!all.length) return toast('Rien à réviser pour l’instant');
   const q = all.map(c=>({c, r:Math.random()})).sort((a,b)=>(a.c.seen===b.c.seen ? a.r-b.r : a.c.seen ? -1 : 1)).map(x=>x.c);
-  Object.assign(ui.fc, { view:'review', deck:deckId||null, queue:q, cur:q.shift(), flipped:false, res:[0,0,0,0], total:all.length, practice:new Set(), mixed:false, explText:'' });
+  Object.assign(ui.fc, { view:'review', deck:deckId||null, queue:q, cur:q.shift(), flipped:false, res:[0,0,0,0], total:all.length, practice:new Set(), mixed:false, explText:'', label:null });
   render(); window.scrollTo(0,0);
 }
 function fcStreak(){ const L = state.fc.log; let n=0, cur=new Date(); if (!L[key(cur)]) cur = addDays(cur,-1); while (L[key(cur)]) { n++; cur = addDays(cur,-1); } return n; }
@@ -1701,12 +1706,13 @@ function wrongOf(o){
   if (Array.isArray(ch)) return ch.map(x=>String(x).trim()).filter(x=>x && x!==ans);
   return [];
 }
+const tagsOf = s => [...new Set(String(s||'').split(/[,|]/).map(x=>x.trim()).filter(Boolean))].slice(0,12);
 function parseCards(text){
   const t = text.trim(); if (!t) return [];
   const pick = (o, ks) => { for (const k of ks) if (o[k]!=null && String(o[k]).trim()) return String(o[k]).trim(); return ''; };
   if (t[0]==='[' || t[0]==='{'){
     const j = JSON.parse(t), arr = Array.isArray(j) ? j : (j.cards || j.flashcards || []);
-    return arr.map(o => ({ q:pick(o,['q','question','recto','front']), a:pick(o,['a','answer','reponse','réponse','verso','back']), deck:pick(o,['deck','matiere','matière','subject','paquet']), chap:pick(o,['chap','chapitre','chapter']), wrong:wrongOf(o) })).filter(c=>c.q && c.a);
+    return arr.map(o => ({ q:pick(o,['q','question','recto','front']), a:pick(o,['a','answer','reponse','réponse','verso','back']), deck:pick(o,['deck','matiere','matière','subject','paquet']), chap:pick(o,['chap','chapitre','chapter']), wrong:wrongOf(o), tags:tagsOf(Array.isArray(o.notions||o.tags) ? (o.notions||o.tags).join(',') : pick(o,['notions','tags','motscles'])) })).filter(c=>c.q && c.a);
   }
   const first = t.split('\n')[0], sep = first.includes('\t') ? '\t' : first.includes(';') ? ';' : first.includes(' :: ') ? ' :: ' : ',';
   const rows = [];
@@ -1721,7 +1727,7 @@ function parseCards(text){
     row.push(cell); rows.push(row); }
   const clean = rows.map(r => r.map(x => x.trim().replace(/\\n/g,'\n'))).filter(r => r[0] && r[1]);
   if (clean.length && /^(question|recto|q|front)$/i.test(clean[0][0])) clean.shift();
-  return clean.map(r => ({ q:r[0], a:r[1], deck:(r[2]||'').trim(), chap:(r[3]||'').trim(), wrong:(r[4]||'').split('|').map(x=>x.trim()).filter(x=>x && x!==r[1]) }));
+  return clean.map(r => ({ q:r[0], a:r[1], deck:(r[2]||'').trim(), chap:(r[3]||'').trim(), wrong:(r[4]||'').split('|').map(x=>x.trim()).filter(x=>x && x!==r[1]), tags:tagsOf(r[5]) }));
 }
 function findOrMakeDeck(name){
   const n = name.trim(); let d = state.fc.decks.find(x=>x.name.toLowerCase()===n.toLowerCase());
@@ -1732,7 +1738,7 @@ function addCards(list, fallbackDeck){
   let added = 0, skipped = 0; const out = [];
   for (const it of list){ const d = it.deck ? findOrMakeDeck(it.deck) : fallbackDeck;
     if (state.fc.cards.some(c => c.deck===d.id && c.q===it.q && c.a===it.a)){ skipped++; continue; }
-    const nc = { id:uid(), add:todayKey(), deck:d.id, q:it.q, a:it.a, chap:it.chap||'', wrong: it.wrong && it.wrong.length ? it.wrong : null, due:todayKey(), ivl:0, ease:2.5, reps:0, lapses:0, seen:false }; state.fc.cards.push(nc); out.push(nc); added++; }
+    const nc = { id:uid(), add:todayKey(), deck:d.id, q:it.q, a:it.a, chap:it.chap||'', ...(it.tags && it.tags.length ? { tags:it.tags } : {}), wrong: it.wrong && it.wrong.length ? it.wrong : null, due:todayKey(), ivl:0, ease:2.5, reps:0, lapses:0, seen:false }; state.fc.cards.push(nc); out.push(nc); added++; }
   return { added, skipped, cards:out };
 }
 const deckOptions = sel => state.fc.decks.map(d=>`<option value="${d.id}" ${d.id===sel?'selected':''}>${esc(d.name)}</option>`).join('') + '<option value="__new">+ Nouvelle matière…</option>';
@@ -1741,7 +1747,7 @@ function fcImportSheet(opt){
   const pre = ex0 && ex0.deck ? ex0.deck : ui.fc.view==='deck' ? ui.fc.deck : (state.fc.decks[0]||{}).id;
   const exPre = ex0 ? ex0.id : (ui.fc.view==='deck' && (nextExamOf(ui.fc.deck)||{}).id) || '';
   sheet(`<h3>Importer des cartes</h3>
-    <p>Une carte par ligne : <b>question ; réponse ; matière ; chapitre ; mauvaises réponses</b>. Seules la question et la réponse sont obligatoires. Pour un QCM, sépare les mauvaises réponses par <b>|</b> dans la 5<sup>e</sup> colonne. Les fichiers .csv, .txt ou .json que je te prépare marchent directement.</p>
+    <p>Une carte par ligne : <b>question ; réponse ; matière ; chapitre ; mauvaises réponses ; notions</b>. Seules la question et la réponse sont obligatoires. Les notions (séparées par des virgules) relient la carte aux examens qui portent sur ces notions. Pour un QCM, sépare les mauvaises réponses par <b>|</b> dans la 5<sup>e</sup> colonne. Les fichiers .csv, .txt ou .json que je te prépare marchent directement.</p>
     <div class="field"><label for="i-file">Fichier</label><input type="file" id="i-file" accept=".csv,.txt,.tsv,.json,text/plain,application/json"></div>
     <div class="field"><label for="i-text">ou coller le texte</label><textarea id="i-text" placeholder="Taux normal de TVA ; 20 % ; Fiscalité&#10;Compte 401 ; Fournisseurs ; Comptabilité"></textarea></div>
     <div class="field"><label for="i-deck">Matière par défaut (si pas de 3e colonne)</label><select id="i-deck">${deckOptions(pre)}</select></div>
@@ -2058,14 +2064,17 @@ function qcmOptions(card){
 const mention = n => n>=16 ? 'Très bien' : n>=14 ? 'Bien' : n>=12 ? 'Assez bien' : n>=10 ? 'Passable' : 'À retravailler';
 function startReviewList(list, deckId){
   if (!list.length) return;
-  Object.assign(ui.fc, { view:'review', deck:deckId||null, queue:list.slice(1), cur:list[0], flipped:false, res:[0,0,0,0], total:list.length, optsFor:null, practice:new Set(), mixed:false, explText:'' });
+  Object.assign(ui.fc, { view:'review', deck:deckId||null, queue:list.slice(1), cur:list[0], flipped:false, res:[0,0,0,0], total:list.length, optsFor:null, practice:new Set(), mixed:false, explText:'', label:null });
   render(); window.scrollTo(0,0);
 }
 function startExam(deckId, chap){
-  const pool = state.fc.cards.filter(c => c.deck===deckId && (chap===null || (c.chap||'')===chap));
+  startExamFromList(state.fc.cards.filter(c => c.deck===deckId && (chap===null || (c.chap||'')===chap)), { deck:deckId, chap });
+}
+function startExamFromList(pool, meta){
+  const deckId = meta.deck, chap = meta.chap;
   const qs = pool.map(c=>({c, r:Math.random()})).sort((a,b)=>a.r-b.r).slice(0,20).map(x => ({ c:x.c, opts:qcmOptions(x.c) })).filter(q => q.opts);
   if (qs.length < 4) return toast('Il faut au moins 4 cartes avec des réponses différentes');
-  Object.assign(ui.fc, { view:'exam', exam:{ deck:deckId, chap, qs, i:0, ans:[] } });
+  Object.assign(ui.fc, { view:'exam', exam:{ deck:deckId, chap, qs, i:0, ans:[], label:meta.label||null, exId:meta.exId||null } });
   render(); window.scrollTo(0,0);
 }
 function examAnswer(k){
@@ -2080,7 +2089,7 @@ function examAnswer(k){
 }
 function vFcExam(){
   const E = ui.fc.exam, q = E.qs[E.i], d = deckOf(E.deck);
-  return `<div class="playhead"><button class="back" data-f="exam-quit">${CHEV_L}Quitter</button><span class="lab">Examen · ${esc(E.chap===null ? d.name : (E.chap || 'Sans chapitre'))}</span><span class="mono">${E.i+1} / ${E.qs.length}</span></div>
+  return `<div class="playhead"><button class="back" data-f="exam-quit">${CHEV_L}Quitter</button><span class="lab">Examen · ${esc(E.label || (E.chap===null ? d.name : (E.chap || 'Sans chapitre')))}</span><span class="mono">${E.i+1} / ${E.qs.length}</span></div>
   <div class="bar"><i style="width:${100*E.i/E.qs.length}%"></i></div>
   <div class="card fcard exam ${ui.fc.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">Question ${E.i+1}</span>${q.c.map && MAPG[q.c.map] ? `<div class="fq">Quel est ce pays ?</div>${mapSvg(q.c.map,{hl:q.c.map})}` : `<div class="fq">${fmtText(q.c.q)}</div>`}${q.c.img && q.c.imgSide!=='a' ? `<img class="cimg" data-img="${q.c.img}" alt="">` : ''}</div>
   <div class="qopts">${q.opts.map((o,k)=>`<button class="qopt" data-f-ex="${k}"><span class="ql">${'ABCD'[k]}</span><span class="qt">${fmtText(o)}</span></button>`).join('')}</div>
@@ -2091,20 +2100,20 @@ function vFcExamRes(){
   const wrong = E.qs.map((q,i)=>({ q, k:E.ans[i] })).filter(x => x.q.opts[x.k]!==x.q.c.a.trim());
   const prev = state.fc.exams.filter(e => e.deck===E.deck && e.chap===E.chap).slice(-6, -1);
   return `<div class="card hero notecard"><div class="bignote ${ok12?'ok':''}"><b class="mono">${nf20(E.note)}</b><span>/20</span></div>
-    <div><strong>${mention(E.note)}</strong><p>${E.ok}/${n} bonnes réponses. ${ok12 ? `${E.chap===null ? 'Matière' : 'Chapitre'} validé${E.chap===null?'e':''}.` : 'Il faut 12/20 pour valider.'}</p>
+    <div><strong>${mention(E.note)}</strong><p>${E.ok}/${n} bonnes réponses. ${E.exId ? (ok12 ? 'Bon niveau pour cet examen.' : 'Revois tes erreurs avant le jour J.') : ok12 ? `${E.chap===null ? 'Matière' : 'Chapitre'} validé${E.chap===null?'e':''}.` : 'Il faut 12/20 pour valider.'}</p>
     ${prev.length ? `<p class="fine">Notes précédentes : ${prev.map(e=>nf20(e.note)).join(' · ')}</p>` : ''}</div></div>
   <div class="btns">${wrong.length ? `<button class="btn primary" data-f="exam-review">Réviser mes ${wrong.length} erreur${wrong.length>1?'s':''}</button>` : ''}<button class="btn ${wrong.length?'':'primary'}" data-f="exam-again">Repasser l’examen</button></div>
   <section><h2>Correction</h2><div class="card">${wrong.length ? `<ul class="corr">${wrong.map(x=>`<li class="bad"><span class="mark">${ICON_X}</span><div style="min-width:0">
     <div class="cq">${fmtText(x.q.c.q)}</div><div class="meta"><span>ta réponse : <b class="wrong">${fmtText(x.q.opts[x.k])}</b></span></div>
     <div class="tip"><b>Réponse</b> ${fmtText(x.q.c.a)}</div>${whyHtml(x.q.c, x.q.opts[x.k])}</div></li>`).join('')}</ul>` : '<div class="empty"><b>Sans faute</b>Toutes les réponses sont justes.</div>'}</div></section>
-  <button class="btn" data-f="exam-back">Retour à ${esc(d ? d.name : 'la matière')}</button>`;
+  <button class="btn" data-f="exam-back">Retour à ${E.exId ? 'mes examens' : esc(d ? d.name : 'la matière')}</button>`;
 }
 function vFcReview(){
   const U = ui.fc, c = U.cur, d = deckOf(c.deck), done = U.res.reduce((a,b)=>a+b,0), left = U.queue.length + 1, mode = state.fc.prefs.mode;
   let opts = null;
   if (mode==='qcm'){ if (U.optsFor !== c.id){ U.opts = qcmOptions(c); U.optsFor = c.id; U.picked = null; } opts = U.opts; }
   const img = c.img ? `<img class="cimg" data-img="${c.img}" alt="">` : '';
-  const head = `<div class="playhead"><button class="back" data-f="home">${CHEV_L}Arrêter</button><span class="lab">${U.mixed ? 'Révision mélangée' : U.deck ? esc(deckOf(U.deck).name) : 'Toutes les matières'}</span><span class="mono">${left} restante${left>1?'s':''}</span></div>
+  const head = `<div class="playhead"><button class="back" data-f="home">${CHEV_L}Arrêter</button><span class="lab">${U.label ? esc(U.label) : U.mixed ? 'Révision mélangée' : U.deck ? esc(deckOf(U.deck).name) : 'Toutes les matières'}</span><span class="mono">${left} restante${left>1?'s':''}</span></div>
   <div class="bar"><i style="width:${Math.min(100, 100*done/(done+left))}%"></i></div>
   <div class="seg rmode" role="group" aria-label="Mode de révision">${[['flip','Retourner'],['qcm','QCM'],['explain','Explique-le']].map(([k,l])=>`<button data-f-mode="${k}" aria-pressed="${mode===k}">${l}</button>`).join('')}</div>`;
   if (c.map && MAPG[c.map] && MAPC[c.map] && !opts){ if (U.mpickFor !== c.id){ U.mpickFor = c.id; U.mpick = null; } return vMapReview(head, c, d); }
@@ -2164,6 +2173,7 @@ function fcCardSheet(card, prefill){
     <div class="two"><div class="field"><label for="c-deck">Matière</label><select id="c-deck">${deckOptions(pre)}</select></div>
       <div class="field"><label for="c-chap">Chapitre</label><input id="c-chap" list="c-chaps" maxlength="60" value="${card && card.chap ? esc(card.chap) : ''}" placeholder="Facultatif"><datalist id="c-chaps">${chapsOf(pre).map(x=>`<option value="${esc(x)}">`).join('')}</datalist></div></div>
     <div class="field" id="c-new-f" hidden><label for="c-new">Nom de la nouvelle matière</label><input id="c-new" maxlength="40"></div>
+    <div class="field"><label for="c-tags">Notions (facultatif, séparées par des virgules)</label><input id="c-tags" maxlength="200" value="${card && card.tags ? esc(card.tags.join(', ')) : ''}" placeholder="Ex. TVA, crédit d’impôt"></div>
     <div class="field"><span class="lab">Image (schéma, tableau, graphique)</span>
       <div class="imgrow"><div class="imgprev" id="c-prev">${img ? `<img data-img="${img}" alt="Image de la carte">` : '<span>Aucune</span>'}</div>
         <div class="imgbtns"><label class="btn sm filebtn">Choisir<input type="file" id="c-img" accept="image/*"></label><button type="button" class="btn sm" id="c-img-del" ${img?'':'hidden'}>Retirer</button></div></div>
@@ -2206,7 +2216,7 @@ function fcCardSheet(card, prefill){
       if (imgData){ if (img && !removed) IMG.del(img).catch(()=>{}); imgId = uid(); IMG.put(imgId, imgData).catch(() => toast('Image non enregistrée : stockage du navigateur indisponible')); }
       const wrong = ctype==='qcm' ? wIns.map(i=>i.value.trim()).filter(w=>w && w!==a) : [];
       if (ctype==='qcm' && !wrong.length){ lenP.textContent = 'Ajoute au moins une mauvaise réponse.'; lenP.classList.add('warnt'); wIns[0].focus(); return; }
-      const fields = { q, a, deck:d.id, chap, img:imgId || null, imgSide:side, wrong: ctype==='qcm' ? wrong : null };
+      const fields = { q, a, deck:d.id, chap, tags:tagsOf(s.querySelector('#c-tags').value), img:imgId || null, imgSide:side, wrong: ctype==='qcm' ? wrong : null };
       let me = card;
       if (card){ Object.assign(card, fields); delete card.ex; }
       else { me = { id:uid(), add:todayKey(), ...fields, due:todayKey(), ivl:0, ease:2.5, reps:0, lapses:0, seen:false }; state.fc.cards.push(me); }
@@ -2229,9 +2239,10 @@ view.addEventListener('click', e => {
   if (act==='mskip'){ U.mpick = 'skip'; render(); return; }
   if (act==='mnext'){ const ok = U.mpick===U.cur.map; U.mpickFor = null; U.optsFor = null; grade(ok ? 2 : 0); window.scrollTo(0,0); return; }
   if (act==='qnext'){ const right = U.opts.indexOf(U.cur.a.trim()); U.optsFor = null; grade(U.picked===right ? 2 : 0); window.scrollTo(0,0); }
+  else if ((act==='exam-quit' || act==='exam-back') && E.exId){ U.exam = null; U.view = 'home'; ui.tab = 'agenda'; ui.seg = 'examens'; render(); window.scrollTo(0,0); }
   else if (act==='exam-quit' || act==='exam-back'){ U.view = 'deck'; U.deck = E.deck; U.exam = null; render(); window.scrollTo(0,0); }
-  else if (act==='exam-again') startExam(E.deck, E.chap);
-  else if (act==='exam-review'){ const list = E.qs.filter((q,i) => q.opts[E.ans[i]]!==q.c.a.trim()).map(q=>q.c); startReviewList(list, E.deck); }
+  else if (act==='exam-again'){ if (E.exId) partielTest(E.exId); else startExam(E.deck, E.chap); }
+  else if (act==='exam-review'){ const list = E.qs.filter((q,i) => q.opts[E.ans[i]]!==q.c.a.trim()).map(q=>q.c); startReviewList(list, E.deck); if (E.exId){ U.label = E.label; render(); } }
 });
 
 /* ---------- Prépa Score IAE Message ---------- */
@@ -2358,7 +2369,10 @@ function vPartiels(){
       ${ex.merged ? '<p class="fine">Peu de jours disponibles : certains chapitres sont regroupés et le second passage est supprimé.</p>' : ex.dropped ? `<p class="fine">Pas assez de jours pour tout revoir deux fois : ${ex.dropped} relecture${ex.dropped>1?'s':''} en moins.</p>` : ''}
       ${st.next ? `<p class="pnext"><span class="lab">Prochaine séance</span><span>${st.next.date===tk ? "Aujourd'hui" : fmt(parse(st.next.date),{weekday:'short',day:'numeric',month:'short'})} · ${esc(st.next.title.slice(ex.title.length+3))}</span></p>` : st.total && st.done===st.total ? '<p class="pnext ok">Toutes les révisions sont faites. Bonne chance !</p>' : ''}
       ${pts.length ? `<details class="pplan"><summary>Voir le planning (${pts.length} séance${pts.length>1?'s':''})</summary><ul>${pts.map(t=>`<li class="${t.done?'done':''} ${!t.done && t.date<tk?'late':''}"><button data-px-toggle="${t.id}" aria-label="${t.done?'Marquer à faire':'Marquer comme faite'}"><i>${t.done?ICON_CHECK:''}</i><span class="pd mono">${fmt(parse(t.date),{weekday:'short',day:'numeric'})}</span><span class="pt">${esc(t.title.slice(ex.title.length+3))}</span></button></li>`).join('')}</ul></details>` : ''}
-      <div class="btns"><button class="btn sm" data-px-edit="${ex.id}">Modifier</button>${dk ? `<button class="btn sm" data-px-study="${ex.id}">Réviser les cartes</button>` : ''}<button class="btn sm" data-px-import="${ex.id}">${dk ? 'Importer des cartes' : 'Relier des cartes'}</button></div></div>`; };
+      ${(() => { const L = examCardSets(ex).linked, tests = state.fc.exams.filter(e => e.chap==='exam:'+ex.id), best = tests.length ? Math.max(...tests.map(e=>e.note)) : null;
+        return `<div class="xlink"><div><b>${L.length} carte${L.length>1?'s':''} liée${L.length>1?'s':''}</b><span>${L.length ? `${[...new Set(L.map(c=>(deckOf(c.deck)||{}).name).filter(Boolean))].slice(0,3).join(', ')}${best!==null ? ` · meilleure note ${nf20(best)}/20` : ''}` : 'Donne à tes cartes le même chapitre ou la même notion que l’examen.'}</span></div><button class="link" data-px-cards="${ex.id}">Ajuster</button></div>
+        ${L.length ? `<div class="btns"><button class="btn sm primary" data-px-rev="${ex.id}">Réviser ces cartes</button><button class="btn sm" data-px-test="${ex.id}" ${L.length<4?'disabled':''}>Test /20</button></div>` : ''}`; })()}
+      <div class="btns"><button class="btn sm" data-px-edit="${ex.id}">Modifier</button><button class="btn sm" data-px-import="${ex.id}">Importer des cartes</button></div></div>`; };
   return `${up.length ? `<div class="plist">${up.map(card).join('')}</div>` : `<div class="card empty"><b>Aucun examen à venir</b>Ajoute un partiel : Tempo compte les jours et répartit tes révisions dans l’agenda.</div>`}
     ${past.length ? `<details class="pastx"><summary>Examens passés (${past.length})</summary><div class="plist">${past.map(ex=>`<div class="card pcard past"><div class="phead"><div class="pcd"><b class="mono">✓</b></div><div><h3>${esc(ex.title)}</h3><p>${fmt(parse(ex.date),{day:'numeric',month:'long'})} · ${partielStats(ex).done}/${partielStats(ex).total} révisions faites</p></div></div><div class="btns"><button class="btn sm danger" data-px-del="${ex.id}">Supprimer</button></div></div>`).join('')}</div></details>` : ''}
     <p class="help">Chaque chapitre est vu deux fois, à quelques jours d’écart : réviser en plusieurs séances espacées fait mieux retenir que tout revoir la veille.</p>`;
@@ -2380,7 +2394,8 @@ function partielSheet(ex, preset){
     <div class="two"><div class="field"><label for="p-date">Date</label><input type="date" id="p-date" required value="${d.date}"></div>
       <div class="field"><label for="p-deck">Matière liée</label><select id="p-deck"><option value="">Aucune</option>${state.fc.decks.map(x=>`<option value="${x.id}" ${d.deck===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div></div>
     <p class="fine" style="margin-top:-6px">Avec une matière liée, les chapitres des cartes que tu importes ensuite s’ajoutent tout seuls au planning.</p>
-    <div class="field"><label for="p-chaps">Chapitres à réviser (un par ligne)</label><textarea id="p-chaps" style="font-family:var(--f-body);font-size:15px;min-height:110px" placeholder="TVA&#10;Impôt sur les sociétés&#10;Résultat fiscal">${esc(d.chapters.join('\n'))}</textarea>
+    <div class="field"><label for="p-chaps">Chapitres ou notions de l’examen (un par ligne)</label><textarea id="p-chaps" style="font-family:var(--f-body);font-size:15px;min-height:110px" placeholder="TVA&#10;Impôt sur les sociétés&#10;Résultat fiscal">${esc(d.chapters.join('\n'))}</textarea>
+      <p class="fine" id="p-xn" style="margin:4px 0 0"></p>
       <button type="button" class="link" id="p-fill" hidden style="border:0;background:none;color:var(--accent);font-weight:700;padding:4px 0;text-align:left">Reprendre les chapitres de mes cartes</button></div>
     <div class="field"><span class="lab">Jours où tu peux réviser</span><div class="opts days" id="p-days">${WD.map((w,i)=>`<button type="button" data-wd="${i}" aria-label="${WDN[i]}">${w}</button>`).join('')}</div>
       <p class="fine">Décoche tes jours en entreprise si tu ne révises pas ces jours-là.</p></div>
@@ -2396,6 +2411,8 @@ function partielSheet(ex, preset){
       s.querySelectorAll('#p-per button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.per===perDay));
       s.querySelector('#p-two').setAttribute('aria-pressed', twoPass); s.querySelector('#p-veille').setAttribute('aria-pressed', veille);
       fillB.hidden = !(deckSel.value && deckChaps(deckSel.value).length);
+      { const n = examCardSets({ chapters:chapters(), deck:deckSel.value||null, plus:(ex&&ex.plus)||[], minus:(ex&&ex.minus)||[] }).linked.length, xn = s.querySelector('#p-xn');
+        xn.textContent = n ? `${n} carte${n>1?'s':''} de tes matières correspond${n>1?'ent':''} à ces notions : elles seront réunies dans le test de l’examen.` : (chapters().length ? 'Aucune carte ne porte encore ces chapitres ou notions.' : ''); }
       const n = chapters().length, dk = dateIn.value, du = dk ? daysUntil(dk) : 0;
       let av = 0; for (let x = parse(todayKey()); dk && key(x) < dk; x = addDays(x,1)) if (days.includes(wdIdx(key(x)))) av++;
       if (!dk || du < 0) prev.textContent = 'Choisis une date à venir.';
@@ -2428,6 +2445,9 @@ function partielSheet(ex, preset){
 }
 view.addEventListener('click', e => {
   let b;
+  if ((b = e.target.closest('[data-px-rev]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxRev); if (ex){ reviewCardsList(examCardSets(ex).linked, ex.title); window.scrollTo(0,0); } return; }
+  if ((b = e.target.closest('[data-px-test]'))){ partielTest(b.dataset.pxTest); window.scrollTo(0,0); return; }
+  if ((b = e.target.closest('[data-px-cards]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxCards); if (ex) examCardsSheet(ex); return; }
   if ((b = e.target.closest('[data-px-import]'))){ ensureFc(); fcImportSheet({ exam:b.dataset.pxImport }); return; }
   if ((b = e.target.closest('[data-px-edit]'))){ partielSheet(state.partiels.find(x=>x.id===b.dataset.pxEdit)); return; }
   if ((b = e.target.closest('[data-px-replan]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxReplan); const r = planPartiel(ex); commit(); toast(`Planning recalculé : ${r.n} séance${r.n>1?'s':''} à partir d’aujourd’hui`); return; }
@@ -2944,7 +2964,7 @@ const HELP = {
     ['bolt','Glisser','Vers la droite : faite. Vers la gauche : reportée au lendemain.'],
     ['flag','Objectifs','Objectifs de semaine, de mois ou à long terme. Avance avec les boutons + et −.'],
     ['clock','Examens','Onglet Examens, bouton « + Examen » : date, matière liée et chapitres. Tempo répartit les révisions dans ton agenda (apprendre, puis revoir quelques jours plus tard). En cas de retard, « Replanifier » redistribue la suite.'],
-    ['cards','Examens et cartes','Relie une matière à l’examen : les chapitres des cartes que tu importes dans cette matière s’ajoutent tout seuls au planning, et « Réviser les cartes » les ouvre. À l’import, tu peux aussi choisir l’examen directement.'] ] },
+    ['cards','Examens et cartes','Tes cartes restent toutes dans la révision quotidienne. Les chapitres ou notions que tu écris dans l’examen réunissent les cartes correspondantes, toutes matières confondues (même chapitre, même notion, ou suggestion si le mot apparaît dans la carte). « Ajuster » pour cocher ou décocher, « Réviser ces cartes » et « Test /20 » pour t’entraîner sur cet examen. Les séances du planning ouvrent les cartes de leur chapitre.'] ] },
   calcul: { t:'Le calcul mental', i:'Des séries générées automatiquement pour garder des automatismes rapides.', s:[
     ['sun','Défi du jour','10 calculs mélangés, identiques toute la journée. Tente de battre ton score ; le compteur suit tes jours d’affilée.'],
     ['calc','Entraînement libre','Choisis une catégorie ou le Mix (coche les catégories à inclure), le niveau et le nombre de calculs.'],
@@ -3637,6 +3657,62 @@ function optNote(c, opt){
 const whyHtml = (c, picked) => { const w = packWhy(c); if (!w) return ''; const n = picked && picked.trim()!==c.a.trim() ? optNote(c, picked) : '';
   return `<div class="why"><b>Explication</b><p>${esc(w)}</p>${n ? `<p class="wn">Ta réponse : ${esc(n)}</p>` : ''}</div>`; };
 
+/* ---------- Notions : lien entre un examen et les cartes ---------- */
+const normN = s => String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’'`]/g,' ').replace(/[^a-z0-9%]+/g,' ').trim();
+const STOPN = new Set('le la les de des du un une et en au aux sur pour par dans avec chapitre chap partie cours theme notion'.split(' '));
+const wordsN = s => normN(s).split(' ').filter(w => w.length > 1 && !STOPN.has(w));
+const wEq = (w, x) => w===x || (w.length >= 5 && x.length >= 5 && w.slice(0,5)===x.slice(0,5));
+function notionMatch(key, label){
+  const a = normN(key), b = normN(label); if (!a || !b) return false;
+  if (a===b || (a.length >= 4 && b.includes(a)) || (b.length >= 4 && a.includes(b))) return true;
+  const wa = wordsN(key), wb = wordsN(label); return wa.length > 0 && wa.every(w => wb.some(x => wEq(w, x)));
+}
+const cardLabels = c => [c.chap, ...(c.tags||[])].filter(Boolean);
+const textHas = (c, key) => { const wa = wordsN(key); if (!wa.length) return false; const tw = wordsN(c.q + ' ' + c.a); return wa.every(w => tw.some(x => wEq(w, x))); };
+function examCardSets(ex){
+  ensureFc(); const keys = (ex.chapters||[]).filter(Boolean), plus = new Set(ex.plus||[]), minus = new Set(ex.minus||[]);
+  const all = state.fc.cards;
+  const auto = all.filter(c => keys.length ? keys.some(k => cardLabels(c).some(l => notionMatch(k, l))) : (ex.deck && c.deck===ex.deck));
+  const autoS = new Set(auto.map(c=>c.id));
+  const sugg = keys.length ? all.filter(c => !autoS.has(c.id) && keys.some(k => textHas(c, k))) : [];
+  const linked = all.filter(c => (autoS.has(c.id) || plus.has(c.id)) && !minus.has(c.id));
+  return { linked, auto, sugg, plus, minus };
+}
+function notionCards(ex, key){
+  const { linked } = examCardSets(ex);
+  return key ? linked.filter(c => cardLabels(c).some(l => notionMatch(key, l)) || textHas(c, key)) : linked;
+}
+function reviewCardsList(list, label){
+  if (!list.length) return toast('Aucune carte liée pour l’instant');
+  const tk = todayKey(), due = list.filter(c => !c.seen || c.due <= tk), rest = list.filter(c => c.seen && c.due > tk);
+  const ord = [...due.map(c=>({c,r:Math.random()})).sort((a,b)=>a.r-b.r), ...rest.map(c=>({c,r:Math.random()})).sort((a,b)=>a.r-b.r)].map(x=>x.c);
+  ui.tab = 'cartes'; ui.fc.exam = null; startReviewList(ord, null); ui.fc.label = label; ui.fc.practice = new Set(rest.map(c=>c.id)); render();
+}
+function partielTest(id){
+  const ex = state.partiels.find(x=>x.id===id); if (!ex) return;
+  ui.tab = 'cartes'; startExamFromList(examCardSets(ex).linked, { deck:null, chap:'exam:'+ex.id, label:ex.title, exId:ex.id });
+}
+function examCardsSheet(ex){
+  const S = examCardSets(ex), plus = new Set(S.plus), minus = new Set(S.minus);
+  const row = (c, on) => { const d = deckOf(c.deck); return `<button type="button" class="packi xc" data-xc="${c.id}" aria-pressed="${on}"><i></i><span><b>${fmtText(c.q.length > 90 ? c.q.slice(0,90)+'…' : c.q)}</b><small>${esc(d ? d.name : '')}${c.chap ? ' · ' + esc(c.chap) : ''}${(c.tags||[]).length ? ' · ' + esc(c.tags.join(', ')) : ''}</small></span></button>`; };
+  const autoL = S.auto.slice(0, 200), suggL = [...S.sugg, ...state.fc.cards.filter(c => plus.has(c.id) && !S.auto.includes(c) && !S.sugg.includes(c))].slice(0, 150);
+  sheet(`<h3>Cartes de l’examen</h3><p>${esc(ex.title)} · notions : ${ex.chapters.length ? esc(ex.chapters.join(', ')) : 'aucune (toute la matière liée)'}</p>
+    <span class="lab">Liées par le chapitre ou les notions (${S.auto.length})</span>
+    <div class="packl">${autoL.map(c => row(c, !minus.has(c.id))).join('') || '<p class="fine">Aucune carte n’a ce chapitre ou ces notions.</p>'}</div>
+    ${suggL.length ? `<span class="lab">Suggestions : le mot apparaît dans la carte (${suggL.length})</span><div class="packl">${suggL.map(c => row(c, plus.has(c.id))).join('')}</div>` : ''}
+    <p class="fine" id="xc-n"></p>
+    <div class="btns"><button class="btn" data-close>Annuler</button><button class="btn primary" id="xc-save">Enregistrer</button></div>`, s => {
+    const autoS = new Set(S.auto.map(c=>c.id));
+    const cnt = () => { const n = state.fc.cards.filter(c => (autoS.has(c.id) || plus.has(c.id)) && !minus.has(c.id)).length; s.querySelector('#xc-n').textContent = `${n} carte${n>1?'s':''} retenue${n>1?'s':''} pour cet examen.`; };
+    s.addEventListener('click', e => { const b = e.target.closest('[data-xc]'); if (!b) return; const id = b.dataset.xc, on = b.getAttribute('aria-pressed')!=='true';
+      b.setAttribute('aria-pressed', on);
+      if (autoS.has(id)){ on ? minus.delete(id) : minus.add(id); } else { on ? plus.add(id) : plus.delete(id); }
+      cnt(); });
+    cnt();
+    s.querySelector('#xc-save').addEventListener('click', () => { ex.plus = [...plus]; ex.minus = [...minus]; close(); commit(); toast('Cartes de l’examen enregistrées'); });
+  });
+}
+
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
 function render(){
@@ -3695,6 +3771,7 @@ view.addEventListener('click', e => {
   else if (act==='delete'){ skipRoutineDate(t); state.tasks = state.tasks.filter(x=>x!==t); ui.open=null; commit(); toast(t.routine ? 'Supprimée pour ce jour seulement' : 'Tâche supprimée'); }
   else if (act==='focus'){ ui.open=null; render(); focusStart(t.id); }
   else if (act==='mit'){ state.mit = { d:todayKey(), id:t.id }; ui.open=null; commit(); toast('Priorité du jour choisie'); }
+  else if (act==='study' && t.examId && (state.partiels||[]).some(x=>x.id===t.examId)){ const ex = state.partiels.find(x=>x.id===t.examId), k = /^[LR]:/.test(t.plan||'') ? t.plan.slice(2) : null; reviewCardsList(notionCards(ex, k), k ? `${ex.title} · ${k}` : ex.title); window.scrollTo(0,0); }
   else if (act==='study'){ const dk = deckOf(t.deck); if (!dk) return; ui.tab='cartes'; ui.fc.exam=null; if (dueCards(dk.id).all.length) startReview(dk.id); else { ui.fc.view='deck'; ui.fc.deck=dk.id; render(); toast('Rien à réviser pour l\u2019instant : voici la matière'); } window.scrollTo(0,0); }
 });
 const dn_ = el => +el.dataset.week;
