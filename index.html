@@ -699,6 +699,30 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
   .field input,.field select,.field textarea,.xcard textarea,.evening textarea,.evening input{font-size:16px}
 }
 
+/* Astuces de calcul */
+.chint{background:var(--amber-soft);border-radius:12px;padding:10px 14px;font-size:14px;line-height:1.5;animation:rise .3s var(--ease)}
+.chint b{display:flex;align-items:center;gap:6px;color:var(--amber);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.chint b svg{width:15px;height:15px}
+.btns .btn:has(> svg){display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btns .btn > svg{width:17px;height:17px;flex:none}
+.corr .tip.rule{background:none;border:1px dashed var(--line);margin-top:6px}
+.corr .tip.rule b{color:var(--amber)}
+.hused{display:block;margin-top:4px;font-size:11.5px;color:var(--muted);font-style:italic}
+.tipgrid{display:flex;flex-direction:column;gap:10px}
+.tipcard{padding:0;overflow:hidden;box-shadow:inset 4px 0 0 var(--tc), var(--shadow)}
+.tipcard summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:12px 14px}
+.tipcard summary::-webkit-details-marker{display:none}
+.tipcard summary b{flex:1;font-family:var(--f-display);font-size:16px}
+.tipcard .tico{--mc:var(--tc);width:34px;height:34px;border-style:solid;opacity:1}
+.tipcard .tico svg{width:17px;height:17px}
+.tipn{font-size:12px;color:var(--muted)}
+.tipcard summary::after{content:"+";font-family:var(--f-mono);color:var(--muted);font-size:18px}
+.tipcard[open] summary::after{content:"−"}
+.tipcard ul{list-style:none;margin:0;padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
+.tipcard li{display:flex;flex-direction:column;gap:3px;background:color-mix(in srgb, var(--tc) 8%, var(--surface));border-radius:10px;padding:9px 12px}
+.tipcard li b{font-size:13px;color:var(--tc)}
+.tipcard li span{font-size:14px;overflow-wrap:anywhere}
+
 /* Interactions */
 
 
@@ -1192,6 +1216,7 @@ function vCalcHome(){
     <div class="field"><span class="lab">Nombre de calculs</span><div class="seg">${[10,20,30].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
     <button class="btn primary" data-c="start">Commencer</button></div></section>
   ${simCard()}
+  ${tipSheetsHtml()}
   ${calcProgress()}
   <section><h2>Tes statistiques</h2>${statsHtml()}</section>`;
 }
@@ -1214,20 +1239,21 @@ function vCalcPlay(){
   <div class="card qcard" id="c-card"><span class="lab" id="c-cat-l">${CALC_CATS[q.cat]} · ${LEVELS[s.opts.level]}</span>
     <div class="calc-q mono" id="c-q">${esc(qText(q))}</div>
     <form id="c-form" class="ans"><input id="c-ans" class="mono" inputmode="decimal" autocomplete="off" enterkeyhint="next" aria-label="Ta réponse" placeholder="Ta réponse"><button class="btn primary" type="submit">Valider</button></form></div>
-  <div class="btns"><button class="btn" data-c="skip">Passer</button><button class="btn danger" data-c="quit">Arrêter</button></div>`;
+  <div class="chint" id="c-hint" hidden></div>
+  <div class="btns"><button class="btn" data-c="hint">${bicon('bulb')}Astuce</button><button class="btn" data-c="skip">Passer</button><button class="btn danger" data-c="quit">Arrêter</button></div>`;
 }
 function vCalcResult(){
   const s = ui.calc.s, n = s.qs.length, ok = s.answers.filter(a=>a.ok).length, ms = s.end - s.start, pct = Math.round(100*ok/n);
   const msg = pct>=90 ? 'Excellent, rien à redire.' : pct>=70 ? 'Bien joué, quelques points à revoir.' : pct>=50 ? 'Pas mal. Les méthodes ci-dessous vont t’aider.' : 'Regarde les méthodes, puis refais tes erreurs.';
   const wrong = s.answers.filter(a=>!a.ok).length, f = ui.calc.filter;
-  const rows = s.qs.map((q,i)=>({q,a:s.answers[i]})).filter(r => f==='all' || !r.a.ok);
+  const rows = s.qs.map((q,i)=>({q,a:s.answers[i],i})).filter(r => f==='all' || !r.a.ok), H = s.hints || new Set();
   return `<div class="card hero">${ring(ok,n).replace('faites','justes')}<div><strong>${msg}</strong><p class="mono">${fmtTime(ms)} au total · ${(ms/1000/n).toFixed(1).replace('.',',')} s par calcul</p></div></div>
   <div class="btns">${wrong?`<button class="btn primary" data-c="retry">Refaire mes ${wrong} erreur${wrong>1?'s':''}</button>`:''}<button class="btn ${wrong?'':'primary'}" data-c="again">Générer à nouveau</button></div>
   <section><h2>Correction <span class="seg mini">${[['all','Tout'],['bad','Erreurs']].map(([k,l])=>`<button data-c-filter="${k}" aria-pressed="${f===k}">${l}</button>`).join('')}</span></h2>
-    <div class="card">${rows.length?`<ul class="corr">${rows.map(({q,a})=>`<li class="${a.ok?'ok':'bad'}"><span class="mark">${a.ok?ICON_CHECK:ICON_X}</span><div style="min-width:0">
+    <div class="card">${rows.length?`<ul class="corr">${rows.map(({q,a,i})=>`<li class="${a.ok?'ok':'bad'}"><span class="mark">${a.ok?ICON_CHECK:ICON_X}</span><div style="min-width:0">
       ${q.show ? `<div class="cq">${esc(q.q)}<br><span class="ansl">Réponse :</span> <b class="mono">${esc(q.show)}</b></div>` : `<div class="cq mono">${esc(q.q)} = <b>${nf(q.a)}</b></div>`}
       <div class="meta"><span>${catName(q.cat)}</span><span>·</span>${a.skipped?'<span>passé</span>':`<span>ta réponse : <b class="${a.ok?'':'wrong'}">${esc(a.given)}</b></span>`}</div>
-      <div class="tip"><b>Méthode</b> ${esc(q.tip)}</div></div></li>`).join('')}</ul>`:'<div class="empty"><b>Aucune erreur</b>Tout est juste sur cette série.</div>'}</div></section>
+      <div class="tip"><b>Méthode</b> ${esc(q.tip)}</div><div class="tip rule"><b>Le principe</b> ${esc(ruleFor(q))}</div>${H.has(i) ? '<span class="hused">Astuce utilisée pendant la série</span>' : ''}</div></li>`).join('')}</ul>`:'<div class="empty"><b>Aucune erreur</b>Tout est juste sur cette série.</div>'}</div></section>
   <button class="btn" data-c="home">Retour à l'accueil du calcul</button>`;
 }
 function startSession(opts){ ui.calc.s = buildSession(opts); ui.calc.phase = 'play'; ui.calc.filter = 'all'; render(); window.scrollTo(0,0); }
@@ -1251,6 +1277,7 @@ function answer(raw, skipped){
   const nq = s.qs[s.i];
   $('#c-prog').textContent = `${s.i+1} / ${s.qs.length}`; $('#c-bar').style.width = `${100*s.i/s.qs.length}%`;
   const cq = $('#c-q'); cq.textContent = qText(nq); cq.classList.remove('qin'); void cq.offsetWidth; cq.classList.add('qin'); $('#c-cat-l').textContent = `${CALC_CATS[nq.cat]} · ${LEVELS[s.opts.level]}`;
+  const ch = $('#c-hint'); if (ch) ch.hidden = true;
   const inp = $('#c-ans'); inp.value = ''; inp.focus();
 }
 setInterval(() => { if (ui.calc.phase!=='play' || !ui.calc.s) return; const s = ui.calc.s, el = document.getElementById('c-timer');
@@ -1280,6 +1307,7 @@ view.addEventListener('click', e => {
   else if (act==='again') startSession({ ...s.opts, mode: s.opts.mode==='retry' ? 'free' : s.opts.mode==='daily' ? 'free' : s.opts.mode, n: s.opts.mode==='retry' ? (s.opts.sim ? 10 : P.n) : s.opts.n, seed:'free-'+Date.now()+Math.random() });
   else if (act==='retry'){ const qs = s.qs.filter((q,i)=>!s.answers[i].ok); ui.calc.s = { opts:{ ...s.opts, mode:'retry', n:qs.length }, qs, i:0, answers:[], start:Date.now(), end:null }; ui.calc.phase='play'; ui.calc.filter='all'; render(); window.scrollTo(0,0); }
   else if (act==='skip') answer('', true);
+  else if (act==='hint'){ const h = $('#c-hint'); if (!h || !s) return; h.innerHTML = `<b>${bicon('bulb')}Astuce</b>${esc(ruleFor(s.qs[s.i]))}`; h.hidden = false; (s.hints = s.hints || new Set()).add(s.i); }
   else if (act==='quit'){ if (b.dataset.armed){ ui.calc.phase='home'; ui.calc.s=null; render(); } else { b.dataset.armed='1'; b.textContent='Confirmer l’arrêt'; } }
   else if (act==='home'){ ui.calc.phase='home'; render(); window.scrollTo(0,0); }
 });
@@ -2188,7 +2216,8 @@ function vSimPlay(){
   <div class="bar"><i style="width:${100*s.i/s.qs.length}%"></i></div>
   <div class="card qcard simq ${ui.calc.anim||''}" id="c-card"><span class="lab">${SIM_CATS[q.cat]}</span><div class="simtext">${esc(q.q)}</div></div>
   <div class="qopts">${q.opts.map((o,k)=>`<button class="qopt" data-c-opt="${k}"><span class="ql">${'ABCD'[k]}</span><span class="qt mono">${esc(o)}</span></button>`).join('')}</div>
-  <div class="btns"><button class="btn" data-c="skip">Passer</button><button class="btn danger" data-c="quit">Arrêter</button></div>
+  <div class="chint" id="c-hint" hidden></div>
+  <div class="btns"><button class="btn" data-c="hint">${bicon('bulb')}Astuce</button><button class="btn" data-c="skip">Passer</button><button class="btn danger" data-c="quit">Arrêter</button></div>
   <p class="help">Une minute par question en moyenne, sans calculatrice : calcule de tête ou au brouillon.</p>`;
 }
 function answerSim(k){
@@ -2842,6 +2871,7 @@ const HELP = {
     ['sun','Défi du jour','10 calculs mélangés, identiques toute la journée. Tente de battre ton score ; le compteur suit tes jours d’affilée.'],
     ['calc','Entraînement libre','Choisis une catégorie ou le Mix (coche les catégories à inclure), le niveau et le nombre de calculs.'],
     ['check','La correction','Pour chaque calcul : ta réponse, la bonne, et une méthode rapide. Puis « Refaire mes erreurs ».'],
+    ['bulb','Astuces','Pendant une série, le bouton « Astuce » rappelle la technique à utiliser sans donner la réponse. La correction ajoute « Le principe » à chaque calcul, et les fiches d\u2019astuces regroupent toutes les techniques avec un exemple.'],
     ['trophy','Prépa Score IAE Message','10 questions en QCM en 10 minutes : pourcentages, proportionnalité, suites logiques, fractions, vitesses, intérêts, moyennes.'],
     ['target','Progression','Le graphique suit ta réussite ou ta vitesse sur tes dernières séries ; les statistiques montrent ta catégorie à travailler.'] ] },
   sudoku: { t:'Le sudoku', i:'Des grilles générées sur ton téléphone, chacune avec une solution unique.', s:[
@@ -2929,6 +2959,86 @@ async function fillSnaps(el){
 /* ---------- Pas de zoom ---------- */
 ['gesturestart','gesturechange','gestureend'].forEach(ev => document.addEventListener(ev, e => e.preventDefault(), { passive:false }));
 document.addEventListener('touchmove', e => { if (e.touches && e.touches.length > 1) e.preventDefault(); }, { passive:false });
+
+/* ---------- Astuces de calcul ---------- */
+function ruleFor(q){
+  const t = q.q;
+  switch (q.cat){
+    case 'add': return 'Arrondis le deuxième nombre à la dizaine au-dessus, puis corrige : 47 + 38 = 47 + 40 − 2. Ou ajoute d’abord les dizaines, puis les unités.';
+    case 'sub': return 'Arrondis ce que tu retires, puis rends la différence : 83 − 29 = 83 − 30 + 1. Tu peux aussi compter en avançant du petit nombre jusqu’au grand.';
+    case 'mul':
+      if (/× 25$/.test(t)) return '25 = 100 ÷ 4 : multiplier par 25, c’est multiplier par 100 puis diviser par 4.';
+      if (/× 5$/.test(t) || /^5 ×/.test(t)) return '5 = 10 ÷ 2 : multiplier par 5, c’est multiplier par 10 puis prendre la moitié.';
+      if (/× 9$/.test(t) || /^9 ×/.test(t)) return '9 = 10 − 1 : multiplie par 10, puis retire le nombre une fois.';
+      if (/× 11$/.test(t)) return '11 = 10 + 1 : multiplie par 10 et ajoute le nombre. Pour deux chiffres, glisse leur somme au milieu : 43 × 11 = 4|7|3 = 473 (avec retenue si la somme dépasse 9).';
+      if (/× 15$/.test(t)) return '15 = 10 + 5 : multiplie par 10, puis ajoute la moitié de ce résultat.';
+      if (/^\d ×|× \d$/.test(t) && q.a <= 90) return 'Pars d’un résultat que tu connais (× 2, × 5, × 10), puis ajoute ou retire une fois le nombre.';
+      return 'Distributivité : découpe un facteur en dizaines + unités et multiplie chaque morceau : 34 × 26 = 34 × 20 + 34 × 6.';
+    case 'div':
+      if (/÷ 5$/.test(t)) return 'Diviser par 5, c’est diviser par 10 puis multiplier par 2.';
+      return 'Pense à la multiplication inverse : combien de fois le diviseur tient dans le nombre ? Découpe le nombre en morceaux faciles, comme 10 fois le diviseur, plus le reste.';
+    case 'pct':
+      if (/TVA/.test(t)) return 'TVA à 20 % = un cinquième du prix HT : divise par 10, puis multiplie par 2. Prix TTC = HT × 1,2.';
+      return '10 % = diviser par 10 ; 1 % = diviser par 100 ; 5 % = la moitié de 10 % ; 25 % = un quart. Astuce : x % de y = y % de x (8 % de 50 = 50 % de 8 = 4).';
+    case 'pow':
+      if (/³/.test(t)) return 'Un cube, c’est le carré multiplié encore une fois par le nombre : n³ = n² × n.';
+      if (/5²$/.test(t)) return 'Un nombre qui finit par 5 : multiplie les dizaines par le nombre suivant, puis colle 25. 35² : 3 × 4 = 12, donc 1 225.';
+      return 'Ramène-toi à une dizaine : n² = (n − d)(n + d) + d². Pour 47² : 44 × 50 + 9 = 2 209.';
+    case 'evol': return 'Les évolutions successives se multiplient, elles ne s’additionnent pas : +20 % puis −20 % = × 1,2 × 0,8 = × 0,96, soit −4 %.';
+    case 'r3': return /ouvriers/.test(t) ? 'Inversement proportionnel : plus d’ouvriers, moins de jours. Le produit ouvriers × jours reste constant.' : 'Proportionnalité : calcule la valeur pour 1, puis multiplie par la quantité demandée.';
+    case 'suite': return 'Regarde les écarts entre deux termes : constants (+ r), multipliés (× r), qui alternent (+a, −b), ou bien des carrés (1, 4, 9, 16…).';
+    case 'frac': return '« Les a/b de » veut dire « multiplier par a/b ». Multiplie les fractions entre elles, simplifie, puis applique au nombre.';
+    case 'vit': return 'Convertis en heures décimales : 15 min = 0,25 h ; 20 min ≈ 0,33 h ; 30 min = 0,5 h ; 45 min = 0,75 h. Puis vitesse = distance ÷ temps.';
+    case 'inter': return 'Intérêts composés : capital × (1 + taux)^années. Les intérêts de la 1re année rapportent eux aussi des intérêts.';
+    case 'moy': return 'Somme totale = moyenne × nombre de valeurs. La valeur manquante = somme totale − valeurs connues.';
+    case 'part': return 'x % de N : découpe x en dizaines et unités de pourcent. 10 % = N ÷ 10, 1 % = N ÷ 100.';
+  }
+  return 'Décompose le calcul en étapes simples que tu sais faire de tête.';
+}
+const TIP_SHEETS = [
+  { k:'add', ic:'calc', title:'Additions et soustractions', col:'c-cours', tips:[
+    ['Arrondir puis corriger', '47 + 38 = 47 + 40 − 2 = 85'],
+    ['Dizaines puis unités', '56 + 27 = 56 + 20 + 7 = 83'],
+    ['Compter en avançant', '83 − 29 : de 29 à 30 (+1), puis à 83 (+53) → 54'],
+    ['Compléments à 100', '100 − 37 = 63 : les dizaines font 9, les unités 10']
+  ]},
+  { k:'mul', ic:'grid', title:'Multiplications', col:'c-alt', tips:[
+    ['× 5', '× 10 puis ÷ 2 → 48 × 5 = 480 ÷ 2 = 240'],
+    ['× 9', '× 10 puis − 1 fois → 36 × 9 = 360 − 36 = 324'],
+    ['× 11', 'somme au milieu → 43 × 11 = 4|7|3 = 473'],
+    ['× 25', '× 100 puis ÷ 4 → 36 × 25 = 3 600 ÷ 4 = 900'],
+    ['Distributivité', '34 × 26 = 34 × 20 + 34 × 6 = 680 + 204 = 884']
+  ]},
+  { k:'div', ic:'target', title:'Divisions', col:'accent', tips:[
+    ['÷ 5', '÷ 10 puis × 2 → 340 ÷ 5 = 34 × 2 = 68'],
+    ['Découper', '204 ÷ 12 = (120 + 84) ÷ 12 = 10 + 7 = 17'],
+    ['Divisible par 3', 'si la somme des chiffres l’est : 471 → 4 + 7 + 1 = 12'],
+    ['Diviser par 4', 'deux fois la moitié → 364 ÷ 4 = 182 ÷ 2 = 91']
+  ]},
+  { k:'pct', ic:'calc', title:'Pourcentages', col:'amber', tips:[
+    ['Les bases', '10 % = ÷ 10 · 1 % = ÷ 100 · 50 % = ÷ 2 · 25 % = ÷ 4'],
+    ['Combiner', '15 % de 240 = 10 % + 5 % = 24 + 12 = 36'],
+    ['Inverser', '8 % de 50 = 50 % de 8 = 4'],
+    ['TVA', 'TVA 20 % = HT ÷ 5 · TTC = HT × 1,2 · HT = TTC ÷ 1,2']
+  ]},
+  { k:'pow', ic:'star', title:'Carrés et cubes', col:'ok', tips:[
+    ['Finit par 5', '65² : 6 × 7 = 42, puis 25 → 4 225'],
+    ['Autour d’une dizaine', '47² = 44 × 50 + 3² = 2 200 + 9 = 2 209'],
+    ['Carrés à connaître', '11² = 121 · 12² = 144 · 13² = 169 · 14² = 196 · 15² = 225'],
+    ['Cubes', '2³ = 8 · 3³ = 27 · 4³ = 64 · 5³ = 125 · 6³ = 216']
+  ]},
+  { k:'sim', ic:'trophy', title:'Prépa Score IAE', col:'danger', tips:[
+    ['Évolutions successives', '+20 % puis −20 % = × 1,2 × 0,8 = × 0,96 → −4 %'],
+    ['Inversement proportionnel', '6 ouvriers × 10 jours = 60 → 4 ouvriers : 60 ÷ 4 = 15 jours'],
+    ['Minutes en heures', '15 min = 0,25 h · 45 min = 0,75 h · 1 h 15 = 1,25 h'],
+    ['Intérêts composés', '1 000 € à 5 % sur 2 ans = 1 000 × 1,05² = 1 102,50 €'],
+    ['Moyenne', 'valeur manquante = moyenne × nombre − somme des autres']
+  ]}
+];
+function tipSheetsHtml(){
+  return `<section><h2>Fiches d’astuces</h2><div class="tipgrid">${TIP_SHEETS.map(T=>`<details class="card tipcard" style="--tc:var(--${T.col})"><summary><span class="medal hic tico">${bicon(T.ic)}</span><b>${T.title}</b><span class="tipn">${T.tips.length} astuces</span></summary>
+    <ul>${T.tips.map(([h,ex])=>`<li><b>${esc(h)}</b><span class="mono">${esc(ex)}</span></li>`).join('')}</ul></details>`).join('')}</div></section>`;
+}
 
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
