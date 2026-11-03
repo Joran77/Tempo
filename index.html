@@ -921,6 +921,14 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 .bmp{stroke:#7a2a1e;stroke-opacity:.45;stroke-width:.4;stroke-linejoin:round;cursor:pointer;transition:opacity .2s}.bmp:active{opacity:.75}
 .bmp.on{filter:url(#bmGlow);stroke:#fff;stroke-opacity:.55;stroke-width:.5}
 .bmsh{pointer-events:none}
+.bmsw{display:flex;width:max-content;margin:0 auto 10px}
+.bmwrap.flat,:root[data-tm="dark"] .bmwrap.flat{background:none;padding:4px 0 0}
+.bmleg.flat{--bm-rest:var(--fg);--bm-warm:#E8692F;--bm-hot:#D3202A}:root[data-tm="dark"] .bmleg.flat{--bm-rest:#E9E4DE;--bm-warm:#F0803F;--bm-hot:#F0473A}
+.bodymap.flat{--bm-tendon:var(--fg);--bm-rest:var(--fg);--bm-warm:#E8692F;--bm-hot:#D3202A}
+:root[data-tm="dark"] .bodymap.flat{--bm-tendon:#E9E4DE;--bm-rest:#E9E4DE;--bm-warm:#F0803F;--bm-hot:#F0473A}
+.bodymap.flat .bmsil path{stroke-width:3.6}
+.bodymap.flat .bmp{stroke:var(--surface);stroke-opacity:1;stroke-width:.9;filter:none}
+.bodymap.flat .bmp.on{stroke:var(--surface);stroke-width:.9;filter:none}
 .bmleg{display:flex;justify-content:center;gap:14px;font-size:12px;color:var(--muted);margin-top:6px}.bmleg span{display:inline-flex;align-items:center;gap:5px}
 .bmleg i{width:12px;height:12px;border-radius:4px;display:inline-block}.bmleg{--bm-rest:#C98E80;--bm-warm:#E2683F;--bm-hot:#B8141B}:root[data-tm="dark"] .bmleg{--bm-rest:#9C6457;--bm-warm:#F0773F;--bm-hot:#E5262B}.bmleg .l0{background:var(--bm-rest)}.bmleg .l1{background:var(--bm-warm)}.bmleg .l2{background:var(--bm-hot)}
 .pwarn2{padding:12px 14px;border-left:4px solid var(--amber)}.pwarn2 b{color:var(--amber)}.pwarn2 p,.pok p{margin:4px 0 0;font-size:14px}
@@ -4352,6 +4360,7 @@ function healthClick(e){
   else if (a==='sync') syncSheet();
   else if (a==='sync-now') syncSteps(true);
   else if (a==='hevy'){ if (hevyKey()) syncHevy(true); hevySheet(); }
+  else if (a==='bmstyle'){ try { localStorage.setItem('tempo.bmstyle', b.dataset.k); } catch(_){} render(); }
   else if (a==='prog'){ ui.hprog = b.dataset.k; render(); }
   else if (a==='steps-n'){ ui.hsteps = +b.dataset.n; render(); }
   else if (a==='steps-help') stepsHelpSheet(false);
@@ -4588,8 +4597,9 @@ function smoothPath(pts, it){
 let BODY_PATHS = null;
 function bodyPaths(){ return BODY_PATHS || (BODY_PATHS = { a:BODY_POLY.a.map(([t,ps]) => [t, ps.map(p=>smoothPath(p, 3))]), p:BODY_POLY.p.map(([t,ps]) => [t, ps.map(p=>smoothPath(p, 3))]) }); }
 const FIB_ANG = { chest:'h', obliques:'d2', abs:'h', biceps:'v', triceps:'v', 'front-deltoids':'d1', 'back-deltoids':'d2', abductors:'v', abductor:'v', quadriceps:'v', calves:'v', 'left-soleus':'v', 'right-soleus':'v', forearm:'v', trapezius:'d1', 'upper-back':'d2', 'lower-back':'v', gluteal:'d1', hamstring:'v', neck:'v' };
+const bmStyle = () => { try { return localStorage.getItem('tempo.bmstyle') || 'flat'; } catch(_) { return 'flat'; } };
 function bodyMap(ms){
-  const mx = Math.max(8, ...Object.values(ms)), B = bodyPaths();
+  const mx = Math.max(8, ...Object.values(ms)), B = bodyPaths(), flat = bmStyle() === 'flat';
   const val = t => Math.max(0, ...(BH_MAP[t]||[]).map(k => ms[k]||0));
   const fill = t => { if (t==='head' || t==='knees') return 'var(--bm-tendon)'; const v = val(t); if (!v) return 'var(--bm-rest)'; const p = Math.min(1, v/mx);
     return `color-mix(in srgb, ${p > .66 ? 'var(--bm-hot)' : 'var(--bm-warm)'} ${Math.round(55 + 45*p)}%, var(--bm-rest))`; };
@@ -4597,15 +4607,15 @@ function bodyMap(ms){
   const view = (data, dx) => `<g transform="translate(${dx} 0)">
       <g class="bmsil">${data.map(([t, ps]) => ps.map(d => `<path d="${d}"/>`).join('')).join('')}</g>
       ${data.map(([t, ps]) => ps.map(d => { const on = val(t) > 0 && t!=='head' && t!=='knees';
-        return `<path d="${d}" fill="${fill(t)}" class="bmp${on ? ' on' : ''}" ${name(t) ? `data-bm="${esc(name(t))}" data-bv="${nf(r1(val(t)))}"` : ''}/>${FIB_ANG[t] ? `<path d="${d}" class="bmsh" fill="url(#bmF${FIB_ANG[t]})"/>` : ''}<path d="${d}" class="bmsh" fill="url(#bmShade)"/>`; }).join('')).join('')}</g>`;
+        return `<path d="${d}" fill="${fill(t)}" class="bmp${on ? ' on' : ''}" ${name(t) ? `data-bm="${esc(name(t))}" data-bv="${nf(r1(val(t)))}"` : ''}/>${flat ? '' : `${FIB_ANG[t] ? `<path d="${d}" class="bmsh" fill="url(#bmF${FIB_ANG[t]})"/>` : ''}<path d="${d}" class="bmsh" fill="url(#bmShade)"/>`}`; }).join('')).join('')}</g>`;
   const fib = (id, rot) => `<pattern id="bmF${id}" width="1.6" height="1.6" patternUnits="userSpaceOnUse" patternTransform="rotate(${rot})"><line x1="0" y1=".4" x2="1.6" y2=".4" stroke="#fff" stroke-opacity=".22" stroke-width=".35"/><line x1="0" y1="1.2" x2="1.6" y2="1.2" stroke="#4a0e08" stroke-opacity=".16" stroke-width=".3"/></pattern>`;
-  return `<div class="bmwrap"><svg class="bodymap" viewBox="0 0 225 222" role="img" aria-label="Muscles travaillés">
+  return `<div class="seg mini bmsw">${[['flat','Silhouette'],['anat','Anatomie']].map(([k,l])=>`<button data-h="bmstyle" data-k="${k}" aria-pressed="${bmStyle()===k}">${l}</button>`).join('')}</div><div class="bmwrap${flat ? ' flat' : ''}"><svg class="bodymap${flat ? ' flat' : ''}" viewBox="0 0 225 222" role="img" aria-label="Muscles travaillés">
     <defs>${fib('h', 8)}${fib('v', 90)}${fib('d1', 35)}${fib('d2', -35)}
       <radialGradient id="bmShade" cx=".36" cy=".28" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".4" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#2a0603" stop-opacity=".38"/></radialGradient>
       <filter id="bmSoft" x="-10%" y="-5%" width="120%" height="110%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity=".3"/></filter>
       <filter id="bmGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.4" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-    <g filter="url(#bmSoft)">${view(B.a, 6)}${view(B.p, 119)}</g><text x="56" y="214" class="bmt">Face</text><text x="169" y="214" class="bmt">Dos</text></svg></div>
-    <div class="bmleg"><span><i class="l0"></i>Repos</span><span><i class="l1"></i>Travaillé</span><span><i class="l2"></i>Très sollicité</span></div>`;
+    <g ${flat ? '' : 'filter="url(#bmSoft)"'}>${view(B.a, 6)}${view(B.p, 119)}</g><text x="56" y="214" class="bmt">Face</text><text x="169" y="214" class="bmt">Dos</text></svg></div>
+    <div class="bmleg${flat ? ' flat' : ''}"><span><i class="l0"></i>Repos</span><span><i class="l1"></i>Travaillé</span><span><i class="l2"></i>Très sollicité</span></div>`;
 }
 function sparkline(vals, h){
   if (vals.length < 2) return '';
