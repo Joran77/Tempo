@@ -787,6 +787,22 @@ svg.wmap{display:block;width:100%;height:auto;margin-top:10px;border-radius:12px
 .xlink b{font-size:14px}.xlink span{font-size:13px;color:var(--muted)}
 .xlink .link{border:0;background:none;color:var(--accent);font-weight:700;font:inherit;font-weight:700;cursor:pointer}
 .packi.xc b{font-weight:600;font-size:14px}
+.iguide{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface)}
+.iguide>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px}
+.iguide>summary::-webkit-details-marker{display:none}
+.iguide>summary>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.iguide>summary b{font-size:15px;color:var(--accent)}
+.iguide>summary small{font-size:13px;color:var(--muted)}
+.iguide>summary i{width:30px;height:30px;border-radius:50%;background:var(--surface-2);flex:none;position:relative;transition:transform .25s}
+.iguide>summary i::before{content:'';position:absolute;left:11px;top:9px;width:7px;height:7px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg)}
+.iguide[open]>summary i{transform:rotate(180deg)}
+.ctab{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+.ctab td{padding:6px 4px;border-top:1px solid var(--line);vertical-align:top}
+.ctab td:first-child{font-family:var(--f-mono,ui-monospace,monospace);color:var(--accent);font-weight:700;width:18px}
+.ctab td:last-child{color:var(--muted)}
+pre.iex{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 var(--f-mono,ui-monospace,monospace);background:var(--surface-2);border-radius:10px;padding:10px 12px;max-height:220px;overflow:auto}
+pre.iex.prompt{font-family:var(--f-body,inherit);font-size:13px}
+.hhead ~ .iguide{margin-top:4px}
 /* Interactions */
 
 
@@ -1747,7 +1763,8 @@ function fcImportSheet(opt){
   const pre = ex0 && ex0.deck ? ex0.deck : ui.fc.view==='deck' ? ui.fc.deck : (state.fc.decks[0]||{}).id;
   const exPre = ex0 ? ex0.id : (ui.fc.view==='deck' && (nextExamOf(ui.fc.deck)||{}).id) || '';
   sheet(`<h3>Importer des cartes</h3>
-    <p>Une carte par ligne : <b>question ; réponse ; matière ; chapitre ; mauvaises réponses ; notions</b>. Seules la question et la réponse sont obligatoires. Les notions (séparées par des virgules) relient la carte aux examens qui portent sur ces notions. Pour un QCM, sépare les mauvaises réponses par <b>|</b> dans la 5<sup>e</sup> colonne. Les fichiers .csv, .txt ou .json que je te prépare marchent directement.</p>
+    <p>Une carte par ligne, 6 colonnes séparées par ; — seules la question et la réponse sont obligatoires. Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous.</p>
+    ${importGuideHtml(false)}
     <div class="field"><label for="i-file">Fichier</label><input type="file" id="i-file" accept=".csv,.txt,.tsv,.json,text/plain,application/json"></div>
     <div class="field"><label for="i-text">ou coller le texte</label><textarea id="i-text" placeholder="Taux normal de TVA ; 20 % ; Fiscalité&#10;Compte 401 ; Fournisseurs ; Comptabilité"></textarea></div>
     <div class="field"><label for="i-deck">Matière par défaut (si pas de 3e colonne)</label><select id="i-deck">${deckOptions(pre)}</select></div>
@@ -2984,7 +3001,7 @@ const HELP = {
     ['calendar','Chaque carte revue dans la semaine','Aucune carte n’attend plus de 7 jours, et les nouvelles cartes sont toutes découvertes en 7 jours. Le panneau « Ta semaine de révision » montre la charge des 7 prochains jours.'],
     ['trophy','Examens /20','Sur une matière, « Valider » un chapitre lance un QCM noté : chapitre validé à partir de 12/20.'],
     ['shuffle','Révision mélangée','Onglet en haut : les cartes alternent entre plusieurs matières, ce qui fait mieux retenir à long terme.'],
-    ['tasks','Ajouter des cartes','Écris une carte (question/réponse ou QCM), ou importe un fichier : question ; réponse ; matière ; chapitre ; mauvaises réponses séparées par |. Envoie un cours à Claude pour obtenir un fichier prêt à importer.'],
+    ['tasks','Ajouter des cartes','Écris une carte (question/réponse ou QCM), ou importe un fichier .csv : question ; réponse ; matière ; chapitre ; mauvaises réponses (séparées par |) ; notions (séparées par des virgules). Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous (« Copier le prompt »), puis importe le fichier qu’il te renvoie.'],
     ['flag','Pack Culture générale','En bas de l’onglet : pays à placer sur la carte (touche le pays ; les petits sont marqués d’un point), capitales, monnaies, zone euro et UE, institutions, éco et fiscalité. Choisis les thèmes : chacun devient un chapitre, validable avec un examen /20.'],
     ['star','Outils d’une matière','Bouton « Modifier » : renommer, changer la couleur, ajouter les cartes inverses (réponse → question) ou partager la matière avec un camarade.'] ] },
   actu: { t:'L’actualité', i:'Un point factuel sur la politique et l’économie, préparé chaque matin vers 6 h 50.', s:[
@@ -2997,6 +3014,7 @@ function helpSheet(){
   const H = HELP[ui.tab] || HELP.accueil;
   sheet(`<div class="hhead"><span class="hq" aria-hidden="true">?</span><div><h3>${H.t}</h3><p>${H.i}</p></div></div>
     <ul class="hlist">${H.s.map(([ic,t,x])=>`<li><span class="medal t0 hic">${bicon(ic)}</span><div><b>${t}</b><p>${x}</p></div></li>`).join('')}</ul>
+    ${ui.tab==='cartes' ? importGuideHtml(false) : ''}
     <div class="btns"><button class="btn primary" data-close>Compris</button></div>`);
 }
 
@@ -3712,6 +3730,36 @@ function examCardsSheet(ex){
     s.querySelector('#xc-save').addEventListener('click', () => { ex.plus = [...plus]; ex.minus = [...minus]; close(); commit(); toast('Cartes de l’examen enregistrées'); });
   });
 }
+
+/* ---------- Guide d'import ---------- */
+const IMPORT_PROMPT = `Transforme ce cours en flashcards pour mon appli Tempo.
+
+Format : un fichier .csv, une carte par ligne, sans ligne d’en-tête, 6 colonnes séparées par un point-virgule :
+question ; réponse ; matière ; chapitre ; mauvaises réponses ; notions
+
+- Matière : [nom de la matière, ex. Fiscalité]
+- Chapitre : le chapitre du cours d’où vient la carte (même orthographe pour toutes les cartes d’un chapitre).
+- Mauvaises réponses : 3 propositions fausses séparées par | , plausibles et de longueur proche de la bonne réponse (pour le mode QCM). Laisse vide si ça n’a pas de sens.
+- Notions : 2 à 4 mots-clés séparés par des virgules, avec les abréviations et synonymes (ex. IS, impôt sur les sociétés). Ils servent à relier la carte à mes examens.
+- Une seule idée par carte, réponse courte et précise. Couvre toutes les notions importantes du cours (définitions, formules, taux, comptes, exemples).
+- N’utilise jamais de point-virgule dans le texte (mets une virgule). Pour un retour à la ligne, écris \\n.
+- Formules : x^2 pour un exposant, CF_{t} pour un indice, frac{a}{b} pour une fraction, **mot** pour du gras.`;
+const IMPORT_EXAMPLE = `Taux normal de TVA en France ? ; 20 % ; Fiscalité ; La TVA ; 19,6 %|21 %|18 % ; TVA, taux
+Compte de TVA collectée ? ; 44571 ; Comptabilité ; Écritures courantes ; 44566|44562|44551 ; TVA, PCG
+Taux réduit d’IS des PME ? ; 15 % jusqu’à 42 500 € ; Fiscalité ; Impôt sur les sociétés ; 15 % jusqu’à 38 120 €|10 % jusqu’à 42 500 €|20 % jusqu’à 42 500 € ; IS, impôt sur les sociétés, PME`;
+function importGuideHtml(open){
+  return `<details class="iguide" ${open?'open':''}><summary><span><b>Format et prompt pour Claude</b><small>Les 6 colonnes, un exemple, et le texte à m’envoyer avec ton cours</small></span><i aria-hidden="true"></i></summary><div class="foldin">
+    <ol class="steps"><li>Envoie ton cours (Word, PDF, photo ou texte) à Claude avec le prompt ci-dessous, en complétant la matière.</li><li>Enregistre le fichier .csv qu’il te renvoie, ou copie son contenu.</li><li>Ici : « Fichier », ou colle le texte, puis « Importer ». Choisis l’examen à relier si besoin.</li></ol>
+    <div class="cols"><span class="lab">Les colonnes, séparées par ;</span><table class="ctab"><tr><td>1</td><td><b>Question</b></td><td>obligatoire</td></tr><tr><td>2</td><td><b>Réponse</b></td><td>obligatoire</td></tr><tr><td>3</td><td><b>Matière</b></td><td>créée si elle n’existe pas</td></tr><tr><td>4</td><td><b>Chapitre</b></td><td>regroupe les cartes, examens /20</td></tr><tr><td>5</td><td><b>Mauvaises réponses</b></td><td>séparées par |, pour le QCM</td></tr><tr><td>6</td><td><b>Notions</b></td><td>mots-clés séparés par des virgules, relient la carte aux examens</td></tr></table></div>
+    <span class="lab">Exemple</span><pre class="iex">${esc(IMPORT_EXAMPLE)}</pre>
+    <span class="lab">Le prompt à copier</span><pre class="iex prompt">${esc(IMPORT_PROMPT)}</pre>
+    <button type="button" class="btn primary" data-copy-prompt="1">Copier le prompt</button>
+    <p class="fine">Aussi accepté : tabulations au lieu de ; (copier-coller depuis Excel), ou un fichier JSON avec les champs question, reponse, matiere, chapitre, faux, notions.</p></div></details>`;
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-copy-prompt]'); if (!b) return;
+  const ok = () => { b.textContent = 'Prompt copié'; setTimeout(() => b.textContent = 'Copier le prompt', 2000); };
+  const fb = () => { const ta = document.createElement('textarea'); ta.value = IMPORT_PROMPT; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch(_) { toast('Copie impossible : sélectionne le texte à la main'); } ta.remove(); };
+  try { navigator.clipboard.writeText(IMPORT_PROMPT).then(ok, fb); } catch(_) { fb(); } });
 
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
