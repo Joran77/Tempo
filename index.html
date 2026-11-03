@@ -777,6 +777,11 @@ svg.wmap{display:block;width:100%;height:auto;margin-top:10px;border-radius:12px
 .packi[aria-pressed="true"] i::after{content:'';position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid var(--surface);border-width:0 2px 2px 0;transform:rotate(45deg)}
 .packi span{display:flex;flex-direction:column;gap:1px}.packi small{color:var(--muted);font-size:13px}
 .packi:disabled{opacity:.5}
+.why{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--surface-2);text-align:left;font-size:14px;line-height:1.45;border-left:3px solid var(--accent)}
+.why b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px}
+.why p{margin:0}.why .wn{margin-top:6px;color:var(--muted)}
+.qopts + .why{margin-top:4px}
+.corr .why{font-size:13px;margin-top:6px}
 /* Interactions */
 
 
@@ -2091,7 +2096,7 @@ function vFcExamRes(){
   <div class="btns">${wrong.length ? `<button class="btn primary" data-f="exam-review">Réviser mes ${wrong.length} erreur${wrong.length>1?'s':''}</button>` : ''}<button class="btn ${wrong.length?'':'primary'}" data-f="exam-again">Repasser l’examen</button></div>
   <section><h2>Correction</h2><div class="card">${wrong.length ? `<ul class="corr">${wrong.map(x=>`<li class="bad"><span class="mark">${ICON_X}</span><div style="min-width:0">
     <div class="cq">${fmtText(x.q.c.q)}</div><div class="meta"><span>ta réponse : <b class="wrong">${fmtText(x.q.opts[x.k])}</b></span></div>
-    <div class="tip"><b>Réponse</b> ${fmtText(x.q.c.a)}</div></div></li>`).join('')}</ul>` : '<div class="empty"><b>Sans faute</b>Toutes les réponses sont justes.</div>'}</div></section>
+    <div class="tip"><b>Réponse</b> ${fmtText(x.q.c.a)}</div>${whyHtml(x.q.c, x.q.opts[x.k])}</div></li>`).join('')}</ul>` : '<div class="empty"><b>Sans faute</b>Toutes les réponses sont justes.</div>'}</div></section>
   <button class="btn" data-f="exam-back">Retour à ${esc(d ? d.name : 'la matière')}</button>`;
 }
 function vFcReview(){
@@ -2108,6 +2113,7 @@ function vFcReview(){
     return head + `<div class="card fcard ${U.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">${esc(d ? d.name : '')}${c.chap?' · '+esc(c.chap):''}${c.rev?' · sens inverse':''}${c.seen?'':' · nouvelle'}</span>
       <div class="fq">${fmtText(c.q)}</div>${c.img && (c.imgSide!=='a' || p!=null) ? img : ''}</div>
     <div class="qopts">${opts.map((o,k)=>`<button class="qopt ${p==null ? '' : k===right ? 'right' : k===p ? 'wrong' : 'dim'}" data-f-pick="${k}" ${p!=null?'disabled':''}><span class="ql">${'ABCD'[k]}</span><span class="qt">${fmtText(o)}</span></button>`).join('')}</div>
+    ${p!=null ? whyHtml(c, opts[p]) : ''}
     ${p!=null ? `<button class="btn primary bigbtn" data-f="qnext">${p===right ? 'Bien joué, carte suivante' : 'Compris, carte suivante'}</button>
       <p class="help" style="text-align:center">${p===right ? `Elle reviendra dans ${ivlLabel(schedule(c,2).ivl)}.` : 'Elle reviendra dans quelques minutes.'}</p>` : ''}`;
   }
@@ -2117,7 +2123,7 @@ function vFcReview(){
   `<div class="card fcard ${U.anim||''}" style="--dc:${deckColor(d)}" ${U.flipped?'':'data-f="flip"'}>
     <span class="fdeck">${esc(d ? d.name : '')}${c.chap?' · '+esc(c.chap):''}${c.rev?' · sens inverse':''}${c.seen?'':' · nouvelle'}</span>
     <div class="fq">${fmtText(c.q)}</div>${c.img && c.imgSide!=='a' ? img : ''}
-    ${U.flipped ? `<div class="fa">${fmtText(c.a)}${c.img && c.imgSide==='a' ? img : ''}</div>` : '<div class="ftap">Réfléchis à la réponse, puis retourne la carte</div>'}
+    ${U.flipped ? `<div class="fa">${fmtText(c.a)}${c.img && c.imgSide==='a' ? img : ''}</div>${whyHtml(c)}` : '<div class="ftap">Réfléchis à la réponse, puis retourne la carte</div>'}
   </div>
   ${U.flipped ? `<div class="grades">${grades.map(([l,k],g)=>`<button class="gr ${k}" data-f-grade="${g}"><b>${l}</b><span>${ivlLabel(schedule(c,g).ivl)}</span></button>`).join('')}</div>
     <p class="help" style="text-align:center">Sois honnête : « À revoir » fait revenir la carte dans quelques minutes.</p>`
@@ -2213,7 +2219,7 @@ function fcCardSheet(card, prefill){
 view.addEventListener('click', e => {
   if (ui.tab !== 'cartes') return; let b; const U = ui.fc;
   if ((b = e.target.closest('[data-f-mode]'))){ state.fc.prefs.mode = b.dataset.fMode; U.optsFor = null; U.flipped = false; U.explText = ''; commit(); return; }
-  if ((b = e.target.closest('[data-f-pick]'))){ U.picked = +b.dataset.fPick; render(); return; }
+  if ((b = e.target.closest('[data-f-pick]'))){ U.picked = +b.dataset.fPick; render(); const w = document.querySelector('#view .why, .why'); if (w) setTimeout(() => w.scrollIntoView({ behavior:'smooth', block:'center' }), 60); return; }
   if ((b = e.target.closest('[data-mc]')) && U.view==='review' && U.mpick==null){ U.mpick = b.dataset.mc; render(); return; }
   if ((b = e.target.closest('[data-f-ex]'))){ examAnswer(+b.dataset.fEx); return; }
   if ((b = e.target.closest('[data-f-exam]'))){ startExam(U.deck, b.dataset.fExam); return; }
@@ -2508,7 +2514,7 @@ function vExplain(c, d, img){
     <button class="btn primary" data-f="explain-reveal">Comparer avec la réponse</button>
     <p class="fine">Formuler l’explication oblige à aller chercher l’info dans ta mémoire, et révèle ce que tu n’as pas encore compris.</p></div>`;
   return top + `<div class="xcompare"><div class="card xmine"><span class="lab">Ton explication</span><p>${U.explText ? esc(U.explText) : '<em>Tu n’as rien écrit cette fois.</em>'}</p></div>
-    <div class="card xans" style="--dc:${deckColor(d)}"><span class="lab">La réponse</span><div class="fa0">${fmtText(c.a)}</div>${c.img && c.imgSide==='a' ? img : ''}</div></div>
+    <div class="card xans" style="--dc:${deckColor(d)}"><span class="lab">La réponse</span><div class="fa0">${fmtText(c.a)}</div>${c.img && c.imgSide==='a' ? img : ''}${whyHtml(c)}</div></div>
     <p class="help" style="text-align:center">Ton explication contenait-elle l’essentiel ?</p>
     <div class="grades">${grades.map(([l,k],g)=>`<button class="gr ${k}" data-f-grade="${g}"><b>${l}</b><span>${ivlLabel(schedule(c,g).ivl)}</span></button>`).join('')}</div>`;
 }
@@ -2615,7 +2621,7 @@ function vExpress(){
   const it = X.items[X.i], rem = Math.max(0, 300000 - (Date.now()-X.start));
   const head = `<div class="playhead"><button class="back" data-x="quit">${CHEV_L}Arrêter</button><span class="lab">Révision express</span><span class="mono" id="x-timer">${fmtTime(rem)}</span></div><div class="bar"><i style="width:${100*X.i/X.items.length}%"></i></div>`;
   if (it.t==='card'){ const c = it.c, d = deckOf(c.deck);
-    return head + `<div class="card fcard ${X.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">Carte · ${esc(d ? d.name : '')}</span><div class="fq">${fmtText(c.q)}</div>${X.step==='a' ? `<div class="fa">${fmtText(c.a)}</div>${c.map && MAPG[c.map] ? mapSvg(c.map,{good:c.map}) : ''}` : ''}</div>
+    return head + `<div class="card fcard ${X.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">Carte · ${esc(d ? d.name : '')}</span><div class="fq">${fmtText(c.q)}</div>${X.step==='a' ? `<div class="fa">${fmtText(c.a)}</div>${c.map && MAPG[c.map] ? mapSvg(c.map,{good:c.map}) : ''}${whyHtml(c)}` : ''}</div>
       ${X.step==='q' ? '<button class="btn primary bigbtn" data-x="show">Voir la réponse</button>' : '<div class="btns"><button class="btn bigbtn" data-x="no">À revoir</button><button class="btn primary bigbtn" data-x="yes">Je savais</button></div>'}`; }
   const q = it.q;
   if (X.step==='q') return head + `<div class="card qcard ${X.anim ? 'simq next' : ''}"><span class="lab">Calcul · ${catName(q.cat)}</span><div class="calc-q mono">${esc(qText(q))}</div>
@@ -3502,10 +3508,134 @@ function vMapReview(head, c, d){
   return head + `<div class="card fcard mapcard ${U.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">${esc(d ? d.name : '')}${c.chap?' · '+esc(c.chap):''}${c.seen?'':' · nouvelle'}</span>
     <div class="fq">Où se trouve ${MAPC[c.map] ? `${MAPC[c.map].art}<b>${esc(MAPC[c.map].n)}</b>` : `<b>${esc(c.a)}</b>`} ?</div>
     ${mapSvg(c.map, p==null ? { tap:true } : { good:c.map, bad: ok ? null : p })}
-    ${p==null ? '<p class="fine mhint">Touche le pays sur la carte. Les petits pays sont marqués d’un point.</p>' : `<div class="minfo ${ok?'ok':'ko'}"><b>${ok ? 'Bien placé' : p==='skip' ? 'Le voici, en vert' : `Raté : tu as touché ${esc(MAPC[p] ? MAPC[p].n : 'un autre pays')}`}</b><span>${esc(mapInfo(c.map))}</span></div>`}</div>
+    ${p==null ? '<p class="fine mhint">Touche le pays sur la carte. Les petits pays sont marqués d’un point.</p>' : `<div class="minfo ${ok?'ok':'ko'}"><b>${ok ? 'Bien placé' : p==='skip' ? 'Le voici, en vert' : `Raté : tu as touché ${esc(MAPC[p] ? MAPC[p].n : 'un autre pays')}`}</b><span>${esc(packWhy(c))}</span>${!ok && MAPC[p] ? `<span>${esc(optNote(c, MAPC[p].n))}</span>` : ''}</div>`}</div>
     ${p==null ? '<button class="btn" data-f="mskip">Je ne sais pas</button>' : `<button class="btn primary bigbtn" data-f="mnext">${ok ? 'Bien joué, carte suivante' : 'Compris, carte suivante'}</button>
       <p class="help" style="text-align:center">${ok ? `Elle reviendra dans ${ivlLabel(schedule(c,2).ivl)}.` : 'Elle reviendra dans quelques minutes.'}</p>`}`;
 }
+
+/* ---------- Explications des cartes du pack ---------- */
+const ECO_WHY = {
+  'Combien de pays utilisent l’euro en 2026 (zone euro) ?': 'Avec l’entrée de la Bulgarie le 1er janvier 2026, la zone euro compte 21 pays sur les 27 de l’UE. Les 6 autres : Danemark, Suède, Pologne, Tchéquie, Hongrie, Roumanie.',
+  'Quel pays est entré dans la zone euro le 1er janvier 2026 ?': 'La Bulgarie a remplacé le lev par l’euro le 1er janvier 2026 et devient le 21e membre. Avant elle, la dernière entrée était celle de la Croatie, en 2023.',
+  'Combien de pays membres compte l’Union européenne ?': '27 pays depuis le départ du Royaume-Uni en 2020. Le dernier entré est la Croatie, en 2013.',
+  'Quel pays a quitté l’Union européenne en 2020 ?': 'Le Royaume-Uni est sorti le 31 janvier 2020 (Brexit), après le référendum de 2016. La Norvège et la Suisse n’ont jamais été membres.',
+  'Le Danemark utilise-t-il l’euro ?': 'Le Danemark a obtenu une dérogation (« opt-out ») et garde la couronne danoise, dont le cours reste arrimé à l’euro (mécanisme MCE II).',
+  'Lequel de ces pays de l’UE n’utilise pas l’euro ?': 'La Hongrie garde le forint. La Slovaquie (2009), la Lituanie (2015) et la Croatie (2023) ont adopté l’euro.',
+  'Lequel de ces pays utilise l’euro ?': 'La Croatie a adopté l’euro le 1er janvier 2023 (avant : la kuna). Pologne (zloty), Tchéquie (couronne tchèque) et Suède (couronne suédoise) ne l’ont pas.',
+  'Quels pays de l’UE n’ont pas l’euro ?': 'Danemark, Suède, Pologne, Tchéquie, Hongrie et Roumanie. La Croatie (2023) et la Bulgarie (2026) utilisent l’euro ; la Finlande l’a depuis 2002.',
+  'En quelle année les pièces et billets en euros ont-ils été mis en circulation ?': 'Le 1er janvier 2002. L’euro existait déjà depuis 1999, mais seulement pour les marchés et les paiements bancaires.',
+  'En quelle année l’euro est-il né comme monnaie de compte (marchés, banques) ?': 'Le 1er janvier 1999, avec des taux de conversion fixes (1 € = 6,55957 F). Les pièces et billets sont arrivés en 2002.',
+  'Quel traité a créé l’Union européenne en 1992 ?': 'Le traité de Maastricht (signé en 1992, en vigueur en 1993) crée l’UE et prévoit la monnaie unique avec ses critères de convergence.',
+  'Quel traité a créé la Communauté économique européenne en 1957 ?': 'Le traité de Rome (1957) crée la CEE et un marché commun. Le traité de Paris (1951) avait créé la CECA, le charbon et l’acier.',
+  'Combien de pays ont fondé la CEE en 1957 ?': 'Six : France, Allemagne de l’Ouest, Italie, Belgique, Pays-Bas et Luxembourg.',
+  'Critère de Maastricht : déficit public maximum ?': 'Le déficit public annuel ne doit pas dépasser 3 % du PIB. Au-delà, la Commission peut ouvrir une procédure pour déficit excessif.',
+  'Critère de Maastricht : dette publique maximum ?': 'La dette publique doit rester sous 60 % du PIB, ou s’en rapprocher. Beaucoup de pays la dépassent, dont la France, au-dessus de 110 %.',
+  'Où siège la Banque centrale européenne ?': 'À Francfort, en Allemagne. La BCE fixe les taux directeurs de la zone euro avec les banques centrales nationales, comme la Banque de France.',
+  'Quel est l’objectif d’inflation de la BCE ?': 'Une inflation de 2 % à moyen terme, objectif symétrique depuis 2021 : la BCE réagit autant si l’inflation est trop basse que trop haute.',
+  'Où le Parlement européen tient-il ses sessions plénières ?': 'Le siège officiel est Strasbourg (sessions plénières). Les commissions travaillent à Bruxelles, et le secrétariat est à Luxembourg.',
+  'Quelle institution propose les lois européennes ?': 'La Commission a l’initiative des lois. Le Parlement européen et le Conseil de l’UE les votent ; le Conseil européen fixe les grandes orientations.',
+  'Où siège la Cour de justice de l’Union européenne ?': 'À Luxembourg. À ne pas confondre avec la Cour européenne des droits de l’homme (Strasbourg) ni la Cour internationale de justice (La Haye).',
+  'Lequel de ces pays est dans l’espace Schengen sans être dans l’UE ?': 'La Suisse fait partie de Schengen, tout comme la Norvège, l’Islande et le Liechtenstein, sans être dans l’UE. L’Irlande est dans l’UE mais hors Schengen.',
+  'Où siège le Fonds monétaire international (FMI) ?': 'À Washington, comme la Banque mondiale. Le FMI veille à la stabilité financière et prête aux pays en difficulté de paiement.',
+  'Où siège la Banque mondiale ?': 'À Washington. Elle finance des projets de développement ; ne pas confondre avec le FMI, voisin, qui gère les crises financières.',
+  'Où siège l’OCDE ?': 'À Paris (château de la Muette). L’OCDE compare les politiques économiques de ses pays membres et publie de nombreuses études, comme PISA.',
+  'Où siège l’Organisation mondiale du commerce (OMC) ?': 'À Genève. L’OMC fixe les règles du commerce international et tranche les litiges entre pays.',
+  'Où siège l’Organisation des Nations unies (ONU) ?': 'À New York. Genève accueille son principal siège européen, Vienne et Nairobi d’autres bureaux.',
+  'Que regroupe l’OPEP ?': 'L’Organisation des pays exportateurs de pétrole, créée en 1960, dont l’Arabie saoudite. Elle s’accorde sur des quotas de production pour peser sur les prix.',
+  'Comment s’appelle la banque centrale des États-Unis ?': 'La Réserve fédérale (Fed) fixe les taux directeurs américains. Le Trésor gère les finances de l’État ; la Banque mondiale finance le développement.',
+  'Comment s’appelle la banque centrale du Royaume-Uni ?': 'La Banque d’Angleterre (Bank of England), fondée en 1694 : l’une des plus anciennes banques centrales au monde. Elle gère la livre sterling.',
+  'Lequel de ces pays ne fait pas partie du G7 ?': 'Le G7 : États-Unis, Japon, Allemagne, Royaume-Uni, France, Italie, Canada. La Chine est dans le G20, pas dans le G7.',
+  'Quel est le rôle de l’AMF ?': 'L’Autorité des marchés financiers est le « gendarme de la Bourse » : elle protège les épargnants et contrôle l’information des sociétés cotées.',
+  'Qui supervise les banques et les assurances en France ?': 'L’ACPR (Autorité de contrôle prudentiel et de résolution), adossée à la Banque de France. L’AMF, elle, surveille les marchés.',
+  'Quelle institution contrôle les comptes publics en France ?': 'La Cour des comptes contrôle l’usage de l’argent public et certifie les comptes de l’État et de la Sécurité sociale.',
+  'Quel organisme publie le PIB et l’inflation en France ?': 'L’Insee (Institut national de la statistique et des études économiques). La Dares produit les statistiques du travail, la Drees celles de la santé et du social.',
+  'Quel organisme fixe les normes comptables françaises ?': 'L’ANC (Autorité des normes comptables) établit le PCG. L’IASB rédige les normes internationales IFRS ; la CNCC représente les commissaires aux comptes.',
+  'Quelles normes appliquent les groupes cotés européens pour leurs comptes consolidés ?': 'Depuis 2005, les groupes cotés de l’UE doivent publier leurs comptes consolidés en IFRS. Les comptes individuels français restent au PCG.',
+  'Sur quelle Bourse est calculé le CAC 40 ?': 'Euronext Paris. Le CAC 40 suit les 40 plus grosses capitalisations parmi les valeurs les plus échangées, comme LVMH, TotalEnergies ou BNP Paribas.',
+  'Quel est le principal indice boursier allemand ?': 'Le DAX, coté à Francfort, compte 40 valeurs depuis 2021. FTSE 100 : Londres ; Nikkei 225 : Tokyo ; IBEX 35 : Madrid.',
+  'Quel est le principal indice boursier japonais ?': 'Le Nikkei 225, à Tokyo. Hang Seng : Hong Kong ; KOSPI : Corée du Sud ; DAX : Allemagne.',
+  'Quel est le principal indice boursier britannique ?': 'Le FTSE 100 (« footsie »), à Londres. Dow Jones : New York ; IBEX 35 : Madrid ; DAX 40 : Francfort.',
+  'Qu’est-ce que l’inflation ?': 'Une hausse générale et durable des prix, qui fait perdre du pouvoir d’achat à la monnaie. En France, l’Insee la mesure avec l’indice des prix à la consommation.',
+  'Qu’est-ce que la déflation ?': 'Une baisse générale et durable des prix. Elle pousse à reporter les achats et alourdit les dettes ; à ne pas confondre avec la désinflation, qui est un simple ralentissement.',
+  'Que mesure le PIB ?': 'La richesse produite sur le territoire en un an : la somme des valeurs ajoutées, quelle que soit la nationalité des entreprises.',
+  'Définition courante d’une récession ?': 'Deux trimestres consécutifs de baisse du PIB. Une crise plus longue et profonde s’appelle une dépression.',
+  'La balance commerciale, c’est…': 'Exportations moins importations de biens. Positive : excédent commercial ; négative : déficit, comme en France depuis le début des années 2000.',
+  'Qui fixe les taux directeurs ?': 'La banque centrale : la BCE pour la zone euro, la Fed aux États-Unis. Les banques commerciales répercutent ensuite ces taux sur leurs crédits.',
+  'À quoi sert d’abord une hausse des taux directeurs ?': 'Le crédit coûte plus cher, la demande ralentit, et l’inflation baisse. À l’inverse, une baisse des taux sert à relancer l’activité.',
+  'Qu’est-ce que la stagflation ?': 'Stagnation + inflation : prix en forte hausse et croissance faible en même temps, comme après les chocs pétroliers des années 1970.',
+  'Quelle monnaie domine les réserves de change mondiales ?': 'Le dollar américain représente plus de la moitié des réserves des banques centrales, loin devant l’euro (environ 20 %).',
+  'Quel est le pays le plus peuplé du monde depuis 2023 ?': 'Selon l’ONU, l’Inde a dépassé la Chine en 2023, avec plus de 1,4 milliard d’habitants.',
+  'Quelle est la première économie mondiale (PIB en dollars) ?': 'Les États-Unis, devant la Chine. En parité de pouvoir d’achat, la Chine passe devant.',
+  'Taux normal de TVA en France ?': '20 % depuis 2014 (19,6 % avant). Il s’applique à la plupart des biens et services ; TTC = HT × 1,2.',
+  'Taux de TVA sur les produits alimentaires de base ?': '5,5 % pour l’alimentation, l’énergie et certains travaux de rénovation énergétique. Les autres taux : 20 %, 10 % et 2,1 %.',
+  'Taux de TVA sur la restauration sur place ?': '10 %, comme les transports de voyageurs et les travaux de rénovation courants. Les boissons alcoolisées restent à 20 %.',
+  'Taux de TVA sur les médicaments remboursables ?': '2,1 % (taux super-réduit), aussi pour la presse. Les médicaments non remboursables sont à 10 %.',
+  'Taux normal de l’impôt sur les sociétés ?': '25 % depuis 2022 (33,3 % en 2017). Il s’applique au bénéfice fiscal, après réintégrations et déductions.',
+  'Taux réduit d’IS pour les PME ?': '15 % sur les 42 500 premiers euros de bénéfice (le plafond était de 38 120 € avant 2023), puis 25 % au-delà. Il faut un CA inférieur à 10 M€ et un capital entièrement libéré.',
+  'Compte du PCG des fournisseurs ?': '401 Fournisseurs, au crédit à la réception de la facture et au débit au paiement. 411 : clients ; 421 : personnel ; 512 : banque.',
+  'Compte du PCG des clients ?': '411 Clients, au débit lors de la facturation et au crédit à l’encaissement. 401 : fournisseurs ; 445 : État, TVA.',
+  'Compte du PCG de la banque ?': '512 Banques. Le 530 est la caisse (espèces) ; 411 et 401 sont les comptes de tiers clients et fournisseurs.',
+  'Compte de TVA déductible sur biens et services ?': '44566 : TVA déductible sur autres biens et services, au débit lors d’un achat. Ne pas confondre avec 44562 (immobilisations) ni 44571 (TVA collectée).',
+  'Compte de TVA collectée ?': '44571 : TVA collectée, au crédit lors d’une vente. Au moment de la déclaration : collectée − déductible = TVA à payer (44551).',
+  'Que regroupe la classe 6 du PCG ?': 'Classe 6 : charges ; classe 7 : produits ; classe 4 : tiers ; classe 5 : financiers. Résultat = produits (7) − charges (6).'
+};
+const CAP_WHY = {
+  '036':'Canberra a été construite pour être la capitale (1913), comme compromis entre Sydney et Melbourne, les deux grandes villes rivales.',
+  '124':'Ottawa, en Ontario, a été choisie en 1857, entre l’anglophone Toronto et la francophone Montréal.',
+  '792':'Ankara est la capitale depuis 1923 (Atatürk). Istanbul reste la plus grande ville et le cœur économique.',
+  '076':'Brasília a été construite dans les années 1950 pour développer l’intérieur du pays ; avant, la capitale était Rio de Janeiro.',
+  '756':'La Suisse n’a pas officiellement de capitale : Berne est la « ville fédérale », siège du gouvernement. Zurich est la place financière.',
+  '504':'Rabat est la capitale politique ; Casablanca est le poumon économique et la plus grande ville.',
+  '566':'Abuja a remplacé Lagos en 1991. Lagos reste la plus grande ville et la capitale économique.',
+  '356':'New Delhi est la capitale ; Mumbai (ex-Bombay) est la capitale financière, avec la Bourse.',
+  '704':'Hanoï, au nord, est la capitale ; Hô Chi Minh-Ville (ex-Saïgon), au sud, est la plus grande ville.',
+  '554':'Wellington, au sud de l’île du Nord ; Auckland est la plus grande ville.',
+  '840':'Washington D.C. est la capitale fédérale ; New York est la plus grande ville et la place financière (Wall Street).',
+  '710':'L’Afrique du Sud a trois capitales : Pretoria (gouvernement), Le Cap (Parlement) et Bloemfontein (justice). Johannesburg est la plus grande ville.',
+  '384':'Yamoussoukro est la capitale officielle depuis 1983 ; Abidjan reste la capitale économique, où siègent la plupart des institutions.',
+  '528':'Amsterdam est la capitale constitutionnelle, mais le gouvernement et le Parlement siègent à La Haye. Rotterdam est le grand port.',
+  '784':'Abou Dabi est la capitale fédérale ; Dubaï est la plus grande ville et la vitrine financière.',
+  '586':'Islamabad a été construite dans les années 1960 ; Karachi, sur la côte, est la plus grande ville.',
+  '398':'Astana est la capitale depuis 1997 ; Almaty, la plus grande ville, était l’ancienne capitale.',
+  '156':'Pékin (Beijing) est la capitale politique ; Shanghai est la capitale économique.',
+  '643':'Moscou est la capitale ; Saint-Pétersbourg l’a été de 1712 à 1918.',
+  '682':'Riyad est la capitale ; Djeddah est le grand port de la mer Rouge, porte d’entrée vers La Mecque.',
+  '380':'Rome est la capitale ; Milan est la capitale économique, avec la Bourse.',
+  '276':'Berlin est la capitale depuis la réunification (1990) ; Francfort est la place financière, siège de la BCE.',
+  '724':'Madrid est la capitale ; Barcelone, en Catalogne, est la deuxième ville.',
+  '152':'Santiago est la capitale ; le Parlement siège pourtant à Valparaíso.',
+  '442':'La capitale du Luxembourg porte le même nom que le pays. On y trouve la Cour de justice de l’UE.',
+  '702':'Singapour est une cité-État : la ville et le pays ne font qu’un.'
+};
+const CUR_ISO = { 'euro':'EUR','euro (depuis 2026)':'EUR','dollar américain':'USD','livre sterling':'GBP','yen':'JPY','franc suisse':'CHF','yuan':'CNY','dollar canadien':'CAD','dollar australien':'AUD','couronne danoise':'DKK','couronne suédoise':'SEK','couronne norvégienne':'NOK','zloty':'PLN','forint':'HUF','couronne tchèque':'CZK','leu':'RON','rouble':'RUB','livre turque':'TRY','roupie indienne':'INR','real':'BRL','peso mexicain':'MXN','won':'KRW','rand':'ZAR','dirham marocain':'MAD','dirham des Émirats':'AED','riyal saoudien':'SAR','dollar de Singapour':'SGD','dollar néo-zélandais':'NZD','franc CFA':'XOF' };
+const ue = x => UE27.includes(x.id) ? (EURO.includes(x.id) ? ' Membre de l’UE et de la zone euro.' : ' Membre de l’UE, hors zone euro.') : '';
+const Art = x => x.art ? x.art.charAt(0).toUpperCase() + x.art.slice(1) + x.n : x.n;
+const article = x => x.art==='les ' ? 'des ' + x.n : x.art==='le ' ? 'du ' + x.n : x.art ? 'de ' + x.art + x.n : 'de ' + x.n;
+function packWhy(c){
+  if (c.map && MAPC[c.map]){ const x = MAPC[c.map], near = MAPG[c.map] ? nearOf(c.map, 3, o => o.r===x.r).map(o=>o.n) : [];
+    return `${Art(x)} se trouve ${({eu:'en Europe',af:'en Afrique',mo:'au Moyen-Orient',as:'en Asie',an:'en Amérique du Nord',as2:'en Amérique du Sud',oc:'en Océanie'})[x.r]}${near.length ? ', près de : ' + near.join(', ') : ''}. ${x.cap ? 'Capitale : ' + x.cap + '. ' : ''}Monnaie : ${x.cur}.${UE27.includes(x.id) ? ' Membre de l’UE' + (EURO.includes(x.id) ? ' et de la zone euro.' : ', hors zone euro.') : ''}`; }
+  if (ECO_WHY[c.q]) return ECO_WHY[c.q];
+  const capM = c.q.match(/^Quelle est la capitale (.+) \?$/), curM = c.q.match(/^Quelle est la monnaie (.+) \?$/);
+  const x = Object.values(MAPC).find(o => (capM && article(o)===capM[1]) || (curM && article(o)===curM[1]));
+  if (!x) return '';
+  if (capM) return (CAP_WHY[x.id] ? CAP_WHY[x.id] + ' ' : `${x.cap} est la capitale ${article(x)} (${REGN[x.r]}). `) + `Monnaie : ${x.cur}.` + ue(x);
+  const same = Object.values(MAPC).filter(o => o.id!==x.id && o.cur===x.cur).map(o=>o.n), fam = x.cur.split(' ')[0];
+  const sib = [...new Set(Object.values(MAPC).map(o=>o.cur).filter(c => c!==x.cur && c.split(' ')[0]===fam))];
+  return `${Art(x)} (${REGN[x.r]}${x.cap ? ', capitale ' + x.cap : ''}) a pour monnaie : ${x.cur}${CUR_ISO[x.cur] ? ' (code ' + CUR_ISO[x.cur] + ')' : ''}${same.length ? ', comme ' + same.join(', ') : ''}.${sib.length ? ` Attention : « ${fam} » désigne plusieurs monnaies différentes (${sib.slice(0,3).join(', ')}…).` : ''}${x.id==='208' || x.id==='752' || x.id==='616' || x.id==='203' || x.id==='348' || x.id==='642' ? ' Le pays est dans l’UE mais n’a pas adopté l’euro.' : ''}${x.cur==='franc CFA' ? ' Le franc CFA a une parité fixe avec l’euro (1 € = 655,957 F CFA).' : ''}`;
+}
+function optNote(c, opt){
+  // ce qu'est la mauvaise réponse choisie, quand on le sait
+  if (!opt) return '';
+  const o = String(opt).trim();
+  const byCap = Object.values(MAPC).find(x => x.cap===o), byCur = Object.values(MAPC).filter(x => x.cur===o), byName = Object.values(MAPC).find(x => x.n===o);
+  if (/capitale/.test(c.q) && byCap) return `${o} est la capitale ${article(byCap)}.`;
+  if (/capitale/.test(c.q)){ const tw = Object.entries(CAP_TRAPS).find(([,l]) => l.includes(o)); if (tw) return `${o} est une ville ${article(MAPC[tw[0]])}, mais pas sa capitale.`; }
+  if (/monnaie/.test(c.q) && byCur.length) return `« ${o} » est la monnaie ${byCur.map(article).join(', ')}.`;
+  if (c.map && byName) return `${o} : capitale ${byName.cap || '—'}, ${REGN[byName.r]}.`;
+  return '';
+}
+const whyHtml = (c, picked) => { const w = packWhy(c); if (!w) return ''; const n = picked && picked.trim()!==c.a.trim() ? optNote(c, picked) : '';
+  return `<div class="why"><b>Explication</b><p>${esc(w)}</p>${n ? `<p class="wn">Ta réponse : ${esc(n)}</p>` : ''}</div>`; };
 
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
