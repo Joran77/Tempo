@@ -891,9 +891,12 @@ pre.iex.prompt{font-family:var(--f-body,inherit);font-size:13px}
 .hoff{border-style:dashed}.hoff b{color:var(--accent)}.hoff>svg{width:16px;height:16px;flex:none;color:var(--muted)}
 .hcam{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:4/3}
 .hcam video{width:100%;height:100%;object-fit:cover;display:block}
-.hcam-frame{position:absolute;left:12%;right:12%;top:30%;bottom:30%;border:3px solid rgba(255,255,255,.9);border-radius:12px;box-shadow:0 0 0 999px rgba(0,0,0,.35)}
+.hcam-frame{position:absolute;left:10%;right:10%;top:27.5%;bottom:27.5%;border:3px solid rgba(255,255,255,.9);border-radius:12px;box-shadow:0 0 0 999px rgba(0,0,0,.35)}
 .hsrc{margin-top:4px;font-size:12px}
 label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.hcam-frame i{position:absolute;left:6%;right:6%;top:50%;height:2px;background:var(--danger);opacity:.85;animation:scanl 1.6s ease-in-out infinite alternate}
+@keyframes scanl{from{transform:translateY(-28px)}to{transform:translateY(28px)}}
+.hcam-torch{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;display:grid;place-items:center}.hcam-torch svg{width:20px;height:20px}.hcam-torch.on{background:#ffd34d;color:#000}
 /* Interactions */
 
 
@@ -4102,6 +4105,15 @@ const libP = {};
 const loadScript = src => libP[src] || (libP[src] = new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.async = true; s.onload = res; s.onerror = () => { delete libP[src]; rej(new Error('Chargement impossible (connexion ?)')); }; document.head.appendChild(s); }));
 const ZXING_URL = 'https://cdn.jsdelivr.net/npm/@zxing/library@0.23.0/umd/index.min.js';
 const TESS_URL = 'https://cdn.jsdelivr.net/npm/tesseract.js@6.0.1/dist/tesseract.min.js';
+const BD_URL = 'https://cdn.jsdelivr.net/npm/barcode-detector@3.0.8/dist/iife/ponyfill.js';
+let detP = null;
+function getDetector(){
+  return detP || (detP = (async () => {
+    const F = ['ean_13','ean_8','upc_a','upc_e'];
+    if ('BarcodeDetector' in window){ try { const sup = await BarcodeDetector.getSupportedFormats(); if (sup.includes('ean_13')) return new BarcodeDetector({ formats:F.filter(f=>sup.includes(f)) }); } catch(_){} }
+    await loadScript(BD_URL); return new window.BarcodeDetectionAPI.BarcodeDetector({ formats:F });
+  })().catch(e => { detP = null; throw e; }));
+}
 async function zxReader(){
   await loadScript(ZXING_URL); const Z = window.ZXing, hints = new Map();
   hints.set(Z.DecodeHintType.POSSIBLE_FORMATS, [Z.BarcodeFormat.EAN_13, Z.BarcodeFormat.EAN_8, Z.BarcodeFormat.UPC_A, Z.BarcodeFormat.UPC_E]); hints.set(Z.DecodeHintType.TRY_HARDER, true);
@@ -4170,26 +4182,48 @@ function hFoodSheet(meal){
         st2.querySelector('#hf-back').addEventListener('click', back); st2.querySelector('#hf-label2').addEventListener('click', () => labelFlow(code)); }
       catch(_) { st2.innerHTML = `<p class="warnt">Connexion impossible à Open Food Facts.</p><div class="btns"><button type="button" class="btn" id="hf-back">Retour</button></div>`; st2.querySelector('#hf-back').addEventListener('click', back); } };
     s.querySelector('#hf-scan').addEventListener('click', async () => { st1.hidden = true; st2.hidden = false;
-      st2.innerHTML = `<div class="hcam"><video id="hf-video" playsinline muted autoplay></video><div class="hcam-frame"></div></div>
+      st2.innerHTML = `<div class="hcam"><video id="hf-video" playsinline muted autoplay></video><div class="hcam-frame"><i></i></div><button type="button" class="hcam-torch" id="hf-torch" hidden aria-label="Lampe">${bicon('bolt')}</button></div>
         <p class="ppreview" id="hf-cs">Ouverture de la caméra…</p>
+        <p class="fine">Code bien à plat et éclairé, dans le cadre, à 15–25 cm : trop près, l’iPhone n’arrive pas à faire la mise au point.</p>
         <div class="field"><label for="hf-code">ou tape le code-barres</label><input id="hf-code" inputmode="numeric" maxlength="14" placeholder="3017620422003"></div>
         <div class="btns"><button type="button" class="btn" id="hf-back">Annuler</button><label class="btn" for="hf-photo">Photo du code</label><input type="file" id="hf-photo" accept="image/*" capture="environment" hidden><button type="button" class="btn primary" id="hf-cgo">Chercher</button></div>`;
       const cs = st2.querySelector('#hf-cs'), video = st2.querySelector('#hf-video');
+      let done = false; const found = c => { if (done || !c) return; c = String(c).replace(/\D/g,''); if (c.length < 8) return; done = true; try { navigator.vibrate && navigator.vibrate(60); } catch(_){} stopCam(); lookup(c); };
       st2.querySelector('#hf-back').addEventListener('click', back);
-      st2.querySelector('#hf-cgo').addEventListener('click', () => { const c = st2.querySelector('#hf-code').value.replace(/\D/g,''); if (c.length >= 8){ stopCam(); lookup(c); } });
+      st2.querySelector('#hf-cgo').addEventListener('click', () => { const c = st2.querySelector('#hf-code').value.replace(/\D/g,''); if (c.length >= 8) found(c); });
       st2.querySelector('#hf-photo').addEventListener('change', async e => { const f = e.target.files[0]; if (!f) return; cs.textContent = 'Lecture de la photo…';
-        try { const r = await zxReader(), url = URL.createObjectURL(f), res = await r.decodeFromImageUrl(url); URL.revokeObjectURL(url); stopCam(); lookup(res.getText()); }
-        catch(_) { cs.textContent = 'Code illisible sur la photo : rapproche-toi, avec plus de lumière, ou tape-le.'; } });
+        try { const det = await getDetector(), bmp = await createImageBitmap(f); let r = await det.detect(bmp);
+          if (!r.length){ const cv = document.createElement('canvas'), k = Math.min(1, 1600/Math.max(bmp.width, bmp.height)); cv.width = bmp.width*k; cv.height = bmp.height*k; cv.getContext('2d').drawImage(bmp, 0, 0, cv.width, cv.height); r = await det.detect(cv); }
+          if (r.length) found(r[0].rawValue); else cs.textContent = 'Aucun code lu sur la photo : cadre-le de plus près (mais net), avec de la lumière, ou tape-le.'; }
+        catch(_) { cs.textContent = 'Lecture impossible (connexion ?). Tape le code à la main.'; } });
+      let det;
+      try { det = await getDetector(); } catch(_) { cs.textContent = 'Le lecteur de codes n’a pas pu se charger (connexion ?). Tape le code à la main.'; return; }
       try {
-        stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'environment', width:{ ideal:1280 }, height:{ ideal:720 } }, audio:false });
+        stream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:{ ideal:'environment' }, width:{ ideal:1920 }, height:{ ideal:1080 } }, audio:false });
+        if (done || !document.body.contains(video)){ stopCam(); return; }
         video.srcObject = stream; await video.play().catch(()=>{});
-        cs.textContent = 'Vise le code-barres dans le cadre.';
-        if ('BarcodeDetector' in window){ const det = new BarcodeDetector({ formats:['ean_13','ean_8','upc_a','upc_e'] });
-          const tick = async () => { if (!stream) return; try { const r = await det.detect(video); if (r.length){ const c = r[0].rawValue; stopCam(); lookup(c); return; } } catch(_){} setTimeout(tick, 250); }; tick(); }
-        else { reader = await zxReader(); if (!stream) return;
-          reader.decodeFromVideoElementContinuously ? reader.decodeFromVideoElementContinuously(video, (res) => { if (res && stream){ const c = res.getText(); stopCam(); lookup(c); } })
-            : reader.decodeFromStream(stream, video, (res) => { if (res && stream){ const c = res.getText(); stopCam(); lookup(c); } }); }
-      } catch(err){ cs.textContent = 'Caméra indisponible ici : utilise « Photo du code » ou tape le code. (Autorise la caméra pour Tempo dans Réglages → Safari si besoin.)'; }
+        const track = stream.getVideoTracks()[0], caps = track.getCapabilities ? track.getCapabilities() : {};
+        const adv = []; if (caps.focusMode && caps.focusMode.includes('continuous')) adv.push({ focusMode:'continuous' });
+        if (caps.zoom && caps.zoom.max >= 1.5) adv.push({ zoom: Math.min(2, caps.zoom.max) });
+        if (adv.length) track.applyConstraints({ advanced:adv }).catch(()=>{});
+        if (caps.torch){ const tb = st2.querySelector('#hf-torch'); let on = false; tb.hidden = false; tb.addEventListener('click', () => { on = !on; tb.classList.toggle('on', on); track.applyConstraints({ advanced:[{ torch:on }] }).catch(()=>{}); }); }
+        cs.textContent = 'Vise le code-barres dans le cadre…';
+        const cv = document.createElement('canvas'), ctx = cv.getContext('2d', { willReadFrequently:true }); let n = 0;
+        const tick = async () => {
+          if (done || !stream) return;
+          const w = video.videoWidth, h = video.videoHeight;
+          if (w && h){ n++;
+            try { let r;
+              if (n % 3){ const cw = Math.round(w*.8), ch = Math.round(h*.45); cv.width = cw; cv.height = ch; ctx.drawImage(video, (w-cw)/2, (h-ch)/2, cw, ch, 0, 0, cw, ch); r = await det.detect(cv); }
+              else r = await det.detect(video);
+              if (r && r.length) return found(r[0].rawValue);
+            } catch(_){}
+            if (n === 40) cs.textContent = 'Toujours rien : recule un peu le téléphone, ou utilise « Photo du code ».';
+          }
+          setTimeout(tick, 120);
+        };
+        tick();
+      } catch(err){ cs.textContent = 'Caméra indisponible : autorise-la pour Tempo (Réglages → Safari → Caméra), ou utilise « Photo du code ».'; }
     });
     const labelFlow = code => { stopCam(); st1.hidden = true; st2.hidden = false;
       st2.innerHTML = `<p>Prends en photo le <b>tableau des valeurs nutritionnelles</b>, bien à plat et lisible. Tempo lit les valeurs pour 100 g ; tu vérifies avant d’enregistrer.</p>
