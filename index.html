@@ -741,6 +741,16 @@ ol.steps li:not(:first-child)::after{content:'';position:absolute;left:9.5px;top
 .exlink b{color:var(--accent);font-size:14px}
 .exlink span{font-size:13px;color:var(--muted)}
 #t-when-h{margin:6px 0 0}
+.fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:4px 0;-webkit-tap-highlight-color:transparent}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.fold>summary b{font-size:16px}
+.fold>summary small{font-size:13px;color:var(--muted)}
+.fold>summary i{width:32px;height:32px;border-radius:50%;background:var(--surface-2);flex:none;position:relative;transition:transform .25s ease}
+.fold>summary i::before{content:'';position:absolute;left:12px;top:10px;width:8px;height:8px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg)}
+.fold[open]>summary i{transform:rotate(180deg)}
+.foldin{display:flex;flex-direction:column;gap:12px;padding-top:12px;animation:foldin .25s ease}
+@keyframes foldin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 /* Interactions */
 
 
@@ -3439,7 +3449,7 @@ function settingsSheet(){
   sheet(`<h3>Réglages et sauvegarde</h3>
     <div class="field"><label for="s-name">Ton prénom</label><input id="s-name" maxlength="30" autocomplete="given-name" value="${esc(userName())}" placeholder="Affiché sur l\u2019accueil"></div>
     <hr class="sep">
-    <span class="lab">Sauvegarde et transfert</span>
+    <details class="fold"><summary><span><b>Sauvegarde et transfert</b><small>${state.meta.lastBackup ? `Dernière sauvegarde le ${fmt(parse(state.meta.lastBackup),{day:'numeric',month:'long'})}` : 'Exporter, importer, passer d’un appareil à l’autre'}</small></span><i aria-hidden="true"></i></summary><div class="foldin">
     <p>Pour passer tes données du PC au téléphone (ou l'inverse) : ${canDl ? 'télécharge le fichier ou ' : ''}copie le texte ci-dessous, envoie-le sur l'autre appareil, puis importe-le.</p>
     <div class="field"><label for="s-out">Exporter (${state.tasks.length} tâches, ${state.fc.cards.length} cartes)</label><textarea id="s-out" readonly>Préparation des données…</textarea></div>
     <div class="btns">${canDl ? '<button class="btn primary" id="s-dl">Télécharger le fichier</button>' : ''}<button class="btn ${canDl?'':'primary'}" id="s-copy">Copier les données</button></div>
@@ -3449,6 +3459,7 @@ function settingsSheet(){
     <div class="field"><label for="s-in">ou coller les données</label><textarea id="s-in" placeholder='{"app":"tempo", …}'></textarea></div>
     <div class="btns"><button class="btn" id="s-merge">Ajouter aux miennes</button><button class="btn" id="s-replace">Remplacer tout</button></div>
     <p id="s-msg" role="status"></p>
+    </div></details>
     <hr class="sep">
     <div class="field"><span class="lab">Copies automatiques</span>
       <p class="fine">${storageProtected ? 'Ce téléphone protège les données de Tempo contre l\u2019effacement automatique.' : storageProtected===false ? 'Ce navigateur ne garantit pas la conservation des données : garde aussi une sauvegarde hors du téléphone.' : 'Tempo demande au navigateur de conserver ses données.'} Une copie est prise chaque jour (7 derniers jours), et avant chaque import ou effacement. Elles restent sur cet appareil.</p>
