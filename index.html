@@ -898,6 +898,8 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 @keyframes scanl{from{transform:translateY(-28px)}to{transform:translateY(28px)}}
 .hcam-torch{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;display:grid;place-items:center}.hcam-torch svg{width:20px;height:20px}.hcam-torch.on{background:#ffd34d;color:#000}
 .hcam-zoom{top:auto;bottom:10px;font:700 13px/1 var(--f-body,inherit)}.hdiag{margin:4px 0 0;font-size:11px;opacity:.7}
+.hvb{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:6px;background:var(--accent-soft);color:var(--accent);vertical-align:2px}
+.hvx{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Interactions */
 
 
@@ -3138,6 +3140,7 @@ const HELP = {
     ['target','Repères par repas','L’objectif est réparti : 25 % petit-déjeuner, 35 % déjeuner, 30 % dîner, 10 % collations.'] ] },
   'h-sport': { t:'L’activité', i:'Tes séances de sport et tes pas.', s:[
     ['bolt','Séances','Les kcal sont estimées : intensité (MET) × poids × durée. Elles s’ajoutent à l’objectif du jour.'],
+    ['star','Hevy','« Connecter Hevy » avec ta clé API (Hevy Pro) : tes séances arrivent seules dans Activité, avec exercices, séries et tonnage. Les kcal sont une estimation.'],
     ['heart','Pas automatiques','« Automatiser avec Santé » : un raccourci iPhone envoie tes pas plusieurs fois par jour dans un gist GitHub secret, et Tempo les récupère à chaque ouverture, historique compris. Sans configuration : « Importer (presse-papiers) » ou saisie à la main.'],
     ['sun','Pas','Une indication. Ils ne s’ajoutent pas à l’objectif, car ta marche quotidienne est déjà comptée dans ton niveau d’activité.'] ] },
   'h-suivi': { t:'Le suivi', i:'Ta tendance sur plusieurs jours.', s:[
@@ -3987,8 +3990,8 @@ function vHealth(){
     const w = lastWeight() || 70, stepK = r0(D.steps * 0.0005 * w);
     return `${hDateBar()}
     <div class="card hline"><span><b class="mono">${nf(r0(sp))}</b> kcal dépensées en séance</span><span class="fine">Elles s’ajoutent à ton objectif du jour.</span></div>
-    <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.min} min</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
-      <button class="hadd" data-h="sport">+ Ajouter une séance</button></div></section>
+    <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}${x.src==='hevy' ? ' <span class="hvb">Hevy</span>' : ''}</b><span>${x.min} min${x.src==='hevy' ? ` · ${x.ex} exercice${x.ex>1?'s':''} · ${x.sets} séries${x.vol ? ` · ${nf(x.vol)} kg soulevés` : ''}` : ''}</span>${x.exn && x.exn.length ? `<span class="hvx">${esc(x.exn.join(', '))}</span>` : ''}</div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
+      <button class="hadd" data-h="sport">+ Ajouter une séance</button><button class="hadd hcopy" data-h="hevy">${hevyKey() ? 'Hevy connecté · synchroniser ou régler' : 'Connecter Hevy (séances de muscu automatiques)'}</button></div>${hevyLine()}</section>
     <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div>${syncLine()}<div class="btns">${(state.health.sync||{}).id ? '<button class="btn sm primary" data-h="sync-now">Synchroniser</button>' : '<button class="btn sm primary" data-h="sync">Automatiser avec Santé</button><button class="btn sm" data-h="steps-import">Importer (presse-papiers)</button>'}<button class="btn sm" data-h="steps">Saisir à la main</button>${(state.health.sync||{}).id ? '<button class="btn sm" data-h="sync">Réglages</button>' : ''}</div></div></section>
     <p class="help">Calories des séances = intensité (MET) × poids × durée. C’est une estimation : une montre connectée peut donner des chiffres différents.</p>`;
   }
@@ -4295,7 +4298,7 @@ function healthClick(e){
   if (b.dataset.hCopy){ copyMealFrom(key(addDays(parse(ui.hday), -1)), b.dataset.hCopy); return true; }
   if (b.dataset.hAdd){ hFoodSheet(b.dataset.hAdd); return true; }
   if (b.dataset.hDel){ const D = hDay(ui.hday); D.food = D.food.filter(x=>x.id!==b.dataset.hDel); commit(); return true; }
-  if (b.dataset.hSdel){ const D = hDay(ui.hday); D.sport = D.sport.filter(x=>x.id!==b.dataset.hSdel); commit(); return true; }
+  if (b.dataset.hSdel){ const D = hDay(ui.hday), id = b.dataset.hSdel; if (id.startsWith('hevy-')){ const H = ensureHealth(); H.hevyDel = [...new Set([...(H.hevyDel||[]), id])].slice(-200); } D.sport = D.sport.filter(x=>x.id!==id); commit(); return true; }
   const a = b.dataset.h, D = () => hDay(ui.hday);
   if (a==='prev'){ ui.hday = key(addDays(parse(ui.hday), -1)); render(); }
   else if (a==='next'){ if (ui.hday < todayKey()){ ui.hday = key(addDays(parse(ui.hday), 1)); render(); } }
@@ -4309,6 +4312,7 @@ function healthClick(e){
   else if (a==='steps-import') importStepsFromHealth();
   else if (a==='sync') syncSheet();
   else if (a==='sync-now') syncSteps(true);
+  else if (a==='hevy'){ if (hevyKey()) syncHevy(true); hevySheet(); }
   else if (a==='steps-n'){ ui.hsteps = +b.dataset.n; render(); }
   else if (a==='steps-help') stepsHelpSheet(false);
   else if (a==='fast-start'){ const F = state.health.fast || (state.health.fast = { plan:16, start:null, log:[] }); F.start = new Date().toISOString(); commit(); toast(`Jeûne ${F.plan}:${24-F.plan} lancé`); }
@@ -4435,6 +4439,54 @@ function stepsChart(n){
   const w = 300, bw = w/n;
   return `<svg class="schart" viewBox="0 0 ${w} 110" preserveAspectRatio="none">${v.map((x,i)=>`<rect x="${(i*bw+bw*.15).toFixed(1)}" y="${(100-90*x/mx).toFixed(1)}" width="${(bw*.7).toFixed(1)}" height="${(90*x/mx).toFixed(1)}" rx="${n>10?1:3}" class="${x>=8000?'ok':''}"/>`).join('')}<line x1="0" x2="${w}" y1="${(100-90*8000/mx).toFixed(1)}" y2="${(100-90*8000/mx).toFixed(1)}" class="goal"/></svg>
     <div class="bct"><span class="fine">${fmt(parse(ks[0]),{day:'numeric',month:'short'})}</span><span class="fine">Moyenne <b>${nf(avg)}</b> pas · ${filled.filter(x=>x>=8000).length}/${filled.length} jours à 8 000</span><span class="fine">auj.</span></div>`;
+}
+
+/* ---------- Hevy (API publique, Hevy Pro) ---------- */
+const hevyKey = () => { try { return localStorage.getItem('tempo.hevy') || ''; } catch(_) { return ''; } };
+const setHevyKey = k => { try { k ? localStorage.setItem('tempo.hevy', k) : localStorage.removeItem('tempo.hevy'); } catch(_) {} };
+let hevyBusy = false;
+async function syncHevy(manual){
+  const key = hevyKey(), H = ensureHealth(); if (!key || hevyBusy) return;
+  const S = H.hevy || (H.hevy = {}); if (!manual && S.at && Date.now() - S.at < 15*60000) return;
+  hevyBusy = true;
+  try {
+    const lim = key && key.length ? Date.now() - 45*864e5 : 0; let page = 1, pages = 1, n = 0, total = 0;
+    while (page <= pages && page <= 5){
+      const r = await fetch(`https://api.hevyapp.com/v1/workouts?page=${page}&pageSize=10`, { headers:{ 'api-key':key, Accept:'application/json' }, cache:'no-store' });
+      if (r.status === 401 || r.status === 403) throw new Error('Clé API Hevy refusée : vérifie-la (Hevy Pro requis).');
+      if (!r.ok) throw new Error('Hevy répond avec une erreur ' + r.status);
+      const j = await r.json(); pages = j.page_count || 1; const ws = j.workouts || []; let old = false;
+      for (const w of ws){ const st = new Date(w.start_time), en = new Date(w.end_time || w.start_time); if (st.getTime() < lim){ old = true; continue; }
+        const k = key_(st), min = Math.max(1, Math.round((en - st)/60000)), ex = w.exercises || [];
+        const sets = ex.reduce((a,e)=>a + (e.sets||[]).filter(x=>x.type!=='warmup').length, 0), vol = ex.reduce((a,e)=>a + (e.sets||[]).reduce((b,x)=>b + (x.weight_kg||0)*(x.reps||0), 0), 0);
+        const kcal = r0(5 * (lastWeight() || 70) * min / 60);
+        const item = { id:'hevy-' + w.id, name:w.title || 'Séance Hevy', min, kcal, src:'hevy', ex:ex.length, sets, vol:Math.round(vol), exn:ex.map(e=>e.title).filter(Boolean).slice(0,8) };
+        if ((H.hevyDel||[]).includes(item.id)){ total++; continue; }
+        const D = hDay(k), i = D.sport.findIndex(x=>x.id===item.id);
+        if (i >= 0){ if (JSON.stringify(D.sport[i]) !== JSON.stringify(item)){ D.sport[i] = item; n++; } } else { D.sport.push(item); n++; }
+        total++; }
+      if (old) break; page++; }
+    S.at = Date.now(); S.ok = new Date().toISOString(); S.err = null; S.total = total;
+    if (n || manual){ commit(); if (manual) toast(n ? `${n} séance${n>1?'s':''} Hevy importée${n>1?'s':''}` : 'Séances Hevy à jour'); } else save();
+  } catch(e){ S.at = Date.now(); S.err = e && e.message && !/fetch|network|Load failed/i.test(e.message) ? e.message : 'Connexion à Hevy impossible (réseau, ou appel bloqué par Hevy depuis une appli web).'; save(); if (manual){ render(); toast(S.err); } }
+  hevyBusy = false;
+}
+const key_ = d => key(d);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncHevy(false); });
+setTimeout(() => syncHevy(false), 2500);
+const hevyLine = () => { const S = (state.health||{}).hevy; if (!hevyKey() || !S) return '';
+  return S.err ? `<p class="fine warnt">Hevy : ${esc(S.err)}</p>` : S.ok ? `<p class="fine">Hevy synchronisé ${fmt(new Date(S.ok),{weekday:'short',hour:'2-digit',minute:'2-digit'})}</p>` : ''; };
+function hevySheet(){
+  const k = hevyKey();
+  sheet(`<h3>Connecter Hevy</h3>
+    <p>Tempo récupère tes séances Hevy (45 derniers jours puis les nouvelles) et les ajoute dans Activité, avec durée, exercices, séries et tonnage. Les kcal sont estimées (musculation : 5 MET × poids × durée).</p>
+    <ol class="steps"><li>Sur ordinateur ou dans Safari, ouvre <b>hevy.com</b> et connecte-toi.</li><li><b>Settings</b> → <b>Developer</b> (ou « API ») → génère ta <b>clé API</b> (réservée à Hevy Pro).</li><li>Copie-la et colle-la ci-dessous. Elle reste sur ce téléphone et n’est jamais incluse dans tes sauvegardes.</li></ol>
+    <div class="field"><label for="hv-k">Clé API Hevy</label><input id="hv-k" value="${esc(k)}" placeholder="xxxxxxxx-xxxx-…" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+    ${hevyLine()}
+    <div class="btns">${k ? '<button class="btn danger" id="hv-off">Déconnecter</button>' : ''}<button class="btn" data-close>Fermer</button><button class="btn primary" id="hv-go">Synchroniser</button></div>`, s => {
+    s.querySelector('#hv-go').addEventListener('click', async () => { const v = s.querySelector('#hv-k').value.trim(); if (!v) return; setHevyKey(v); const H = ensureHealth(); H.hevy = { ...(H.hevy||{}), at:0 }; s.querySelector('#hv-go').textContent = 'Connexion…'; await syncHevy(true); close(); });
+    const off = s.querySelector('#hv-off'); off && off.addEventListener('click', () => { setHevyKey(''); const H = ensureHealth(); delete H.hevy; close(); commit(); toast('Hevy déconnecté'); });
+  });
 }
 
 /* Bascule Études ↔ Santé */
