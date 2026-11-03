@@ -803,6 +803,18 @@ svg.wmap{display:block;width:100%;height:auto;margin-top:10px;border-radius:12px
 pre.iex{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 var(--f-mono,ui-monospace,monospace);background:var(--surface-2);border-radius:10px;padding:10px 12px;max-height:220px;overflow:auto}
 pre.iex.prompt{font-family:var(--f-body,inherit);font-size:13px}
 .hhead ~ .iguide{margin-top:4px}
+.folder{padding:0;margin-bottom:10px;overflow:hidden}
+.folder>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px}
+.folder>summary::-webkit-details-marker{display:none}
+.folder .ficon{width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);display:grid;place-items:center;flex:none}
+.folder .ficon svg{width:22px;height:22px}
+.folder .ftx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.folder .ftx b{font-size:16px}.folder .ftx small{font-size:13px;color:var(--muted)}
+.folder>summary>i{width:30px;height:30px;border-radius:50%;background:var(--surface-2);flex:none;position:relative;transition:transform .25s}
+.folder>summary>i::before{content:'';position:absolute;left:11px;top:9px;width:7px;height:7px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg)}
+.folder[open]>summary>i{transform:rotate(180deg)}
+.folder .foldin{padding:0 14px 14px}
+.folder .link{border:0;background:none;color:var(--accent);font:inherit;font-weight:700;font-size:13px;cursor:pointer;padding:4px 0;text-align:left}
 /* Interactions */
 
 
@@ -1293,7 +1305,7 @@ function vCalcHome(){
     <div class="field"><span class="lab">Catégorie</span><div class="opts">${[...Object.entries(CALC_CATS),['mix','Mix']].map(([k,l])=>`<button data-c-cat="${k}" aria-pressed="${P.cat===k}">${l}</button>`).join('')}</div></div>
     ${P.cat==='mix'?`<div class="field"><span class="lab">Dans ton mix</span><div class="opts checks">${Object.entries(CALC_CATS).map(([k,l])=>`<button data-c-mix="${k}" aria-pressed="${P.mix.includes(k)}">${P.mix.includes(k)?ICON_CHECK:''}${l}</button>`).join('')}</div></div>`:''}
     <div class="field"><span class="lab">Niveau</span><div class="seg">${[1,2,3].map(l=>`<button data-c-lvl="${l}" aria-pressed="${P.level===l}">${LEVELS[l]}</button>`).join('')}</div></div>
-    <div class="field"><span class="lab">Nombre de calculs</span><div class="seg">${[10,20,30].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
+    <div class="field"><span class="lab">Nombre de calculs</span><div class="seg">${[10,20,30,50].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
     <button class="btn primary" data-c="start">Commencer</button></div></section>
   ${simCard()}
   ${tipSheetsHtml()}
@@ -1698,10 +1710,17 @@ function vFcHome(){
     ${due.length+fresh.length ? '<button class="btn primary" data-f="review">Commencer la révision</button>' : ''}</div>
   ${weekPanel()}
   <section><h2>Mes matières <button class="link" data-f="new-deck">+ Matière</button></h2>
-    <div class="decks">${F.decks.map(d => { const s = deckStats(d.id), p = s.n ? Math.round(100*s.mastered/s.n) : 0;
+    ${(() => { const deckBtn = d => { const s = deckStats(d.id), p = s.n ? Math.round(100*s.mastered/s.n) : 0;
       return `<button class="card deck" data-f-deck="${d.id}" style="--dc:${deckColor(d)}"><span class="dname">${esc(d.name)}</span>
         <span class="dmeta">${s.n} carte${s.n>1?'s':''}${s.due ? ` · <b>${s.due} à revoir</b>` : ''}${s.fresh ? ` · ${s.fresh} nouvelle${s.fresh>1?'s':''}` : ''}</span>
-        <span class="bar"><i style="width:${p}%"></i></span><span class="dmeta">${p} % maîtrisées</span></button>`; }).join('') || '<div class="card empty"><b>Aucune matière</b>Crée une matière ou importe un fichier de cartes.</div>'}</div></section>
+        <span class="bar"><i style="width:${p}%"></i></span><span class="dmeta">${p} % maîtrisées</span></button>`; };
+      const folders = [...new Set(F.decks.map(d=>d.folder).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'fr')), loose = F.decks.filter(d=>!d.folder), openF = ui.fc.openF || (ui.fc.openF = new Set());
+      return folders.map(fo => { const ds = F.decks.filter(d=>d.folder===fo), st = ds.map(d=>deckStats(d.id)), n = st.reduce((a,x)=>a+x.n,0), due = st.reduce((a,x)=>a+x.due,0), m = st.reduce((a,x)=>a+x.mastered,0), dn = folderDue(fo).length;
+        return `<details class="card folder" ${openF.has(fo)?'open':''} data-fold="${esc(fo)}"><summary><span class="ficon">${bicon('cards')}</span><span class="ftx"><b>${esc(fo)}</b><small>${ds.length} matière${ds.length>1?'s':''} · ${n} carte${n>1?'s':''}${due ? ` · ${due} à revoir` : ''} · ${n ? Math.round(100*m/n) : 0} % maîtrisées</small></span><i aria-hidden="true"></i></summary>
+          <div class="foldin">${dn ? `<button class="btn primary" data-f-folder-rev="${esc(fo)}">Réviser le dossier (${dn})</button>` : '<p class="fine">Rien à réviser dans ce dossier aujourd’hui.</p>'}<div class="decks">${ds.map(deckBtn).join('')}</div>
+          <button class="link" data-f-folder-edit="${esc(fo)}">Renommer ou défaire le dossier</button></div></details>`; }).join('')
+        + (loose.length ? `<div class="decks">${loose.map(deckBtn).join('')}</div>` : folders.length ? '' : '<div class="card empty"><b>Aucune matière</b>Crée une matière ou importe un fichier de cartes.</div>')
+        + (F.decks.length >= 2 && !folders.length ? '<p class="help">Astuce : regroupe des matières dans un dossier (ex. « Semestre 5 » ou « UE Finance ») avec « Modifier » dans une matière.</p>' : ''); })()}</section>
   <section><h2>Ajouter des cartes</h2><div class="card pad">
     <div class="btns"><button class="btn" data-f="add">Écrire une carte</button><button class="btn primary" data-f="import">Importer un fichier</button></div>
     <p class="help">Envoie-moi un cours (Word, PDF ou texte) et je te prépare un fichier de cartes. Tu l'importes ici depuis ton PC ou ton téléphone.</p></div>
@@ -1800,6 +1819,8 @@ function fcDeckSheet(d){
   const isNew = !d;
   sheet(`<form id="df" style="display:contents"><h3>${isNew?'Nouvelle matière':'Modifier la matière'}</h3>
     <div class="field"><label for="d-name">Nom</label><input id="d-name" required maxlength="40" value="${d?esc(d.name):''}" placeholder="Ex. Contrôle de gestion"></div>
+    <div class="field"><label for="d-folder">Dossier (facultatif)</label><input id="d-folder" list="d-folders" maxlength="40" value="${d && d.folder ? esc(d.folder) : ''}" placeholder="Ex. Semestre 5, UE Finance"><datalist id="d-folders">${[...new Set(state.fc.decks.map(x=>x.folder).filter(Boolean))].map(f=>`<option value="${esc(f)}">`).join('')}</datalist>
+      <p class="fine">Les matières d’un même dossier sont regroupées et se révisent ensemble.</p></div>
     <div class="field"><span class="lab">Couleur</span><div class="opts" id="d-col">${FC_COLORS.map((c,i)=>`<button type="button" data-col="${i}" aria-label="Couleur ${i+1}" style="width:36px;height:36px;padding:0;background:var(--${c});border-color:var(--${c})"></button>`).join('')}</div></div>
     ${d ? '<div class="field"><span class="lab">Outils</span><div class="btns"><button type="button" class="btn sm" id="d-twins">Ajouter les cartes inverses</button><button type="button" class="btn sm" id="d-share">Partager la matière</button></div></div>' : ''}
     <div class="btns">${d?'<button type="button" class="btn danger" id="d-del">Supprimer</button>':''}<button type="button" class="btn" data-close>Annuler</button><button class="btn primary" type="submit">${isNew?'Créer':'Enregistrer'}</button></div></form>`, s => {
@@ -1814,7 +1835,9 @@ function fcDeckSheet(d){
       if (del.dataset.armed){ state.fc.decks = state.fc.decks.filter(x=>x!==d); state.fc.cards = state.fc.cards.filter(c=>c.deck!==d.id); ui.fc.view='home'; close(); commit(); toast('Matière supprimée'); }
       else { del.dataset.armed='1'; del.textContent = n ? `Supprimer ${n} carte${n>1?'s':''} ?` : 'Confirmer ?'; } });
     s.querySelector('#df').addEventListener('submit', e => { e.preventDefault(); const name = s.querySelector('#d-name').value.trim(); if (!name) return;
-      if (d){ d.name = name; d.color = col; delete d.ex; } else { const nd = { id:uid(), name, color:col }; state.fc.decks.push(nd); ui.fc.view='deck'; ui.fc.deck=nd.id; }
+      const folder = s.querySelector('#d-folder').value.trim().slice(0,40);
+      if (d){ d.name = name; d.color = col; if (folder) d.folder = folder; else delete d.folder; delete d.ex; } else { const nd = { id:uid(), name, color:col, ...(folder ? { folder } : {}) }; state.fc.decks.push(nd); ui.fc.view='deck'; ui.fc.deck=nd.id; }
+      if (folder){ ui.fc.openF = ui.fc.openF || new Set(); ui.fc.openF.add(folder); }
       close(); commit(); });
   });
 }
@@ -1822,6 +1845,9 @@ view.addEventListener('click', e => {
   if (ui.tab !== 'cartes') return;
   let b; const U = ui.fc;
   if ((b = e.target.closest('[data-f-grade]'))){ grade(+b.dataset.fGrade); window.scrollTo(0,0); return; }
+  if ((b = e.target.closest('[data-f-folder-rev]'))){ const fo = b.dataset.fFolderRev, L = folderDue(fo); if (!L.length) return toast('Rien à réviser pour l’instant');
+    startReviewList(L.map(c=>({c,r:Math.random()})).sort((x,y)=>(x.c.seen===y.c.seen ? x.r-y.r : x.c.seen ? -1 : 1)).map(x=>x.c), null); U.label = fo; render(); return; }
+  if ((b = e.target.closest('[data-f-folder-edit]'))){ folderSheet(b.dataset.fFolderEdit); return; }
   if ((b = e.target.closest('[data-f-deck]'))){ U.view='deck'; U.deck=b.dataset.fDeck; render(); window.scrollTo(0,0); return; }
   if ((b = e.target.closest('[data-f-card]'))){ fcCardSheet(state.fc.cards.find(c=>c.id===b.dataset.fCard)); return; }
   if (!(b = e.target.closest('[data-f]'))) return;
@@ -2580,7 +2606,7 @@ function vFcMix(){
     <p>Les cartes alternent d’une matière à l’autre. Ton cerveau doit d’abord reconnaître de quoi il s’agit : c’est plus exigeant sur le moment, mais les études montrent qu’on retient mieux à long terme.</p></div></div>
   <section><h2>Ta séance</h2><div class="card pad">
     <div class="field"><span class="lab">Matières à mélanger</span><div class="opts">${avail.map(d=>`<button class="mixchip" data-mix-deck="${d.id}" aria-pressed="${sel.includes(d.id)}" style="--dc:${deckColor(d)}"><i></i>${esc(d.name)}</button>`).join('') || '<p class="fine">Ajoute d’abord des cartes dans au moins deux matières.</p>'}</div></div>
-    <div class="field"><span class="lab">Nombre de cartes</span><div class="seg">${[10,20,30].map(n=>`<button data-mix-n="${n}" aria-pressed="${M.n===n}">${n}</button>`).join('')}</div></div>
+    <div class="field"><span class="lab">Nombre de cartes</span><div class="seg">${[10,20,30,50].map(n=>`<button data-mix-n="${n}" aria-pressed="${M.n===n}">${n}</button>`).join('')}</div></div>
     <button class="toggle" data-mix-practice="1" aria-pressed="${M.practice}"><span><b>Inclure les cartes déjà sues</b><small>Pour t’entraîner même sans cartes à revoir. Leur date ne bouge pas, sauf si tu les rates.</small></span><i></i></button>
     <p class="fine">${sel.length >= 2 ? `${pool.length} carte${pool.length>1?'s':''} dans cette séance` : 'Choisis au moins deux matières.'} · mode ${modeName}, modifiable pendant la séance.</p>
     <button class="btn primary" data-mix-start="1" ${pool.length && sel.length>=2 ? '' : 'disabled'}>Lancer la révision mélangée</button></div></section>`;
@@ -3003,6 +3029,7 @@ const HELP = {
     ['shuffle','Révision mélangée','Onglet en haut : les cartes alternent entre plusieurs matières, ce qui fait mieux retenir à long terme.'],
     ['tasks','Ajouter des cartes','Écris une carte (question/réponse ou QCM), ou importe un fichier .csv : question ; réponse ; matière ; chapitre ; mauvaises réponses (séparées par |) ; notions (séparées par des virgules). Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous (« Copier le prompt »), puis importe le fichier qu’il te renvoie.'],
     ['flag','Pack Culture générale','En bas de l’onglet : pays à placer sur la carte (touche le pays ; les petits sont marqués d’un point), capitales, monnaies, zone euro et UE, institutions, éco et fiscalité. Choisis les thèmes : chacun devient un chapitre, validable avec un examen /20.'],
+    ['grid','Dossiers','Regroupe plusieurs matières dans un dossier (ex. « Semestre 5 », « UE Finance ») : ouvre une matière, « Modifier », puis tape le nom du dossier. Le dossier se replie, affiche ses statistiques et propose « Réviser le dossier ».'],
     ['star','Outils d’une matière','Bouton « Modifier » : renommer, changer la couleur, ajouter les cartes inverses (réponse → question) ou partager la matière avec un camarade.'] ] },
   actu: { t:'L’actualité', i:'Un point factuel sur la politique et l’économie, préparé chaque matin vers 6 h 50.', s:[
     ['sun','Le point du jour','L’essentiel en deux phrases, les chiffres clés, puis les infos par thème avec « Pourquoi c’est important ».'],
@@ -3761,6 +3788,19 @@ document.addEventListener('click', e => { const b = e.target.closest('[data-copy
   const fb = () => { const ta = document.createElement('textarea'); ta.value = IMPORT_PROMPT; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch(_) { toast('Copie impossible : sélectionne le texte à la main'); } ta.remove(); };
   try { navigator.clipboard.writeText(IMPORT_PROMPT).then(ok, fb); } catch(_) { fb(); } });
 
+/* ---------- Dossiers de matières ---------- */
+document.addEventListener('toggle', e => { const f = e.target; if (!f.matches || !f.matches('details[data-fold]')) return; ui.fc.openF = ui.fc.openF || new Set(); f.open ? ui.fc.openF.add(f.dataset.fold) : ui.fc.openF.delete(f.dataset.fold); }, true);
+function folderDue(fo){ const ids = new Set(state.fc.decks.filter(d=>d.folder===fo).map(d=>d.id)); return dueCards().all.filter(c => ids.has(c.deck)); }
+function folderSheet(fo){
+  const ds = state.fc.decks.filter(d=>d.folder===fo);
+  sheet(`<h3>Dossier « ${esc(fo)} »</h3><p>${ds.map(d=>esc(d.name)).join(', ')}</p>
+    <div class="field"><label for="fo-name">Nom du dossier</label><input id="fo-name" maxlength="40" value="${esc(fo)}"></div>
+    <p class="fine">Pour ajouter ou retirer une matière, ouvre-la puis « Modifier ».</p>
+    <div class="btns"><button class="btn danger" id="fo-del">Défaire le dossier</button><button class="btn" data-close>Annuler</button><button class="btn primary" id="fo-save">Renommer</button></div>`, s => {
+    s.querySelector('#fo-save').addEventListener('click', () => { const n = s.querySelector('#fo-name').value.trim().slice(0,40); if (!n) return; ds.forEach(d => d.folder = n); ui.fc.openF = new Set([n]); close(); commit(); toast('Dossier renommé'); });
+    s.querySelector('#fo-del').addEventListener('click', () => { ds.forEach(d => delete d.folder); close(); commit(); toast('Dossier défait : les matières sont conservées'); });
+  });
+}
 /* ---------- Rendu ---------- */
 const TITLES = { accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité' };
 function render(){
