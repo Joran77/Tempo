@@ -906,6 +906,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 .pbars{display:flex;align-items:flex-end;gap:6px;height:150px}
 .pbars>div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;min-width:0}
 .pbars i{width:100%;max-width:30px;background:var(--accent);opacity:.8;border-radius:6px 6px 2px 2px;min-height:2px;max-height:72%}.pbars i.ok{background:var(--ok);opacity:1}
+.pbars small b{color:var(--text);font-weight:600}.pbars small b.cur{color:var(--accent)}.pbnote{margin:10px 0 0}
 .pbars span{font-size:10px;color:var(--muted)}.pbars small{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .pex{list-style:none;margin:0;padding:0}.pex li{border-top:1px solid var(--line)}.pex li:first-child{border:0}
 .pex button{display:flex;align-items:center;gap:10px;width:100%;padding:10px 14px;border:0;background:none;font:inherit;color:var(--fg);text-align:left;cursor:pointer}
@@ -4644,13 +4645,13 @@ function vProgress(){
   const W = workoutsList();
   if (!W.length) return tabs + `<div class="card empty"><b>Aucune séance détaillée</b>Connecte Hevy (Activité → Connecter Hevy) : Tempo récupère tes exercices, séries et charges pour suivre tes progrès et les muscles travaillés.</div>`;
   if (seg==='muscu'){
-    const H = exerciseHistory(), weeks = Array.from({length:8}, (_,i) => { const a = key(addDays(monday(new Date()), -7*(7-i))), b = key(addDays(monday(new Date()), -7*(6-i))); const ws = W.filter(w => w.d >= a && w.d < b); return { n:ws.length, vol:ws.reduce((s,w)=>s+w.vol,0) }; });
+    const H = exerciseHistory(), weeks = Array.from({length:8}, (_,i) => { const a = key(addDays(monday(new Date()), -7*(7-i))), b = key(addDays(monday(new Date()), -7*(6-i))); const ws = W.filter(w => w.d >= a && w.d < b); return { n:ws.length, vol:ws.reduce((s,w)=>s+w.vol,0), d:parse(a), cur:i===7 }; });
     const mxv = Math.max(1, ...weeks.map(w=>w.vol)), last30 = W.filter(w => w.d >= key(addDays(new Date(), -29)));
     return tabs + `<div class="pstats"><div class="card"><span>Séances (30 j)</span><b class="mono">${last30.length}</b><small>${nf(Math.round(last30.length/4.3*10)/10)} par semaine</small></div>
       <div class="card"><span>Durée moyenne</span><b class="mono">${last30.length ? Math.round(last30.reduce((a,w)=>a+w.min,0)/last30.length) : 0} min</b><small>sur 30 jours</small></div>
       <div class="card"><span>Tonnage (30 j)</span><b class="mono">${nf(Math.round(last30.reduce((a,w)=>a+w.vol,0)/100)/10)} t</b><small>poids × répétitions</small></div>
       <div class="card"><span>Exercices suivis</span><b class="mono">${H.length}</b><small>depuis ${fmt(parse(W[0].d),{day:'numeric',month:'short'})}</small></div></div>
-      <section><h2>Tonnage par semaine</h2><div class="card pad"><div class="pbars">${weeks.map((w,i)=>`<div><span class="mono">${w.vol ? nf(Math.round(w.vol/100)/10) + 't' : ''}</span><i style="height:${Math.round(100*w.vol/mxv)}%"></i><small>${w.n ? w.n + ' séance' + (w.n>1?'s':'') : '—'}</small></div>`).join('')}</div></div></section>
+      <section><h2>Tonnage par semaine</h2><div class="card pad"><div class="pbars">${weeks.map((w,i)=>`<div><span class="mono">${w.vol ? nf(Math.round(w.vol/100)/10) + 't' : ''}</span><i style="height:${Math.round(100*w.vol/mxv)}%"></i><small><b${w.cur ? ' class="cur"' : ''}>S${isoWeek(w.d)}</b></small><small>${fmt(w.d,{day:'2-digit',month:'2-digit'})}</small><small>${w.n ? w.n + ' ×' : '—'}</small></div>`).join('')}</div><p class="fine pbnote">Chaque barre = une semaine, du lundi (date indiquée) au dimanche ; « 2 × » = 2 séances. En couleur : la semaine en cours.</p></div></section>
       <section><h2>Progrès par exercice</h2><div class="card"><ul class="pex">${H.slice(0, 40).map(x => { const s = x.s, last = s[s.length-1], ref = s.filter(y => y.d <= key(addDays(parse(last.d), -28))).pop() || s[0], pct = ref.e1 ? Math.round(100*(last.e1 - ref.e1)/ref.e1) : 0, bw = !Math.max(...s.map(y=>y.top));
         return `<li><button data-h-ex="${esc(x.k)}"><div><b>${esc(x.t)}</b><span>${x.cnt} séance${x.cnt>1?'s':''} · ${bw ? `max ${last.reps} reps` : `meilleure série ${nf(last.best[0])} kg × ${last.best[1]}`} · ${fmt(parse(last.d),{day:'numeric',month:'short'})}</span></div>${sparkline(s.slice(-10).map(y => bw ? y.reps : Math.round(y.e1)), 34)}<em class="${pct>0?'up':pct<0?'down':''}">${s.length > 1 ? (pct>0?'+':'') + pct + ' %' : 'nouveau'}</em></button></li>`; }).join('')}</ul></div>
       <p class="help">Progression = force estimée (formule d’Epley : charge × (1 + répétitions / 30)) de ta meilleure série, comparée à il y a environ 4 semaines.</p></section>`;
