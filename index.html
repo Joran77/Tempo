@@ -1102,6 +1102,22 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 .trwhy.ok{background:color-mix(in srgb,var(--ok) 13%,var(--surface));color:var(--fg)}.trwhy.bad{background:var(--danger-soft);color:var(--fg)}
 .trpause{display:flex;flex-direction:column;align-items:center;gap:6px;padding:15vh 0 0;text-align:center}.trpause b{font-size:54px;font-weight:700}.trpause span{color:var(--muted)}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
+/* Onglet Aujourd'hui : toujours à gauche, séparé des onglets de l'espace */
+nav.tabs .in{grid-template-columns:minmax(62px,auto) repeat(6,1fr)}
+:root[data-mode="health"] nav.tabs .in{grid-template-columns:minmax(62px,auto) repeat(5,1fr)}
+nav.tabs .tday,:root[data-mode="health"] nav.tabs .tday{display:flex!important;position:relative;padding-right:8px;margin-right:4px}
+nav.tabs .tday::after{content:"";position:absolute;right:0;top:12px;bottom:12px;width:1px;background:var(--line)}
+nav.tabs .tday .pill{padding:0;background:none!important}
+.tdi{width:30px;height:30px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border:1.5px solid var(--accent);color:var(--accent);background:var(--surface);line-height:1}
+.tdi small{display:block;width:100%;text-align:center;background:var(--accent);color:var(--accent-ink);font-size:7.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:2px 0 1px}
+.tdi b{font-size:14px;font-weight:800;padding-top:1px}
+nav.tabs .tday[aria-current="page"] .tdi{background:var(--accent);color:var(--accent-ink);box-shadow:0 2px 8px color-mix(in srgb,var(--accent) 35%,transparent)}
+nav.tabs .tday[aria-current="page"] .tdi small{background:color-mix(in srgb,var(--accent-ink) 25%,transparent)}
+nav.tabs .tday[aria-current="page"]{color:var(--accent)}
+.tdhero p{margin:2px 0 0}.tdhero p:first-letter{text-transform:uppercase}
+.tdh{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tdm{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px;text-align:left;font:inherit;color:inherit;min-width:0}
+.tdm b{font-size:19px}.tdm small{color:var(--muted);font-size:11.5px}.tdm .bar{width:100%;margin-top:6px}.tdm .btn{margin-top:6px;width:100%;padding:6px 4px;font-size:12.5px}
 /* Interactions */
 
 
@@ -1192,13 +1208,14 @@ html.nomotion *,html.nomotion *::before{animation:none!important;transition:none
 
 <nav class="tabs" aria-label="Navigation">
   <div class="in">
+    <button class="tday" data-tab="today"><span class="pill"><span class="tdi" aria-hidden="true"><small></small><b></b></span></span>Aujourd’hui</button>
     <button data-tab="accueil"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg></span>Accueil</button>
     <button data-tab="agenda"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Agenda</button>
     <button data-tab="calcul"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 7h5M8.5 4.5v5M14 7h5M6 16.5l4 4M10 16.5l-4 4M14 16h5M14 20h5"/></svg></span>Calcul</button>
     <button data-tab="sudoku"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span>Sudoku</button>
     <button data-tab="cartes"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="14" height="13" rx="2"/><path d="M7 4h12a2 2 0 0 1 2 2v11"/></svg></span>Cartes</button>
     <button data-tab="actu"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14a1 1 0 0 0 1 1H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v9a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5M8 16h3"/></svg></span>Actu</button>
-    <button class="hm" data-tab="h-jour"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Aujourd’hui</button>
+    <button class="hm" data-tab="h-jour"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Santé</button>
     <button class="hm" data-tab="h-repas"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5M9 3v5M17 3c-2 0-3 2.5-3 6s1 4 3 4v8"/></svg></span>Repas</button>
     <button class="hm" data-tab="h-sport"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="1.8"/><path d="m6 21 3.5-6 3 2.5V21M8 12l2.5-4 4 1.5 2 3.5H20M10.5 8 9 12.5l3.5 2.5"/></svg></span>Activité</button>
     <button class="hm" data-tab="h-prog"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9v6M18 9v6M3 11v2M21 11v2M6 12h12"/></svg></span>Progrès</button>
@@ -1410,7 +1427,6 @@ function vAccueil(){
   const mt = mitTask(), todo = list.filter(t=>!t.done && !(mt && mt.id===t.id)), st = activeStreak();
   return `${cloudCard()}${newsCard()}${banner()}${backupBanner()}
   <div class="card hero">${ring(done, list.length)}<div><strong>${hello}</strong><p>${msg}</p>${st ? `<span class="hstreak">${bicon('flame')}${st} jour${st>1?'s':''} actif${st>1?'s':''} d\u2019affilée</span>` : ''}</div></div>
-  ${dayCard()}
   ${examCountdowns()}
   ${newsTile()}
   ${quickTiles()}
@@ -4222,7 +4238,7 @@ function vHealth(){
     ${hStreak() >= 2 ? `<div class="hstreak"><span>${bicon('bolt')}</span>${hStreak()} jours renseignés d’affilée</div>` : ''}
     <div class="card hsum">${hRing(S.kcal, goal)}<div class="hnums"><div><span>Objectif</span><b class="mono">${nf(T.kcal)}</b></div><div><span>Mangé</span><b class="mono">${nf(r0(S.kcal))}</b></div><div><span>Sport</span><b class="mono">+${nf(r0(sp))}</b></div></div></div>
     <div class="card hmacr">${hMacroRing('Glucides', S.c, T.c + spC(sp), 'amber')}${hMacroRing('Protéines', S.p, T.p, 'accent')}${hMacroRing('Lipides', S.f, T.f + spF(sp), 'c-alt')}</div>
-    ${sp ? `<p class="fine hspn">Séance du jour : +${spC(sp)} g de glucides et +${spF(sp)} g de lipides ajoutés à tes repères.</p>` : ''}${postWorkoutHtml(D)}${ui.hday===todayKey() ? dayCard('h') : ''}
+    ${sp ? `<p class="fine hspn">Séance du jour : +${spC(sp)} g de glucides et +${spF(sp)} g de lipides ajoutés à tes repères.</p>` : ''}${postWorkoutHtml(D)}
     <div class="hgrid">
       <div class="card hmini"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} / ${nf(T.water)} L</b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div><div class="hwbtn"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm primary" data-h="water+">+ 1 verre</button></div></div>
       <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><div class="hwbtn"><button class="btn sm" data-h="steps" aria-label="Saisir à la main">${bicon('tasks')}</button>${(state.health.sync||{}).id ? `<button class="btn sm primary hsimp" data-h="sync-now" aria-label="Synchroniser avec Santé">${bicon('heart')}Sync</button>` : `<button class="btn sm primary hsimp" data-h="steps-import" aria-label="Importer de Santé">${bicon('heart')}Santé</button>`}</div></div>
@@ -5759,7 +5775,7 @@ function setMode(m, silent){
   if (!silent) lastTab[appMode] = ui.tab;
   appMode = m; try { localStorage.setItem('tempo.mode', m); } catch(_) {}
   document.documentElement.dataset.mode = m;
-  if (m==='health' && !ui.tab.startsWith('h-') && ui.tab!=='params') ui.tab = lastTab.health || 'h-jour';
+  if (m==='health' && !ui.tab.startsWith('h-') && ui.tab!=='params' && ui.tab!=='today') ui.tab = lastTab.health || 'h-jour';
   if (m==='study' && ui.tab.startsWith('h-')) ui.tab = lastTab.study || 'accueil';
   if (ui.tab==='params') document.querySelectorAll('nav.tabs button').forEach(b => b.removeAttribute('aria-current'));
   const b = document.getElementById('btn-mode'); if (b){ b.setAttribute('aria-label', m==='health' ? 'Passer à Tempo Études' : 'Passer à Tempo Santé'); b.setAttribute('aria-pressed', m==='health'); }
@@ -6285,17 +6301,18 @@ function postWorkoutHtml(D){
 }
 
 /* ---------- Onglets visibles ---------- */
-const TAB_LIST = { study:[['accueil','Accueil'],['agenda','Agenda'],['calcul','Calcul'],['sudoku','Sudoku'],['cartes','Flashcards'],['actu','Actu']], health:[['h-jour','Jour'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès'],['h-suivi','Suivi']] };
+const TAB_LIST = { study:[['accueil','Accueil'],['agenda','Agenda'],['calcul','Calcul'],['sudoku','Sudoku'],['cartes','Flashcards'],['actu','Actu']], health:[['h-jour','Santé'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès'],['h-suivi','Suivi']] };
 const tabsVis = m => { const t = state.meta && state.meta.tabs && state.meta.tabs[m]; return Array.isArray(t) && t.length >= 2 ? t : TAB_LIST[m].map(x => x[0]); };
 function applyTabs(){
   const vis = { study:new Set(tabsVis('study')), health:new Set(tabsVis('health')) };
-  document.querySelectorAll('nav.tabs [data-tab]').forEach(b => { const m = b.classList.contains('hm') ? 'health' : 'study'; b.hidden = !vis[m].has(b.dataset.tab); });
-  const inn = document.querySelector('nav.tabs .in'); if (inn) inn.style.gridTemplateColumns = `repeat(${vis[appMode].size},1fr)`;
+  document.querySelectorAll('nav.tabs [data-tab]:not(.tday)').forEach(b => { const m = b.classList.contains('hm') ? 'health' : 'study'; b.hidden = !vis[m].has(b.dataset.tab); });
+  const inn = document.querySelector('nav.tabs .in'); if (inn) inn.style.gridTemplateColumns = `minmax(62px,auto) repeat(${vis[appMode].size},1fr)`;
+  const ti = document.querySelector('nav.tabs .tday .tdi b'); if (ti && ti.textContent != new Date().getDate()) ti.parentElement.outerHTML = todayIcon();
 }
 function tabsParamsHtml(){
   return `<section><h2>Onglets visibles</h2><div class="card pad">${['study','health'].map(m => { const v = tabsVis(m);
     return `<span class="lab">${m==='study' ? 'Tempo Études' : 'Tempo Santé'}</span><div class="opts checks tabvis">${TAB_LIST[m].map(([k,l]) => `<button data-h2="tabvis" data-m="${m}" data-k="${k}" aria-pressed="${v.includes(k)}">${v.includes(k) ? ICON_CHECK : ''}${l}</button>`).join('')}</div>`; }).join('')}
-    <p class="fine">Au moins 2 onglets par espace. Une page masquée reste accessible depuis l’accueil et « Ma journée ».</p></div></section>`;
+    <p class="fine">Au moins 2 onglets par espace. L’onglet « Aujourd’hui » reste toujours affiché. Une page masquée reste accessible depuis « Aujourd’hui ».</p></div></section>`;
 }
 function tabVisToggle(m, k){
   ensureMeta(); const cur = tabsVis(m); let nx = cur.includes(k) ? cur.filter(x => x!==k) : TAB_LIST[m].map(x => x[0]).filter(x => x===k || cur.includes(x));
@@ -6357,6 +6374,9 @@ function v3Click(e){
   else if (a==='mj-sport') goMode('health', 'h-sport');
   else if (a==='mj-meals'){ ui.rseg = 'semaine'; goMode('health', 'h-repas'); }
   else if (a==='mj-weigh') goMode('health', 'h-jour');
+  else if (a==='td-health') goMode('health', 'h-jour');
+  else if (a==='td-steps') goMode('health', 'h-sport');
+  else if (a==='td-water'){ hDay(todayKey()).water++; commit(); }
   else return false;
   return true;
 }
@@ -6385,8 +6405,36 @@ HELP.calcul.s.push(['calc','Catégorie Gestion','TVA, remises, coefficients, tau
 if (HELP.params) HELP.params.s.push(['shuffle','Sauvegarde automatique','Copie chiffrée dans un gist GitHub secret, toutes les 6 heures au plus quand tes données changent. Garde ta phrase secrète : sans elle, la sauvegarde est illisible.'],
   ['grid','Onglets visibles','Masque les onglets dont tu ne te sers pas, dans chaque espace.']);
 
+/* ---------- Onglet « Aujourd'hui », commun aux deux espaces ---------- */
+function todayIcon(){ return `<span class="tdi" aria-hidden="true"><small>${fmt(new Date(),{month:'short'}).replace('.','')}</small><b>${new Date().getDate()}</b></span>`; }
+function vToday(){
+  ensureFc(); const now = new Date(), tk = todayKey(), tl = sortTasks(tasksOn(tk)), left = tl.filter(t => !t.done), done = tl.length - left.length;
+  const due = dueCards().all.length, H = state.health, T = H && H.profile ? hTargets() : null, D = T ? hPeek(tk) : null;
+  const hour = now.getHours(), hello = `${hour < 5 ? 'Bonne nuit' : hour < 18 ? 'Bonjour' : 'Bonsoir'}${userName() ? ' ' + userName() : ''}`;
+  const bits = [left.length ? `${left.length} tâche${left.length>1?'s':''}` : '', due ? `${due} carte${due>1?'s':''}` : ''].filter(Boolean);
+  const health = T ? (() => { const S = sumDay(D), sp = sportKcal(D), goal = T.kcal + sp, rest = Math.round(goal - S.kcal), wg = Math.ceil(T.water/0.25);
+    return `<section><h2>Santé <button class="link" data-v3="td-health">Détail</button></h2><div class="tdh">
+      <button class="card tdm" data-v3="td-health"><span class="lab">Calories</span><b class="mono">${nf(Math.abs(rest))}</b><small>${rest >= 0 ? 'kcal restantes' : 'kcal au-dessus'}</small><span class="bar"><i style="width:${Math.min(100, goal ? 100*S.kcal/goal : 0)}%"></i></span></button>
+      <div class="card tdm"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} L</b><small>sur ${nf(T.water)} L</small><button class="btn sm primary" data-v3="td-water">+ 1 verre</button></div>
+      <button class="card tdm" data-v3="td-steps"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><small>sur ${nf(T.steps)}</small><span class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></span></button></div></section>`; })() : '';
+  return `<div class="card hero tdhero">${ring(done, tl.length)}<div><strong>${hello}</strong><p>${fmt(now,{weekday:'long',day:'numeric',month:'long'})}</p>
+      <p class="fine">${bits.length ? 'Au programme : ' + bits.join(' et ') + '.' : 'Rien d’urgent : profite, ou avance sur la suite.'}</p></div></div>
+    ${cloudCard()}
+    ${dayCard('t')}
+    ${examCountdowns()}
+    <section><h2>Tâches du jour <span class="hlinks"><button class="link" data-add-task="1">+ Ajouter</button><button class="link" data-v3="mj-tasks">Agenda</button></span></h2>
+      <div class="card">${tl.length ? `<ul class="tasks">${[...left, ...tl.filter(t => t.done)].slice(0, 8).map(taskRow).join('')}</ul>${tl.length > 8 ? `<button class="more-row" data-v3="mj-tasks">+ ${tl.length-8} autre${tl.length-8>1?'s':''}</button>` : ''}` : '<p class="empty"><b>Aucune tâche aujourd’hui</b>Ajoute-en une, ou planifie ta semaine dans l’agenda.</p>'}</div></section>
+    ${health}
+    <section><h2>Pour avancer</h2>${v3Tiles()}</section>`;
+}
+HELP.today = { t:'Aujourd’hui', i:'Ta journée en un seul écran, que tu sois dans l’espace Études ou Santé. L’onglet reste toujours à gauche de la barre du bas.', s:[
+  ['tasks','Ma journée','Tâches, cartes à réviser, séance, repas prévus, pesée et Score IAE. Touche une ligne pour ouvrir la bonne page, Tempo change d’espace si besoin.'],
+  ['check','Tâches du jour','Coche-les directement ici, comme dans l’agenda.'],
+  ['heart','Santé','Calories restantes, eau et pas du jour, si ton profil Santé est créé.'],
+  ['clock','Pour avancer','Mode trajet et Score IAE.']] };
+
 /* ---------- Rendu ---------- */
-const TITLES = { iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
+const TITLES = { today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
   const now = new Date();
   $('#hdr-title').textContent = innerWidth < 400 && ui.tab==='calcul' ? 'Calcul' : TITLES[ui.tab];
@@ -6396,7 +6444,7 @@ function render(){
   const miss = tabNeeds(ui.tab); if (miss.length){ view.innerHTML = '<div class="card empty"><b>Chargement…</b>Un instant, Tempo prépare cette page.</div>'; Promise.all(miss.map(needData)).then(() => render()); return; }
   const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='accueil' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
   isEntering = vk !== lastVK; lastVK = vk;
-  view.innerHTML = ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes();
+  view.innerHTML = ui.tab==='today' ? vToday() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes();
   view.classList.remove('anim');
   if (isEntering && motionOK()){ void view.offsetWidth; [...view.children].forEach((c,i)=>c.style.setProperty('--i', Math.min(i,8))); view.classList.add('anim'); clearTimeout(animT); animT = setTimeout(()=>view.classList.remove('anim'), 1400); }
   if (view.querySelector('canvas[data-b3]')) body3dMount(view, window.__b3ms || {});
