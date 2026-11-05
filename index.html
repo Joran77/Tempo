@@ -1168,6 +1168,12 @@ nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,v
 /* Les contrôles segmentés restent sur une ligne */
 .seg.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .brand small::first-letter{text-transform:uppercase}
+.dhlinks{display:flex;gap:16px;align-items:center}
+.clist .selbox{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--muted);display:grid;place-items:center;color:var(--accent-ink);margin-bottom:2px}
+.clist .selbox svg{width:14px;height:14px}
+.clist li.sel{background:color-mix(in srgb,var(--danger) 7%,transparent)}.clist li.sel .selbox{background:var(--danger);border-color:var(--danger)}
+.clist button[data-fsel]{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:start}.clist button[data-fsel]>*:not(.selbox){grid-column:2}.clist button[data-fsel] .selbox{grid-row:1/span 3}
+.selbar{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;margin:8px -4px 0;border-radius:16px;background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--shadow)}
 /* Interactions */
 
 
@@ -2209,6 +2215,7 @@ function fcImportSheet(opt){
     <div class="field"><label for="i-exam">Relier à un examen</label><select id="i-exam"><option value="">Aucun</option>${exams.map(e=>`<option value="${e.id}" ${e.id===exPre?'selected':''}>${esc(e.title)} · ${fmt(parse(e.date),{day:'numeric',month:'short'})}</option>`).join('')}<option value="__new">+ Nouvel examen…</option></select>
       <p class="fine">Les chapitres des cartes s’ajoutent au planning de révision de l’examen, et l’examen ouvre directement ces cartes.</p></div>
     <button type="button" class="toggle" id="i-both" aria-pressed="false"><span><b>Créer aussi les cartes inverses</b><small>Réponse → question, pour réviser dans les deux sens.</small></span><i></i></button>
+    <button type="button" class="toggle" id="i-repl" aria-pressed="false"><span><b>Remplacer les cartes existantes</b><small>Supprime d’abord toutes les cartes des matières présentes dans le fichier, progression comprise. Une copie de sécurité est gardée.</small></span><i></i></button>
     <p id="i-msg" role="status"></p>
     <div class="btns"><button class="btn" data-close>Annuler</button><button class="btn primary" id="i-go">Importer</button></div>`, s => {
     const txt = s.querySelector('#i-text'), msg = s.querySelector('#i-msg'), sel = s.querySelector('#i-deck'), nf_ = s.querySelector('#i-new-f');
@@ -2224,10 +2231,11 @@ function fcImportSheet(opt){
       let fb; if (sel.value==='__new'){ const n = s.querySelector('#i-new').value.trim(); if (!n && list.some(c=>!c.deck)){ msg.textContent = 'Donne un nom à la nouvelle matière.'; return; } fb = n ? findOrMakeDeck(n) : null; }
       else fb = deckOf(sel.value);
       if (!fb && list.some(c=>!c.deck)) fb = findOrMakeDeck('Divers');
+      let replaced = 0; if ((s.querySelector('#i-repl')||{}).getAttribute && s.querySelector('#i-repl').getAttribute('aria-pressed')==='true'){ const ids = new Set(list.map(it => it.deck ? (state.fc.decks.find(x => x.name.toLowerCase()===it.deck.trim().toLowerCase())||{}).id : fb && fb.id).filter(Boolean)); if (ids.size){ SNAP.before('Avant remplacement de cartes'); const n0 = state.fc.cards.length; state.fc.cards.filter(c => ids.has(c.deck) && c.img).forEach(c => IMG.del(c.img).catch(()=>{})); state.fc.cards = state.fc.cards.filter(c => !ids.has(c.deck)); replaced = n0 - state.fc.cards.length; } }
       const { added, skipped, updated, cards } = addCards(list, fb); if (ib.getAttribute('aria-pressed')==='true') cards.forEach(c => { if (!isQcmCard(c)) syncTwin(c, true); });
       const exSel = s.querySelector('#i-exam').value, base = cards.filter(c=>!c.rev);
       const L = exSel==='__new' ? [] : linkCardsToExams(base, exSel || null);
-      close(); commit(); toast(`${added} carte${added>1?'s':''} ajoutée${added>1?'s':''}${updated?`, ${updated} correction${updated>1?'s':''} ajoutée${updated>1?'s':''} à des cartes existantes`:''}${skipped?`, ${skipped} déjà présente${skipped>1?'s':''}`:''}${linkMsg(L)}`);
+      close(); commit(); toast(`${replaced ? `${replaced} ancienne${replaced>1?'s':''} supprimée${replaced>1?'s':''}, ` : ''}${added} carte${added>1?'s':''} ajoutée${added>1?'s':''}${updated?`, ${updated} correction${updated>1?'s':''} ajoutée${updated>1?'s':''} à des cartes existantes`:''}${skipped?`, ${skipped} déjà présente${skipped>1?'s':''}`:''}${linkMsg(L)}`);
       if (exSel==='__new'){ const cnt = {}; base.forEach(c=>cnt[c.deck]=(cnt[c.deck]||0)+1); const dk = Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0] || (fb && fb.id) || null;
         setTimeout(() => partielSheet(null, { deck:dk, chapters:[...new Set(state.fc.cards.filter(c=>c.deck===dk && c.chap).map(c=>c.chap))] }), 260); }
     });
@@ -2623,17 +2631,17 @@ function vFcDeck(){
   const best = ch => { const ex = state.fc.exams.filter(e=>e.deck===d.id && e.chap===ch); return ex.length ? Math.max(...ex.map(e=>e.note)) : null; };
   const badge = ch => { const b = best(ch); return b===null ? '' : `<span class="note ${b>=12?'ok':''}">${b>=12?'Validé · ':''}${nf20(b)}/20</span>`; };
   const all = best(null);
-  return `<div class="playhead"><button class="back" data-f="home">${CHEV_L}Matières</button><button class="link" data-f="edit-deck" style="border:0;background:none;color:var(--accent);font-weight:700">Modifier</button></div>
+  return `<div class="playhead"><button class="back" data-f="home">${CHEV_L}Matières</button><span class="dhlinks">${cs.length ? `<button class="link" data-fsel="mode">${ui.fc.sel ? 'Terminer' : 'Sélectionner'}</button>` : ''}<button class="link" data-f="edit-deck" style="border:0;background:none;color:var(--accent);font-weight:700">Modifier</button></span></div>
   <div class="card deckhead" style="--dc:${deckColor(d)}"><div class="dhrow"><h3>${esc(d.name)}</h3>${all!==null ? `<span class="note ${all>=12?'ok':''}">Matière ${nf20(all)}/20</span>` : ''}</div>${examTag(d)}
     <div class="dsplit"><div><b class="mono">${s.fresh}</b><span>nouvelles</span></div><div><b class="mono">${s.learning}</b><span>en cours</span></div><div><b class="mono">${s.mastered}</b><span>maîtrisées</span></div></div>
     <div class="btns">${dn?`<button class="btn primary" data-f="review-deck">Réviser (${dn})</button>`:''}<button class="btn" data-f-exam-all="1" ${cs.length<4?'disabled':''}>Examen /20</button></div>
     <div class="btns"><button class="btn" data-f="add">Ajouter une carte</button><button class="btn" data-f="import">Importer</button></div></div>
   ${cs.length ? chaps.map(ch => { const cc = cs.filter(c=>(c.chap||'')===ch);
     return `<section class="chap"><div class="chead"><div style="min-width:0"><b>${ch ? esc(ch) : 'Sans chapitre'}</b><span>${cc.length} carte${cc.length>1?'s':''} ${badge(ch)}</span></div>
-      <button class="btn sm" data-f-exam="${esc(ch)}" ${cc.length<4?'disabled title="4 cartes minimum"':''}>Valider</button></div>
-      <div class="card"><ul class="clist">${cc.map(c=>`<li><button data-f-card="${c.id}"><span class="cq">${fmtText(c.q)}</span><span class="ca">${fmtText(c.a.split('\n')[0])}${c.a.includes('\n')?' …':''}</span><span class="crow">${status(c)}${c.img?'<span class="st">Image</span>':''}${c.rev?'<span class="st">Sens inverse</span>':''}${isQcmCard(c)?'<span class="st qcmt">QCM</span>':''}</span></button></li>`).join('')}</ul></div></section>`; }).join('')
+      ${ui.fc.sel ? `<button class="btn sm" data-fsel="chap" data-k="${esc(ch)}">${cc.every(c => ui.fc.sel.has(c.id)) ? 'Tout décocher' : 'Tout cocher'}</button>` : `<button class="btn sm" data-f-exam="${esc(ch)}" ${cc.length<4?'disabled title="4 cartes minimum"':''}>Valider</button>`}</div>
+      <div class="card"><ul class="clist">${cc.map(c=>`<li class="${ui.fc.sel && ui.fc.sel.has(c.id) ? 'sel' : ''}"><button ${ui.fc.sel ? `data-fsel="card" data-k="${c.id}" aria-pressed="${ui.fc.sel.has(c.id)}"` : `data-f-card="${c.id}"`}>${ui.fc.sel ? `<i class="selbox" aria-hidden="true">${ui.fc.sel.has(c.id) ? ICON_CHECK : ''}</i>` : ''}<span class="cq">${fmtText(c.q)}</span><span class="ca">${fmtText(c.a.split('\n')[0])}${c.a.includes('\n')?' …':''}</span><span class="crow">${status(c)}${c.img?'<span class="st">Image</span>':''}${c.rev?'<span class="st">Sens inverse</span>':''}${isQcmCard(c)?'<span class="st qcmt">QCM</span>':''}</span></button></li>`).join('')}</ul></div></section>`; }).join('')
   : '<div class="card empty"><b>Matière vide</b>Ajoute une carte ou importe un fichier.</div>'}
-  <p class="help">Un examen pose jusqu’à 20 questions en QCM. Le chapitre est validé à partir de 12/20.</p>`;
+  <p class="help">Un examen pose jusqu’à 20 questions en QCM. Le chapitre est validé à partir de 12/20.</p>${ui.fc.sel ? `<div class="selbar"><button class="btn" data-fsel="all">${cs.every(c => ui.fc.sel.has(c.id)) ? 'Tout décocher' : 'Tout cocher'}</button><button class="btn danger" data-fsel="del" ${ui.fc.sel.size ? '' : 'disabled'}>Supprimer${ui.fc.sel.size ? ` (${ui.fc.sel.size})` : ''}</button></div>` : ''}`;
 }
 function fcCardSheet(card, prefill){
   const isNew = !card, pre = card ? card.deck : (ui.fc.view==='deck' ? ui.fc.deck : (state.fc.decks[0]||{}).id);
@@ -6588,6 +6596,32 @@ HELP.today = { t:'Aujourd’hui', i:'La page d’ouverture de Tempo : ta journé
   ['calendar','Examens, objectifs et bilan','Comptes à rebours des examens, objectifs, badges et bilan de la semaine, comme sur l’ancien accueil.']] };
 HELP.accueil = HELP.today;
 
+/* ---------- Sélection et suppression de cartes ---------- */
+document.addEventListener('click', e => { const b = e.target.closest('#i-repl'); if (b){ b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')!=='true'); } });
+function delCardsSheet(ids){
+  const n = ids.size, list = state.fc.cards.filter(c => ids.has(c.id)), seen = list.filter(c => c.seen).length;
+  sheet(`<h3>Supprimer ${n} carte${n>1?'s':''} ?</h3><p>${seen ? `${seen} d’entre elles ont déjà été révisées : leur progression sera perdue.` : 'Ces cartes n’ont pas encore été révisées.'} Une copie de sécurité de tes données est gardée dans Paramètres → Sauvegarde et transfert.</p>
+    <div class="btns"><button class="btn" data-close>Annuler</button><button class="btn danger" id="dc-go">Supprimer ${n} carte${n>1?'s':''}</button></div>`, s => {
+    s.querySelector('#dc-go').addEventListener('click', () => {
+      SNAP.before(`Avant suppression de ${n} carte${n>1?'s':''}`);
+      list.forEach(c => { if (c.img) IMG.del(c.img).catch(()=>{}); });
+      state.fc.cards = state.fc.cards.filter(c => !ids.has(c.id));
+      state.fc.cards.forEach(c => { if (c.twin && ids.has(c.twin)) delete c.twin; });
+      ui.fc.sel = null; close(); commit(); toast(`${n} carte${n>1?'s':''} supprimée${n>1?'s':''}`);
+    });
+  });
+}
+view.addEventListener('click', e => {
+  const b = e.target.closest('[data-fsel]'); if (!b) return; e.stopPropagation();
+  const a = b.dataset.fsel, U = ui.fc, deckCards = () => state.fc.cards.filter(c => c.deck===U.deck);
+  if (a==='mode'){ U.sel = U.sel ? null : new Set(); render(); return; }
+  if (!U.sel) return;
+  if (a==='card'){ const k = b.dataset.k; U.sel.has(k) ? U.sel.delete(k) : U.sel.add(k); }
+  else if (a==='chap'){ const cc = deckCards().filter(c => (c.chap||'')===b.dataset.k), all = cc.every(c => U.sel.has(c.id)); cc.forEach(c => all ? U.sel.delete(c.id) : U.sel.add(c.id)); }
+  else if (a==='all'){ const cc = deckCards(), all = cc.every(c => U.sel.has(c.id)); cc.forEach(c => all ? U.sel.delete(c.id) : U.sel.add(c.id)); }
+  else if (a==='del'){ if (U.sel.size) delCardsSheet(new Set(U.sel)); return; }
+  const y = window.scrollY; render(); window.scrollTo(0, y);
+}, true);
 /* ---------- Rendu ---------- */
 const TITLES = { today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
