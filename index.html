@@ -2871,7 +2871,7 @@ function examCountdowns(){
   ensurePartiels(); const tk = todayKey();
   const up = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 7).sort((a,b)=>a.date.localeCompare(b.date));
   return up.map(ex => { const d = daysUntil(ex.date), st = partielStats(ex);
-    return `<button class="excd ${urgency(d)}" data-go="agenda" data-seg="examens"><span class="jx"><b class="mono">${cdLabel(d)}</b></span>
+    return `<button class="excd ${urgency(d)}" data-v3="ex-rev" data-k="${ex.id}" aria-label="Réviser ${esc(ex.title)}"><span class="jx"><b class="mono">${cdLabel(d)}</b></span>
       <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${st.done}/${st.total} révisions${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('');
 }
 function partielSheet(ex, preset){
@@ -6517,6 +6517,11 @@ function v3Click(e){
   else if (a==='mj-sport') goMode('health', 'h-sport');
   else if (a==='mj-meals'){ ui.rseg = 'semaine'; goMode('health', 'h-repas'); }
   else if (a==='mj-weigh') goMode('health', 'h-jour');
+  else if (a==='ex-rev'){ const ex = (state.partiels||[]).find(x => x.id===k); if (!ex) return true;
+    if (appMode !== 'study'){ lastTab[appMode] = ui.tab; appMode = 'study'; try { localStorage.setItem('tempo.mode','study'); } catch(_){} document.documentElement.dataset.mode = 'study'; }
+    const L = examCardSets(ex).linked;
+    if (L.length){ reviewCardsList(L, ex.title); window.scrollTo(0,0); }
+    else { ui.seg = 'examens'; goMode('study', 'agenda'); toast('Aucune carte liée à cet examen : importe ou relie des cartes ici'); } }
   else if (a==='td-mode'){ if (k !== appMode){ goMode(k, 'today'); toast(k==='health' ? 'Barre du bas : Santé' : 'Barre du bas : Révisions'); } }
   else if (a==='td-health') goMode('health', 'h-jour');
   else if (a==='td-goals'){ ui.seg = 'objectifs'; goMode('study', 'agenda'); }
