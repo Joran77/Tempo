@@ -1132,6 +1132,11 @@ input::-webkit-datetime-edit{padding:0}
 .field select{max-width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .hwbtn .btn.primary{flex:1 1 auto;min-width:0;white-space:nowrap}
 @media (max-width:360px){.hring{width:112px;height:112px}.hsum{gap:12px;padding:14px}.hnums b{font-size:15px}.hwbtn .btn{padding:0 8px}}
+.why.bad{border-left-color:var(--danger)}.why.bad>b{color:var(--danger)}
+.why .wr{margin:0 0 6px}.why .wr strong{color:var(--ok)}.why p+p{margin-top:6px}
+.why .wrel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}.why .wrel span{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}.why .wrel p{margin:3px 0 0;font-size:13px}
+.why .wadd{font-size:12px;font-style:italic}
+.why .wrel p b{display:inline;text-transform:none;letter-spacing:0;font-size:inherit;color:var(--fg);margin:0}.why .wrel p b::after{content:" → ";color:var(--muted);font-weight:400}
 /* Interactions */
 
 
@@ -2023,6 +2028,7 @@ function schedule(c, g){ // g : 0 À revoir, 1 Difficile, 2 Bien, 3 Facile — r
 }
 const ivlLabel = n => n===0 ? '< 10 min' : n===1 ? '1 jour' : n<31 ? `${n} jours` : `${Math.round(n/30)} mois`;
 function grade(g){
+  ui.fc.optsFor = null;
   const U = ui.fc, c = U.cur, wasNew = !c.seen, s = schedule(c, g), practice = U.practice && U.practice.has(c.id);
   if (!practice || g===0) Object.assign(c, s, { seen:true });
   if (g===0){ c.lapses += wasNew ? 0 : 1; c.due = todayKey(); U.queue.splice(Math.min(3, U.queue.length), 0, c); if (practice) U.practice.delete(c.id); }
@@ -2092,7 +2098,7 @@ function parseCards(text){
   const pick = (o, ks) => { for (const k of ks) if (o[k]!=null && String(o[k]).trim()) return String(o[k]).trim(); return ''; };
   if (t[0]==='[' || t[0]==='{'){
     const j = JSON.parse(t), arr = Array.isArray(j) ? j : (j.cards || j.flashcards || []);
-    return arr.map(o => ({ q:pick(o,['q','question','recto','front']), a:pick(o,['a','answer','reponse','réponse','verso','back']), deck:pick(o,['deck','matiere','matière','subject','paquet']), chap:pick(o,['chap','chapitre','chapter']), wrong:wrongOf(o), tags:tagsOf(Array.isArray(o.notions||o.tags) ? (o.notions||o.tags).join(',') : pick(o,['notions','tags','motscles'])) })).filter(c=>c.q && c.a);
+    return arr.map(o => ({ q:pick(o,['q','question','recto','front']), a:pick(o,['a','answer','reponse','réponse','verso','back']), deck:pick(o,['deck','matiere','matière','subject','paquet']), chap:pick(o,['chap','chapitre','chapter']), wrong:wrongOf(o), why:pick(o,['correction','explication','explanation','why','pourquoi']), tags:tagsOf(Array.isArray(o.notions||o.tags) ? (o.notions||o.tags).join(',') : pick(o,['notions','tags','motscles'])) })).filter(c=>c.q && c.a);
   }
   const first = t.split('\n')[0], sep = first.includes('\t') ? '\t' : first.includes(';') ? ';' : first.includes(' :: ') ? ' :: ' : ',';
   const rows = [];
@@ -2107,7 +2113,7 @@ function parseCards(text){
     row.push(cell); rows.push(row); }
   const clean = rows.map(r => r.map(x => x.trim().replace(/\\n/g,'\n'))).filter(r => r[0] && r[1]);
   if (clean.length && /^(question|recto|q|front)$/i.test(clean[0][0])) clean.shift();
-  return clean.map(r => ({ q:r[0], a:r[1], deck:(r[2]||'').trim(), chap:(r[3]||'').trim(), wrong:(r[4]||'').split('|').map(x=>x.trim()).filter(x=>x && x!==r[1]), tags:tagsOf(r[5]) }));
+  return clean.map(r => ({ q:r[0], a:r[1], deck:(r[2]||'').trim(), chap:(r[3]||'').trim(), wrong:(r[4]||'').split('|').map(x=>x.trim()).filter(x=>x && x!==r[1]), tags:tagsOf(r[5]), why:(r.slice(6).join(' ; ')||'').trim() }));
 }
 function findOrMakeDeck(name){
   const n = name.trim(); let d = state.fc.decks.find(x=>x.name.toLowerCase()===n.toLowerCase());
@@ -2115,11 +2121,12 @@ function findOrMakeDeck(name){
   return d;
 }
 function addCards(list, fallbackDeck){
-  let added = 0, skipped = 0; const out = [];
+  let added = 0, skipped = 0, updated = 0; const out = [];
   for (const it of list){ const d = it.deck ? findOrMakeDeck(it.deck) : fallbackDeck;
-    if (state.fc.cards.some(c => c.deck===d.id && c.q===it.q && c.a===it.a)){ skipped++; continue; }
-    const nc = { id:uid(), add:todayKey(), deck:d.id, q:it.q, a:it.a, chap:it.chap||'', ...(it.tags && it.tags.length ? { tags:it.tags } : {}), wrong: it.wrong && it.wrong.length ? it.wrong : null, due:todayKey(), ivl:0, ease:2.5, reps:0, lapses:0, seen:false }; state.fc.cards.push(nc); out.push(nc); added++; }
-  return { added, skipped, cards:out };
+    const ex = state.fc.cards.find(c => c.deck===d.id && c.q===it.q && c.a===it.a);
+    if (ex){ if (it.why && ex.why !== it.why){ ex.why = it.why; updated++; } else skipped++; continue; }
+    const nc = { id:uid(), add:todayKey(), deck:d.id, q:it.q, a:it.a, chap:it.chap||'', ...(it.tags && it.tags.length ? { tags:it.tags } : {}), wrong: it.wrong && it.wrong.length ? it.wrong : null, ...(it.why ? { why:it.why } : {}), due:todayKey(), ivl:0, ease:2.5, reps:0, lapses:0, seen:false }; state.fc.cards.push(nc); out.push(nc); added++; }
+  return { added, skipped, updated, cards:out };
 }
 const deckOptions = sel => state.fc.decks.map(d=>`<option value="${d.id}" ${d.id===sel?'selected':''}>${esc(d.name)}</option>`).join('') + '<option value="__new">+ Nouvelle matière…</option>';
 function fcImportSheet(opt){
@@ -2127,7 +2134,7 @@ function fcImportSheet(opt){
   const pre = ex0 && ex0.deck ? ex0.deck : ui.fc.view==='deck' ? ui.fc.deck : (state.fc.decks[0]||{}).id;
   const exPre = ex0 ? ex0.id : (ui.fc.view==='deck' && (nextExamOf(ui.fc.deck)||{}).id) || '';
   sheet(`<h3>Importer des cartes</h3>
-    <p>Une carte par ligne, 6 colonnes séparées par ; — seules la question et la réponse sont obligatoires. Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous.</p>
+    <p>Une carte par ligne, 7 colonnes séparées par ; — seules la question et la réponse sont obligatoires. Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous.</p>
     ${importGuideHtml(false)}
     <div class="field"><label for="i-file">Fichier</label><input type="file" id="i-file" accept=".csv,.txt,.tsv,.json,text/plain,application/json"></div>
     <div class="field"><label for="i-text">ou coller le texte</label><textarea id="i-text" placeholder="Taux normal de TVA ; 20 % ; Fiscalité&#10;Compte 401 ; Fournisseurs ; Comptabilité"></textarea></div>
@@ -2151,10 +2158,10 @@ function fcImportSheet(opt){
       let fb; if (sel.value==='__new'){ const n = s.querySelector('#i-new').value.trim(); if (!n && list.some(c=>!c.deck)){ msg.textContent = 'Donne un nom à la nouvelle matière.'; return; } fb = n ? findOrMakeDeck(n) : null; }
       else fb = deckOf(sel.value);
       if (!fb && list.some(c=>!c.deck)) fb = findOrMakeDeck('Divers');
-      const { added, skipped, cards } = addCards(list, fb); if (ib.getAttribute('aria-pressed')==='true') cards.forEach(c => { if (!isQcmCard(c)) syncTwin(c, true); });
+      const { added, skipped, updated, cards } = addCards(list, fb); if (ib.getAttribute('aria-pressed')==='true') cards.forEach(c => { if (!isQcmCard(c)) syncTwin(c, true); });
       const exSel = s.querySelector('#i-exam').value, base = cards.filter(c=>!c.rev);
       const L = exSel==='__new' ? [] : linkCardsToExams(base, exSel || null);
-      close(); commit(); toast(`${added} carte${added>1?'s':''} ajoutée${added>1?'s':''}${skipped?`, ${skipped} déjà présente${skipped>1?'s':''}`:''}${linkMsg(L)}`);
+      close(); commit(); toast(`${added} carte${added>1?'s':''} ajoutée${added>1?'s':''}${updated?`, ${updated} correction${updated>1?'s':''} ajoutée${updated>1?'s':''} à des cartes existantes`:''}${skipped?`, ${skipped} déjà présente${skipped>1?'s':''}`:''}${linkMsg(L)}`);
       if (exSel==='__new'){ const cnt = {}; base.forEach(c=>cnt[c.deck]=(cnt[c.deck]||0)+1); const dk = Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0] || (fb && fb.id) || null;
         setTimeout(() => partielSheet(null, { deck:dk, chapters:[...new Set(state.fc.cards.filter(c=>c.deck===dk && c.chap).map(c=>c.chap))] }), 260); }
     });
@@ -2439,18 +2446,31 @@ function fmtText(s){
   h = h.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
   return h;
 }
+/* Place la bonne réponse : jamais au même endroit que la fois précédente, en privilégiant les positions les moins utilisées pour cette carte,
+   et avec un ordre des pièges différent du dernier affichage. */
+const optSig = a => { let h = 7; for (const ch of a.join('|')) h = (h*31 + ch.charCodeAt(0)) >>> 0; return h; };
+function placeAnswer(card, ans, others){
+  const o = [...others]; for (let k=o.length-1;k>0;k--){ const j = Math.floor(Math.random()*(k+1)); [o[k],o[j]] = [o[j],o[k]]; }
+  const n = o.length + 1, H = Array.isArray(card.pos) ? card.pos.slice(0,6) : []; while (H.length < n) H.push(0);
+  let cand = [...Array(n).keys()].filter(i => n < 2 || i !== card.lastAi);
+  const mn = Math.min(...cand.map(i => H[i])); cand = cand.filter(i => H[i] <= mn + 1);
+  const w = cand.map(i => H[i] === mn ? 2 : 1), tot = w.reduce((a,b) => a+b, 0); let r = Math.random()*tot, p = cand[cand.length-1];
+  for (let i = 0; i < cand.length; i++){ r -= w[i]; if (r < 0){ p = cand[i]; break; } }
+  let out = [...o]; out.splice(p, 0, ans);
+  if (n > 2 && card.lastSig === optSig(out)){ const idx = [...Array(n).keys()].filter(i => i !== p); [out[idx[0]], out[idx[1]]] = [out[idx[1]], out[idx[0]]]; }
+  H[p]++; card.pos = H; card.lastAi = p; card.lastSig = optSig(out);
+  return out;
+}
 function qcmOptions(card){
   const ans = card.a.trim();
-  if (isQcmCard(card)){ const o = [ans, ...card.wrong.map(w=>String(w).trim()).filter(w=>w && w!==ans)].slice(0,5); for (let k=o.length-1;k>0;k--){ const j = Math.floor(Math.random()*(k+1)); [o[k],o[j]] = [o[j],o[k]]; } return o; }
+  if (isQcmCard(card)) return placeAnswer(card, ans, [...new Set(card.wrong.map(w=>String(w).trim()).filter(w=>w && w!==ans))].slice(0,4));
   const distinct = pool => [...new Set(pool.filter(c => c.id!==card.id).map(c => c.a.trim()).filter(a => a && a!==ans))];
   let others = distinct(state.fc.cards.filter(c => c.deck===card.deck));
   if (others.length < 3) others = distinct(state.fc.cards);
   if (others.length < 3) return null;
   const L = ans.length;
   const picks = others.map(a => ({ a, d: Math.abs(a.length-L)/Math.max(L,8) + Math.random()*.45 })).sort((x,y)=>x.d-y.d).slice(0,3).map(x=>x.a);
-  const opts = [ans, ...picks];
-  for (let k=opts.length-1;k>0;k--){ const j = Math.floor(Math.random()*(k+1)); [opts[k],opts[j]] = [opts[j],opts[k]]; }
-  return opts;
+  return placeAnswer(card, ans, picks);
 }
 const mention = n => n>=16 ? 'Très bien' : n>=14 ? 'Bien' : n>=12 ? 'Assez bien' : n>=10 ? 'Passable' : 'À retravailler';
 function startReviewList(list, deckId){
@@ -2565,6 +2585,7 @@ function fcCardSheet(card, prefill){
       <div class="field"><label for="c-chap">Chapitre</label><input id="c-chap" list="c-chaps" maxlength="60" value="${card && card.chap ? esc(card.chap) : ''}" placeholder="Facultatif"><datalist id="c-chaps">${chapsOf(pre).map(x=>`<option value="${esc(x)}">`).join('')}</datalist></div></div>
     <div class="field" id="c-new-f" hidden><label for="c-new">Nom de la nouvelle matière</label><input id="c-new" maxlength="40"></div>
     <div class="field"><label for="c-tags">Notions (facultatif, séparées par des virgules)</label><input id="c-tags" maxlength="200" value="${card && card.tags ? esc(card.tags.join(', ')) : ''}" placeholder="Ex. TVA, crédit d’impôt"></div>
+    <div class="field"><label for="c-why">Correction détaillée (facultatif)</label><textarea id="c-why" style="font-family:var(--f-body);font-size:15px;min-height:80px" placeholder="Pourquoi c’est la bonne réponse, et pourquoi les pièges sont faux">${card && card.why ? esc(card.why) : ''}</textarea></div>
     <div class="field"><span class="lab">Image (schéma, tableau, graphique)</span>
       <div class="imgrow"><div class="imgprev" id="c-prev">${img ? `<img data-img="${img}" alt="Image de la carte">` : '<span>Aucune</span>'}</div>
         <div class="imgbtns"><label class="btn sm filebtn">Choisir<input type="file" id="c-img" accept="image/*"></label><button type="button" class="btn sm" id="c-img-del" ${img?'':'hidden'}>Retirer</button></div></div>
@@ -2607,7 +2628,7 @@ function fcCardSheet(card, prefill){
       if (imgData){ if (img && !removed) IMG.del(img).catch(()=>{}); imgId = uid(); IMG.put(imgId, imgData).catch(() => toast('Image non enregistrée : stockage du navigateur indisponible')); }
       const wrong = ctype==='qcm' ? wIns.map(i=>i.value.trim()).filter(w=>w && w!==a) : [];
       if (ctype==='qcm' && !wrong.length){ lenP.textContent = 'Ajoute au moins une mauvaise réponse.'; lenP.classList.add('warnt'); wIns[0].focus(); return; }
-      const fields = { q, a, deck:d.id, chap, tags:tagsOf(s.querySelector('#c-tags').value), img:imgId || null, imgSide:side, wrong: ctype==='qcm' ? wrong : null };
+      const fields = { q, a, deck:d.id, chap, why:s.querySelector('#c-why').value.trim() || null, tags:tagsOf(s.querySelector('#c-tags').value), img:imgId || null, imgSide:side, wrong: ctype==='qcm' ? wrong : null };
       let me = card;
       if (card){ Object.assign(card, fields); delete card.ex; }
       else { me = { id:uid(), add:todayKey(), ...fields, due:todayKey(), ivl:0, ease:2.5, reps:0, lapses:0, seen:false }; state.fc.cards.push(me); }
@@ -3395,7 +3416,7 @@ const HELP = {
     ['calendar','Chaque carte revue dans la semaine','Aucune carte n’attend plus de 7 jours, et les nouvelles cartes sont toutes découvertes en 7 jours. Le panneau « Ta semaine de révision » montre la charge des 7 prochains jours.'],
     ['trophy','Examens /20','Sur une matière, « Valider » un chapitre lance un QCM noté : chapitre validé à partir de 12/20.'],
     ['shuffle','Révision mélangée','Onglet en haut : les cartes alternent entre plusieurs matières, ce qui fait mieux retenir à long terme.'],
-    ['tasks','Ajouter des cartes','Écris une carte (question/réponse ou QCM), ou importe un fichier .csv : question ; réponse ; matière ; chapitre ; mauvaises réponses (séparées par |) ; notions (séparées par des virgules). Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous (« Copier le prompt »), puis importe le fichier qu’il te renvoie.'],
+    ['tasks','Ajouter des cartes','Écris une carte (question/réponse ou QCM), ou importe un fichier .csv : question ; réponse ; matière ; chapitre ; mauvaises réponses (séparées par |) ; notions (séparées par des virgules) ; correction détaillée. Réimporter un fichier avec la colonne correction complète les cartes déjà présentes. Le plus simple : envoie ton cours à Claude avec le prompt ci-dessous (« Copier le prompt »), puis importe le fichier qu’il te renvoie.'],
     ['flag','Pack Culture générale','En bas de l’onglet : pays à placer sur la carte (touche le pays ; les petits sont marqués d’un point), capitales, monnaies, zone euro et UE, institutions, éco et fiscalité. Choisis les thèmes : chacun devient un chapitre, validable avec un examen /20.'],
     ['grid','Dossiers','Regroupe plusieurs matières dans un dossier (ex. « Semestre 5 », « UE Finance ») : ouvre une matière, « Modifier », puis tape le nom du dossier. Le dossier se replie, affiche ses statistiques et propose « Réviser le dossier ».'],
     ['star','Outils d’une matière','Bouton « Modifier » : renommer, changer la couleur, ajouter les cartes inverses (réponse → question) ou partager la matière avec un camarade.'] ] },
@@ -4109,8 +4130,26 @@ function optNote(c, opt){
   if (c.map && byName) return `${o} : capitale ${byName.cap || '—'}, ${REGN[byName.r]}.`;
   return '';
 }
-const whyHtml = (c, picked) => { const w = packWhy(c); if (!w) return ''; const n = picked && picked.trim()!==c.a.trim() ? optNote(c, picked) : '';
-  return `<div class="why"><b>Explication</b><p>${esc(w)}</p>${n ? `<p class="wn">Ta réponse : ${esc(n)}</p>` : ''}</div>`; };
+function otherAnswerNote(c, picked){
+  const o = String(picked).trim(), x = state.fc.cards.find(y => y.id!==c.id && y.a.trim()===o && y.deck===c.deck) || state.fc.cards.find(y => y.id!==c.id && y.a.trim()===o);
+  return x ? `« ${o} » est la réponse à une autre question : « ${x.q.replace(/\s+/g,' ').slice(0,140)} »` : '';
+}
+function relatedCards(c){
+  const tg = new Set((c.tags||[]).map(t => t.toLowerCase()));
+  return state.fc.cards.filter(y => y.id!==c.id && y.deck===c.deck && ((c.chap && y.chap===c.chap && (y.tags||[]).some(t => tg.has(t.toLowerCase()))) || (!c.chap && (y.tags||[]).some(t => tg.has(t.toLowerCase()))))).slice(0,2);
+}
+const whyHtml = (c, picked) => {
+  const w = c.why || packWhy(c), bad = picked != null && String(picked).trim() !== c.a.trim();
+  if (!w && !bad) return '';
+  const n = bad ? (optNote(c, picked) || otherAnswerNote(c, picked)) : '', rel = bad ? relatedCards(c) : [];
+  const ctx = [c.chap ? `Chapitre : ${c.chap}` : '', c.tags && c.tags.length ? `Notions : ${c.tags.join(', ')}` : ''].filter(Boolean).join(' · ');
+  return `<div class="why ${bad ? 'bad' : ''}"><b>${bad ? 'Correction' : 'Explication'}</b>
+    ${bad ? `<p class="wr">Tu as répondu « ${esc(picked)} ». La bonne réponse est <strong>${fmtText(c.a)}</strong>.</p>` : ''}
+    ${w ? `<p>${fmtText(w)}</p>` : ''}${n ? `<p class="wn">${esc(n)}</p>` : ''}
+    ${bad && !w && ctx ? `<p class="wn">${esc(ctx)}</p>` : ''}
+    ${rel.length ? `<div class="wrel"><span>À relier avec</span>${rel.map(y => `<p><b>${fmtText(y.q)}</b> ${fmtText(y.a)}</p>`).join('')}</div>` : ''}
+    ${bad && !w ? '<p class="wn wadd">Pas encore de correction rédigée pour cette carte : ajoute-la dans « Modifier », ou réimporte le fichier avec la 7e colonne.</p>' : ''}</div>`;
+};
 
 /* ---------- Notions : lien entre un examen et les cartes ---------- */
 const normN = s => String(s||'').toLowerCase().replace(/œ/g,'oe').replace(/æ/g,'ae').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’'`]/g,' ').replace(/[^a-z0-9%]+/g,' ').trim();
@@ -4171,27 +4210,29 @@ function examCardsSheet(ex){
 /* ---------- Guide d'import ---------- */
 const IMPORT_PROMPT = `Transforme ce cours en flashcards pour mon appli Tempo.
 
-Format : un fichier .csv, une carte par ligne, sans ligne d’en-tête, 6 colonnes séparées par un point-virgule :
-question ; réponse ; matière ; chapitre ; mauvaises réponses ; notions
+Format : un fichier .csv, une carte par ligne, sans ligne d’en-tête, 7 colonnes séparées par un point-virgule :
+question ; réponse ; matière ; chapitre ; mauvaises réponses ; notions ; correction
 
 - Matière : [nom de la matière, ex. Fiscalité]
 - Chapitre : le chapitre du cours d’où vient la carte (même orthographe pour toutes les cartes d’un chapitre).
 - Mauvaises réponses : 3 propositions fausses séparées par | , plausibles et de longueur proche de la bonne réponse (pour le mode QCM). Laisse vide si ça n’a pas de sens.
 - Notions : 2 à 4 mots-clés séparés par des virgules, avec les abréviations et synonymes (ex. IS, impôt sur les sociétés). Ils servent à relier la carte à mes examens.
+- Correction : 2 à 4 phrases qui expliquent pourquoi la bonne réponse est juste (règle, article, calcul ou raisonnement), puis pourquoi chaque mauvaise réponse est un piège. C’est ce que je lis quand je me trompe : sois précis et pédagogique.
+- Toutes les propositions du QCM doivent avoir une longueur proche : la bonne réponse ne doit jamais être la plus longue.
 - Une seule idée par carte, réponse courte et précise. Couvre toutes les notions importantes du cours (définitions, formules, taux, comptes, exemples).
 - N’utilise jamais de point-virgule dans le texte (mets une virgule). Pour un retour à la ligne, écris \\n.
 - Formules : x^2 pour un exposant, CF_{t} pour un indice, frac{a}{b} pour une fraction, **mot** pour du gras.`;
-const IMPORT_EXAMPLE = `Taux normal de TVA en France ? ; 20 % ; Fiscalité ; La TVA ; 19,6 %|21 %|18 % ; TVA, taux
-Compte de TVA collectée ? ; 44571 ; Comptabilité ; Écritures courantes ; 44566|44562|44551 ; TVA, PCG
-Taux réduit d’IS des PME ? ; 15 % jusqu’à 42 500 € ; Fiscalité ; Impôt sur les sociétés ; 15 % jusqu’à 38 120 €|10 % jusqu’à 42 500 €|20 % jusqu’à 42 500 € ; IS, impôt sur les sociétés, PME`;
+const IMPORT_EXAMPLE = `Taux normal de TVA en France ? ; 20 % ; Fiscalité ; La TVA ; 19,6 %|21 %|18 % ; TVA, taux ; Le taux normal est de 20 % depuis 2014 (article 278 du CGI). 19,6 % était l’ancien taux, 21 % est le taux belge, 18 % n’existe pas en France.
+Compte de TVA collectée ? ; 44571 ; Comptabilité ; Écritures courantes ; 44566|44562|44551 ; TVA, PCG ; La TVA collectée sur les ventes est une dette envers l’État, au crédit du 44571. 44566 et 44562 sont de la TVA déductible (achats, immobilisations) et 44551 la TVA à décaisser.
+Taux réduit d’IS des PME ? ; 15 % jusqu’à 42 500 € ; Fiscalité ; Impôt sur les sociétés ; 15 % jusqu’à 38 120 €|10 % jusqu’à 42 500 €|20 % jusqu’à 42 500 € ; IS, impôt sur les sociétés, PME ; Les PME éligibles paient 15 % sur les 42 500 premiers euros de bénéfice, puis 25 %. 38 120 € était l’ancien plafond (avant 2023).`;
 function importGuideHtml(open){
-  return `<details class="iguide" ${open?'open':''}><summary><span><b>Format et prompt pour Claude</b><small>Les 6 colonnes, un exemple, et le texte à m’envoyer avec ton cours</small></span><i aria-hidden="true"></i></summary><div class="foldin">
+  return `<details class="iguide" ${open?'open':''}><summary><span><b>Format et prompt pour Claude</b><small>Les 7 colonnes, un exemple, et le texte à m’envoyer avec ton cours</small></span><i aria-hidden="true"></i></summary><div class="foldin">
     <ol class="steps"><li>Envoie ton cours (Word, PDF, photo ou texte) à Claude avec le prompt ci-dessous, en complétant la matière.</li><li>Enregistre le fichier .csv qu’il te renvoie, ou copie son contenu.</li><li>Ici : « Fichier », ou colle le texte, puis « Importer ». Choisis l’examen à relier si besoin.</li></ol>
-    <div class="cols"><span class="lab">Les colonnes, séparées par ;</span><table class="ctab"><tr><td>1</td><td><b>Question</b></td><td>obligatoire</td></tr><tr><td>2</td><td><b>Réponse</b></td><td>obligatoire</td></tr><tr><td>3</td><td><b>Matière</b></td><td>créée si elle n’existe pas</td></tr><tr><td>4</td><td><b>Chapitre</b></td><td>regroupe les cartes, examens /20</td></tr><tr><td>5</td><td><b>Mauvaises réponses</b></td><td>séparées par |, pour le QCM</td></tr><tr><td>6</td><td><b>Notions</b></td><td>mots-clés séparés par des virgules, relient la carte aux examens</td></tr></table></div>
+    <div class="cols"><span class="lab">Les colonnes, séparées par ;</span><table class="ctab"><tr><td>1</td><td><b>Question</b></td><td>obligatoire</td></tr><tr><td>2</td><td><b>Réponse</b></td><td>obligatoire</td></tr><tr><td>3</td><td><b>Matière</b></td><td>créée si elle n’existe pas</td></tr><tr><td>4</td><td><b>Chapitre</b></td><td>regroupe les cartes, examens /20</td></tr><tr><td>5</td><td><b>Mauvaises réponses</b></td><td>séparées par |, pour le QCM</td></tr><tr><td>6</td><td><b>Notions</b></td><td>mots-clés séparés par des virgules, relient la carte aux examens</td></tr><tr><td>7</td><td><b>Correction</b></td><td>explication affichée après la réponse, surtout quand tu te trompes</td></tr></table></div>
     <span class="lab">Exemple</span><pre class="iex">${esc(IMPORT_EXAMPLE)}</pre>
     <span class="lab">Le prompt à copier</span><pre class="iex prompt">${esc(IMPORT_PROMPT)}</pre>
     <button type="button" class="btn primary" data-copy-prompt="1">Copier le prompt</button>
-    <p class="fine">Aussi accepté : tabulations au lieu de ; (copier-coller depuis Excel), ou un fichier JSON avec les champs question, reponse, matiere, chapitre, faux, notions.</p></div></details>`;
+    <p class="fine">Aussi accepté : tabulations au lieu de ; (copier-coller depuis Excel), ou un fichier JSON avec les champs question, reponse, matiere, chapitre, faux, notions, correction. Réimporter un fichier avec des corrections les ajoute aux cartes déjà présentes, sans toucher à leur progression.</p></div></details>`;
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-copy-prompt]'); if (!b) return;
   const ok = () => { b.textContent = 'Prompt copié'; setTimeout(() => b.textContent = 'Copier le prompt', 2000); };
@@ -6125,7 +6166,7 @@ function iaeDeckCards(s){
   return state.fc.cards.filter(c => { if (c.map || c.img) return false; const d = deckOf(c.deck), dn = d ? d.name : '';
     if (/score|iae/i.test(dn)) return iaeSecOf(c.chap || '') === s; return s==='ang' && /^(anglais|english)/i.test(dn); });
 }
-function iaeFromCard(c, s){ const opts = qcmOptions(c); if (!opts) return null; const ai = opts.indexOf(c.a.trim()); return ai < 0 ? null : { s, q:c.q, opts, ai, why:'', cid:c.id }; }
+function iaeFromCard(c, s){ const opts = qcmOptions(c); if (!opts) return null; const ai = opts.indexOf(c.a.trim()); return ai < 0 ? null : { s, q:c.q, opts, ai, why:c.why || '', cid:c.id }; }
 function iaePick(s, n){
   if (s==='mix'){ const per = Math.max(1, Math.ceil(n/4)); return shuf(IAE_KEYS.flatMap(k => iaePick(k, per))).slice(0, n); }
   const mine = shuf(iaeDeckCards(s)).map(c => iaeFromCard(c, s)).filter(Boolean);
@@ -6277,7 +6318,7 @@ function drawTrip(){
   const next = `<button class="btn primary trbig" data-tr="next">Suivant</button>`;
   if (it.t==='card'){
     const c = state.fc.cards.find(x => x.id===it.id); if (!c){ T.i++; if (T.i >= T.items.length) return tripFinish(); return drawTrip(); }
-    const d = deckOf(c.deck), mid = `<div class="card fcard" style="--dc:${deckColor(d)}"><span class="fdeck">${esc(d ? d.name : 'Carte')}</span><div class="fq">${fmtText(c.q)}</div>${T.step==='a' && !it.opts ? `<div class="fa">${fmtText(c.a)}</div>` : ''}</div>`;
+    const d = deckOf(c.deck), mid = `<div class="card fcard" style="--dc:${deckColor(d)}"><span class="fdeck">${esc(d ? d.name : 'Carte')}</span><div class="fq">${fmtText(c.q)}</div>${T.step==='a' && !it.opts ? `<div class="fa">${fmtText(c.a)}</div>` : ''}${T.step==='a' ? whyHtml(c, it.opts ? it.opts[T.pick] : null) : ''}</div>`;
     if (it.opts) tripEl.innerHTML = shell(mid, T.step==='a' ? `<div class="qopts">${optBtns(it.opts, it.ai)}</div>${next}` : `<div class="qopts">${optBtns(it.opts, it.ai)}</div>`, head);
     else tripEl.innerHTML = shell(mid, T.step==='q' ? `<button class="btn primary trbig" data-tr="show">Voir la réponse</button>` : `<div class="trrow"><button class="btn trbig" data-tr="no">À revoir</button><button class="btn primary trbig" data-tr="yes">Je savais</button></div>`, head);
     return;
