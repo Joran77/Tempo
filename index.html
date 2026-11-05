@@ -1132,6 +1132,7 @@ input::-webkit-datetime-edit{padding:0}
 .field select{max-width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .hwbtn .btn.primary{flex:1 1 auto;min-width:0;white-space:nowrap}
 @media (max-width:360px){.hring{width:112px;height:112px}.hsum{gap:12px;padding:14px}.hnums b{font-size:15px}.hwbtn .btn{padding:0 8px}}
+.excmore{display:block;width:100%;border:1px dashed var(--line);border-radius:var(--r);background:none;padding:11px;font-weight:600;color:var(--accent);margin:0 0 4px}
 /* Interactions */
 
 
@@ -2770,10 +2771,10 @@ function vPartiels(){
 }
 function examCountdowns(){
   ensurePartiels(); const tk = todayKey();
-  const up = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 60).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,2);
+  const all = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 60).sort((a,b)=>a.date.localeCompare(b.date)), up = all.slice(0,4), more = all.length - up.length;
   return up.map(ex => { const d = daysUntil(ex.date), st = partielStats(ex);
     return `<button class="excd ${urgency(d)}" data-go="agenda" data-seg="examens"><span class="jx"><b class="mono">${cdLabel(d)}</b></span>
-      <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${st.done}/${st.total} révisions${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('');
+      <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${st.done}/${st.total} révisions${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('') + (more > 0 ? `<button class="more-row excmore" data-go="agenda" data-seg="examens">+ ${more} autre${more>1?'s':''} examen${more>1?'s':''} à venir</button>` : '');
 }
 function partielSheet(ex, preset){
   ensurePartiels(); ensureFc(); const isNew = !ex;
