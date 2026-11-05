@@ -1200,6 +1200,14 @@ nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,v
 .mn:active rect{transform:scale(.98);transform-box:fill-box;transform-origin:center;transition:transform .1s}
 .mmans{margin:10px 0}
 .mn.mpit rect{stroke:var(--danger);fill:var(--danger-soft)}.mn.mpit text{fill:var(--danger);font-weight:600}
+.evvoice{margin-top:10px}.evvoice audio{width:100%;height:40px;margin-bottom:4px}
+.evvbtn{width:100%;display:flex;gap:8px;justify-content:center;align-items:center}.evvbtn svg{width:18px;height:18px}
+.evrec{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.evdot{width:10px;height:10px;border-radius:50%;background:var(--danger);animation:evp 1s ease-in-out infinite}
+@keyframes evp{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.evdot{animation:none}}
+.evvrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.jentry audio{width:100%;height:36px;margin:4px 0}
 /* Interactions */
 
 
@@ -3124,12 +3132,45 @@ function mitSheet(){
 }
 
 /* ---------- Bilan du soir ---------- */
+/* ---------- Bilan du soir : vocal (enregistrement + transcription si dispo) ---------- */
+const MIC_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+const EVV = { rec:null, chunks:[], t0:0, timer:null, data:null, dur:0, sr:null, base:'' };
+const evRecHtml = () => `<button type="button" class="btn evvbtn evrec" data-evv="stop"><i class="evdot"></i><span>Enregistrement… <b class="mono" id="ev-vt">${fmtTime(Date.now() - EVV.t0)}</b> · Arrêter</span></button><p class="fine">Raconte ce que tu as appris et ce qui a été difficile.${EVV.sr ? ' Le texte s’écrit aussi au-dessus.' : ''}</p>`;
+function evVoiceHtml(){
+  return `<div class="evvoice" id="ev-voice">${EVV.rec ? evRecHtml() : EVV.data ? `<audio controls src="${EVV.data}"></audio><div class="evvrow"><span class="fine">Vocal de ${fmtTime(EVV.dur)} prêt, enregistré avec le bilan</span><button type="button" class="link" data-evv="del">Supprimer</button></div>`
+    : `<button type="button" class="btn evvbtn" data-evv="rec">${MIC_SVG}<span>Faire mon bilan en vocal</span></button>`}</div>`;
+}
+function evVoiceRefresh(){ const el = document.getElementById('ev-voice'); if (el) el.outerHTML = evVoiceHtml(); }
+async function evVoiceStart(btn){
+  if (!navigator.mediaDevices || !window.MediaRecorder){ toast('Enregistrement vocal impossible ici : utilise la dictée du clavier (micro)'); return; }
+  let stream; try { stream = await navigator.mediaDevices.getUserMedia({ audio:true }); } catch(_){ toast('Micro refusé : autorise-le dans les réglages du navigateur'); return; }
+  const mime = ['audio/mp4','audio/webm;codecs=opus','audio/webm'].find(m => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(m)) || '';
+  const rec = new MediaRecorder(stream, mime ? { mimeType:mime } : undefined);
+  EVV.rec = rec; EVV.chunks = []; EVV.t0 = Date.now();
+  rec.ondataavailable = e => { if (e.data && e.data.size) EVV.chunks.push(e.data); };
+  rec.onstop = () => { stream.getTracks().forEach(t => t.stop()); clearInterval(EVV.timer); EVV.dur = Date.now() - EVV.t0;
+    const blob = new Blob(EVV.chunks, { type:rec.mimeType || mime || 'audio/mp4' }), fr = new FileReader();
+    fr.onload = () => { EVV.data = fr.result; EVV.rec = null; evVoiceRefresh(); }; fr.readAsDataURL(blob); };
+  rec.start(1000);
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition, ta = document.getElementById('ev-l');
+  if (SR && ta){ try { const sr = new SR(); sr.lang = 'fr-FR'; sr.continuous = true; sr.interimResults = true; EVV.base = ta.value.trim(); EVV.sr = sr;
+    sr.onresult = e => { let fin = '', tmp = ''; for (let i = 0; i < e.results.length; i++){ const r = e.results[i]; (r.isFinal ? (fin += r[0].transcript + ' ') : (tmp += r[0].transcript)); }
+      const t = document.getElementById('ev-l'); if (t) t.value = [EVV.base, (fin + tmp).trim()].filter(Boolean).join(EVV.base ? '\n' : ''); };
+    sr.onerror = () => {}; sr.start(); } catch(_){ EVV.sr = null; } }
+  const el = document.getElementById('ev-voice');
+  if (el) el.innerHTML = evRecHtml();
+  EVV.timer = setInterval(() => { const t = document.getElementById('ev-vt'), ms = Date.now() - EVV.t0; if (t) t.textContent = fmtTime(ms); if (ms > 180000) evVoiceStop(); }, 500);
+}
+function evVoiceStop(){ if (EVV.sr){ try { EVV.sr.stop(); } catch(_){} EVV.sr = null; } if (EVV.rec && EVV.rec.state !== 'inactive') EVV.rec.stop(); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-evv]'); if (!b) return; e.preventDefault();
+  const a = b.dataset.evv; if (a==='rec') evVoiceStart(b); else if (a==='stop') evVoiceStop(); else if (a==='del'){ EVV.data = null; EVV.dur = 0; evVoiceRefresh(); } });
+function journalAudioHydrate(el){ (el||document).querySelectorAll('audio[data-voice]:not([src])').forEach(au => IMG.get(au.dataset.voice).then(v => { if (v) au.src = v; else au.remove(); }).catch(() => au.remove())); }
 function eveningCard(){
   const h = new Date().getHours(), tk = todayKey(), J = state.journal[tk];
-  if (J) return `<button class="wide evdone" data-journal="1" style="--qc:var(--c-alt)"><span class="qi">${bicon('moon')}</span><span class="qtx"><b>Bilan du soir fait</b><span>${esc(J.learned)}</span></span><span class="go">Journal</span></button>`;
+  if (J) return `<button class="wide evdone" data-journal="1" style="--qc:var(--c-alt)"><span class="qi">${bicon('moon')}</span><span class="qtx"><b>Bilan du soir fait${J.voice ? ' · vocal' : ''}</b><span>${esc(J.learned)}</span></span><span class="go">Journal</span></button>`;
   if (h < 17) return '';
   return `<section><h2>Bilan du soir <button class="link" data-journal="1">Journal</button></h2><div class="card pad evening">
-    <div class="field"><label for="ev-l">Qu’est-ce que j’ai appris aujourd’hui ?</label><textarea id="ev-l" style="font-family:var(--f-body);font-size:15px;min-height:80px" placeholder="Ex. la différence entre TVA collectée et TVA déductible"></textarea></div>
+    <div class="field"><label for="ev-l">Qu’est-ce que j’ai appris aujourd’hui ?</label><textarea id="ev-l" style="font-family:var(--f-body);font-size:15px;min-height:80px" placeholder="Ex. la différence entre TVA collectée et TVA déductible"></textarea>${evVoiceHtml()}</div>
     <div class="field"><label for="ev-h">Qu’est-ce qui a été difficile ? <small class="opt">facultatif</small></label><input id="ev-h" maxlength="200"></div>
     <div class="field"><label for="ev-t">Une chose à faire demain ? <small class="opt">ajoutée à l’agenda</small></label><input id="ev-t" maxlength="120"></div>
     <p id="ev-msg" class="fine" role="status"></p>
@@ -3138,16 +3179,18 @@ function eveningCard(){
 }
 function saveEvening(){
   const l = $('#ev-l').value.trim(), h = $('#ev-h').value.trim(), t = $('#ev-t').value.trim();
-  if (!l){ $('#ev-msg').textContent = 'Écris au moins une chose apprise aujourd’hui.'; $('#ev-l').focus(); return; }
-  state.journal[todayKey()] = { learned:l, hard:h };
+  if (EVV.rec){ $('#ev-msg').textContent = 'Arrête d’abord l’enregistrement.'; return; }
+  if (!l && !EVV.data){ $('#ev-msg').textContent = 'Écris ou dis au moins une chose apprise aujourd’hui.'; $('#ev-l').focus(); return; }
+  const tkj = todayKey(); state.journal[tkj] = { learned:l || 'Bilan vocal', hard:h };
+  if (EVV.data){ const vid = 'voice-' + tkj; IMG.put(vid, EVV.data).catch(() => toast('Le vocal n’a pas pu être gardé')); state.journal[tkj].voice = vid; state.journal[tkj].vdur = Math.round(EVV.dur/1000); EVV.data = null; EVV.dur = 0; }
   if (t) state.tasks.push({ id:uid(), title:t, date:key(addDays(new Date(),1)), cat:'cours', prio:false, done:false });
   commit(); toast(t ? 'Bilan enregistré, tâche ajoutée pour demain' : 'Bilan enregistré');
 }
 function journalSheet(){
   const E = Object.entries(state.journal).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,60);
   sheet(`<h3>Mon journal</h3><p>${E.length} bilan${E.length>1?'s':''} du soir.</p>
-    <div class="jlist">${E.map(([d,j])=>`<div class="jentry"><span class="lab">${fmt(parse(d),{weekday:'long',day:'numeric',month:'long'})}</span><p>${esc(j.learned)}</p>${j.hard ? `<p class="jhard"><b>Difficile :</b> ${esc(j.hard)}</p>` : ''}<button class="link" data-j-card="${d}">Créer une flashcard</button></div>`).join('') || '<p class="fine">Ton premier bilan apparaîtra ici. Il se remplit sur l’accueil à partir de 17 h.</p>'}</div>
-    <div class="btns"><button class="btn" data-close>Fermer</button></div>`, s => {
+    <div class="jlist">${E.map(([d,j])=>`<div class="jentry"><span class="lab">${fmt(parse(d),{weekday:'long',day:'numeric',month:'long'})}</span><p>${esc(j.learned)}</p>${j.voice ? `<audio controls preload="none" data-voice="${j.voice}"></audio>` : ''}${j.hard ? `<p class="jhard"><b>Difficile :</b> ${esc(j.hard)}</p>` : ''}<button class="link" data-j-card="${d}">Créer une flashcard</button></div>`).join('') || '<p class="fine">Ton premier bilan apparaîtra ici. Il se remplit sur l’accueil à partir de 17 h.</p>'}</div>
+    <div class="btns"><button class="btn" data-close>Fermer</button></div>`, s => { journalAudioHydrate(s);
     s.addEventListener('click', e => { const b = e.target.closest('[data-j-card]'); if (!b) return; const j = state.journal[b.dataset.jCard]; close(); ensureFc(); setTimeout(() => fcCardSheet(null, { a:j.learned }), 240); });
   });
 }
