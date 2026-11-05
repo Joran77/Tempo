@@ -1118,6 +1118,7 @@ nav.tabs .tday[aria-current="page"]{color:var(--accent)}
 .tdh{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tdm{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px;text-align:left;font:inherit;color:inherit;min-width:0}
 .tdm b{font-size:19px}.tdm small{color:var(--muted);font-size:11.5px}.tdm .bar{width:100%;margin-top:6px}.tdm .btn{margin-top:6px;width:100%;padding:6px 4px;font-size:12.5px}
+.tdsw{margin:0 0 12px}.tdsw button{display:inline-flex;align-items:center;justify-content:center;gap:6px}.tdsw svg{width:16px;height:16px}
 /* Interactions */
 
 
@@ -6374,6 +6375,7 @@ function v3Click(e){
   else if (a==='mj-sport') goMode('health', 'h-sport');
   else if (a==='mj-meals'){ ui.rseg = 'semaine'; goMode('health', 'h-repas'); }
   else if (a==='mj-weigh') goMode('health', 'h-jour');
+  else if (a==='td-mode'){ if (k !== appMode){ goMode(k, 'today'); toast(k==='health' ? 'Barre du bas : Santé' : 'Barre du bas : Révisions'); } }
   else if (a==='td-health') goMode('health', 'h-jour');
   else if (a==='td-steps') goMode('health', 'h-sport');
   else if (a==='td-water'){ hDay(todayKey()).water++; commit(); }
@@ -6417,7 +6419,8 @@ function vToday(){
       <button class="card tdm" data-v3="td-health"><span class="lab">Calories</span><b class="mono">${nf(Math.abs(rest))}</b><small>${rest >= 0 ? 'kcal restantes' : 'kcal au-dessus'}</small><span class="bar"><i style="width:${Math.min(100, goal ? 100*S.kcal/goal : 0)}%"></i></span></button>
       <div class="card tdm"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} L</b><small>sur ${nf(T.water)} L</small><button class="btn sm primary" data-v3="td-water">+ 1 verre</button></div>
       <button class="card tdm" data-v3="td-steps"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><small>sur ${nf(T.steps)}</small><span class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></span></button></div></section>`; })() : '';
-  return `<div class="card hero tdhero">${ring(done, tl.length)}<div><strong>${hello}</strong><p>${fmt(now,{weekday:'long',day:'numeric',month:'long'})}</p>
+  const sw = `<div class="seg tdsw" role="group" aria-label="Espace">${[['study','Révisions',bicon('cards')],['health','Santé',bicon('heart')]].map(([k,l,ic]) => `<button data-v3="td-mode" data-k="${k}" aria-pressed="${appMode===k}">${ic}${l}</button>`).join('')}</div>`;
+  return `${sw}<div class="card hero tdhero">${ring(done, tl.length)}<div><strong>${hello}</strong><p>${fmt(now,{weekday:'long',day:'numeric',month:'long'})}</p>
       <p class="fine">${bits.length ? 'Au programme : ' + bits.join(' et ') + '.' : 'Rien d’urgent : profite, ou avance sur la suite.'}</p></div></div>
     ${cloudCard()}
     ${dayCard('t')}
@@ -6428,6 +6431,7 @@ function vToday(){
     <section><h2>Pour avancer</h2>${v3Tiles()}</section>`;
 }
 HELP.today = { t:'Aujourd’hui', i:'Ta journée en un seul écran, que tu sois dans l’espace Études ou Santé. L’onglet reste toujours à gauche de la barre du bas.', s:[
+  ['shuffle','Révisions ou Santé','Le sélecteur en haut change les onglets de la barre du bas. Tu restes sur « Aujourd’hui ».'],
   ['tasks','Ma journée','Tâches, cartes à réviser, séance, repas prévus, pesée et Score IAE. Touche une ligne pour ouvrir la bonne page, Tempo change d’espace si besoin.'],
   ['check','Tâches du jour','Coche-les directement ici, comme dans l’agenda.'],
   ['heart','Santé','Calories restantes, eau et pas du jour, si ton profil Santé est créé.'],
