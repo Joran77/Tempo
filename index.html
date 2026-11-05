@@ -30,7 +30,7 @@
   --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --r:16px; --shadow:0 1px 2px rgb(30 35 40 / .05), 0 6px 18px rgb(30 35 40 / .06);
+  --r:16px; --shadow:0 1px 1px rgb(20 30 25 / .04), 0 10px 26px -14px rgb(20 45 36 / .24);
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
@@ -1137,6 +1137,36 @@ input::-webkit-datetime-edit{padding:0}
 .why .wrel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}.why .wrel span{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}.why .wrel p{margin:3px 0 0;font-size:13px}
 .why .wadd{font-size:12px;font-style:italic}
 .why .wrel p b{display:inline;text-transform:none;letter-spacing:0;font-size:inherit;color:var(--fg);margin:0}.why .wrel p b::after{content:" → ";color:var(--muted);font-weight:400}
+/* ===== Passe design : typographie, contraste, hiérarchie, zones tactiles ===== */
+:root{--amber-ink:color-mix(in srgb,var(--amber) 74%,var(--fg));--danger-ink:color-mix(in srgb,var(--danger) 82%,var(--fg))}
+/* Étiquettes en casse de phrase : moins « gabarit », plus lisibles */
+.field label,.lab,.fdeck,.why b,.chint b,.nwhy b,.why .wrel span,.bitem .btier,.ntag,.pcd span,.st,.flash small,.goal .per,.future .tag,.theme .tn em,.hvb,.prio,.brand small{text-transform:none;letter-spacing:.005em}
+.field label,.lab{font-size:12.5px;font-weight:650}
+.fdeck,.why b,.chint b{font-size:12.5px}
+.brand small{letter-spacing:0;font-weight:600}
+/* Titres de section : un cran plus affirmés */
+section h2{font-size:18px;letter-spacing:-.012em}
+/* Contraste des textes colorés (AA) */
+.prio{color:var(--amber-ink);font-size:11.5px}
+.banner button{color:var(--amber-ink)}
+.chip.cours{color:color-mix(in srgb,var(--c-cours) 84%,var(--fg))}
+.chip.alternance{color:color-mix(in srgb,var(--c-alt) 84%,var(--fg))}
+.chip.perso{color:var(--amber-ink)}
+.chint b{color:var(--amber-ink)}
+/* Zones tactiles d'au moins 44 px sans changer le dessin */
+.link,.check,.more,.scheck,.star{position:relative}
+.link::after,.check::after,.more::after,.scheck::after,.star::after{content:"";position:absolute;inset:-12px -5px}
+nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,var(--fg))}
+.icon-btn{min-width:36px;min-height:36px}
+.btn.sm{min-height:34px}
+.hwbtn .btn{min-height:34px}
+.seg.mini button{min-height:30px}
+/* Textes trop petits */
+.lv,.hvb{font-size:11.5px}
+.tdi small{font-size:8px}
+/* Les contrôles segmentés restent sur une ligne */
+.seg.c4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.brand small::first-letter{text-transform:uppercase}
 /* Interactions */
 
 
@@ -1273,7 +1303,7 @@ const PALS = {
   nuit:{ name:'Nuit', tag:'Soirée', why:'Fond très sombre et couleurs chaudes, presque sans lumière bleue. Le soir, la lumière bleue des écrans retarde la mélatonine et donc l’endormissement : ce thème la limite au maximum.',
     dark:['#120E0B','#1B1612','#261F19','#F0DCC0','#A68F75','#352A20','#F0A35E','#1A120B','#3B2817','#E8C072','#382B17','#E98A6E','#3B2018','#BFC46E','#D9B58A','#D99C9C','#E8C072'] }
 };
-const SH_L = '0 1px 2px rgb(30 35 40 / .05), 0 6px 18px rgb(30 35 40 / .06)', SH_D = '0 1px 0 rgb(255 255 255 / .02), 0 8px 24px rgb(0 0 0 / .25)';
+const SH_L = '0 1px 1px rgb(20 30 25 / .04), 0 10px 26px -14px rgb(20 45 36 / .24)', SH_D = '0 1px 0 rgb(255 255 255 / .02), 0 8px 24px rgb(0 0 0 / .25)';
 (() => { const blk = (sel, arr, dark) => `${sel}{${PAL_KEYS.map((k,i)=>`--${k}:${arr[i]}`).join(';')};--shadow:${dark?SH_D:SH_L};color-scheme:${dark?'dark':'light'}}`;
   const css = Object.entries(PALS).map(([id,p]) => id==='nuit' ? blk(':root[data-pal="nuit"]', p.dark, true)
     : blk(`:root[data-pal="${id}"][data-tm="light"]`, p.light, false) + blk(`:root[data-pal="${id}"][data-tm="dark"]`, p.dark, true)).join('\n');
@@ -1655,7 +1685,7 @@ function vCalcHome(){
     <div class="field"><span class="lab">Catégorie</span><div class="opts">${[...Object.entries(CALC_CATS),['mix','Mix']].map(([k,l])=>`<button data-c-cat="${k}" aria-pressed="${P.cat===k}">${l}</button>`).join('')}</div></div>
     ${P.cat==='mix'?`<div class="field"><span class="lab">Dans ton mix</span><div class="opts checks">${Object.entries(CALC_CATS).map(([k,l])=>`<button data-c-mix="${k}" aria-pressed="${P.mix.includes(k)}">${P.mix.includes(k)?ICON_CHECK:''}${l}</button>`).join('')}</div></div>`:''}
     <div class="field"><span class="lab">Niveau</span><div class="seg">${[1,2,3].map(l=>`<button data-c-lvl="${l}" aria-pressed="${P.level===l}">${LEVELS[l]}</button>`).join('')}</div></div>
-    <div class="field"><span class="lab">Nombre de calculs</span><div class="seg">${[10,20,30,50].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
+    <div class="field"><span class="lab">Nombre de calculs</span><div class="seg c4">${[10,20,30,50].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
     <button class="btn primary" data-c="start">Commencer</button></div></section>
   ${simCard()}
   ${tipSheetsHtml()}
