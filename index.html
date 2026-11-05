@@ -1174,6 +1174,7 @@ nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,v
 .clist li.sel{background:color-mix(in srgb,var(--danger) 7%,transparent)}.clist li.sel .selbox{background:var(--danger);border-color:var(--danger)}
 .clist button[data-fsel]{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:start}.clist button[data-fsel]>*:not(.selbox){grid-column:2}.clist button[data-fsel] .selbox{grid-row:1/span 3}
 .selbar{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;margin:8px -4px 0;border-radius:16px;background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--shadow)}
+.extoday{color:var(--fg);font-weight:700}
 /* Interactions */
 
 
@@ -2102,6 +2103,7 @@ const ivlLabel = n => n===0 ? '< 10 min' : n===1 ? '1 jour' : n<31 ? `${n} jours
 function grade(g){
   ui.fc.optsFor = null;
   const U = ui.fc, c = U.cur, wasNew = !c.seen, s = schedule(c, g), practice = U.practice && U.practice.has(c.id);
+  if (wasNew && !c.first) c.first = todayKey();
   if (!practice || g===0) Object.assign(c, s, { seen:true });
   if (g===0){ c.lapses += wasNew ? 0 : 1; c.due = todayKey(); U.queue.splice(Math.min(3, U.queue.length), 0, c); if (practice) U.practice.delete(c.id); }
   else if (!practice) c.due = pickDue(s.ivl, c);
@@ -2861,7 +2863,7 @@ function vPartiels(){
       ${pts.length ? `<details class="pplan"><summary>Voir le planning (${pts.length} séance${pts.length>1?'s':''})</summary><ul>${pts.map(t=>`<li class="${t.done?'done':''} ${!t.done && t.date<tk?'late':''}"><button data-px-toggle="${t.id}" aria-label="${t.done?'Marquer à faire':'Marquer comme faite'}"><i>${t.done?ICON_CHECK:''}</i><span class="pd mono">${fmt(parse(t.date),{weekday:'short',day:'numeric'})}</span><span class="pt">${esc(t.title.slice(ex.title.length+3))}</span></button></li>`).join('')}</ul></details>` : ''}
       ${(() => { const L = examCardSets(ex).linked, tests = state.fc.exams.filter(e => e.chap==='exam:'+ex.id), best = tests.length ? Math.max(...tests.map(e=>e.note)) : null;
         return `<div class="xlink"><div><b>${L.length} carte${L.length>1?'s':''} liée${L.length>1?'s':''}</b><span>${L.length ? `${[...new Set(L.map(c=>(deckOf(c.deck)||{}).name).filter(Boolean))].slice(0,3).join(', ')}${best!==null ? ` · meilleure note ${nf20(best)}/20` : ''}` : 'Donne à tes cartes le même chapitre ou la même notion que l’examen.'}</span></div><button class="link" data-px-cards="${ex.id}">Ajuster</button></div>
-        ${L.length ? `<div class="btns"><button class="btn sm primary" data-px-rev="${ex.id}">Réviser ces cartes</button><button class="btn sm" data-px-test="${ex.id}" ${L.length<4?'disabled':''}>Test /20</button></div>` : ''}`; })()}
+        ${L.length ? `<div class="btns"><button class="btn sm primary" data-px-rev="${ex.id}">${(() => { const P = examPlan(ex); return P.today ? `Réviser la part du jour (${P.today})` : 'Réviser ces cartes'; })()}</button><button class="btn sm" data-px-test="${ex.id}" ${L.length<4?'disabled':''}>Test /20</button></div>` : ''}`; })()}
       <div class="btns"><button class="btn sm" data-px-edit="${ex.id}">Modifier</button><button class="btn sm" data-px-import="${ex.id}">Importer des cartes</button></div></div>`; };
   return `${up.length ? `<div class="plist">${up.map(card).join('')}</div>` : `<div class="card empty"><b>Aucun examen à venir</b>Ajoute un partiel : Tempo compte les jours et répartit tes révisions dans l’agenda.</div>`}
     ${past.length ? `<details class="pastx"><summary>Examens passés (${past.length})</summary><div class="plist">${past.map(ex=>`<div class="card pcard past"><div class="phead"><div class="pcd"><b class="mono">✓</b></div><div><h3>${esc(ex.title)}</h3><p>${fmt(parse(ex.date),{day:'numeric',month:'long'})} · ${partielStats(ex).done}/${partielStats(ex).total} révisions faites</p></div></div><div class="btns"><button class="btn sm danger" data-px-del="${ex.id}">Supprimer</button></div></div>`).join('')}</div></details>` : ''}
@@ -2872,7 +2874,7 @@ function examCountdowns(){
   const up = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 7).sort((a,b)=>a.date.localeCompare(b.date));
   return up.map(ex => { const d = daysUntil(ex.date), st = partielStats(ex);
     return `<button class="excd ${urgency(d)}" data-v3="ex-rev" data-k="${ex.id}" aria-label="Réviser ${esc(ex.title)}"><span class="jx"><b class="mono">${cdLabel(d)}</b></span>
-      <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${st.done}/${st.total} révisions${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('');
+      <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${(() => { const t = examTodayLabel(ex); return t ? `<b class="extoday">${t}</b>` : `${st.done}/${st.total} révisions`; })()}${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('');
 }
 function partielSheet(ex, preset){
   ensurePartiels(); ensureFc(); const isNew = !ex;
@@ -2943,7 +2945,7 @@ function partielSheet(ex, preset){
 }
 view.addEventListener('click', e => {
   let b;
-  if ((b = e.target.closest('[data-px-rev]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxRev); if (ex){ reviewCardsList(examCardSets(ex).linked, ex.title); window.scrollTo(0,0); } return; }
+  if ((b = e.target.closest('[data-px-rev]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxRev); if (ex){ examReviewToday(ex); window.scrollTo(0,0); } return; }
   if ((b = e.target.closest('[data-px-test]'))){ partielTest(b.dataset.pxTest); window.scrollTo(0,0); return; }
   if ((b = e.target.closest('[data-px-cards]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxCards); if (ex) examCardsSheet(ex); return; }
   if ((b = e.target.closest('[data-px-import]'))){ ensureFc(); fcImportSheet({ exam:b.dataset.pxImport }); return; }
@@ -2971,6 +2973,7 @@ function activeDays(){
 function activeStreak(){ const s = activeDays(); let n = 0, cur = new Date(); if (!s.has(key(cur))) cur = addDays(cur,-1); while (s.has(key(cur))){ n++; cur = addDays(cur,-1); } return n; }
 function srsApply(c, g, practice){
   const wasNew = !c.seen, s = schedule(c, g);
+  if (wasNew && !c.first) c.first = todayKey();
   if (!practice || g===0) Object.assign(c, s, { seen:true });
   if (g===0){ c.lapses += wasNew ? 0 : 1; c.due = todayKey(); } else if (!practice) c.due = pickDue(s.ivl, c);
   if (wasNew){ const nd = state.fc.newDay; if (nd.d!==todayKey()){ nd.d = todayKey(); nd.n = 0; nd.q = 0; } nd.n++; }
@@ -4250,6 +4253,25 @@ function notionCards(ex, key){
   const { linked } = examCardSets(ex);
   return key ? linked.filter(c => cardLabels(c).some(l => notionMatch(key, l)) || textHas(c, key)) : linked;
 }
+/* Part du jour : les cartes jamais vues sont réparties sur les jours de révision qui restent avant l'examen */
+function examPlan(ex){
+  const tk = todayKey(), L = examCardSets(ex).linked, days = ex.days && ex.days.length ? ex.days : [0,1,2,3,4,5,6];
+  let left = 0; for (let x = parse(tk); key(x) < ex.date; x = addDays(x, 1)) if (days.includes(wdIdx(key(x)))) left++;
+  left = Math.max(1, left);
+  const unseen = L.filter(c => !c.seen), doneToday = L.filter(c => c.first === tk).length, due = L.filter(c => c.seen && c.due <= tk);
+  const quota = Math.max(0, Math.ceil((unseen.length + doneToday) / left) - doneToday);
+  return { L, left, unseen, due, quota, doneToday, newToday:unseen.slice(0, quota), today:due.length + Math.min(quota, unseen.length) };
+}
+function examReviewToday(ex){
+  const P = examPlan(ex);
+  if (!P.L.length) return toast('Aucune carte liée pour l’instant');
+  const list = [...P.due.map(c => ({ c, r:Math.random() })).sort((a,b) => a.r-b.r).map(x => x.c), ...P.newToday];
+  if (!list.length){ toast('Part du jour faite : entraînement libre sur toutes les cartes'); return reviewCardsList(P.L, ex.title); }
+  ui.tab = 'cartes'; ui.fc.exam = null; startReviewList(list, null);
+  ui.fc.label = `${ex.title} · part du jour`; render();
+  toast(`${list.length} carte${list.length>1?'s':''} aujourd’hui : ${P.newToday.length} nouvelle${P.newToday.length>1?'s':''} sur ${P.unseen.length} restantes, ${P.left} jour${P.left>1?'s':''} de révision`);
+}
+const examTodayLabel = ex => { const P = examPlan(ex); return !P.L.length ? '' : P.unseen.length === 0 && !P.due.length ? 'tout est vu' : P.today ? `${P.today} carte${P.today>1?'s':''} aujourd’hui` : 'part du jour faite'; };
 function reviewCardsList(list, label){
   if (!list.length) return toast('Aucune carte liée pour l’instant');
   const tk = todayKey(), due = list.filter(c => !c.seen || c.due <= tk), rest = list.filter(c => c.seen && c.due > tk);
@@ -6520,7 +6542,7 @@ function v3Click(e){
   else if (a==='ex-rev'){ const ex = (state.partiels||[]).find(x => x.id===k); if (!ex) return true;
     if (appMode !== 'study'){ lastTab[appMode] = ui.tab; appMode = 'study'; try { localStorage.setItem('tempo.mode','study'); } catch(_){} document.documentElement.dataset.mode = 'study'; }
     const L = examCardSets(ex).linked;
-    if (L.length){ reviewCardsList(L, ex.title); window.scrollTo(0,0); }
+    if (L.length){ examReviewToday(ex); window.scrollTo(0,0); }
     else { ui.seg = 'examens'; goMode('study', 'agenda'); toast('Aucune carte liée à cet examen : importe ou relie des cartes ici'); } }
   else if (a==='td-mode'){ if (k !== appMode){ goMode(k, 'today'); toast(k==='health' ? 'Barre du bas : Santé' : 'Barre du bas : Révisions'); } }
   else if (a==='td-health') goMode('health', 'h-jour');
