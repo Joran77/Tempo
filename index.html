@@ -1132,10 +1132,11 @@ input::-webkit-datetime-edit{padding:0}
 .field select{max-width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .hwbtn .btn.primary{flex:1 1 auto;min-width:0;white-space:nowrap}
 @media (max-width:360px){.hring{width:112px;height:112px}.hsum{gap:12px;padding:14px}.hnums b{font-size:15px}.hwbtn .btn{padding:0 8px}}
-.why.bad{border-left-color:var(--danger)}.why.bad>b{color:var(--danger)}
+.why{border-left:0}.why.bad{background:color-mix(in srgb,var(--danger) 7%,var(--surface-2))}.why.bad>b{color:var(--danger)}
 .why .wr{margin:0 0 6px}.why .wr strong{color:var(--ok)}.why p+p{margin-top:6px}
 .why .wrel{margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}.why .wrel span{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}.why .wrel p{margin:3px 0 0;font-size:13px}
 .why .wadd{font-size:12px;font-style:italic}
+.why .wcours{margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--surface)}.why .wcours span{display:block;font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px}.why .wcours p{margin:0;line-height:1.5}.why>.wcours:first-of-type{margin-top:4px}
 .why .wrel p b{display:inline;text-transform:none;letter-spacing:0;font-size:inherit;color:var(--fg);margin:0}.why .wrel p b::after{content:" → ";color:var(--muted);font-weight:400}
 /* ===== Passe design : typographie, contraste, hiérarchie, zones tactiles ===== */
 :root{--amber-ink:color-mix(in srgb,var(--amber) 74%,var(--fg));--danger-ink:color-mix(in srgb,var(--danger) 82%,var(--fg))}
@@ -4210,7 +4211,7 @@ const whyHtml = (c, picked) => {
   const ctx = [c.chap ? `Chapitre : ${c.chap}` : '', c.tags && c.tags.length ? `Notions : ${c.tags.join(', ')}` : ''].filter(Boolean).join(' · ');
   return `<div class="why ${bad ? 'bad' : ''}"><b>${bad ? 'Correction' : 'Explication'}</b>
     ${bad ? `<p class="wr">Tu as répondu « ${esc(picked)} ». La bonne réponse est <strong>${fmtText(c.a)}</strong>.</p>` : ''}
-    ${w ? `<p>${fmtText(w)}</p>` : ''}${n ? `<p class="wn">${esc(n)}</p>` : ''}
+    ${w ? `<div class="wcours"><span>${bad ? 'Le mini-cours' : 'Pourquoi c’est la bonne réponse'}</span><p>${fmtText(w)}</p></div>` : ''}${n ? `<p class="wn">${esc(n)}</p>` : ''}
     ${bad && !w && ctx ? `<p class="wn">${esc(ctx)}</p>` : ''}
     ${rel.length ? `<div class="wrel"><span>À relier avec</span>${rel.map(y => `<p><b>${fmtText(y.q)}</b> ${fmtText(y.a)}</p>`).join('')}</div>` : ''}
     ${bad && !w ? '<p class="wn wadd">Pas encore de correction rédigée pour cette carte : ajoute-la dans « Modifier », ou réimporte le fichier avec la 7e colonne.</p>' : ''}</div>`;
@@ -4282,7 +4283,7 @@ question ; réponse ; matière ; chapitre ; mauvaises réponses ; notions ; corr
 - Chapitre : le chapitre du cours d’où vient la carte (même orthographe pour toutes les cartes d’un chapitre).
 - Mauvaises réponses : 3 propositions fausses séparées par | , plausibles et de longueur proche de la bonne réponse (pour le mode QCM). Laisse vide si ça n’a pas de sens.
 - Notions : 2 à 4 mots-clés séparés par des virgules, avec les abréviations et synonymes (ex. IS, impôt sur les sociétés). Ils servent à relier la carte à mes examens.
-- Correction : 2 à 4 phrases qui expliquent pourquoi la bonne réponse est juste (règle, article, calcul ou raisonnement), puis pourquoi chaque mauvaise réponse est un piège. C’est ce que je lis quand je me trompe : sois précis et pédagogique.
+- Correction : un mini-cours de 3 à 4 phrases, compréhensible sans relire le cours. 1) La notion ou la règle (avec l’article, l’arrêt ou la formule s’il y en a). 2) Pourquoi la bonne réponse en découle (raisonnement ou calcul détaillé). 3) Un exemple concret ou un repère pour retenir. 4) Pourquoi les mauvaises réponses sont des pièges. C’est ce que je lis quand je me trompe : sois précis et pédagogique.
 - Toutes les propositions du QCM doivent avoir une longueur proche : la bonne réponse ne doit jamais être la plus longue.
 - Une seule idée par carte, réponse courte et précise. Couvre toutes les notions importantes du cours (définitions, formules, taux, comptes, exemples).
 - N’utilise jamais de point-virgule dans le texte (mets une virgule). Pour un retour à la ligne, écris \\n.
@@ -4293,7 +4294,7 @@ Taux réduit d’IS des PME ? ; 15 % jusqu’à 42 500 € ; Fiscalité ; Impôt
 function importGuideHtml(open){
   return `<details class="iguide" ${open?'open':''}><summary><span><b>Format et prompt pour Claude</b><small>Les 7 colonnes, un exemple, et le texte à m’envoyer avec ton cours</small></span><i aria-hidden="true"></i></summary><div class="foldin">
     <ol class="steps"><li>Envoie ton cours (Word, PDF, photo ou texte) à Claude avec le prompt ci-dessous, en complétant la matière.</li><li>Enregistre le fichier .csv qu’il te renvoie, ou copie son contenu.</li><li>Ici : « Fichier », ou colle le texte, puis « Importer ». Choisis l’examen à relier si besoin.</li></ol>
-    <div class="cols"><span class="lab">Les colonnes, séparées par ;</span><table class="ctab"><tr><td>1</td><td><b>Question</b></td><td>obligatoire</td></tr><tr><td>2</td><td><b>Réponse</b></td><td>obligatoire</td></tr><tr><td>3</td><td><b>Matière</b></td><td>créée si elle n’existe pas</td></tr><tr><td>4</td><td><b>Chapitre</b></td><td>regroupe les cartes, examens /20</td></tr><tr><td>5</td><td><b>Mauvaises réponses</b></td><td>séparées par |, pour le QCM</td></tr><tr><td>6</td><td><b>Notions</b></td><td>mots-clés séparés par des virgules, relient la carte aux examens</td></tr><tr><td>7</td><td><b>Correction</b></td><td>explication affichée après la réponse, surtout quand tu te trompes</td></tr></table></div>
+    <div class="cols"><span class="lab">Les colonnes, séparées par ;</span><table class="ctab"><tr><td>1</td><td><b>Question</b></td><td>obligatoire</td></tr><tr><td>2</td><td><b>Réponse</b></td><td>obligatoire</td></tr><tr><td>3</td><td><b>Matière</b></td><td>créée si elle n’existe pas</td></tr><tr><td>4</td><td><b>Chapitre</b></td><td>regroupe les cartes, examens /20</td></tr><tr><td>5</td><td><b>Mauvaises réponses</b></td><td>séparées par |, pour le QCM</td></tr><tr><td>6</td><td><b>Notions</b></td><td>mots-clés séparés par des virgules, relient la carte aux examens</td></tr><tr><td>7</td><td><b>Correction</b></td><td>mini-cours de 3 à 4 phrases affiché après la réponse : la règle, pourquoi c’est la bonne réponse, un exemple, les pièges</td></tr></table></div>
     <span class="lab">Exemple</span><pre class="iex">${esc(IMPORT_EXAMPLE)}</pre>
     <span class="lab">Le prompt à copier</span><pre class="iex prompt">${esc(IMPORT_PROMPT)}</pre>
     <button type="button" class="btn primary" data-copy-prompt="1">Copier le prompt</button>
