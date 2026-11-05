@@ -1175,6 +1175,31 @@ nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,v
 .clist button[data-fsel]{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:start}.clist button[data-fsel]>*:not(.selbox){grid-column:2}.clist button[data-fsel] .selbox{grid-row:1/span 3}
 .selbar{position:sticky;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:6;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;margin:8px -4px 0;border-radius:16px;background:color-mix(in srgb,var(--surface) 92%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--line);box-shadow:var(--shadow)}
 .extoday{color:var(--fg);font-weight:700}
+.mmbtn{width:100%;margin-top:8px}
+.mmseg{margin:4px 0 10px}
+.mmhelp{margin:0 0 10px}
+.mlg{display:inline-block;width:10px;height:10px;border-radius:3px;vertical-align:-1px;margin:0 2px 0 6px;background:var(--line)}
+.mlg.ok{background:var(--ok)}.mlg.mid{background:var(--accent)}.mlg.due{background:var(--amber)}
+.mmnos{margin-bottom:12px}.mmnos p{margin:6px 0 10px}
+.mmtools{display:flex;gap:8px;align-items:center;margin-bottom:8px}.mmtools span{flex:1}
+.mmwrap{overflow:auto;-webkit-overflow-scrolling:touch;margin:0 -16px;padding:4px 16px 24px;touch-action:pan-x pan-y;overscroll-behavior-x:contain}
+.mmsvg{display:block;max-width:none;font:500 13px/1 var(--f-body);transition:width .2s var(--ease-out),height .2s var(--ease-out)}
+.mn{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mn rect{fill:var(--surface);stroke:color-mix(in srgb,var(--mc) 45%,var(--line));stroke-width:1.2}
+.mn text{fill:var(--fg)}
+.mn .msub{fill:var(--muted);font-size:11px}
+.mn.mroot rect{fill:var(--fg);stroke:none}.mn.mroot text{fill:var(--bg);font-weight:700;font-size:15px}
+.mn.mch rect{fill:color-mix(in srgb,var(--mc) 16%,var(--surface));stroke:var(--mc);stroke-width:1.6}.mn.mch text{font-weight:700}.mn.mch .msub{font-weight:500}
+.mn.mgrp rect{fill:color-mix(in srgb,var(--mc) 7%,var(--surface))}.mn.mgrp text{font-weight:600}
+.mn.mleaf text{font-size:12px}
+.mn.st-ok rect{stroke:var(--ok);fill:color-mix(in srgb,var(--ok) 10%,var(--surface))}
+.mn.st-mid rect{stroke:var(--accent)}
+.mn.st-due rect{stroke:var(--amber);fill:color-mix(in srgb,var(--amber) 10%,var(--surface))}
+.mn.st-new rect{stroke:var(--line);stroke-dasharray:4 3}
+.mn .mtog circle{fill:var(--mc);stroke:var(--surface);stroke-width:2}.mn .mtog text{fill:var(--surface);font-size:11px;font-weight:700}
+.mn:active rect{transform:scale(.98);transform-box:fill-box;transform-origin:center;transition:transform .1s}
+.mmans{margin:10px 0}
+.mn.mpit rect{stroke:var(--danger);fill:var(--danger-soft)}.mn.mpit text{fill:var(--danger);font-weight:600}
 /* Interactions */
 
 
@@ -2121,7 +2146,7 @@ function startReview(deckId){
   render(); window.scrollTo(0,0);
 }
 function fcStreak(){ const L = state.fc.log; let n=0, cur=new Date(); if (!L[key(cur)]) cur = addDays(cur,-1); while (L[key(cur)]) { n++; cur = addDays(cur,-1); } return n; }
-function vCartes(){ ensureFc(); const v = ui.fc.view; return v==='exam' && ui.fc.exam ? vFcExam() : v==='examres' && ui.fc.exam ? vFcExamRes() : v==='review' && ui.fc.cur ? vFcReview() : v==='done' ? vFcDone() : v==='deck' && deckOf(ui.fc.deck) ? vFcDeck() : ui.fc.home==='mix' ? vFcMix() : vFcHome(); }
+function vCartes(){ ensureFc(); const v = ui.fc.view; return v==='mind' && ui.mm ? vMind() : v==='exam' && ui.fc.exam ? vFcExam() : v==='examres' && ui.fc.exam ? vFcExamRes() : v==='review' && ui.fc.cur ? vFcReview() : v==='done' ? vFcDone() : v==='deck' && deckOf(ui.fc.deck) ? vFcDeck() : ui.fc.home==='mix' ? vFcMix() : vFcHome(); }
 function deckStats(id){ const cs = state.fc.cards.filter(c=>c.deck===id), tk = todayKey();
   return { n:cs.length, mastered:cs.filter(isMastered).length, learning:cs.filter(c=>c.seen && !isMastered(c)).length, fresh:cs.filter(c=>!c.seen).length, due:cs.filter(c=>c.seen && c.due<=tk).length }; }
 function vFcHome(){
@@ -2221,13 +2246,14 @@ function fcImportSheet(opt){
     <p id="i-msg" role="status"></p>
     <div class="btns"><button class="btn" data-close>Annuler</button><button class="btn primary" id="i-go">Importer</button></div>`, s => {
     const txt = s.querySelector('#i-text'), msg = s.querySelector('#i-msg'), sel = s.querySelector('#i-deck'), nf_ = s.querySelector('#i-new-f');
-    const preview = () => { try { const l = parseCards(txt.value); msg.textContent = txt.value.trim() ? `${l.length} carte${l.length>1?'s':''} reconnue${l.length>1?'s':''}.` : ''; } catch(_) { msg.textContent = 'Le fichier JSON n’est pas lisible.'; } };
+    const preview = () => { if (isSynthText(txt.value)){ const P = parseSynth(txt.value); msg.textContent = `Synthèse reconnue : ${P.chaps.length} chapitre${P.chaps.length>1?'s':''}${P.deck ? ' pour « ' + P.deck + ' »' : ''}. Elle s’affichera dans la carte mentale.`; return; } try { const l = parseCards(txt.value); msg.textContent = txt.value.trim() ? `${l.length} carte${l.length>1?'s':''} reconnue${l.length>1?'s':''}.` : ''; } catch(_) { msg.textContent = 'Le fichier JSON n’est pas lisible.'; } };
     sel.addEventListener('change', () => { nf_.hidden = sel.value!=='__new'; });
     nf_.hidden = sel.value!=='__new';
     txt.addEventListener('input', preview);
     const ib = s.querySelector('#i-both'); ib.addEventListener('click', () => ib.setAttribute('aria-pressed', ib.getAttribute('aria-pressed')!=='true'));
     s.querySelector('#i-file').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { txt.value = r.result; preview(); }; r.readAsText(f); });
     s.querySelector('#i-go').addEventListener('click', () => {
+      if (isSynthText(txt.value)){ const r = importSynth(txt.value, sel.value!=='__new' ? sel.value : null); if (r.err){ msg.textContent = r.err; return; } close(); commit(); toast(`Synthèse importée : ${r.n} chapitre${r.n>1?'s':''}`); setTimeout(() => openMind({ deck:r.deck.id }), 200); return; }
       let list; try { list = parseCards(txt.value); } catch(_) { msg.textContent = 'Le fichier JSON n’est pas lisible.'; return; }
       if (!list.length){ msg.textContent = 'Aucune carte reconnue. Vérifie qu’il y a bien une question et une réponse par ligne, séparées par ; ou une tabulation.'; return; }
       let fb; if (sel.value==='__new'){ const n = s.querySelector('#i-new').value.trim(); if (!n && list.some(c=>!c.deck)){ msg.textContent = 'Donne un nom à la nouvelle matière.'; return; } fb = n ? findOrMakeDeck(n) : null; }
@@ -2637,7 +2663,7 @@ function vFcDeck(){
   <div class="card deckhead" style="--dc:${deckColor(d)}"><div class="dhrow"><h3>${esc(d.name)}</h3>${all!==null ? `<span class="note ${all>=12?'ok':''}">Matière ${nf20(all)}/20</span>` : ''}</div>${examTag(d)}
     <div class="dsplit"><div><b class="mono">${s.fresh}</b><span>nouvelles</span></div><div><b class="mono">${s.learning}</b><span>en cours</span></div><div><b class="mono">${s.mastered}</b><span>maîtrisées</span></div></div>
     <div class="btns">${dn?`<button class="btn primary" data-f="review-deck">Réviser (${dn})</button>`:''}<button class="btn" data-f-exam-all="1" ${cs.length<4?'disabled':''}>Examen /20</button></div>
-    <div class="btns"><button class="btn" data-f="add">Ajouter une carte</button><button class="btn" data-f="import">Importer</button></div></div>
+    <div class="btns"><button class="btn" data-f="add">Ajouter une carte</button><button class="btn" data-f="import">Importer</button></div><button class="btn mmbtn" data-mind-deck="${d.id}">Carte mentale${state.fc.synth && state.fc.synth[d.id] ? ' · synthèse' : ''}</button></div>
   ${cs.length ? chaps.map(ch => { const cc = cs.filter(c=>(c.chap||'')===ch);
     return `<section class="chap"><div class="chead"><div style="min-width:0"><b>${ch ? esc(ch) : 'Sans chapitre'}</b><span>${cc.length} carte${cc.length>1?'s':''} ${badge(ch)}</span></div>
       ${ui.fc.sel ? `<button class="btn sm" data-fsel="chap" data-k="${esc(ch)}">${cc.every(c => ui.fc.sel.has(c.id)) ? 'Tout décocher' : 'Tout cocher'}</button>` : `<button class="btn sm" data-f-exam="${esc(ch)}" ${cc.length<4?'disabled title="4 cartes minimum"':''}>Valider</button>`}</div>
@@ -2864,7 +2890,7 @@ function vPartiels(){
       ${(() => { const L = examCardSets(ex).linked, tests = state.fc.exams.filter(e => e.chap==='exam:'+ex.id), best = tests.length ? Math.max(...tests.map(e=>e.note)) : null;
         return `<div class="xlink"><div><b>${L.length} carte${L.length>1?'s':''} liée${L.length>1?'s':''}</b><span>${L.length ? `${[...new Set(L.map(c=>(deckOf(c.deck)||{}).name).filter(Boolean))].slice(0,3).join(', ')}${best!==null ? ` · meilleure note ${nf20(best)}/20` : ''}` : 'Donne à tes cartes le même chapitre ou la même notion que l’examen.'}</span></div><button class="link" data-px-cards="${ex.id}">Ajuster</button></div>
         ${L.length ? `<div class="btns"><button class="btn sm primary" data-px-rev="${ex.id}">${(() => { const P = examPlan(ex); return P.today ? `Réviser la part du jour (${P.today})` : 'Réviser ces cartes'; })()}</button><button class="btn sm" data-px-test="${ex.id}" ${L.length<4?'disabled':''}>Test /20</button></div>` : ''}`; })()}
-      <div class="btns"><button class="btn sm" data-px-edit="${ex.id}">Modifier</button><button class="btn sm" data-px-import="${ex.id}">Importer des cartes</button></div></div>`; };
+      <div class="btns"><button class="btn sm" data-mind-ex="${ex.id}">Carte mentale</button><button class="btn sm" data-px-edit="${ex.id}">Modifier</button><button class="btn sm" data-px-import="${ex.id}">Importer des cartes</button></div></div>`; };
   return `${up.length ? `<div class="plist">${up.map(card).join('')}</div>` : `<div class="card empty"><b>Aucun examen à venir</b>Ajoute un partiel : Tempo compte les jours et répartit tes révisions dans l’agenda.</div>`}
     ${past.length ? `<details class="pastx"><summary>Examens passés (${past.length})</summary><div class="plist">${past.map(ex=>`<div class="card pcard past"><div class="phead"><div class="pcd"><b class="mono">✓</b></div><div><h3>${esc(ex.title)}</h3><p>${fmt(parse(ex.date),{day:'numeric',month:'long'})} · ${partielStats(ex).done}/${partielStats(ex).total} révisions faites</p></div></div><div class="btns"><button class="btn sm danger" data-px-del="${ex.id}">Supprimer</button></div></div>`).join('')}</div></details>` : ''}
     <p class="help">Chaque chapitre est vu deux fois, à quelques jours d’écart : réviser en plusieurs séances espacées fait mieux retenir que tout revoir la veille.</p>`;
@@ -2945,6 +2971,7 @@ function partielSheet(ex, preset){
 }
 view.addEventListener('click', e => {
   let b;
+  if ((b = e.target.closest('[data-mind-ex]'))){ openMind({ ex:b.dataset.mindEx }); return; }
   if ((b = e.target.closest('[data-px-rev]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxRev); if (ex){ examReviewToday(ex); window.scrollTo(0,0); } return; }
   if ((b = e.target.closest('[data-px-test]'))){ partielTest(b.dataset.pxTest); window.scrollTo(0,0); return; }
   if ((b = e.target.closest('[data-px-cards]'))){ const ex = state.partiels.find(x=>x.id===b.dataset.pxCards); if (ex) examCardsSheet(ex); return; }
@@ -6649,6 +6676,167 @@ view.addEventListener('click', e => {
   else if (a==='del'){ if (U.sel.size) delCardsSheet(new Set(U.sel)); return; }
   const y = window.scrollY; render(); window.scrollTo(0, y);
 }, true);
+
+/* ---------- Carte mentale : automatique (cartes) et synthèse rédigée ---------- */
+const MM_COL = ['c-cours','accent','c-alt','amber','c-perso','danger','ok'];
+const mmShort = (s, n) => { s = String(s).replace(/\*\*/g,'').replace(/\\n|\n/g,' ').replace(/\s+/g,' ').trim(); return s.length > n ? s.slice(0, n-1).replace(/[ ,;:.]+\S*$/,'') + '…' : s; };
+function mmQ(q){
+  let s = String(q).replace(/\*\*/g,'').replace(/\s+/g,' ').trim().replace(/\s*\?$/,'');
+  s = s.replace(/^(Qu[’']est-ce qu[’']une?|Qu[’']est-ce que l[’']|Qu[’']est-ce que|Définition (du|de la|de l[’']|des|d[’'])|Définition|Que signifie|Que représente|Que prévoit|Que dit|Que pose|Quel(le)?s? (est|sont) (le|la|les|l[’'])?)\s*/i, '');
+  return s ? s[0].toUpperCase() + s.slice(1) : String(q);
+}
+function mmWrap(t, max){ const w = String(t).split(' '), L = []; let cur = '';
+  for (const x of w){ if ((cur + ' ' + x).trim().length > max && cur){ L.push(cur); cur = x; } else cur = (cur + ' ' + x).trim(); }
+  if (cur) L.push(cur); return L; }
+/* Arbre automatique : matière ou examen → chapitres → notions → cartes */
+function mmFromCards(title, cards){
+  const tk = todayKey(), byCh = new Map();
+  cards.forEach(c => { const k = c.chap || 'Sans chapitre'; if (!byCh.has(k)) byCh.set(k, []); byCh.get(k).push(c); });
+  const leaf = c => ({ id:'c:'+c.id, t:mmQ(c.q) + ' → ' + mmShort(c.a, 70), cid:c.id, st: !c.seen ? 'new' : isMastered(c) ? 'ok' : c.due <= tk ? 'due' : 'mid' });
+  const kids = [...byCh.entries()].sort((a,b) => a[0]==='Sans chapitre' ? 1 : b[0]==='Sans chapitre' ? -1 : a[0].localeCompare(b[0],'fr',{numeric:true})).map(([ch, cc], i) => {
+    const byT = new Map(); cc.forEach(c => { const t = (c.tags && c.tags[0]) || ''; if (!byT.has(t)) byT.set(t, []); byT.get(t).push(c); });
+    const groups = [...byT.entries()].filter(([t, l]) => t && l.length >= 2), loose = cc.filter(c => !groups.some(([, l]) => l.includes(c)));
+    const k2 = cc.length >= 7 && groups.length ? [...groups.map(([t, l]) => ({ id:'n:'+ch+'|'+t, t:t[0].toUpperCase()+t.slice(1), kids:l.map(leaf) })), ...loose.map(leaf)] : cc.map(leaf);
+    const m = cc.filter(isMastered).length;
+    return { id:'h:'+ch, t:ch, sub:`${cc.length} carte${cc.length>1?'s':''} · ${Math.round(100*m/cc.length)} % maîtrisées`, col:MM_COL[i % MM_COL.length], kids:k2, cards:cc.map(c => c.id) };
+  });
+  return { id:'root', t:title, kids };
+}
+/* Synthèse rédigée : texte en plan (# matière, ## chapitre, - points imbriqués) */
+const isSynthText = t => /^\s*#\s*Synth[eè]se\b/i.test(String(t));
+function parseSynth(text){
+  const lines = String(text).replace(/\r/g,'').split('\n'); let deck = '', chap = null; const chaps = [];
+  for (const raw of lines){ if (!raw.trim()) continue;
+    const h1 = raw.match(/^\s*#\s+Synth[eè]se\s*[;:–-]?\s*(.*)$/i); if (h1){ deck = h1[1].trim(); continue; }
+    const h2 = raw.match(/^\s*##\s+(.+)$/); if (h2){ chap = { t:h2[1].trim(), kids:[] }; chaps.push(chap); continue; }
+    const li = raw.match(/^(\s*)[-*•]\s+(.+)$/); if (!li) continue;
+    if (!chap){ chap = { t:'Essentiel', kids:[] }; chaps.push(chap); }
+    const lvl = Math.floor(li[1].replace(/\t/g,'  ').length / 2), node = { t:li[2].trim(), kids:[] };
+    let parent = chap; for (let i = 0; i < lvl; i++){ const last = parent.kids[parent.kids.length-1]; if (!last) break; parent = last; }
+    parent.kids.push(node);
+  }
+  return { deck, chaps };
+}
+function importSynth(text, deckId){
+  const P = parseSynth(text); if (!P.chaps.length) return { err:'Aucun chapitre ni point reconnu dans la synthèse.' };
+  ensureFc(); const d = P.deck ? findOrMakeDeck(P.deck) : deckOf(deckId); if (!d) return { err:'Indique la matière sur la première ligne : # Synthèse ; Nom de la matière' };
+  state.fc.synth = state.fc.synth || {}; const S = state.fc.synth[d.id] = state.fc.synth[d.id] || { chaps:[] };
+  P.chaps.forEach(c => { const i = S.chaps.findIndex(x => x.t.toLowerCase()===c.t.toLowerCase()); if (i >= 0) S.chaps[i] = c; else S.chaps.push(c); });
+  S.at = todayKey(); return { deck:d, n:P.chaps.length };
+}
+function mmFromSynth(title, S){
+  let n = 0; const conv = (x, col, depth) => ({ id:'s:'+(n++), t:x.t, col, kids:(x.kids||[]).map(k => conv(k, col, depth+1)) });
+  return { id:'root', t:title, kids:S.chaps.map((c, i) => ({ ...conv(c, MM_COL[i % MM_COL.length], 1), sub:`${c.kids.length} point${c.kids.length>1?'s':''} clés` })) };
+}
+/* Mise en page en arbre de gauche à droite */
+/* Mise en page verticale (lisible sur téléphone) : racine en haut, chaque niveau décalé vers la droite */
+const MM_IND = 20;
+function mmLayout(root, open){
+  const W = Math.max(320, Math.min(720, (window.innerWidth || 390) - 32)), pos = [], links = []; let y = 4;
+  const place = (n, d, parent) => {
+    const x = d === 0 ? 0 : 6 + (d-1)*MM_IND + (d > 0 ? 10 : 0), w = W - x - 2, has = n.kids && n.kids.length;
+    const L = mmWrap(n.t, Math.floor((w - 24 - (has && d > 0 ? 26 : 0)) / (d===0 ? 8.6 : 7.1)));
+    const h = 14 + L.length*17 + (n.sub ? 15 : 0), me = { n, d, x, y, w, h, L };
+    pos.push(me); if (parent) links.push([parent, me]); y += h + (d <= 1 ? 10 : 6);
+    if (has && (d === 0 || open.has(n.id))) n.kids.forEach(k => place(k, d+1, me));
+    if (d === 1) y += 6;
+    return me;
+  };
+  place(root, 0, null);
+  return { pos, links, W, H:y };
+}
+function mmSvg(root, open, z){
+  const { pos, links, W, H } = mmLayout(root, open);
+  pos.forEach(p => { if (p.d === 1) p.col = p.n.col; });
+  links.forEach(([a, b]) => { b.col = b.col || a.col || a.n.col; });
+  const edge = ([a, b]) => { const x1 = a.d === 0 ? 8 : a.x + 8, y1 = a.y + a.h, x2 = b.x, y2 = b.y + Math.min(b.h/2, 18);
+    return `<path d="M${x1} ${y1}L${x1} ${y2 - 8}Q${x1} ${y2} ${x1 + 8} ${y2}L${x2} ${y2}" fill="none" stroke="var(--${b.col || 'accent'})" stroke-width="${a.d===0 ? 2.5 : 1.6}" stroke-opacity=".55"/>`; };
+  const node = p => { const n = p.n, has = n.kids && n.kids.length, isOpen = p.d === 0 || open.has(n.id), col = p.col || 'accent';
+    const cls = (p.d === 0 ? 'mroot' : p.d === 1 ? 'mch' : n.cid ? `mleaf st-${n.st}` : has ? 'mgrp' : 'mpt') + (/^pi[eè]ge\b/i.test(n.t) ? ' mpit' : '');
+    const ty = p.y + 7 + 13;
+    return `<g class="mn ${cls}" data-mn="${esc(n.id)}" style="--mc:var(--${col})" role="button" tabindex="0">
+      <rect x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="${p.d===0 ? 16 : 11}"/>
+      ${p.L.map((l, i) => `<text x="${p.x + 12}" y="${ty + i*17}">${esc(l)}</text>`).join('')}
+      ${n.sub ? `<text class="msub" x="${p.x + 12}" y="${ty + p.L.length*17 - 2}">${esc(n.sub)}</text>` : ''}
+      ${has && p.d > 0 ? `<g class="mtog"><circle cx="${p.x + p.w - 16}" cy="${p.y + p.h/2}" r="10"/><text x="${p.x + p.w - 16}" y="${p.y + p.h/2 + 4}" text-anchor="middle">${isOpen ? '−' : n.kids.length}</text></g>` : ''}
+    </g>`; };
+  return `<svg class="mmsvg" viewBox="0 0 ${W} ${H}" width="${Math.round(W*z)}" height="${Math.round(H*z)}" data-w="${W}" data-h="${H}">${links.map(edge).join('')}${pos.map(node).join('')}</svg>`;
+}
+function mmSource(){
+  const M = ui.mm; if (!M) return null;
+  if (M.ex){ const ex = (state.partiels||[]).find(x => x.id===M.ex); if (!ex) return null; return { title:ex.title, cards:examCardSets(ex).linked, synth:ex.deck && state.fc.synth && state.fc.synth[ex.deck], back:'agenda' }; }
+  const d = deckOf(M.deck); if (!d) return null;
+  return { title:d.name, cards:state.fc.cards.filter(c => c.deck===d.id), synth:state.fc.synth && state.fc.synth[d.id], back:'deck' };
+}
+function mmTree(){ const S = mmSource(); if (!S) return null; return ui.mm.mode==='synth' && S.synth ? mmFromSynth(S.title, S.synth) : mmFromCards(S.title, S.cards); }
+function openMind(o){ ensureFc(); ui.mm = { deck:o.deck || null, ex:o.ex || null, mode:'synth', z:1, open:new Set() };
+  const S = mmSource(); if (!S || !S.synth) ui.mm.mode = 'cards';
+  if (ui.mm.mode==='cards'){ const T = mmTree(); if (T && T.kids.length <= 3 && mmSource().cards.length <= 25) T.kids.forEach(k => ui.mm.open.add(k.id)); }
+  if (appMode !== 'study'){ lastTab[appMode] = ui.tab; appMode = 'study'; try { localStorage.setItem('tempo.mode','study'); } catch(_){} document.documentElement.dataset.mode = 'study'; }
+  ui.tab = 'cartes'; ui.fc.view = 'mind'; render(); window.scrollTo(0,0); }
+function vMind(){
+  const S = mmSource(); if (!S){ ui.fc.view = 'home'; return vFcHome(); }
+  const M = ui.mm, T = mmTree(), hasS = !!S.synth, ncards = S.cards.length;
+  return `<div class="playhead"><button class="back" data-mm="back">${CHEV_L}${S.back==='agenda' ? 'Examens' : 'Matière'}</button><span class="lab">Carte mentale</span><span></span></div>
+    <div class="seg mmseg">${[['synth','Synthèse'],['cards','Toutes les cartes']].map(([k,l]) => `<button data-mm="mode" data-k="${k}" aria-pressed="${M.mode===k}" ${k==='synth' && !hasS ? 'disabled' : ''}>${l}</button>`).join('')}</div>
+    ${M.mode==='cards' ? `<p class="fine mmhelp">${ncards} carte${ncards>1?'s':''} regroupée${ncards>1?'s':''} par chapitre puis par notion. Touche un chapitre pour l’ouvrir, une carte pour voir sa réponse et son mini-cours. Couleur : <i class="mlg ok"></i> maîtrisée <i class="mlg mid"></i> en cours <i class="mlg due"></i> à revoir <i class="mlg new"></i> jamais vue.</p>`
+      : `<p class="fine mmhelp">L’essentiel à connaître, rédigé à partir de tes cartes et de ton cours${S.synth.at ? `, mis à jour le ${fmt(parse(S.synth.at),{day:'numeric',month:'long'})}` : ''}. Touche un point pour l’ouvrir.</p>`}
+    ${!hasS ? `<div class="card pad mmnos"><b>Pas encore de synthèse rédigée pour cette matière</b><p class="fine">Envoie-moi tes cartes ou ton cours avec le prompt ci-dessous : je te renvoie un fichier à importer ici (Cartes → Importer un fichier), qui apparaîtra dans l’onglet « Synthèse ».</p><button class="btn sm" data-copy-synth="1">Copier le prompt synthèse</button></div>` : ''}
+    <div class="mmtools"><button class="btn sm" data-mm="all">Tout ouvrir</button><button class="btn sm" data-mm="none">Tout fermer</button><span></span><button class="icon-btn" data-mm="zo" aria-label="Dézoomer">−</button><button class="icon-btn" data-mm="zi" aria-label="Zoomer">+</button></div>
+    <div class="mmwrap" id="mmwrap">${T && T.kids.length ? mmSvg(T, M.open, M.z) : '<p class="empty"><b>Aucune carte</b>Ajoute ou importe des cartes pour construire la carte mentale.</p>'}</div>`;
+}
+const SYNTH_PROMPT = `Fais une synthèse en carte mentale de ce cours (et/ou de ces flashcards) pour mon appli Tempo.
+
+Format exact, en texte brut :
+# Synthèse ; [nom exact de la matière dans Tempo]
+## [Nom exact du chapitre, comme dans mes cartes]
+- Notion clé
+  - Définition ou règle en une phrase courte
+  - Chiffre, date, article ou arrêt à retenir
+  - Piège : la confusion classique à éviter
+- Autre notion
+  - …
+
+- 5 à 10 notions par chapitre, 2 à 5 sous-points chacune, deux espaces par niveau d’indentation.
+- Phrases très courtes (moins de 15 mots), pas de point-virgule.
+- Mets en avant ce qui tombe à l’évaluation : définitions, conditions, distinctions entre notions voisines, chiffres, exemples du prof, et commence par « Piège : » les erreurs classiques.`;
+document.addEventListener('click', e => { const m = e.target.closest('[data-mind-deck]'); if (m){ openMind({ deck:m.dataset.mindDeck }); return; } const b = e.target.closest('[data-copy-synth]'); if (!b) return;
+  const ok = () => { b.textContent = 'Prompt copié'; setTimeout(() => b.textContent = 'Copier le prompt synthèse', 2000); };
+  if (navigator.clipboard) navigator.clipboard.writeText(SYNTH_PROMPT).then(ok, () => toast('Copie impossible')); else toast('Copie impossible'); });
+function mmLeafSheet(c){
+  const d = deckOf(c.deck);
+  sheet(`<span class="lab">${esc(d ? d.name : '')}${c.chap ? ' · ' + esc(c.chap) : ''}</span><h3>${fmtText(c.q)}</h3>
+    <div class="card pad mmans"><b>${fmtText(c.a)}</b></div>${c.why ? `<div class="why"><b>Le mini-cours</b><div class="wcours"><p>${fmtText(c.why)}</p></div></div>` : ''}
+    <div class="btns"><button class="btn" data-close>Fermer</button><button class="btn primary" id="mm-ch">Réviser ce chapitre</button></div>`, s => {
+    s.querySelector('#mm-ch').addEventListener('click', () => { close(); const L = state.fc.cards.filter(x => x.deck===c.deck && (x.chap||'')===(c.chap||'')); reviewCardsList(L, c.chap || (d ? d.name : 'Révision')); window.scrollTo(0,0); });
+  });
+}
+function mmCollect(n, out){ if (n.kids && n.kids.length){ if (n.id !== 'root') out.push(n.id); n.kids.forEach(k => mmCollect(k, out)); } return out; }
+view.addEventListener('click', e => {
+  if (ui.tab !== 'cartes' || ui.fc.view !== 'mind') return;
+  const b = e.target.closest('[data-mm]'), g = e.target.closest('[data-mn]'), M = ui.mm; if (!M || (!b && !g)) return;
+  e.stopPropagation();
+  const rer = () => { const w = document.getElementById('mmwrap'), sx = w ? w.scrollLeft : 0, sy = window.scrollY; render(); const w2 = document.getElementById('mmwrap'); if (w2) w2.scrollLeft = sx; window.scrollTo(0, sy); };
+  if (b){ const a = b.dataset.mm;
+    if (a==='back'){ ui.fc.view = mmSource() && mmSource().back==='deck' ? 'deck' : 'home'; if (M.ex){ ui.tab = 'agenda'; ui.seg = 'examens'; } render(); window.scrollTo(0,0); return; }
+    if (a==='mode'){ M.mode = b.dataset.k; M.open = new Set(); rer(); return; }
+    if (a==='all'){ M.open = new Set(mmCollect(mmTree(), [])); rer(); return; }
+    if (a==='none'){ M.open = new Set(); rer(); return; }
+    if (a==='zi' || a==='zo'){ M.z = Math.max(.4, Math.min(1.8, +(M.z * (a==='zi' ? 1.2 : 1/1.2)).toFixed(2))); mmZoom(); return; }
+    return; }
+  const id = g.dataset.mn, find = (n) => n.id===id ? n : (n.kids||[]).reduce((r, k) => r || find(k), null), n = find(mmTree());
+  if (!n) return;
+  if (n.cid){ const c = state.fc.cards.find(x => x.id===n.cid); if (c) mmLeafSheet(c); return; }
+  if (n.kids && n.kids.length && id !== 'root'){ M.open.has(id) ? M.open.delete(id) : M.open.add(id); rer(); }
+}, true);
+function mmZoom(){ const s = document.querySelector('.mmsvg'); if (!s) return; s.setAttribute('width', Math.round(+s.dataset.w * ui.mm.z)); s.setAttribute('height', Math.round(+s.dataset.h * ui.mm.z)); }
+(() => { let d0 = 0, z0 = 1;
+  const dist = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+  view.addEventListener('touchstart', e => { if (ui.fc.view==='mind' && ui.mm && e.touches.length===2 && e.target.closest('#mmwrap')){ d0 = dist(e.touches); z0 = ui.mm.z; } }, { passive:true });
+  view.addEventListener('touchmove', e => { if (!d0 || e.touches.length!==2) return; e.preventDefault(); ui.mm.z = Math.max(.4, Math.min(1.8, z0 * dist(e.touches) / d0)); mmZoom(); }, { passive:false });
+  view.addEventListener('touchend', e => { if (e.touches.length < 2) d0 = 0; }, { passive:true });
+})();
+
 /* ---------- Rendu ---------- */
 const TITLES = { today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
