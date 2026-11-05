@@ -1120,6 +1120,9 @@ nav.tabs .tday[aria-current="page"]{color:var(--accent)}
 .tdm b{font-size:19px}.tdm small{color:var(--muted);font-size:11.5px}.tdm .bar{width:100%;margin-top:6px}.tdm .btn{margin-top:6px;width:100%;padding:6px 4px;font-size:12.5px}
 .tdsw{margin:0 0 12px}.tdsw button{display:inline-flex;align-items:center;justify-content:center;gap:6px}.tdsw svg{width:16px;height:16px}
 .tdshort{display:flex;flex-direction:column;gap:10px}.tdshort>*{margin:0}
+#t-ser{margin-top:10px;display:flex;flex-direction:column;gap:10px}#t-ser>.opts,#t-ser>.seg{margin:0}#t-ser .field{margin:0}#t-ser .fine{margin:0}
+.tser2{grid-template-columns:1fr}
+.btns.tdel{flex-wrap:wrap;margin-top:6px}.btns.tdel .btn{flex:1 1 140px}
 /* Interactions */
 
 
@@ -1403,7 +1406,7 @@ function taskRow(t){
       ${t.date?'<button data-act="tomorrow">Reporter au lendemain</button>':''}
       <button data-act="prio">${t.prio?'Retirer la priorité':'Rendre prioritaire'}</button>
       <button data-act="edit">Modifier</button>
-      <button class="del" data-act="delete">Supprimer</button></div>`:''}
+      ${t.routine ? '<button class="del" data-act="delete">Supprimer cette occurrence</button><button class="del" data-act="delete-series">Supprimer la série</button>' : '<button class="del" data-act="delete">Supprimer</button>'}</div>`:''}
   </li>`;
 }
 let isEntering = true, prevRingP = 0, lastVK = '', animT;
@@ -2213,7 +2216,9 @@ function ensureRoutines(){ if (!state.routines) state.routines = []; }
 function materialize(k){
   ensureRoutines(); let ch = false;
   for (const r of state.routines){
-    if (k < r.start || !r.days.includes(wdIdx(k)) || (r.skip||[]).includes(k)) continue;
+    if (k < r.start || (r.until && k > r.until) || (r.skip||[]).includes(k)) continue;
+    if (r.monthly){ const sd = +r.start.slice(8), dd = parse(k), last = new Date(dd.getFullYear(), dd.getMonth()+1, 0).getDate(); if (dd.getDate() !== Math.min(sd, last)) continue; }
+    else { if (!r.days.includes(wdIdx(k))) continue; if ((r.every||1) > 1 && Math.round((monday(parse(k)) - monday(parse(r.start))) / 604800000) % r.every) continue; }
     if (state.tasks.some(t => t.routine===r.id && t.date===k)) continue;
     state.tasks.push({ id:uid(), title:r.title, date:k, cat:r.cat, prio:r.prio, done:false, routine:r.id, deck:r.deck||null, sub:(r.sub||[]).map(t => ({ id:uid(), t, done:false })) }); ch = true;
   }
@@ -2221,7 +2226,8 @@ function materialize(k){
 }
 function skipRoutineDate(t){ if (!t.routine || !t.date) return; const r = (state.routines||[]).find(x=>x.id===t.routine); if (r){ r.skip = r.skip || []; if (!r.skip.includes(t.date)) r.skip.push(t.date); r.skip = r.skip.slice(-200); } }
 function moveTask(t, nk){ skipRoutineDate(t); t.date = nk; }
-const repeatLabel = r => r.days.length===7 ? 'Chaque jour' : r.days.join()==='0,1,2,3,4' ? 'Du lundi au vendredi' : r.days.map(d=>WDN[d].slice(0,3)).join(', ');
+const repeatLabel = r => (r.monthly ? `Chaque mois, le ${+String(r.start||todayKey()).slice(8)}` : (r.every===2 ? 'Une semaine sur deux : ' : '') + (r.days.length===7 ? (r.every===2 ? 'tous les jours' : 'Chaque jour') : r.days.join()==='0,1,2,3,4' ? (r.every===2 ? 'du lundi au vendredi' : 'Du lundi au vendredi') : r.days.map(d=>WDN[d].slice(0,3)).join(', ')))
+  + (r.until ? ` jusqu’au ${fmt(parse(r.until),{day:'numeric',month:'short'}).replace(/\./g,'')}` : '');
 const ICON_REP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></svg>';
 
 /* ---------- Glisser une tâche ---------- */
@@ -6517,7 +6523,8 @@ view.addEventListener('click', e => {
   else if (act==='tomorrow'){ moveTask(t, key(addDays(parse(t.date),1))); ui.open=null; commit(); toast('Reportée au lendemain'); }
   else if (act==='prio'){ t.prio = !t.prio; ui.open=null; commit(); }
   else if (act==='edit'){ ui.open=null; taskSheet(t); }
-  else if (act==='delete'){ skipRoutineDate(t); state.tasks = state.tasks.filter(x=>x!==t); ui.open=null; commit(); toast(t.routine ? 'Supprimée pour ce jour seulement' : 'Tâche supprimée'); }
+  else if (act==='delete'){ skipRoutineDate(t); state.tasks = state.tasks.filter(x=>x!==t); ui.open=null; commit(); toast(t.routine ? 'Occurrence supprimée, la série continue' : 'Tâche supprimée'); }
+  else if (act==='delete-series'){ if (!a.dataset.armed){ a.dataset.armed = '1'; a.textContent = 'Confirmer : supprimer toute la série'; return; } deleteSeries((state.routines||[]).find(r => r.id===t.routine), t); ui.open=null; commit(); toast('Série supprimée (les tâches déjà faites restent)'); }
   else if (act==='focus'){ ui.open=null; render(); focusStart(t.id); }
   else if (act==='mit'){ state.mit = { d:todayKey(), id:t.id }; ui.open=null; commit(); toast('Priorité du jour choisie'); }
   else if (act==='study' && t.examId && (state.partiels||[]).some(x=>x.id===t.examId)){ const ex = state.partiels.find(x=>x.id===t.examId), k = /^[LR]:/.test(t.plan||'') ? t.plan.slice(2) : null; reviewCardsList(notionCards(ex, k), k ? `${ex.title} · ${k}` : ex.title); window.scrollTo(0,0); }
@@ -6545,6 +6552,13 @@ function close(){ const sc = root.querySelector('.scrim'); if (!sc) return;
   sc.classList.add('closing'); setTimeout(() => { if (root.contains(sc)) root.innerHTML=''; }, 210); }
 document.addEventListener('keydown', e => { if (e.key==='Escape') close(); });
 
+function deleteSeries(r, t){
+  if (!r) return;
+  const tk = todayKey();
+  state.routines = state.routines.filter(x => x !== r);
+  state.tasks = state.tasks.filter(x => x !== t && !(x.routine === r.id && !x.done && x.date >= tk));
+  state.tasks.forEach(x => { if (x.routine === r.id) delete x.routine; });
+}
 function taskSheet(t){
   ensureFc(); ensureRoutines();
   const isNew = !t;
@@ -6552,32 +6566,50 @@ function taskSheet(t){
   const r0 = t && t.routine ? state.routines.find(r=>r.id===t.routine) : null;
   const d = t || { title:'', date: base, cat:'cours', prio:false, deck:null };
   let when = d.date ? 'date' : 'week', cat = d.cat, prio = !!d.prio;
-  let days = r0 ? [...r0.days] : [];
-  let rep = !r0 ? 'none' : days.length===7 ? 'daily' : days.join()==='0,1,2,3,4' ? 'weekdays' : 'custom';
+  let days = r0 ? [...r0.days] : [], every = r0 && r0.every===2 ? 2 : 1, until = r0 && r0.until || '';
+  let rep = !r0 ? 'none' : r0.monthly ? 'monthly' : days.length===7 ? 'daily' : days.join()==='0,1,2,3,4' && every===1 ? 'weekdays' : 'custom';
+  let scope = r0 ? 'occ' : 'all';
   sheet(`<form id="tf" style="display:contents">
-    <h3>${isNew?'Nouvelle tâche':'Modifier la tâche'}</h3>
+    <h3>${isNew ? 'Nouvelle tâche' : r0 ? 'Modifier une tâche en série' : 'Modifier la tâche'}</h3>
+    ${r0 ? `<div class="field"><span class="lab">Modifier</span><div class="seg" id="t-scope"><button type="button" data-sc="occ">Cette occurrence</button><button type="button" data-sc="all">Toute la série</button></div>
+      <p class="fine" id="t-scope-h"></p></div>` : ''}
     <div class="field"><label for="t-title">Intitulé</label><input id="t-title" required maxlength="120" value="${esc(d.title)}" placeholder="Ex. Réviser le bilan fonctionnel"></div>
     <div class="field" id="t-date-f"><label for="t-date">Date</label><input type="date" id="t-date" value="${d.date || (t && t.week ? '' : base)}"><p class="fine" id="t-date-h"></p></div>
+    <div class="field" id="t-rep-f"><span class="lab">Programmer</span>
+      <div class="seg" id="t-mode"><button type="button" data-m="once">Une seule fois</button><button type="button" data-m="series">En série</button></div>
+      <div id="t-ser">
+        <div class="opts" id="t-rep"><button type="button" data-r="daily">Chaque jour</button><button type="button" data-r="weekdays">Lun – ven</button><button type="button" data-r="custom">Certains jours</button><button type="button" data-r="monthly">Chaque mois</button></div>
+        <div class="opts days" id="t-days">${WD.map((w,i)=>`<button type="button" data-wd="${i}" aria-label="${WDN[i]}">${w}</button>`).join('')}</div>
+        <div class="seg mini" id="t-every"><button type="button" data-ev="1">Chaque semaine</button><button type="button" data-ev="2">Une semaine sur deux</button></div>
+        <div class="two tser2"><div class="field"><label for="t-until">Jusqu’au (facultatif)</label><input type="date" id="t-until" value="${until}"></div></div>
+        <p class="fine" id="t-rep-h"></p></div></div>
     <div class="field"><span class="lab">Sous-tâches</span><ul class="stl" id="t-subs"></ul><div class="row"><input id="t-subin" maxlength="80" placeholder="Ajouter une étape (ex. Aspirer)"><button type="button" class="btn sm" id="t-subadd">Ajouter</button></div><div class="tpl" id="t-tpl"></div></div>
-    <div class="field" id="t-rep-f"><span class="lab">Répéter</span><div class="opts" id="t-rep">
-      <button type="button" data-r="none">Jamais</button><button type="button" data-r="daily">Chaque jour</button><button type="button" data-r="weekdays">Lun – ven</button><button type="button" data-r="custom">Certains jours</button></div>
-      <div class="opts days" id="t-days">${WD.map((w,i)=>`<button type="button" data-wd="${i}" aria-label="${WDN[i]}">${w}</button>`).join('')}</div></div>
     <div class="field"><span class="lab">Catégorie</span><div class="opts" id="t-cat">${Object.entries(CATS).map(([k,l])=>`<button type="button" data-c="${k}">${l}</button>`).join('')}</div></div>
     <div class="two"><div class="field"><span class="lab">Priorité</span><div class="opts"><button type="button" id="t-prio">Prioritaire</button></div></div>
       <div class="field"><label for="t-deck">Cartes liées</label><select id="t-deck"><option value="">Aucune</option>${state.fc.decks.map(x=>`<option value="${x.id}" ${d.deck===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div></div>
     <p class="fine">Avec des cartes liées, la tâche affiche un bouton « Réviser » qui ouvre directement la matière.</p>
     ${isNew ? '<button type="button" class="exlink" id="t-exam"><b>Un examen, un partiel ?</b><span>Ajoute-le plutôt comme examen : compte à rebours, planning de révision et cartes reliées.</span></button>' : ''}
+    ${!isNew ? `<div class="btns tdel">${r0 ? '<button type="button" class="btn danger" id="t-del-occ">Supprimer cette occurrence</button><button type="button" class="btn danger" id="t-del-all">Supprimer la série</button>' : '<button type="button" class="btn danger" id="t-del-occ">Supprimer</button>'}</div>` : ''}
     <div class="btns"><button type="button" class="btn" data-close>Annuler</button><button class="btn primary" type="submit">${isNew?'Ajouter':'Enregistrer'}</button></div>
   </form>`, s => {
     const tex = s.querySelector('#t-exam'); tex && tex.addEventListener('click', () => { const tt = s.querySelector('#t-title').value.trim(), dv = s.querySelector('#t-date').value;
       close(); setTimeout(() => partielSheet(null, { title:tt, date: dv && dv > todayKey() ? dv : key(addDays(new Date(),14)) }), 240); });
-    const dateIn = s.querySelector('#t-date'), dateF = s.querySelector('#t-date-f'), repF = s.querySelector('#t-rep-f'), daysEl = s.querySelector('#t-days');
+    const dateIn = s.querySelector('#t-date'), repF = s.querySelector('#t-rep-f'), daysEl = s.querySelector('#t-days'), serEl = s.querySelector('#t-ser'), untilIn = s.querySelector('#t-until');
+    const curR = () => ({ days:[...days].sort((a,b)=>a-b), every, monthly: rep==='monthly', start: dateIn.value || todayKey(), until: untilIn.value || null });
     const sync = () => {
-      when = dateIn.value ? 'date' : 'week'; repF.hidden = when==='week';
-      s.querySelector('#t-date-h').textContent = when==='week' ? 'Sans date : la tâche reste dans « À caser cette semaine ».' : '';
+      when = dateIn.value ? 'date' : 'week';
+      const occ = r0 && scope==='occ';
+      repF.hidden = when==='week' || occ;
+      s.querySelector('#t-date-h').textContent = when==='week' ? 'Sans date : la tâche reste dans « À caser cette semaine ».' : occ ? 'Changer la date déplace seulement cette occurrence.' : '';
+      if (r0){ s.querySelectorAll('#t-scope button').forEach(b => b.setAttribute('aria-pressed', b.dataset.sc===scope));
+        s.querySelector('#t-scope-h').textContent = scope==='occ' ? `Seule la tâche du ${fmt(parse(t.date || todayKey()),{weekday:'long',day:'numeric',month:'long'})} change. Elle sort de la série.` : `Série : ${repeatLabel(r0).toLowerCase()}. Les occurrences à venir sont mises à jour, celles déjà faites restent.`; }
+      s.querySelectorAll('#t-mode button').forEach(b => b.setAttribute('aria-pressed', (b.dataset.m==='series') === (rep!=='none')));
+      serEl.hidden = rep==='none';
       s.querySelectorAll('#t-rep button').forEach(b => b.setAttribute('aria-pressed', b.dataset.r===rep));
-      daysEl.hidden = rep!=='custom';
+      daysEl.hidden = rep!=='custom'; s.querySelector('#t-every').hidden = rep!=='custom';
       daysEl.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', days.includes(+b.dataset.wd)));
+      s.querySelectorAll('#t-every button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.ev===every));
+      s.querySelector('#t-rep-h').textContent = rep==='none' ? '' : (rep==='custom' && !days.length) ? 'Choisis au moins un jour.' : `${repeatLabel(curR())}, à partir du ${fmt(parse(dateIn.value || todayKey()),{day:'numeric',month:'long'})}.`;
       s.querySelectorAll('#t-cat button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c===cat));
       s.querySelector('#t-prio').setAttribute('aria-pressed', prio);
     };
@@ -6592,39 +6624,56 @@ function taskSheet(t){
     subIn.addEventListener('keydown', e => { if (e.key==='Enter'){ e.preventDefault(); addSub(); } });
     tplEl.addEventListener('click', e => { const b = e.target.closest('[data-tpl]'); if (!b) return; subs = TASK_TPL[b.dataset.tpl].l.map(t => ({ id:uid(), t, done:false })); drawSubs(); });
     titleIn.addEventListener('input', drawSubs); drawSubs();
-    dateIn.addEventListener('change', sync);
-    s.querySelector('#t-rep').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; rep = b.dataset.r;
-      if (rep==='daily') days = [0,1,2,3,4,5,6]; else if (rep==='weekdays') days = [0,1,2,3,4]; else if (rep==='custom'){ if (!days.length || days.length===7) days = [wdIdx(dateIn.value || todayKey())]; } else days = [];
+    dateIn.addEventListener('change', sync); untilIn.addEventListener('change', sync);
+    const sc = s.querySelector('#t-scope'); sc && sc.addEventListener('click', e => { const b = e.target.closest('[data-sc]'); if (b){ scope = b.dataset.sc; sync(); } });
+    s.querySelector('#t-mode').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (!b) return;
+      if (b.dataset.m==='once') rep = 'none'; else if (rep==='none'){ rep = 'weekdays'; days = [0,1,2,3,4]; every = 1; } sync(); });
+    s.querySelector('#t-rep').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; const prev = rep; rep = b.dataset.r;
+      if (rep==='daily'){ days = [0,1,2,3,4,5,6]; every = 1; } else if (rep==='weekdays'){ days = [0,1,2,3,4]; every = 1; } else if (rep==='custom'){ if (prev !== 'custom') days = [wdIdx(dateIn.value || todayKey())]; } else if (rep==='monthly') days = [0,1,2,3,4,5,6];
       sync(); });
     daysEl.addEventListener('click', e => { const b = e.target.closest('[data-wd]'); if (!b) return; const i = +b.dataset.wd; days = days.includes(i) ? days.filter(x=>x!==i) : [...days, i]; sync(); });
+    s.querySelector('#t-every').addEventListener('click', e => { const b = e.target.closest('[data-ev]'); if (b){ every = +b.dataset.ev; sync(); } });
     s.querySelector('#t-cat').addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (b){ cat = b.dataset.c; sync(); } });
     s.querySelector('#t-prio').addEventListener('click', () => { prio = !prio; sync(); });
+    const delO = s.querySelector('#t-del-occ'), delA = s.querySelector('#t-del-all');
+    delO && delO.addEventListener('click', () => { if (!delO.dataset.armed){ delO.dataset.armed = '1'; delO.textContent = 'Confirmer la suppression'; return; }
+      skipRoutineDate(t); state.tasks = state.tasks.filter(x => x!==t); close(); commit(); toast(r0 ? 'Occurrence supprimée, la série continue' : 'Tâche supprimée'); });
+    delA && delA.addEventListener('click', () => { if (!delA.dataset.armed){ delA.dataset.armed = '1'; delA.textContent = 'Confirmer : toute la série'; return; }
+      deleteSeries(r0, t); close(); commit(); toast('Série supprimée (les tâches déjà faites restent)'); });
     sync();
     s.querySelector('#tf').addEventListener('submit', e => { e.preventDefault();
       const title = s.querySelector('#t-title').value.trim(); if (!title) return;
       const sub = subs.map(x => ({ ...x, t:x.t.trim() })).filter(x => x.t), subT = sub.map(x => x.t);
       const dk = dateIn.value || todayKey(), deck = s.querySelector('#t-deck').value || null;
-      const repeat = when!=='week' && rep!=='none' && days.length > 0, dsorted = [...days].sort((a,b)=>a-b);
+      const repeat = when!=='week' && rep!=='none' && (rep==='monthly' || days.length > 0), dsorted = [...days].sort((a,b)=>a-b);
+      const serie = () => ({ days:dsorted, every: rep==='custom' ? every : 1, monthly: rep==='monthly', until: untilIn.value && untilIn.value >= dk ? untilIn.value : null });
       const weekOf = () => key(monday((t && t.week) ? parse(t.week) : (ui.tab==='agenda' && ui.seg==='semaine') ? parse(ui.weekStart) : (ui.tab==='agenda' && ui.seg==='jour') ? parse(ui.day) : new Date()));
       if (isNew){
-        if (repeat){ const r = { id:uid(), title, cat, prio, deck, days:dsorted, start:dk, skip:[], sub:subT }; state.routines.push(r); materialize(dk); close(); commit(); toast(`Tâche répétée : ${repeatLabel(r).toLowerCase()}`); return; }
+        if (repeat){ const r = { id:uid(), title, cat, prio, deck, ...serie(), start:dk, skip:[], sub:subT }; state.routines.push(r); materialize(dk); close(); commit(); toast(`Tâche en série : ${repeatLabel(r).toLowerCase()}`); return; }
         state.tasks.push(when==='week' ? { id:uid(), title, cat, prio, deck, done:false, date:null, week:weekOf(), sub } : { id:uid(), title, cat, prio, deck, done:false, date:dk, sub });
         close(); commit(); toast('Tâche ajoutée'); return;
+      }
+      if (r0 && scope==='occ'){
+        skipRoutineDate(t); delete t.routine;
+        if (when==='week'){ t.date = null; t.week = weekOf(); } else { t.date = dk; delete t.week; }
+        Object.assign(t, { title, cat, prio, deck, sub }); delete t.ex;
+        close(); commit(); toast('Occurrence modifiée, le reste de la série ne change pas'); return;
       }
       if (when==='week'){ skipRoutineDate(t); t.date = null; t.week = weekOf(); }
       else { if (t.date && t.date!==dk) moveTask(t, dk); else t.date = dk; delete t.week; }
       Object.assign(t, { title, cat, prio, deck, sub }); delete t.ex;
       if (repeat){
-        if (r0){ Object.assign(r0, { title, cat, prio, deck, days:dsorted, sub:subT });
-          state.tasks = state.tasks.filter(x => !(x!==t && x.routine===r0.id && !x.done && x.date > todayKey() && !dsorted.includes(wdIdx(x.date))));
-          state.tasks.forEach(x => { if (x!==t && x.routine===r0.id && !x.done && x.date >= todayKey()) Object.assign(x, { title, cat, prio, deck, sub: subT.map(v => { const o = (x.sub||[]).find(y => y.t===v); return { id:uid(), t:v, done: o ? o.done : false }; }) }); }); }
-        else { const r = { id:uid(), title, cat, prio, deck, days:dsorted, start:t.date || dk, skip:[], sub:subT }; state.routines.push(r); t.routine = r.id; }
+        const tk = todayKey();
+        if (r0){ Object.assign(r0, { title, cat, prio, deck, sub:subT, ...serie() });
+          state.tasks = state.tasks.filter(x => !(x!==t && x.routine===r0.id && !x.done && x.date > tk));
+          if (t.date) materialize(t.date); }
+        else { const r = { id:uid(), title, cat, prio, deck, ...serie(), start:t.date || dk, skip:[], sub:subT }; state.routines.push(r); t.routine = r.id; }
       } else if (r0){
         state.routines = state.routines.filter(x=>x!==r0);
         state.tasks = state.tasks.filter(x => !(x!==t && x.routine===r0.id && !x.done && x.date > todayKey()));
         state.tasks.forEach(x => { if (x.routine===r0.id) delete x.routine; });
       }
-      close(); commit(); toast('Tâche modifiée');
+      close(); commit(); toast(r0 ? 'Série modifiée' : repeat ? 'Tâche programmée en série' : 'Tâche modifiée');
     });
   });
 }
