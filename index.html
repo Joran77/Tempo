@@ -1103,7 +1103,7 @@ label.btn{display:inline-flex;align-items:center;justify-content:center;cursor:p
 .trpause{display:flex;flex-direction:column;align-items:center;gap:6px;padding:15vh 0 0;text-align:center}.trpause b{font-size:54px;font-weight:700}.trpause span{color:var(--muted)}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 /* Onglet Aujourd'hui : toujours à gauche, séparé des onglets de l'espace */
-nav.tabs .in{grid-template-columns:minmax(62px,auto) repeat(6,1fr)}
+nav.tabs .in{grid-template-columns:minmax(62px,auto) repeat(5,1fr)}
 :root[data-mode="health"] nav.tabs .in{grid-template-columns:minmax(62px,auto) repeat(5,1fr)}
 nav.tabs .tday,:root[data-mode="health"] nav.tabs .tday{display:flex!important;position:relative;padding-right:8px;margin-right:4px}
 nav.tabs .tday::after{content:"";position:absolute;right:0;top:12px;bottom:12px;width:1px;background:var(--line)}
@@ -1210,7 +1210,6 @@ html.nomotion *,html.nomotion *::before{animation:none!important;transition:none
 <nav class="tabs" aria-label="Navigation">
   <div class="in">
     <button class="tday" data-tab="today"><span class="pill"><span class="tdi" aria-hidden="true"><small></small><b></b></span></span>Aujourd’hui</button>
-    <button data-tab="accueil"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg></span>Accueil</button>
     <button data-tab="agenda"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Agenda</button>
     <button data-tab="calcul"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 7h5M8.5 4.5v5M14 7h5M6 16.5l4 4M10 16.5l-4 4M14 16h5M14 20h5"/></svg></span>Calcul</button>
     <button data-tab="sudoku"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span>Sudoku</button>
@@ -1363,7 +1362,7 @@ let state = LS0 || seed();
 save();
 
 /* ---------- État de l'interface ---------- */
-const ui = { tab:'accueil', seg:'jour', day:todayKey(), weekStart:key(monday(new Date())), open:null };
+const ui = { tab:'today', seg:'jour', day:todayKey(), weekStart:key(monday(new Date())), open:null };
 const CATS = { cours:'Cours', alternance:'Alternance', perso:'Perso' };
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $ = s => document.querySelector(s);
@@ -2308,7 +2307,7 @@ function focusAdvance(record){
       if (t){ t.pomos = (t.pomos||0) + 1; if (!t.done) R.ask = true; } beep(3); toast('Pomodoro terminé : pause !'); }
     const long = record && R.count>0 && R.count % 4 === 0; R.phase = long ? 'long' : 'short'; R.dur = (long ? P.long : P.short)*60000;
   } else { if (record){ beep(2); toast('Pause finie, on reprend.'); } R.phase = 'work'; R.dur = P.work*60000; R.ask = false; }
-  R.endsAt = Date.now() + R.dur; R.paused = null; save(); drawFocus(); if (ui.tab==='accueil') render();
+  R.endsAt = Date.now() + R.dur; R.paused = null; save(); drawFocus(); if (ui.tab==='today') render();
 }
 function focusStop(){
   const R = state.focus.run; if (!R) return;
@@ -3008,7 +3007,7 @@ function startExpress(){
   const items = []; let ci = 0, ki = 0;
   while (ci < cards.length || ki < calcs.length){ for (let r=0; r<2 && ci<cards.length; r++) items.push({ t:'card', ...cards[ci++] }); if (ki < calcs.length) items.push({ t:'calc', q:calcs[ki++] }); }
   ui.express = { items, i:0, step:'q', start:Date.now(), res:{ cardOk:0, cardN:0, calcOk:0, calcN:0 }, last:null, done:false };
-  ui.tab = 'accueil'; render(); window.scrollTo(0,0);
+  ui.tab = 'today'; render(); window.scrollTo(0,0);
 }
 function vExpress(){
   const X = ui.express;
@@ -3215,7 +3214,7 @@ const safeUrl = u => /^https?:\/\//i.test(String(u||'')) ? esc(u) : '#';
 const NEWS_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14a1 1 0 0 0 1 1H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v9a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5M8 16h3"/></svg>';
 function newsRerender(){
   const ae = document.activeElement;
-  if (ui.tab==='actu' || (ui.tab==='accueil' && !(ae && ae.matches && ae.matches('input,textarea,select')))) render();
+  if (ui.tab==='actu' || (ui.tab==='today' && !(ae && ae.matches && ae.matches('input,textarea,select')))) render();
 }
 (async () => {
   let db = null;
@@ -5747,7 +5746,7 @@ function v2Click(e){
   else if (a==='adv-no') adviceApply(false);
   else if (a==='reval-ok'){ H.reval = { d:todayKey() }; commit(); toast('Objectif confirmé'); }
   else if (a==='reval-change'){ H.reval = { d:todayKey() }; save(); hProfileSheet(true); }
-  else if (a==='params-back'){ ui.tab = lastTab[appMode] && lastTab[appMode]!=='params' ? lastTab[appMode] : (appMode==='health' ? 'h-jour' : 'accueil'); render(); window.scrollTo(0,0); }
+  else if (a==='params-back'){ ui.tab = lastTab[appMode] && lastTab[appMode]!=='params' ? lastTab[appMode] : (appMode==='health' ? 'h-jour' : 'today'); render(); window.scrollTo(0,0); }
   else if (a==='mode'){ const m = b.dataset.k; if (m!==appMode){ appMode = m; try { localStorage.setItem('tempo.mode', m); } catch(_){} document.documentElement.dataset.mode = m; toast(m==='health' ? 'Tempo Santé' : 'Tempo Études'); } render(); }
   else if (a==='look') lookSheet();
   else if (a==='profile') hProfileSheet();
@@ -5770,7 +5769,7 @@ view.addEventListener('change', e => { const n = e.target.closest('[data-p2-name
 view.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('[data-fold-mic]')) ui.micOpen = e.target.open; }, true);
 /* Bascule Études ↔ Santé */
 let appMode = (() => { try { return localStorage.getItem('tempo.mode') === 'health' ? 'health' : 'study'; } catch(_) { return 'study'; } })();
-const lastTab = { study:'accueil', health:'h-jour' };
+const lastTab = { study:'today', health:'h-jour' };
 function setMode(m, silent){
   if (m === appMode && !silent) return;
   if (!silent) lastTab[appMode] = ui.tab;
@@ -5796,7 +5795,7 @@ function needData(k){
   return DATA_P[k] || (DATA_P[k] = new Promise(res => { const s = document.createElement('script'); s.src = src; s.async = true;
     s.onload = () => { if (!TDATA[k]) DATA_FAIL.add(k); res(!!TDATA[k]); }; s.onerror = () => { DATA_FAIL.add(k); delete DATA_P[k]; res(false); }; document.head.appendChild(s); }));
 }
-const tabNeeds = t => (t.startsWith('h-') ? ['ciq','mic','b3'] : ['accueil','cartes','iae'].includes(t) ? ['map'] : []).filter(k => !TDATA[k] && !DATA_FAIL.has(k) && (window.TDATA_SRC || {})[k]);
+const tabNeeds = t => (t.startsWith('h-') ? ['ciq','mic','b3'] : ['today','accueil','cartes','iae'].includes(t) ? ['map'] : []).filter(k => !TDATA[k] && !DATA_FAIL.has(k) && (window.TDATA_SRC || {})[k]);
 setTimeout(() => Object.keys(window.TDATA_SRC || {}).forEach(needData), 1200);
 
 /* ---------- Sauvegarde automatique chiffrée (gist secret) ---------- */
@@ -5841,7 +5840,7 @@ const CLOUD = (() => {
         if (force || Date.now() - (C.check || 0) > 30*60000){
           setCfg({ check:Date.now() }); const r = await readRemote();
           const nw = r && r.dev !== devId() && r.at > (state._at || 0) + 1000 && r.at !== C.dismiss ? { at:r.at, devName:r.devName || 'un autre appareil' } : null;
-          const was = !!M.newer; M.newer = nw; if (!!nw !== was && ['accueil','params','h-jour'].includes(ui.tab)) render();
+          const was = !!M.newer; M.newer = nw; if (!!nw !== was && ['today','params','h-jour'].includes(ui.tab)) render();
         }
         if (!M.newer && (force || Date.now() - (C.last || 0) > 6*3600000) && (state._at || 0) > (C.lastAt || 0)) await push();
       } catch(e){ setCfg({ err:errMsg(e), errAt:Date.now() }); }
@@ -6302,7 +6301,7 @@ function postWorkoutHtml(D){
 }
 
 /* ---------- Onglets visibles ---------- */
-const TAB_LIST = { study:[['accueil','Accueil'],['agenda','Agenda'],['calcul','Calcul'],['sudoku','Sudoku'],['cartes','Flashcards'],['actu','Actu']], health:[['h-jour','Santé'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès'],['h-suivi','Suivi']] };
+const TAB_LIST = { study:[['agenda','Agenda'],['calcul','Calcul'],['sudoku','Sudoku'],['cartes','Flashcards'],['actu','Actu']], health:[['h-jour','Santé'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès'],['h-suivi','Suivi']] };
 const tabsVis = m => { const t = state.meta && state.meta.tabs && state.meta.tabs[m]; return Array.isArray(t) && t.length >= 2 ? t : TAB_LIST[m].map(x => x[0]); };
 function applyTabs(){
   const vis = { study:new Set(tabsVis('study')), health:new Set(tabsVis('health')) };
@@ -6356,7 +6355,7 @@ function v3Click(e){
   const a = b.dataset.v3, k = b.dataset.k;
   if (a==='trip'){ if (state.trip && !state.trip.done) tripOpen(); else tripSheet(); }
   else if (a==='iae' || a==='mj-iae' || a==='iae-home'){ ui.iaeRes = null; goMode('study', 'iae'); }
-  else if (a==='iae-back'){ ui.iaeRes = null; goMode('study', 'accueil'); }
+  else if (a==='iae-back'){ ui.iaeRes = null; ui.tab = 'today'; render(); window.scrollTo(0,0); }
   else if (a==='iae-mini') iaeStart(k, 'mini');
   else if (a==='iae-full') iaeStart(k, 'full');
   else if (a==='iae-mix') iaeStart(null, 'mix');
@@ -6377,6 +6376,7 @@ function v3Click(e){
   else if (a==='mj-weigh') goMode('health', 'h-jour');
   else if (a==='td-mode'){ if (k !== appMode){ goMode(k, 'today'); toast(k==='health' ? 'Barre du bas : Santé' : 'Barre du bas : Révisions'); } }
   else if (a==='td-health') goMode('health', 'h-jour');
+  else if (a==='td-goals'){ ui.seg = 'objectifs'; goMode('study', 'agenda'); }
   else if (a==='td-steps') goMode('health', 'h-sport');
   else if (a==='td-water'){ hDay(todayKey()).water++; commit(); }
   else return false;
@@ -6410,50 +6410,67 @@ if (HELP.params) HELP.params.s.push(['shuffle','Sauvegarde automatique','Copie c
 /* ---------- Onglet « Aujourd'hui », commun aux deux espaces ---------- */
 function todayIcon(){ return `<span class="tdi" aria-hidden="true"><small>${fmt(new Date(),{month:'short'}).replace('.','')}</small><b>${new Date().getDate()}</b></span>`; }
 function vToday(){
-  ensureFc(); const now = new Date(), tk = todayKey(), tl = sortTasks(tasksOn(tk)), left = tl.filter(t => !t.done), done = tl.length - left.length;
-  const due = dueCards().all.length, H = state.health, T = H && H.profile ? hTargets() : null, D = T ? hPeek(tk) : null;
+  ensureFocus(); ensureCalc(); ensureSudoku(); ensureFc(); ensureExtras();
+  if (ui.express) return vExpress();
+  const now = new Date(), tk = todayKey(), tl = sortTasks(tasksOn(tk)), left = tl.filter(t => !t.done), done = tl.length - left.length;
+  const due = dueCards().all.length, H = state.health, T = H && H.profile ? hTargets() : null, D = T ? hPeek(tk) : null, st = activeStreak();
   const hour = now.getHours(), hello = `${hour < 5 ? 'Bonne nuit' : hour < 18 ? 'Bonjour' : 'Bonsoir'}${userName() ? ' ' + userName() : ''}`;
   const bits = [left.length ? `${left.length} tâche${left.length>1?'s':''}` : '', due ? `${due} carte${due>1?'s':''}` : ''].filter(Boolean);
-  const health = T ? (() => { const S = sumDay(D), sp = sportKcal(D), goal = T.kcal + sp, rest = Math.round(goal - S.kcal), wg = Math.ceil(T.water/0.25);
+  const mt = mitTask(), todo = left.filter(t => !(mt && mt.id===t.id)), rest = [...todo, ...tl.filter(t => t.done)];
+  const sw = `<div class="seg tdsw" role="group" aria-label="Espace">${[['study','Révisions',bicon('cards')],['health','Santé',bicon('heart')]].map(([k,l,ic]) => `<button data-v3="td-mode" data-k="${k}" aria-pressed="${appMode===k}">${ic}${l}</button>`).join('')}</div>`;
+  const health = T ? (() => { const S = sumDay(D), sp = sportKcal(D), goal = T.kcal + sp, rs = Math.round(goal - S.kcal);
     return `<section><h2>Santé <button class="link" data-v3="td-health">Détail</button></h2><div class="tdh">
-      <button class="card tdm" data-v3="td-health"><span class="lab">Calories</span><b class="mono">${nf(Math.abs(rest))}</b><small>${rest >= 0 ? 'kcal restantes' : 'kcal au-dessus'}</small><span class="bar"><i style="width:${Math.min(100, goal ? 100*S.kcal/goal : 0)}%"></i></span></button>
+      <button class="card tdm" data-v3="td-health"><span class="lab">Calories</span><b class="mono">${nf(Math.abs(rs))}</b><small>${rs >= 0 ? 'kcal restantes' : 'kcal au-dessus'}</small><span class="bar"><i style="width:${Math.min(100, goal ? 100*S.kcal/goal : 0)}%"></i></span></button>
       <div class="card tdm"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} L</b><small>sur ${nf(T.water)} L</small><button class="btn sm primary" data-v3="td-water">+ 1 verre</button></div>
       <button class="card tdm" data-v3="td-steps"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><small>sur ${nf(T.steps)}</small><span class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></span></button></div></section>`; })() : '';
-  const sw = `<div class="seg tdsw" role="group" aria-label="Espace">${[['study','Révisions',bicon('cards')],['health','Santé',bicon('heart')]].map(([k,l,ic]) => `<button data-v3="td-mode" data-k="${k}" aria-pressed="${appMode===k}">${ic}${l}</button>`).join('')}</div>`;
-  return `${sw}<div class="card hero tdhero">${ring(done, tl.length)}<div><strong>${hello}</strong><p>${fmt(now,{weekday:'long',day:'numeric',month:'long'})}</p>
-      <p class="fine">${bits.length ? 'Au programme : ' + bits.join(' et ') + '.' : 'Rien d’urgent : profite, ou avance sur la suite.'}</p></div></div>
-    ${cloudCard()}
+  return `${sw}${cloudCard()}${newsCard()}${banner()}${backupBanner()}
+    <div class="card hero tdhero">${ring(done, tl.length)}<div><strong>${hello}</strong><p>${fmt(now,{weekday:'long',day:'numeric',month:'long'})}</p>
+      <p class="fine">${bits.length ? 'Au programme : ' + bits.join(' et ') + '.' : 'Rien d’urgent : profite, ou avance sur la suite.'}</p>${st ? `<span class="hstreak">${bicon('flame')}${st} jour${st>1?'s':''} actif${st>1?'s':''} d’affilée</span>` : ''}</div></div>
     ${dayCard('t')}
     ${examCountdowns()}
+    ${newsTile()}
+    ${mitCard(tl)}
     <section><h2>Tâches du jour <span class="hlinks"><button class="link" data-add-task="1">+ Ajouter</button><button class="link" data-v3="mj-tasks">Agenda</button></span></h2>
-      <div class="card">${tl.length ? `<ul class="tasks">${[...left, ...tl.filter(t => t.done)].slice(0, 8).map(taskRow).join('')}</ul>${tl.length > 8 ? `<button class="more-row" data-v3="mj-tasks">+ ${tl.length-8} autre${tl.length-8>1?'s':''}</button>` : ''}` : '<p class="empty"><b>Aucune tâche aujourd’hui</b>Ajoute-en une, ou planifie ta semaine dans l’agenda.</p>'}</div></section>
+      <div class="card">${rest.length ? `<ul class="tasks">${rest.slice(0, 8).map(taskRow).join('')}</ul>${rest.length > 8 ? `<button class="more-row" data-v3="mj-tasks">+ ${rest.length-8} autre${rest.length-8>1?'s':''}</button>` : ''}` : tl.length ? '' : '<p class="empty"><b>Aucune tâche aujourd’hui</b>Ajoute-en une, ou planifie ta semaine dans l’agenda.</p>'}</div></section>
     ${health}
-    <section><h2>Pour avancer</h2>${v3Tiles()}</section>`;
+    <section><h2>Raccourcis</h2>${quickTiles()}
+    <button class="wide xbtn" data-express="1" style="--qc:var(--amber)"><span class="qi">${bicon('bolt')}</span><span class="qtx"><b>Révision express · 5 min</b><span>Cartes et calculs mélangés, pour les temps morts</span></span><span class="go">${CHEV_R}</span></button>
+    ${v3Tiles()}</section>
+    ${eveningCard()}
+    <section><h2>Objectifs <button class="link" data-v3="td-goals">Gérer</button></h2>
+      ${state.goals.length ? `<div class="card glist">${state.goals.slice(0,4).map(g => { const p = Math.min(100, Math.round(100*g.value/(g.target||1))), ok = g.value >= g.target;
+        return `<button class="grow ${ok?'complete':''}" data-v3="td-goals"><span class="gtt">${esc(g.title)}</span><span class="mono gv">${ok ? 'Atteint' : `${g.value}/${g.target}`}</span><span class="bar"><i style="width:${p}%"></i></span></button>`; }).join('')}</div>`
+      : '<div class="card empty"><b>Aucun objectif</b>Fixe-toi un objectif de semaine ou de mois.</div>'}</section>
+    ${badgesCard()}
+    ${bilanHtml()}`;
 }
-HELP.today = { t:'Aujourd’hui', i:'Ta journée en un seul écran, que tu sois dans l’espace Études ou Santé. L’onglet reste toujours à gauche de la barre du bas.', s:[
+HELP.today = { t:'Aujourd’hui', i:'La page d’ouverture de Tempo : ta journée en un seul écran, que tu sois côté Révisions ou Santé. L’onglet reste toujours à gauche de la barre du bas.', s:[
   ['shuffle','Révisions ou Santé','Le sélecteur en haut change les onglets de la barre du bas. Tu restes sur « Aujourd’hui ».'],
   ['tasks','Ma journée','Tâches, cartes à réviser, séance, repas prévus, pesée et Score IAE. Touche une ligne pour ouvrir la bonne page, Tempo change d’espace si besoin.'],
   ['check','Tâches du jour','Coche-les directement ici, comme dans l’agenda.'],
   ['heart','Santé','Calories restantes, eau et pas du jour, si ton profil Santé est créé.'],
-  ['clock','Pour avancer','Mode trajet et Score IAE.']] };
+  ['target','Raccourcis','Pomodoro, défi de calcul, sudoku, flashcards, révision express, mode trajet et Score IAE.'],
+  ['calendar','Examens, objectifs et bilan','Comptes à rebours des examens, objectifs, badges et bilan de la semaine, comme sur l’ancien accueil.']] };
+HELP.accueil = HELP.today;
 
 /* ---------- Rendu ---------- */
 const TITLES = { today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
+  if (ui.tab==='accueil') ui.tab = 'today';
   const now = new Date();
   $('#hdr-title').textContent = innerWidth < 400 && ui.tab==='calcul' ? 'Calcul' : TITLES[ui.tab];
   $('#hdr-sub').textContent = fmt(now, innerWidth < 420 ? {weekday:'short',day:'numeric',month:'short'} : {weekday:'long',day:'numeric',month:'long'}).replace(/\./g,'') + ` · S${isoWeek(now)}`;
   document.querySelectorAll('nav.tabs button').forEach(b => b.dataset.tab===ui.tab ? b.setAttribute('aria-current','page') : b.removeAttribute('aria-current'));
   ensureCalc(); ensureSudoku(); ensureFc(); ensurePartiels(); ensureFocus(); ensureExtras(); applyTabs();
   const miss = tabNeeds(ui.tab); if (miss.length){ view.innerHTML = '<div class="card empty"><b>Chargement…</b>Un instant, Tempo prépare cette page.</div>'; Promise.all(miss.map(needData)).then(() => render()); return; }
-  const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='accueil' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
+  const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='today' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
   isEntering = vk !== lastVK; lastVK = vk;
   view.innerHTML = ui.tab==='today' ? vToday() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes();
   view.classList.remove('anim');
   if (isEntering && motionOK()){ void view.offsetWidth; [...view.children].forEach((c,i)=>c.style.setProperty('--i', Math.min(i,8))); view.classList.add('anim'); clearTimeout(animT); animT = setTimeout(()=>view.classList.remove('anim'), 1400); }
   if (view.querySelector('canvas[data-b3]')) body3dMount(view, window.__b3ms || {});
   ui.justId = null; ui.fc.anim = null; ui.su.placed = -1; ui.su.wave = null; ui.calc.anim = null; if (ui.express) ui.express.anim = null; hydrateImgs(view);
-  if (ui.tab==='accueil' && ui.express && !ui.express.done && ui.express.step==='q' && ui.express.items[ui.express.i].t==='calc') setTimeout(() => { const i = $('#x-ans'); i && i.focus(); }, 30);
+  if (ui.tab==='today' && ui.express && !ui.express.done && ui.express.step==='q' && ui.express.items[ui.express.i].t==='calc') setTimeout(() => { const i = $('#x-ans'); i && i.focus(); }, 30);
   if (ui.tab==='calcul' && ui.calc.phase==='play') setTimeout(() => { const i = $('#c-ans'); i && i.focus(); }, 30);
   const fab = $('#fab');
   fab.hidden = ui.tab!=='agenda';
@@ -6510,7 +6527,7 @@ const dn_ = el => +el.dataset.week;
 $('#fab').addEventListener('click', () => (ui.tab==='agenda' && ui.seg==='objectifs') ? goalSheet() : (ui.tab==='agenda' && ui.seg==='examens') ? partielSheet() : taskSheet());
 $('#btn-search').addEventListener('click', searchSheet);
 $('#btn-help').addEventListener('click', helpSheet);
-$('#btn-params').addEventListener('click', () => { if (ui.tab!=='params'){ lastTab[appMode] = ui.tab; ui.tab = 'params'; } else ui.tab = lastTab[appMode] || (appMode==='health' ? 'h-jour' : 'accueil'); ui.open = null; render(); window.scrollTo(0,0); });
+$('#btn-params').addEventListener('click', () => { if (ui.tab!=='params'){ lastTab[appMode] = ui.tab; ui.tab = 'params'; } else ui.tab = lastTab[appMode] || (appMode==='health' ? 'h-jour' : 'today'); ui.open = null; render(); window.scrollTo(0,0); });
 
 /* ---------- Feuilles ---------- */
 const root = $('#modal-root');
