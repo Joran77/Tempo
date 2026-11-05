@@ -1132,7 +1132,6 @@ input::-webkit-datetime-edit{padding:0}
 .field select{max-width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .hwbtn .btn.primary{flex:1 1 auto;min-width:0;white-space:nowrap}
 @media (max-width:360px){.hring{width:112px;height:112px}.hsum{gap:12px;padding:14px}.hnums b{font-size:15px}.hwbtn .btn{padding:0 8px}}
-.excmore{display:block;width:100%;border:1px dashed var(--line);border-radius:var(--r);background:none;padding:11px;font-weight:600;color:var(--accent);margin:0 0 4px}
 /* Interactions */
 
 
@@ -2736,7 +2735,11 @@ function planPartiel(ex){
   let gDay = null;
   if (ex.veille && !doneKeys.has('G') && days.length){ if (days.length >= 2) gDay = days.pop(); else if (!learns.length && !revs.length) gDay = days.pop(); }
   const cap = days.length * ex.perDay; let merged = false, dropped = 0;
-  if (learns.length > cap && cap > 0){
+  if (ex.scope==='all'){
+    const nS = Math.max(1, ex.sessions||3); learns = []; revs = [];
+    for (let i=1;i<=nS;i++) if (!doneKeys.has('M:'+i)) learns.push({ k:'M:'+i, t:'Révision de la matière' });
+    if (learns.length > cap){ dropped = learns.length - cap; learns = learns.slice(0, cap); }
+  } else if (learns.length > cap && cap > 0){
     const size = Math.ceil(learns.length / cap), groups = [];
     for (let i=0;i<learns.length;i+=size){ const g = learns.slice(i, i+size); groups.push({ k:g.map(x=>x.k).join('|'), t:`Réviser : ${g.map(x=>x.k.slice(2)).join(', ')}` }); }
     learns = groups; dropped = revs.length; revs = []; merged = true;
@@ -2755,10 +2758,10 @@ function vPartiels(){
   const card = ex => { const d = daysUntil(ex.date), st = partielStats(ex), pts = planTasks(ex).filter(t=>t.plan!=='E').sort((a,b)=>a.date.localeCompare(b.date)), dk = ex.deck && deckOf(ex.deck);
     return `<div class="card pcard ${urgency(d)}">
       <div class="phead"><div class="pcd"><b class="mono">${cdLabel(d)}</b></div>
-        <div style="min-width:0"><h3>${esc(ex.title)}</h3><p>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'long'})}${dk?` · ${esc(dk.name)}`:''}</p></div></div>
+        <div style="min-width:0"><h3>${esc(ex.title)}</h3><p>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'long'})}${dk?` · ${esc(dk.name)}`:''}${ex.scope==='all'?' · toute la matière':''}</p></div></div>
       <div class="pprog"><div class="bct"><span class="lab">Révisions</span><span class="mono">${st.done}/${st.total}</span></div><div class="bar"><i style="width:${st.p}%"></i></div></div>
       ${st.overdue ? `<div class="pwarn"><span>${st.overdue} séance${st.overdue>1?'s':''} en retard</span><button class="link" data-px-replan="${ex.id}">Replanifier</button></div>` : ''}
-      ${ex.merged ? '<p class="fine">Peu de jours disponibles : certains chapitres sont regroupés et le second passage est supprimé.</p>' : ex.dropped ? `<p class="fine">Pas assez de jours pour tout revoir deux fois : ${ex.dropped} relecture${ex.dropped>1?'s':''} en moins.</p>` : ''}
+      ${ex.scope==='all' ? (ex.dropped ? `<p class="fine">Pas assez de jours disponibles : ${ex.dropped} séance${ex.dropped>1?'s':''} en moins.</p>` : '') : ex.merged ? '<p class="fine">Peu de jours disponibles : certains chapitres sont regroupés et le second passage est supprimé.</p>' : ex.dropped ? `<p class="fine">Pas assez de jours pour tout revoir deux fois : ${ex.dropped} relecture${ex.dropped>1?'s':''} en moins.</p>` : ''}
       ${st.next ? `<p class="pnext"><span class="lab">Prochaine séance</span><span>${st.next.date===tk ? "Aujourd'hui" : fmt(parse(st.next.date),{weekday:'short',day:'numeric',month:'short'})} · ${esc(st.next.title.slice(ex.title.length+3))}</span></p>` : st.total && st.done===st.total ? '<p class="pnext ok">Toutes les révisions sont faites. Bonne chance !</p>' : ''}
       ${pts.length ? `<details class="pplan"><summary>Voir le planning (${pts.length} séance${pts.length>1?'s':''})</summary><ul>${pts.map(t=>`<li class="${t.done?'done':''} ${!t.done && t.date<tk?'late':''}"><button data-px-toggle="${t.id}" aria-label="${t.done?'Marquer à faire':'Marquer comme faite'}"><i>${t.done?ICON_CHECK:''}</i><span class="pd mono">${fmt(parse(t.date),{weekday:'short',day:'numeric'})}</span><span class="pt">${esc(t.title.slice(ex.title.length+3))}</span></button></li>`).join('')}</ul></details>` : ''}
       ${(() => { const L = examCardSets(ex).linked, tests = state.fc.exams.filter(e => e.chap==='exam:'+ex.id), best = tests.length ? Math.max(...tests.map(e=>e.note)) : null;
@@ -2771,22 +2774,25 @@ function vPartiels(){
 }
 function examCountdowns(){
   ensurePartiels(); const tk = todayKey();
-  const all = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 60).sort((a,b)=>a.date.localeCompare(b.date)), up = all.slice(0,4), more = all.length - up.length;
+  const up = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 7).sort((a,b)=>a.date.localeCompare(b.date));
   return up.map(ex => { const d = daysUntil(ex.date), st = partielStats(ex);
     return `<button class="excd ${urgency(d)}" data-go="agenda" data-seg="examens"><span class="jx"><b class="mono">${cdLabel(d)}</b></span>
-      <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${st.done}/${st.total} révisions${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('') + (more > 0 ? `<button class="more-row excmore" data-go="agenda" data-seg="examens">+ ${more} autre${more>1?'s':''} examen${more>1?'s':''} à venir</button>` : '');
+      <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${st.done}/${st.total} révisions${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('');
 }
 function partielSheet(ex, preset){
   ensurePartiels(); ensureFc(); const isNew = !ex;
-  const d = ex || { title:'', date:key(addDays(new Date(),14)), deck:null, chapters:[], days:[0,1,2,3,4,5,6], perDay:1, twoPass:true, veille:true, ...(preset||{}) };
-  let days = [...d.days], perDay = d.perDay, twoPass = d.twoPass, veille = d.veille;
+  const d = ex || { title:'', date:key(addDays(new Date(),14)), deck:null, chapters:[], days:[0,1,2,3,4,5,6], perDay:1, twoPass:true, veille:true, scope:'all', sessions:3, ...(preset||{}) };
+  let days = [...d.days], perDay = d.perDay, twoPass = d.twoPass, veille = d.veille, scope = d.scope==='all' ? 'all' : 'chap', sessions = d.sessions || 3;
   const deckChaps = id => [...new Set(state.fc.cards.filter(c=>c.deck===id && c.chap).map(c=>c.chap))];
   sheet(`<form id="pf" style="display:contents"><h3>${isNew ? 'Nouvel examen' : 'Modifier l’examen'}</h3>
     <div class="field"><label for="p-title">Nom</label><input id="p-title" required maxlength="60" value="${esc(d.title)}" placeholder="Ex. Partiel de fiscalité"></div>
     <div class="two"><div class="field"><label for="p-date">Date</label><input type="date" id="p-date" required value="${d.date}"></div>
       <div class="field"><label for="p-deck">Matière liée</label><select id="p-deck"><option value="">Aucune</option>${state.fc.decks.map(x=>`<option value="${x.id}" ${d.deck===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div></div>
     <p class="fine" style="margin-top:-6px">Avec une matière liée, les chapitres des cartes que tu importes ensuite s’ajoutent tout seuls au planning.</p>
-    <div class="field"><label for="p-chaps">Chapitres ou notions de l’examen (un par ligne)</label><textarea id="p-chaps" style="font-family:var(--f-body);font-size:15px;min-height:110px" placeholder="TVA&#10;Impôt sur les sociétés&#10;Résultat fiscal">${esc(d.chapters.join('\n'))}</textarea>
+    <div class="field"><span class="lab">Que révises-tu ?</span><div class="seg" id="p-scope"><button type="button" data-sc="all">Toute la matière</button><button type="button" data-sc="chap">Certains chapitres</button></div></div>
+    <div class="field" id="p-sesf"><span class="lab">Nombre de séances de révision</span><div class="seg" id="p-ses" style="grid-template-columns:repeat(5,1fr)">${[1,2,3,4,5].map(n=>`<button type="button" data-ses="${n}">${n}</button>`).join('')}</div>
+      <p class="fine">Chaque séance apparaît dans l’agenda comme « Révision de la matière », sans détail des chapitres.</p></div>
+    <div class="field" id="p-chf"><label for="p-chaps">Chapitres ou notions de l’examen (un par ligne)</label><textarea id="p-chaps" style="font-family:var(--f-body);font-size:15px;min-height:110px" placeholder="TVA&#10;Impôt sur les sociétés&#10;Résultat fiscal">${esc(d.chapters.join('\n'))}</textarea>
       <p class="fine" id="p-xn" style="margin:4px 0 0"></p>
       <button type="button" class="link" id="p-fill" hidden style="border:0;background:none;color:var(--accent);font-weight:700;padding:4px 0;text-align:left">Reprendre les chapitres de mes cartes</button></div>
     <div class="field"><span class="lab">Jours où tu peux réviser</span><div class="opts days" id="p-days">${WD.map((w,i)=>`<button type="button" data-wd="${i}" aria-label="${WDN[i]}">${w}</button>`).join('')}</div>
@@ -2802,20 +2808,25 @@ function partielSheet(ex, preset){
       s.querySelectorAll('#p-days button').forEach(b => b.setAttribute('aria-pressed', days.includes(+b.dataset.wd)));
       s.querySelectorAll('#p-per button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.per===perDay));
       s.querySelector('#p-two').setAttribute('aria-pressed', twoPass); s.querySelector('#p-veille').setAttribute('aria-pressed', veille);
+      s.querySelectorAll('#p-scope button').forEach(b => b.setAttribute('aria-pressed', b.dataset.sc===scope));
+      s.querySelectorAll('#p-ses button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.ses===sessions));
+      s.querySelector('#p-chf').hidden = scope==='all'; s.querySelector('#p-two').hidden = scope==='all'; s.querySelector('#p-sesf').hidden = scope!=='all';
       fillB.hidden = !(deckSel.value && deckChaps(deckSel.value).length);
-      { const n = examCardSets({ chapters:chapters(), deck:deckSel.value||null, plus:(ex&&ex.plus)||[], minus:(ex&&ex.minus)||[] }).linked.length, xn = s.querySelector('#p-xn');
+      { const n = examCardSets({ chapters:scope==='all' ? [] : chapters(), deck:deckSel.value||null, plus:(ex&&ex.plus)||[], minus:(ex&&ex.minus)||[] }).linked.length, xn = s.querySelector('#p-xn');
         xn.textContent = n ? `${n} carte${n>1?'s':''} de tes matières correspond${n>1?'ent':''} à ces notions : elles seront réunies dans le test de l’examen.` : (chapters().length ? 'Aucune carte ne porte encore ces chapitres ou notions.' : ''); }
-      const n = chapters().length, dk = dateIn.value, du = dk ? daysUntil(dk) : 0;
+      const n = scope==='all' ? sessions : chapters().length, dk = dateIn.value, du = dk ? daysUntil(dk) : 0;
       let av = 0; for (let x = parse(todayKey()); dk && key(x) < dk; x = addDays(x,1)) if (days.includes(wdIdx(key(x)))) av++;
       if (!dk || du < 0) prev.textContent = 'Choisis une date à venir.';
       else if (!n) prev.textContent = `${cdLabel(du)} · ajoute au moins un chapitre pour générer le planning.`;
-      else { const need = n*(twoPass?2:1) + (veille?1:0), capd = Math.max(0, av - (veille && av>=2 ? 1 : 0)) * perDay + (veille && av>=2 ? 1 : 0);
+      else { const need = n*(scope==='all' ? 1 : twoPass?2:1) + (veille?1:0), capd = Math.max(0, av - (veille && av>=2 ? 1 : 0)) * perDay + (veille && av>=2 ? 1 : 0);
         prev.textContent = `${cdLabel(du)} · ${need} séance${need>1?'s':''} à placer sur ${av} jour${av>1?'s':''} disponible${av>1?'s':''}${need > capd ? ' : c’est serré, certains passages seront regroupés.' : '.'}`; }
     };
     s.querySelector('#p-days').addEventListener('click', e => { const b = e.target.closest('[data-wd]'); if (!b) return; const i = +b.dataset.wd; days = days.includes(i) ? days.filter(x=>x!==i) : [...days, i]; sync(); });
     s.querySelector('#p-per').addEventListener('click', e => { const b = e.target.closest('[data-per]'); if (b){ perDay = +b.dataset.per; sync(); } });
     s.querySelector('#p-two').addEventListener('click', () => { twoPass = !twoPass; sync(); });
     s.querySelector('#p-veille').addEventListener('click', () => { veille = !veille; sync(); });
+    s.querySelector('#p-scope').addEventListener('click', e => { const b = e.target.closest('[data-sc]'); if (b){ scope = b.dataset.sc; sync(); } });
+    s.querySelector('#p-ses').addEventListener('click', e => { const b = e.target.closest('[data-ses]'); if (b){ sessions = +b.dataset.ses; sync(); } });
     [dateIn, chIn, deckSel].forEach(el => el.addEventListener('input', sync)); deckSel.addEventListener('change', () => { if (deckSel.value && !chapters().length) chIn.value = deckChaps(deckSel.value).join('\n'); sync(); });
     fillB.addEventListener('click', () => { const ex = chapters(); chIn.value = [...new Set([...ex, ...deckChaps(deckSel.value)])].join('\n'); sync(); });
     const del = s.querySelector('#p-del');
@@ -2828,7 +2839,7 @@ function partielSheet(ex, preset){
       if (!days.length){ prev.textContent = 'Garde au moins un jour de révision.'; return; }
       const obj = ex || { id:uid() };
       if (ex && ex.title !== title) planTasks(ex).forEach(t => { if (t.done) t.title = t.title.replace(ex.title, title); });
-      Object.assign(obj, { title, date, deck:deckSel.value || null, chapters:ch, days:[...days].sort((a,b)=>a-b), perDay, twoPass, veille });
+      Object.assign(obj, { title, date, deck:deckSel.value || null, chapters:scope==='all' ? [] : ch, days:[...days].sort((a,b)=>a-b), perDay, twoPass, veille, scope, sessions });
       if (isNew) state.partiels.push(obj);
       const r = planPartiel(obj);
       close(); commit(); toast(r.n ? `${r.n} séance${r.n>1?'s':''} planifiée${r.n>1?'s':''} dans l’agenda` : 'Examen ajouté à l’agenda');
@@ -3731,7 +3742,7 @@ function linkCardsToExams(cards, exId){
   if (exId){ const ex = state.partiels.find(x=>x.id===exId); if (ex && !ex.deck){ const cnt = {}; cards.forEach(c=>cnt[c.deck]=(cnt[c.deck]||0)+1); ex.deck = Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0]; } }
   upcomingExams().filter(ex => ex.date > tk && (ex.id===exId || (ex.deck && cards.some(c=>c.deck===ex.deck)))).forEach(ex => {
     const mine = ex.id===exId ? cards : cards.filter(c=>c.deck===ex.deck);
-    const ch = [...new Set(mine.map(c=>c.chap).filter(Boolean))].filter(c=>!ex.chapters.includes(c));
+    const ch = ex.scope==='all' ? [] : [...new Set(mine.map(c=>c.chap).filter(Boolean))].filter(c=>!ex.chapters.includes(c));
     if (ch.length){ ex.chapters.push(...ch); planPartiel(ex); }
     if (ch.length || ex.id===exId) out.push({ ex, n:ch.length });
   });
