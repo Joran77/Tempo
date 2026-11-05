@@ -6619,7 +6619,7 @@ function todayIcon(){ return `<span class="tdi" aria-hidden="true"><small>${fmt(
 function vToday(){
   ensureFocus(); ensureCalc(); ensureSudoku(); ensureFc(); ensureExtras();
   if (ui.express) return vExpress();
-  const now = new Date(), tk = todayKey(), tl = sortTasks(tasksOn(tk)), left = tl.filter(t => !t.done), done = tl.length - left.length;
+  const now = new Date(), tk = todayKey(), tl = sortTasks(tasksOn(tk)).filter(t => { const ex = t.examId && (state.partiels||[]).find(x => x.id===t.examId); return !(ex && ex.date >= tk && daysUntil(ex.date) <= 7); }), left = tl.filter(t => !t.done), done = tl.length - left.length;
   const due = dueCards().all.length, H = state.health, T = H && H.profile ? hTargets() : null, D = T ? hPeek(tk) : null, st = activeStreak();
   const hour = now.getHours(), hello = `${hour < 5 ? 'Bonne nuit' : hour < 18 ? 'Bonjour' : 'Bonsoir'}${userName() ? ' ' + userName() : ''}`;
   const bits = [left.length ? `${left.length} tâche${left.length>1?'s':''}` : '', due ? `${due} carte${due>1?'s':''}` : ''].filter(Boolean);
