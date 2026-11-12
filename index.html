@@ -1352,6 +1352,13 @@ nav.tabs .in.n5>button{display:flex!important}
 .tlbody b{font-size:13.5px;font-weight:700;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .tlbody span{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
 .tlb.short .tlbody{flex-direction:row;gap:6px;align-items:center}.tlb.short .tlck{width:18px;height:18px}
+.hd2c.one{grid-template-columns:1fr}.hd2c.one .hdtile{min-height:0;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:12px}
+.hd2c.one .hdtile .lab,.hd2c.one .hdtile b,.hd2c.one .hdtile .hglass{grid-column:1}.hd2c.one .hdwb{grid-column:2;grid-row:1 / span 3;margin:0}
+.tlfold{margin:0}.tlfold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r,16px);min-height:52px;box-sizing:border-box}
+.tlfold>summary::-webkit-details-marker{display:none}.tlfold>summary span{display:flex;flex-direction:column;gap:2px}.tlfold>summary b{font-size:15px}.tlfold>summary small{font-size:12px;color:var(--muted)}
+.tlfold>summary i{width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s var(--ease-out);margin-top:-4px}
+.tlfold[open]>summary i{transform:rotate(-135deg);margin-top:4px}.tlfold[open]>summary{border-radius:var(--r,16px) var(--r,16px) 0 0;border-bottom:0}
+.tlfold[open] .tl{border-top-left-radius:0;border-top-right-radius:0}.tlfold>.fine{margin-top:8px}
 /* Interactions */
 
 
@@ -1898,12 +1905,11 @@ function vCalcHome(){
       <div class="streak"><b class="mono">${st}</b><span>jour${st>1?'s':''} de suite</span></div></div>
     <button class="btn primary" data-c="daily">${dd?'Rejouer le défi':'Lancer le défi'}</button></div>
   <section><h2>Entraînement libre</h2><div class="card pad">
-    <div class="field"><span class="lab">Catégorie</span><div class="opts">${[...Object.entries(CALC_CATS),['mix','Mix']].map(([k,l])=>`<button data-c-cat="${k}" aria-pressed="${P.cat===k}">${l}</button>`).join('')}</div></div>
-    ${P.cat==='mix'?`<div class="field"><span class="lab">Dans ton mix</span><div class="opts checks">${Object.entries(CALC_CATS).map(([k,l])=>`<button data-c-mix="${k}" aria-pressed="${P.mix.includes(k)}">${P.mix.includes(k)?ICON_CHECK:''}${l}</button>`).join('')}</div></div>`:''}
-    <div class="field"><span class="lab">Niveau</span><div class="seg">${[1,2,3].map(l=>`<button data-c-lvl="${l}" aria-pressed="${P.level===l}">${LEVELS[l]}</button>`).join('')}</div></div>
-    <div class="field"><span class="lab">Nombre de calculs</span><div class="seg c4">${[10,20,30,50].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
-    <button class="btn primary" data-c="start">Commencer</button></div></section>
-  ${simCard()}
+    <div class="field" ${P.level===4 ? 'hidden' : ''}><span class="lab">Catégorie</span><div class="opts">${[...Object.entries(CALC_CATS),['mix','Mix']].map(([k,l])=>`<button data-c-cat="${k}" aria-pressed="${P.cat===k}">${l}</button>`).join('')}</div></div>
+    ${P.level!==4 && P.cat==='mix'?`<div class="field"><span class="lab">Dans ton mix</span><div class="opts checks">${Object.entries(CALC_CATS).map(([k,l])=>`<button data-c-mix="${k}" aria-pressed="${P.mix.includes(k)}">${P.mix.includes(k)?ICON_CHECK:''}${l}</button>`).join('')}</div></div>`:''}
+    <div class="field"><span class="lab">Niveau</span><div class="seg c4">${[1,2,3,4].map(l=>`<button data-c-lvl="${l}" aria-pressed="${P.level===l}">${l===4 ? 'Score IAE' : LEVELS[l]}</button>`).join('')}</div>${P.level===4 ? (() => { const H = state.calc.history.filter(h=>h.sim && h.mode!=='retry'), best = H.length ? H.reduce((b,h)=> (h.ok>b.ok || (h.ok===b.ok && h.ms<b.ms)) ? h : b) : null; return `<p class="fine">Format Score IAE Message : 10 QCM en 10 minutes (pourcentages, proportionnalité, suites, fractions, vitesses, intérêts composés, moyennes).${best ? ` Meilleur score : <b>${best.ok}/${best.n}</b> en ${fmtTime(best.ms)}.` : ''} <button class="link" data-v3="iae">Préparation complète des 4 épreuves</button></p>`; })() : ''}</div>
+    <div class="field" ${P.level===4 ? 'hidden' : ''}><span class="lab">Nombre de calculs</span><div class="seg c4">${[10,20,30,50].map(n=>`<button data-c-n="${n}" aria-pressed="${P.n===n}">${n}</button>`).join('')}</div></div>
+    <button class="btn primary" data-c="${P.level===4 ? 'sim' : 'start'}">${P.level===4 ? 'Lancer une série chronométrée' : 'Commencer'}</button></div></section>
   ${tipSheetsHtml()}
   ${calcProgress()}
   <section><h2>Tes statistiques</h2>${statsHtml()}</section>`;
@@ -2306,7 +2312,7 @@ function vFcHome(){
     <p>${today ? `${today} carte${today>1?'s':''} révisée${today>1?'s':''} aujourd'hui.` : due.length+fresh.length ? 'Les cartes reviennent au bon moment pour ne pas les oublier.' : 'Reviens demain, ou ajoute de nouvelles cartes.'}</p></div>
     <div class="streak"><b class="mono">${st}</b><span>jour${st>1?'s':''} de suite</span></div></div>
     ${due.length+fresh.length ? '<button class="btn primary" data-f="review">Commencer la révision</button>' : ''}</div>
-  ${weekPanel()}<button class="card rday" data-v3="iae"><span class="ic">${bicon('trophy')}</span><span><b>Score IAE</b><small>${iaeTileSub()} · mini-tests et épreuves chronométrées</small></span>${CHEV_R}</button>
+  ${weekPanel()}
   <section><h2>Mes matières <button class="link" data-f="new-deck">+ Matière</button></h2>
     ${(() => { const deckBtn = d => { const s = deckStats(d.id), p = s.n ? Math.round(100*s.mastered/s.n) : 0;
       return `<button class="card deck" data-f-deck="${d.id}" style="--dc:${deckColor(d)}"><span class="dname">${esc(d.name)}</span>
@@ -4620,6 +4626,7 @@ function vHealth(){
     ${cloudCard()}${newsCard()}${revalCard()}${hWeighCard()}${adviceCard()}
     ${hStreak() >= 2 ? `<div class="hstreak"><span>${bicon('bolt')}</span>${hStreak()} jours renseignés d’affilée</div>` : ''}
     ${hDayTop(D, S, T, goal, sp)}
+    ${(() => { ui.hsportEmbed = true; const tb = ui.tab; ui.tab = 'h-sport'; let h = ''; try { h = vHealth(); } finally { ui.tab = tb; ui.hsportEmbed = false; } return h; })()}
     ${sp ? `<p class="fine hspn">Séance du jour : +${spC(sp)} g de glucides et +${spF(sp)} g de lipides ajoutés à tes repères.</p>` : ''}${postWorkoutHtml(D)}
     ${hInsight(T)}`;
   }
@@ -4632,11 +4639,10 @@ function vHealth(){
   }
   if (ui.tab==='h-sport'){
     const w = lastWeight() || 70, stepK = r0(D.steps * 0.0005 * w);
-    return `${hDateBar()}
-    <div class="card hline"><span><b class="mono">${nf(r0(sp))}</b> kcal dépensées en séance</span><span class="fine">Elles s’ajoutent à ton objectif du jour.</span></div>
+    return `${ui.hsportEmbed ? '' : hDateBar()}
     <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}${x.src==='hevy' ? ' <span class="hvb">Hevy</span>' : ''}</b><span>${x.min} min${x.src==='hevy' ? ` · ${x.ex} exercice${x.ex>1?'s':''} · ${x.sets} séries${x.vol ? ` · ${nf(x.vol)} kg soulevés` : ''}` : ''}</span>${x.exn && x.exn.length ? `<span class="hvx">${esc(x.exn.join(', '))}</span>` : ''}</div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
       <button class="hadd" data-h="sport">+ Ajouter une séance</button><button class="hadd hcopy" data-h="hevy">${hevyKey() ? 'Hevy connecté · synchroniser ou régler' : 'Connecter Hevy (séances de muscu automatiques)'}</button></div>${hevyLine()}</section>
-    ${stepsCard(D, stepK)}
+    ${stepsCard(D, stepK, true)}
     <p class="help">Calories des séances = intensité (MET) × poids × durée. C’est une estimation : une montre connectée peut donner des chiffres différents.</p>`;
   }
   // Suivi
@@ -7034,7 +7040,7 @@ function mmZoom(){ const s = document.querySelector('.mmsvg'); if (!s) return; s
 
 /* ---------- Carte « Pas » (Activité) ---------- */
 const stepGoal = () => { const g = state.health && +state.health.stepGoal; return g >= 500 ? g : 8000; };
-function stepsCard(D, stepK){
+function stepsCard(D, stepK, compact){
   const STEP_GOAL = stepGoal();
   const s = D.steps || 0, p = Math.min(1, s / STEP_GOAL), reached = s >= STEP_GOAL, tk = todayKey();
   const R = 52, C = 2 * Math.PI * R;
@@ -7042,8 +7048,8 @@ function stepsCard(D, stepK){
   const mx = Math.max(STEP_GOAL * 1.25, ...v), filled = v.filter(x => x > 0), avg = filled.length ? Math.round(filled.reduce((a,b) => a+b, 0) / filled.length) : 0;
   let streak = 0; for (let i = 0; ; i++){ const k = key(addDays(new Date(), -i)), x = k===tk ? s : (hPeek(k).steps || 0); if (x >= STEP_GOAL) streak++; else if (i > 0) break; if (i > 365) break; }
   const km = s * 0.00075, mins = Math.round(s / 100), gy = 100 - 100 * STEP_GOAL / mx, synced = (state.health.sync || {}).id;
-  return `<section><h2>Pas</h2><div class="card stc ${reached ? 'reached' : ''}">
-    <div class="sthero">
+  return `<section><h2>${compact ? `Pas de la semaine <button class="link" data-h="step-goal">Objectif ${nf(STEP_GOAL)}</button>` : 'Pas'}</h2><div class="card stc ${reached ? 'reached' : ''}">
+    ${compact ? '' : `    <div class="sthero">
       <div class="string" role="img" aria-label="${nf(s)} pas sur ${nf(STEP_GOAL)}, ${Math.round(100*p)} %">
         <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R}" class="tr"/><circle cx="60" cy="60" r="${R}" class="pr" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - p)).toFixed(1)}" transform="rotate(-90 60 60)"/></svg>
         <div class="stc-in"><b>${nf(s)}</b><span>pas</span></div>
@@ -7054,6 +7060,7 @@ function stepsCard(D, stepK){
         <div class="stchips"><span><b>${nf(r1(km))}</b> km</span><span><b>${nf(stepK)}</b> kcal</span><span><b>${mins}</b> min</span></div>
       </div>
     </div>
+`}
     <div class="stweek" aria-label="Pas des 7 derniers jours">
       <div class="stbars"><i class="stgoal" style="top:${gy.toFixed(1)}%"></i>${v.map((x, i) => `<div class="stb ${x >= STEP_GOAL ? 'ok' : ''} ${ks[i]===tk ? 'td' : ''}" title="${nf(x)} pas"><span style="height:${(100 * x / mx).toFixed(1)}%"></span></div>`).join('')}</div>
       <div class="stdays">${ks.map(k => `<span class="${k===tk ? 'td' : ''}">${k===tk ? 'Auj.' : fmt(parse(k),{weekday:'short'}).replace('.','').slice(0,3)}</span>`).join('')}</div>
@@ -7113,7 +7120,7 @@ function hubHtml(){
   }
   if (g==='h-jour' && state.health && state.health.profile){
     const cur = t==='h-suivi' ? 'h-prog' : t;
-    return seg([['h-jour','Journée'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès']], cur)
+    return seg([['h-jour','Journée'],['h-repas','Repas'],['h-prog','Progrès']], cur)
       + (cur==='h-prog' ? `<div class="seg hubsub c2">${[['h-prog','Corps'],['h-suivi','Statistiques']].map(([k,l]) => `<button data-hub="${k}" aria-pressed="${k===t}">${l}</button>`).join('')}</div>` : '');
   }
   return '';
@@ -7171,7 +7178,7 @@ function vTodayNew(){
   let gauges = gauge('Tâches', `${done}/${tl.length}`, tl.length ? (left.length ? `${left.length} à faire` : 'tout est fait') : 'rien de prévu', tl.length ? 100*done/tl.length : 0, 'accent', 'data-v3="mj-tasks"');
   if (T){ const S = sumDay(D), goal = T.kcal + sportKcal(D), rs = Math.round(goal - S.kcal);
     gauges += gauge('Calories', nf(r0(S.kcal)), rs >= 0 ? `reste ${nf(rs)}` : `+${nf(-rs)} kcal`, goal ? 100*S.kcal/goal : 0, 'amber', 'data-hub="h-repas"');
-    gauges += gauge('Pas', nf(D.steps), `sur ${nf(stepGoal())}`, 100*D.steps/stepGoal(), 'ok', 'data-hub="h-sport"'); }
+    gauges += gauge('Pas', nf(D.steps), `sur ${nf(stepGoal())}`, 100*D.steps/stepGoal(), 'ok', 'data-hub="h-jour"'); }
   else gauges += gauge('Cartes', nf(due), due ? 'à réviser' : 'à jour', due ? 30 : 100, 'c-cours', 'data-quick="cartes"');
   const mtc = mitTask(), todo = left.filter(t => !(mtc && mtc.id===t.id)), rest = [...todo, ...tl.filter(t => t.done)];
   return `${cloudCard()}${newsCard()}${banner()}${backupBanner()}
@@ -7217,6 +7224,7 @@ view.addEventListener('click', e => {
   if (n){ const t = state.tasks.find(x => x.id===n.dataset.nowDone); if (t){ t.done = true; ui.justId = t.id; commit(); toast('Bien joué'); } return; }
   if (e.target.closest('[data-now="ev"]')){ const el = document.querySelector('.evening'); if (el){ el.scrollIntoView({ behavior:'smooth', block:'center' }); setTimeout(() => { const t = document.getElementById('ev-l'); t && t.focus(); }, 400); } return; }
   if (e.target.closest('[data-rv="newex"]')){ partielSheet(); return; }
+  if (e.target.closest('[data-goto-steps]')){ const el = document.querySelector('.stc'); el && el.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
   if (e.target.closest('[data-cas]')){ ui.tab = 'calcul'; startSession({ mode:'free', cat:'cas', level:2, n:8, seed:'cas-' + Date.now() + Math.random() }); return; }
   if (e.target.closest('[data-moi="help"]')){ const hb = document.getElementById('btn-help'); hb && hb.click(); return; }
 }, true);
@@ -7279,16 +7287,14 @@ function hDayTop(D, S, T, goal, sp){
       </svg>
       <div class="hdnums">
         <button class="hdn" data-hub="h-repas"><span class="lab"><i class="dot k"></i>Calories</span><b>${nf(r0(S.kcal))} <small>/ ${nf(goal)}</small></b><small>${left >= 0 ? `reste ${nf(left)} kcal` : `${nf(-left)} kcal au-dessus`}${sp ? ` · +${nf(r0(sp))} séance` : ''}</small></button>
-        <button class="hdn" data-hub="h-sport"><span class="lab"><i class="dot s"></i>Pas</span><b>${nf(D.steps)} <small>/ ${nf(sg)}</small></b><small>${D.steps >= sg ? 'objectif atteint' : `encore ${nf(sg - D.steps)}`}</small></button>
+        <button class="hdn" data-goto-steps="1"><span class="lab"><i class="dot s"></i>Pas</span><b>${nf(D.steps)} <small>/ ${nf(sg)}</small></b><small>${D.steps >= sg ? 'objectif atteint' : `encore ${nf(sg - D.steps)}`}</small></button>
       </div>
     </div>
     <div class="rmacs">${mb('Protéines', S.p, T.p, 'accent')}${mb('Glucides', S.c, tc, 'amber')}${mb('Lipides', S.f, tf, 'c-alt')}</div>
   </div>
-  <div class="hd2c">
+  <div class="hd2c one">
     <div class="card hdtile"><span class="lab">Eau</span><b>${nf(D.water*0.25)} <small>/ ${nf(T.water)} L</small></b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div>
       <div class="hdwb"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm hdwplus" data-h="water+">+ 1 verre</button></div></div>
-    <div class="card hdtile"><span class="lab">Séance</span>${s0 ? `<b>${esc(s0.name)}</b><small>${mins ? mins + ' min · ' : ''}${nf(sk)} kcal${s0.src==='hevy' ? ' · depuis Hevy' : ''}</small>${D.sport.length > 1 ? `<small>+ ${D.sport.length-1} autre${D.sport.length>2?'s':''}</small>` : ''}` : `<b>Aucune</b><small>pas encore de séance</small>`}
-      <button class="btn sm" data-h="sport" style="margin-top:auto">+ Séance</button></div>
   </div>
   <section><h2>Repas du jour <button class="link" data-hub="h-repas">Détail</button></h2><div class="card hdmeals">${MEALS.map(([k, l]) => { const it = D.food.filter(x => x.meal===k), kc = it.reduce((a,x) => a + x.kcal, 0);
     return `<div class="hdm"><i style="background:var(--${MEAL_COL[k]})"></i><button class="hdml" data-hub="h-repas"><b>${l}</b>${it.length ? `<small>${esc(it.map(x => x.name).slice(0, 2).join(', '))}${it.length > 2 ? '…' : ''}</small>` : k===nextMeal && idea ? `<small class="hdidea">Idée : ${esc(idea)}</small>` : ''}</button><span class="hdk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span><button class="hdadd" data-h-add="${k}" aria-label="Ajouter au ${l.toLowerCase()}">${ICON_PLUS}</button></div>`; }).join('')}</div></section>`;
@@ -7317,6 +7323,7 @@ function dayAgendaHtml(k, list){
   return `${exams.length || untimed.length ? `<div class="card tlall"><span class="lab">Toute la journée</span>
       ${exams.map(e => `<button class="tlex" data-hub="rv">${bicon('calendar')}<b>Examen · ${esc(e.title)}</b></button>`).join('')}
       ${untimed.length ? `<ul class="tasks">${untimed.map(taskRow).join('')}</ul>` : ''}</div>` : ''}
+    <details class="tlfold" ${(ui.tlOpen ?? timed.length > 0) ? 'open' : ''}><summary><span><b>Heure par heure</b><small>${timed.length ? `${timed.length} créneau${timed.length>1?'x':''} · ${timed[0].time} → ${tEnd(timed[timed.length-1])}` : 'aucun créneau horaire'}</small></span><i aria-hidden="true"></i></summary>
     <div class="card tl" style="--hpx:${TL_H}px;height:${(h1 - h0)*TL_H + 8}px">
       ${hours.map(h => `<button class="tlh" style="top:${(h - h0)*TL_H}px" data-tl-new="${pad(h)}:00" aria-label="Ajouter à ${h} h"><span>${pad(h)}:00</span></button>`).join('')}
       ${isToday && nowM >= h0*60 && nowM <= h1*60 ? `<i class="tlnow" style="top:${((nowM - h0*60)/60*TL_H).toFixed(1)}px"></i>` : ''}
@@ -7325,8 +7332,9 @@ function dayAgendaHtml(k, list){
           <button class="tlck" data-tl-done="${t.id}" aria-label="${t.done ? 'Marquer à faire' : 'Marquer comme fait'}">${t.done ? ICON_CHECK : ''}</button>
           <button class="tlbody" data-tl-edit="${t.id}"><b>${esc(t.title)}</b><span>${t.time} – ${tEnd(t)}</span></button></div>`; }).join('')}
     </div>
-    <p class="fine">Touche une heure pour y ajouter une tâche. Les tâches sans heure restent en haut.</p>`;
+    <p class="fine">Touche une heure pour y ajouter une tâche. Les tâches sans heure restent en haut.</p></details>`;
 }
+document.addEventListener('toggle', e => { if (e.target.classList && e.target.classList.contains('tlfold')) ui.tlOpen = e.target.open; }, true);
 view.addEventListener('click', e => {
   const n = e.target.closest('[data-tl-new]'); if (n){ e.stopImmediatePropagation(); taskSheet(null, { date:ui.day, time:n.dataset.tlNew, dur:60 }); return; }
   const ed = e.target.closest('[data-tl-edit]'); if (ed){ e.stopImmediatePropagation(); const t = state.tasks.find(x => x.id===ed.dataset.tlEdit); if (t) taskSheet(t); return; }
@@ -7337,6 +7345,7 @@ view.addEventListener('click', e => {
 const TITLES = { rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
   if (ui.tab==='accueil') ui.tab = 'today';
+  if (ui.tab==='h-sport') ui.tab = 'h-jour';
   syncModeFromTab();
   const now = new Date();
   $('#hdr-title').textContent = innerWidth < 400 && ui.tab==='calcul' ? 'Calcul' : TITLES[ui.tab];
