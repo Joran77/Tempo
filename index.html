@@ -1285,6 +1285,31 @@ section.rmc{margin:0}section.rmc+section.rmc{margin-top:-8px}.rmc .card{overflow
 details.rlib + details.rlib{margin-top:10px}
 @media (prefers-reduced-motion:reduce){.rstack i,.rmbar i{transition:none}}
 .rmic{display:flex;align-items:center;justify-content:center;padding:0}.rmic svg{display:block;margin:0;flex:none}
+nav.tabs .in.n5{grid-template-columns:minmax(62px,auto) repeat(4,1fr)!important}
+nav.tabs .in.n5>button{display:flex!important}
+.hubseg{margin:0 0 4px}.hubsub{margin:-8px 0 2px;max-width:280px}
+.hubseg.c4 button{font-size:13.5px;padding-inline:4px}
+.hubback{display:inline-flex;align-items:center;gap:4px;border:0;background:none;color:var(--accent);font:700 15px var(--f-body);padding:6px 0;min-height:44px;align-self:flex-start;cursor:pointer}
+.hubback svg{width:18px;height:18px}
+.nowc{padding:16px;background:var(--accent);color:var(--accent-ink);border:0}
+.nowk{font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;opacity:.85}
+.nowr{display:flex;align-items:center;gap:12px;margin-top:8px}.nowr>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.nowr b{font:700 19px/1.2 var(--f-display)}.nowr span{font-size:14px;opacity:.9}
+.nowbtn{flex:none;border:0;border-radius:999px;background:var(--accent-ink);color:var(--accent);font:700 15px var(--f-body);padding:0 18px;min-height:44px;cursor:pointer}
+.tdgs{display:grid;gap:8px}.tdgs.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.tdgs.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tdg{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px;text-align:left;border:0;cursor:pointer;color:var(--fg);font:inherit}
+.tdg b{font:700 20px/1.15 var(--f-display);font-variant-numeric:tabular-nums}.tdg small{font-size:12px;color:var(--muted)}
+.tdgbar{display:block;width:100%;height:6px;border-radius:999px;background:var(--surface-2);margin-top:6px;overflow:hidden}.tdgbar i{display:block;height:100%;border-radius:999px}
+.moihead{display:flex;align-items:center;gap:14px}.moihead h2{margin:0;font:700 24px var(--f-display)}
+.moiav{width:58px;height:58px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 24px var(--f-display);flex:none}
+.moistats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.moistats .card{padding:12px;display:flex;flex-direction:column;gap:2px}
+.moistats b{font:700 20px var(--f-display);font-variant-numeric:tabular-nums}.moistats span{font-size:12px;color:var(--muted)}
+.moilist{padding:0;overflow:hidden}
+.moirow{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:14px 16px;text-align:left;color:var(--fg);font:inherit;cursor:pointer;border-top:1px solid var(--line);min-height:52px}
+.moirow:first-child{border-top:0}.moirow b{flex:1;font-weight:600;font-size:15px}.moirow span{font-size:13px;color:var(--muted)}.moirow svg{width:16px;height:16px;color:var(--muted)}
+.qagrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.qa{border:0;border-radius:16px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:700 13.5px var(--f-body);text-align:center;padding:8px;background:color-mix(in srgb,var(--qc) 14%,var(--surface));color:var(--fg);cursor:pointer}
+.qa span{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--qc);color:var(--surface)}.qa span svg{width:20px;height:20px}
 /* Interactions */
 
 
@@ -1409,18 +1434,12 @@ nav.tabs button[aria-current="page"] .pill{animation:pillin .22s var(--ease-out)
 </button>
 
 <nav class="tabs" aria-label="Navigation">
-  <div class="in">
+  <div class="in n5">
     <button class="tday" data-tab="today"><span class="pill"><span class="tdi" aria-hidden="true"><small></small><b></b></span></span>Aujourd’hui</button>
+    <button data-tab="rv"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="14" height="13" rx="2"/><path d="M7 4h12a2 2 0 0 1 2 2v11"/></svg></span>Réviser</button>
     <button data-tab="agenda"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Agenda</button>
-    <button data-tab="calcul"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 7h5M8.5 4.5v5M14 7h5M6 16.5l4 4M10 16.5l-4 4M14 16h5M14 20h5"/></svg></span>Calcul</button>
-    <button data-tab="sudoku"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></span>Sudoku</button>
-    <button data-tab="cartes"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="14" height="13" rx="2"/><path d="M7 4h12a2 2 0 0 1 2 2v11"/></svg></span>Cartes</button>
-    <button data-tab="actu"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h13v14a1 1 0 0 0 1 1H6a2 2 0 0 1-2-2z"/><path d="M17 9h3v9a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5M8 16h3"/></svg></span>Actu</button>
-    <button class="hm" data-tab="h-jour"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Santé</button>
-    <button class="hm" data-tab="h-repas"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5M9 3v5M17 3c-2 0-3 2.5-3 6s1 4 3 4v8"/></svg></span>Repas</button>
-    <button class="hm" data-tab="h-sport"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="4.5" r="1.8"/><path d="m6 21 3.5-6 3 2.5V21M8 12l2.5-4 4 1.5 2 3.5H20M10.5 8 9 12.5l3.5 2.5"/></svg></span>Activité</button>
-    <button class="hm" data-tab="h-prog"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9v6M18 9v6M3 11v2M21 11v2M6 12h12"/></svg></span>Progrès</button>
-    <button class="hm" data-tab="h-suivi"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M5 15l4-5 4 3 6-7"/></svg></span>Suivi</button>
+    <button data-tab="h-jour"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Santé</button>
+    <button data-tab="moi"><span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>Moi</button>
   </div>
 </nav>
 
@@ -6631,12 +6650,9 @@ function postWorkoutHtml(D){
 const TAB_LIST = { study:[['agenda','Agenda'],['calcul','Calcul'],['sudoku','Sudoku'],['cartes','Flashcards'],['actu','Actu']], health:[['h-jour','Santé'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès'],['h-suivi','Suivi']] };
 const tabsVis = m => { const t = state.meta && state.meta.tabs && state.meta.tabs[m]; return Array.isArray(t) && t.length >= 2 ? t : TAB_LIST[m].map(x => x[0]); };
 function applyTabs(){
-  const vis = { study:new Set(tabsVis('study')), health:new Set(tabsVis('health')) };
-  document.querySelectorAll('nav.tabs [data-tab]:not(.tday)').forEach(b => { const m = b.classList.contains('hm') ? 'health' : 'study'; b.hidden = !vis[m].has(b.dataset.tab); });
-  const inn = document.querySelector('nav.tabs .in'); if (inn) inn.style.gridTemplateColumns = `minmax(62px,auto) repeat(${vis[appMode].size},1fr)`;
   const ti = document.querySelector('nav.tabs .tday .tdi b'); if (ti && ti.textContent != new Date().getDate()) ti.parentElement.outerHTML = todayIcon();
 }
-function tabsParamsHtml(){
+function tabsParamsHtml(){ return '';
   return `<section><h2>Onglets visibles</h2><div class="card pad">${['study','health'].map(m => { const v = tabsVis(m);
     return `<span class="lab">${m==='study' ? 'Tempo Études' : 'Tempo Santé'}</span><div class="opts checks tabvis">${TAB_LIST[m].map(([k,l]) => `<button data-h2="tabvis" data-m="${m}" data-k="${k}" aria-pressed="${v.includes(k)}">${v.includes(k) ? ICON_CHECK : ''}${l}</button>`).join('')}</div>`; }).join('')}
     <p class="fine">Au moins 2 onglets par espace. L’onglet « Aujourd’hui » reste toujours affiché. Une page masquée reste accessible depuis « Aujourd’hui ».</p></div></section>`;
@@ -6784,6 +6800,15 @@ HELP.today = { t:'Aujourd’hui', i:'La page d’ouverture de Tempo : ta journé
   ['target','Raccourcis','Pomodoro, défi de calcul, sudoku, flashcards, révision express, mode trajet et Score IAE.'],
   ['calendar','Examens, objectifs et bilan','Comptes à rebours des examens, objectifs, badges et bilan de la semaine, comme sur l’ancien accueil.']] };
 HELP.accueil = HELP.today;
+HELP.today = { t:'Aujourd’hui', i:'Ta journée en un écran : la chose à faire maintenant, tes jauges, tes examens proches et tes tâches.', s:[
+  ['bolt','Maintenant','Tempo choisit la chose la plus utile : la part du jour de ton examen le plus proche, ta priorité, tes cartes à revoir ou ton bilan du soir.'],
+  ['tasks','Jauges','Tâches faites, calories et pas du jour. Touche une jauge pour ouvrir le détail.'],
+  ['calendar','Examens','Les examens des 7 prochains jours : touche-en un pour lancer sa part du jour.'],
+  ['check','Bouton +','En bas à droite, sur tous les onglets : tâche, flashcard, Pomodoro, aliment, eau ou séance en deux touches.']] };
+HELP.rv = { t:'Réviser', i:'Tout ce qui sert à apprendre, au même endroit.', s:[
+  ['calendar','Examens','Tes examens, leur planning et la part du jour.'],['cards','Matières','Tes paquets de flashcards et leurs cartes mentales.'],['bolt','S’entraîner','Révision express, Pomodoro, calcul mental, sudoku, Score IAE, mode trajet et veille.']] };
+HELP['rv-train'] = HELP.rv;
+HELP.moi = { t:'Moi', i:'Ta progression et tes réglages.', s:[['target','Suivis','Objectifs, journal du soir, bilan de la semaine et badges.'],['tasks','Réglages','Profil, connexions Santé et Hevy, sauvegarde chiffrée, apparence.']] };
 
 /* ---------- Sélection et suppression de cartes ---------- */
 document.addEventListener('click', e => { const b = e.target.closest('#i-repl'); if (b){ b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')!=='true'); } });
@@ -7035,19 +7060,141 @@ function vRepasJour(D, S, T, goal, sp){
   ${assocHtml()}`;
 }
 
+/* ---------- Organisation en 5 onglets : Aujourd'hui, Réviser, Agenda, Santé, Moi ---------- */
+const RV_TABS = ['rv','rv-train','cartes','calcul','sudoku','iae','actu'];
+const navGroup = t => t==='today' || t==='accueil' ? 'today' : RV_TABS.includes(t) ? 'rv' : t==='agenda' ? 'agenda' : String(t).startsWith('h-') ? 'h-jour' : t==='moi' || t==='params' ? 'moi' : 'today';
+function syncModeFromTab(){
+  const m = navGroup(ui.tab)==='h-jour' ? 'health' : 'study';
+  if (m !== appMode){ appMode = m; try { localStorage.setItem('tempo.mode', m); } catch(_){} document.documentElement.dataset.mode = m; }
+}
+function hubHtml(){
+  const t = ui.tab, g = navGroup(t), seg = (items, cur) => `<div class="seg hubseg c${items.length}" role="tablist">${items.map(([k, l]) => `<button role="tab" data-hub="${k}" aria-selected="${k===cur}" aria-pressed="${k===cur}">${l}</button>`).join('')}</div>`;
+  if (g==='rv'){
+    if (t==='cartes' && !['home', undefined, null].includes(ui.fc.view)) return '';
+    if (['rv','rv-train','cartes'].includes(t)) return seg([['rv','Examens'],['cartes','Matières'],['rv-train','S’entraîner']], t);
+    const play = (t==='calcul' && ui.calc.phase==='play') || (t==='sudoku' && ui.su.view!=='home');
+    return play || t==='iae' ? '' : `<button class="hubback" data-hub="rv-train">${CHEV_L}S’entraîner</button>`;
+  }
+  if (g==='h-jour' && state.health && state.health.profile){
+    const cur = t==='h-suivi' ? 'h-prog' : t;
+    return seg([['h-jour','Journée'],['h-repas','Repas'],['h-sport','Activité'],['h-prog','Progrès']], cur)
+      + (cur==='h-prog' ? `<div class="seg hubsub c2">${[['h-prog','Corps'],['h-suivi','Statistiques']].map(([k,l]) => `<button data-hub="${k}" aria-pressed="${k===t}">${l}</button>`).join('')}</div>` : '');
+  }
+  return '';
+}
+function vRvEx(){
+  ensurePartiels();
+  return `${vPartiels()}<button class="btn primary bigbtn" data-rv="newex">+ Nouvel examen</button>`;
+}
+function vRvTrain(){
+  return `<div class="tdshort">
+    <button class="wide xbtn" data-express="1" style="--qc:var(--amber)"><span class="qi">${bicon('bolt')}</span><span class="qtx"><b>Révision express · 5 min</b><span>Cartes et calculs mélangés, pour les temps morts</span></span><span class="go">${CHEV_R}</span></button>
+    ${quickTiles()}
+    ${v3Tiles()}
+    <button class="wide" data-hub="actu" style="--qc:var(--c-cours)"><span class="qi">${bicon('cards')}</span><span class="qtx"><b>Veille éco et compta</b><span>L’actualité qui peut tomber en cours ou à l’oral</span></span><span class="go">${CHEV_R}</span></button>
+  </div>`;
+}
+function vMoi(){
+  ensureFc(); const cards = state.fc.cards.filter(c => !c.rev), mast = cards.filter(isMastered).length, st = activeStreak(), nb = (state.badges ? Object.keys(state.badges).length : 0);
+  const name = userName(), row = (attr, t, sub) => `<button class="moirow" ${attr}><b>${t}</b><span>${sub}</span>${CHEV_R}</button>`;
+  return `<div class="moihead"><span class="moiav">${esc((name || 'T')[0].toUpperCase())}</span><div><h2>${esc(name || 'Mon espace')}</h2><p class="fine">${st ? `${st} jour${st>1?'s':''} actif${st>1?'s':''} d’affilée` : 'Ta progression, tes réglages'}</p></div></div>
+  <div class="moistats"><div class="card"><b>${nf(cards.length)}</b><span>cartes</span></div><div class="card"><b>${cards.length ? Math.round(100*mast/cards.length) : 0} %</b><span>maîtrisées</span></div><div class="card"><b>${nf((state.goals||[]).filter(g => g.value >= g.target).length)}/${nf((state.goals||[]).length)}</b><span>objectifs</span></div></div>
+  <section><h2>Mes suivis</h2><div class="card moilist">
+    ${row('data-v3="td-goals"', 'Objectifs', `${(state.goals||[]).length} en cours`)}
+    ${row('data-journal="1"', 'Journal du soir', 'bilans écrits et vocaux')}
+    ${row('data-hub="h-prog"', 'Poids et mensurations', 'Santé · Progrès')}
+  </div></section>
+  ${bilanHtml()}
+  ${badgesCard()}
+  <section><h2>Réglages</h2><div class="card moilist">
+    ${row('data-hub="params"', 'Paramètres', 'profil, connexions, sauvegarde, apparence')}
+    ${row('data-moi="help"', 'Aide', 'comment marche chaque page')}
+  </div></section>`;
+}
+function vTodayNew(){
+  ensureFocus(); ensureCalc(); ensureSudoku(); ensureFc(); ensureExtras();
+  if (ui.express) return vExpress();
+  const now = new Date(), tk = todayKey(), hour = now.getHours();
+  const tl = sortTasks(tasksOn(tk)).filter(t => { const ex = t.examId && (state.partiels||[]).find(x => x.id===t.examId); return !(ex && ex.date >= tk && daysUntil(ex.date) <= 7); });
+  const left = tl.filter(t => !t.done), done = tl.length - left.length, due = dueCards().all.length;
+  const H = state.health, T = H && H.profile ? hTargets() : null, D = T ? hPeek(tk) : null;
+  const hello = `${hour < 5 ? 'Bonne nuit' : hour < 18 ? 'Bonjour' : 'Bonsoir'}${userName() ? ' ' + userName() : ''}`;
+  // Maintenant : la chose la plus utile à faire tout de suite
+  let now1 = null;
+  const exs = (state.partiels||[]).filter(e => e.date >= tk && daysUntil(e.date) <= 7).sort((a,b) => a.date.localeCompare(b.date));
+  for (const ex of exs){ const P = examPlan(ex); if (P.L.length && P.today){ const d = daysUntil(ex.date);
+    now1 = { t:`${ex.title} · part du jour`, s:`${P.today} carte${P.today>1?'s':''} · examen ${d===0 ? 'aujourd’hui' : fmt(parse(ex.date),{weekday:'long'})} (${cdLabel(d)})`, b:`<button class="nowbtn" data-v3="ex-rev" data-k="${ex.id}">Réviser</button>` }; break; } }
+  const mt = mitTask();
+  if (!now1 && mt && !mt.done) now1 = { t:mt.title, s:'Ta priorité du jour', b:`<button class="nowbtn" data-now-done="${mt.id}">Fait</button>` };
+  if (!now1 && due) now1 = { t:`${due} carte${due>1?'s':''} à réviser`, s:'Répétition espacée : c’est le bon moment pour les revoir', b:'<button class="nowbtn" data-quick="cartes">Réviser</button>' };
+  if (!now1 && left.length) now1 = { t:left[0].title, s:`${left.length} tâche${left.length>1?'s':''} restante${left.length>1?'s':''} aujourd’hui`, b:`<button class="nowbtn" data-now-done="${left[0].id}">Fait</button>` };
+  if (!now1 && hour >= 17 && !state.journal[tk]) now1 = { t:'Bilan du soir', s:'2 minutes, à l’écrit ou en vocal', b:'<button class="nowbtn" data-now="ev">Écrire</button>' };
+  if (!now1) now1 = { t:'Tout est à jour', s:'Un temps mort ? 5 minutes de cartes et de calcul', b:'<button class="nowbtn" data-express="1">Express</button>' };
+  const gauge = (lab, val, sub, p, col, attr) => `<button class="card tdg" ${attr}><span class="lab">${lab}</span><b>${val}</b><small>${sub}</small><span class="tdgbar"><i style="width:${Math.max(0, Math.min(100, p)).toFixed(0)}%;background:var(--${col})"></i></span></button>`;
+  let gauges = gauge('Tâches', `${done}/${tl.length}`, tl.length ? (left.length ? `${left.length} à faire` : 'tout est fait') : 'rien de prévu', tl.length ? 100*done/tl.length : 0, 'accent', 'data-v3="mj-tasks"');
+  if (T){ const S = sumDay(D), goal = T.kcal + sportKcal(D), rs = Math.round(goal - S.kcal);
+    gauges += gauge('Calories', nf(r0(S.kcal)), rs >= 0 ? `reste ${nf(rs)}` : `+${nf(-rs)} kcal`, goal ? 100*S.kcal/goal : 0, 'amber', 'data-hub="h-repas"');
+    gauges += gauge('Pas', nf(D.steps), `sur ${nf(stepGoal())}`, 100*D.steps/stepGoal(), 'ok', 'data-hub="h-sport"'); }
+  else gauges += gauge('Cartes', nf(due), due ? 'à réviser' : 'à jour', due ? 30 : 100, 'c-cours', 'data-quick="cartes"');
+  const mtc = mitTask(), todo = left.filter(t => !(mtc && mtc.id===t.id)), rest = [...todo, ...tl.filter(t => t.done)];
+  return `${cloudCard()}${newsCard()}${banner()}${backupBanner()}
+    <div class="card nowc"><span class="nowk">${esc(hello)} · maintenant</span><div class="nowr"><div><b>${esc(now1.t)}</b><span>${esc(now1.s)}</span></div>${now1.b}</div></div>
+    <div class="tdgs c${T ? 3 : 2}">${gauges}</div>
+    ${exs.length ? `<section><h2>Examens <button class="link" data-hub="rv">Tout voir</button></h2>${examCountdowns()}</section>` : ''}
+    ${mitCard(tl)}
+    <section><h2>Tâches du jour <span class="hlinks"><button class="link" data-add-task="1">+ Ajouter</button><button class="link" data-v3="mj-tasks">Agenda</button></span></h2>
+      <div class="card">${rest.length ? `<ul class="tasks">${rest.slice(0, 8).map(taskRow).join('')}</ul>${rest.length > 8 ? `<button class="more-row" data-v3="mj-tasks">+ ${rest.length-8} autre${rest.length-8>1?'s':''}</button>` : ''}` : '<p class="empty"><b>Aucune tâche aujourd’hui</b>Ajoute-en une avec le bouton +.</p>'}</div></section>
+    ${eveningCard()}`;
+}
+function quickAddSheet(){
+  const h = new Date().getHours() + new Date().getMinutes()/60, meal = h < 10.5 ? 'pdj' : h < 15 ? 'dej' : h < 18 ? 'col' : 'din', prof = state.health && state.health.profile;
+  const it = (k, l, ic, col) => `<button class="qa" data-qa="${k}" style="--qc:var(--${col})"><span>${ic}</span>${l}</button>`;
+  sheet(`<h3>Ajouter</h3><div class="qagrid">
+    ${it('task','Tâche', bicon('tasks'), 'accent')}
+    ${it('card','Flashcard', bicon('cards'), 'c-cours')}
+    ${it('focus','Pomodoro', bicon('clock'), 'c-alt')}
+    ${prof ? it('food', `Aliment · ${MEAL_N[meal]}`, ICON_PLUS, 'amber') : ''}
+    ${prof ? it('water','Verre d’eau', bicon('check'), 'c-cours') : ''}
+    ${prof ? it('sport','Séance', bicon('flame'), 'ok') : ''}
+  </div><div class="btns"><button class="btn" data-close>Fermer</button></div>`, s => {
+    s.addEventListener('click', e => { const b = e.target.closest('[data-qa]'); if (!b) return; const k = b.dataset.qa; close();
+      setTimeout(() => {
+        if (k==='task') taskSheet();
+        else if (k==='card'){ ensureFc(); fcCardSheet(null); }
+        else if (k==='focus'){ if (state.focus.run){ focusOpen = true; drawFocus(); } else focusSetupSheet(); }
+        else if (k==='food'){ ui.hday = todayKey(); hFoodSheet(meal); }
+        else if (k==='water'){ hDay(todayKey()).water++; commit(); toast('+ 1 verre d’eau'); }
+        else if (k==='sport'){ ui.hday = todayKey(); hSportSheet(); }
+      }, 230);
+    });
+  });
+}
+view.addEventListener('click', e => {
+  const h = e.target.closest('[data-hub]');
+  if (h){ e.stopImmediatePropagation(); const t = h.dataset.hub; if (t==='params'){ lastTab[appMode] = ui.tab; } ui.tab = t; ui.open = null;
+    if (t==='cartes') ui.fc.view = 'home'; if (t==='calcul' && ui.calc.phase!=='play') ui.calc.phase = 'home'; if (t==='sudoku') ui.su.view = 'home'; if (t.startsWith('h-')) ui.hday = todayKey();
+    render(); window.scrollTo(0,0); return; }
+  const n = e.target.closest('[data-now-done]');
+  if (n){ const t = state.tasks.find(x => x.id===n.dataset.nowDone); if (t){ t.done = true; ui.justId = t.id; commit(); toast('Bien joué'); } return; }
+  if (e.target.closest('[data-now="ev"]')){ const el = document.querySelector('.evening'); if (el){ el.scrollIntoView({ behavior:'smooth', block:'center' }); setTimeout(() => { const t = document.getElementById('ev-l'); t && t.focus(); }, 400); } return; }
+  if (e.target.closest('[data-rv="newex"]')){ partielSheet(); return; }
+  if (e.target.closest('[data-moi="help"]')){ const hb = document.getElementById('btn-help'); hb && hb.click(); return; }
+}, true);
+
 /* ---------- Rendu ---------- */
-const TITLES = { today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
+const TITLES = { rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
   if (ui.tab==='accueil') ui.tab = 'today';
+  syncModeFromTab();
   const now = new Date();
   $('#hdr-title').textContent = innerWidth < 400 && ui.tab==='calcul' ? 'Calcul' : TITLES[ui.tab];
   $('#hdr-sub').textContent = fmt(now, innerWidth < 420 ? {weekday:'short',day:'numeric',month:'short'} : {weekday:'long',day:'numeric',month:'long'}).replace(/\./g,'') + ` · S${isoWeek(now)}`;
-  document.querySelectorAll('nav.tabs button').forEach(b => b.dataset.tab===ui.tab ? b.setAttribute('aria-current','page') : b.removeAttribute('aria-current'));
+  document.querySelectorAll('nav.tabs button').forEach(b => b.dataset.tab===navGroup(ui.tab) ? b.setAttribute('aria-current','page') : b.removeAttribute('aria-current'));
   ensureCalc(); ensureSudoku(); ensureFc(); ensurePartiels(); ensureFocus(); ensureExtras(); applyTabs();
   const miss = tabNeeds(ui.tab); if (miss.length){ view.innerHTML = '<div class="card empty"><b>Chargement…</b>Un instant, Tempo prépare cette page.</div>'; Promise.all(miss.map(needData)).then(() => render()); return; }
   const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='today' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
   isEntering = vk !== lastVK; lastVK = vk;
-  view.innerHTML = ui.tab==='today' ? vToday() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes();
+  view.innerHTML = hubHtml() + (ui.tab==='rv' ? vRvEx() : ui.tab==='rv-train' ? vRvTrain() : ui.tab==='moi' ? vMoi() : ui.tab==='today' ? vTodayNew() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes());
   view.classList.remove('anim');
   if (isEntering && motionOK()){ void view.offsetWidth; [...view.children].forEach((c,i)=>c.style.setProperty('--i', Math.min(i,8))); view.classList.add('anim'); clearTimeout(animT); animT = setTimeout(()=>view.classList.remove('anim'), 1400); }
   if (view.querySelector('canvas[data-b3]')) body3dMount(view, window.__b3ms || {});
@@ -7055,8 +7202,8 @@ function render(){
   if (ui.tab==='today' && ui.express && !ui.express.done && ui.express.step==='q' && ui.express.items[ui.express.i].t==='calc') setTimeout(() => { const i = $('#x-ans'); i && i.focus(); }, 30);
   if (ui.tab==='calcul' && ui.calc.phase==='play') setTimeout(() => { const i = $('#c-ans'); i && i.focus(); }, 30);
   const fab = $('#fab');
-  fab.hidden = ui.tab!=='agenda';
-  $('#fab-lbl').textContent = ui.tab==='agenda' && ui.seg==='objectifs' ? 'Objectif' : ui.tab==='agenda' && ui.seg==='examens' ? 'Examen' : 'Tâche';
+  fab.hidden = !(['today','rv','rv-train','agenda','moi','h-jour','h-repas','h-sport','h-prog','h-suivi'].includes(ui.tab) || (ui.tab==='cartes' && (!ui.fc.view || ui.fc.view==='home'))) || (ui.tab==='today' && !!ui.express);
+  $('#fab-lbl').textContent = ui.tab==='agenda' && ui.seg==='objectifs' ? 'Objectif' : ui.tab==='agenda' && ui.seg==='examens' ? 'Examen' : ui.tab==='agenda' ? 'Tâche' : 'Ajouter';
 }
 function commit(){ checkBadges(!badgesReady); save(); render(); SNAP.later(); CLOUD.soon(); }
 let toastT;
@@ -7107,7 +7254,7 @@ view.addEventListener('click', e => {
 });
 const dn_ = el => +el.dataset.week;
 
-$('#fab').addEventListener('click', () => (ui.tab==='agenda' && ui.seg==='objectifs') ? goalSheet() : (ui.tab==='agenda' && ui.seg==='examens') ? partielSheet() : taskSheet());
+$('#fab').addEventListener('click', () => ui.tab!=='agenda' ? quickAddSheet() : (ui.seg==='objectifs') ? goalSheet() : (ui.seg==='examens') ? partielSheet() : taskSheet());
 $('#btn-search').addEventListener('click', searchSheet);
 $('#btn-help').addEventListener('click', helpSheet);
 $('#btn-params').addEventListener('click', () => { if (ui.tab!=='params'){ lastTab[appMode] = ui.tab; ui.tab = 'params'; } else ui.tab = lastTab[appMode] || (appMode==='health' ? 'h-jour' : 'today'); ui.open = null; render(); window.scrollTo(0,0); });
