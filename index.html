@@ -1208,6 +1208,37 @@ nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,v
 @media (prefers-reduced-motion:reduce){.evdot{animation:none}}
 .evvrow{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .jentry audio{width:100%;height:36px;margin:4px 0}
+.stc{padding:18px}
+.sthero{display:flex;gap:18px;align-items:center}
+.string{position:relative;width:124px;height:124px;flex:none}
+.string svg{width:100%;height:100%;display:block}
+.string .tr{fill:none;stroke:var(--surface-2);stroke-width:11}
+.string .pr{fill:none;stroke:var(--accent);stroke-width:11;stroke-linecap:round;transition:stroke-dashoffset .6s var(--ease-out)}
+.stc.reached .string .pr{stroke:var(--ok)}
+.stc-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05}
+.stc-in b{font:700 26px/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stc-in span{font-size:12px;color:var(--muted)}
+.stside{min-width:0;flex:1;display:flex;flex-direction:column;gap:6px}
+.stleft{margin:0;font-size:16px;line-height:1.3}
+.stc.reached .stleft b{color:var(--ok)}
+.stchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.stchips span{background:var(--surface-2);border-radius:999px;padding:4px 10px;font-size:12px;color:var(--muted);white-space:nowrap}
+.stchips b{color:var(--fg);font-weight:700}
+.stweek{margin-top:18px}
+.stbars{position:relative;height:92px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end}
+.stb{height:100%;display:flex;align-items:flex-end;background:color-mix(in srgb,var(--surface-2) 60%,transparent);border-radius:8px;overflow:hidden}
+.stb span{display:block;width:100%;background:color-mix(in srgb,var(--accent) 55%,var(--surface));border-radius:8px 8px 0 0;min-height:3px;transition:height .5s var(--ease-out)}
+.stb.td span{background:var(--accent)}
+.stb.ok span{background:var(--ok)}
+.stgoal{position:absolute;left:0;right:0;border-top:1.5px dashed var(--muted);opacity:.55;pointer-events:none;z-index:1}
+.stdays{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:6px;text-align:center;font-size:11px;color:var(--muted);text-transform:capitalize}
+.stdays .td{color:var(--fg);font-weight:700}
+.ststats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.ststats div{display:flex;flex-direction:column;gap:2px}
+.ststats b{font:700 18px/1.2 var(--f-display);font-variant-numeric:tabular-nums}
+.stleft small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.stfoot{margin-top:14px}.stfoot .btns{margin-top:8px}
+@media (prefers-reduced-motion:reduce){.string .pr,.stb span{transition:none}}
 /* Interactions */
 
 
@@ -4511,7 +4542,7 @@ function vHealth(){
     <div class="card hline"><span><b class="mono">${nf(r0(sp))}</b> kcal dépensées en séance</span><span class="fine">Elles s’ajoutent à ton objectif du jour.</span></div>
     <section><h2>Séances</h2><div class="card">${D.sport.length ? `<ul class="hfood">${D.sport.map(x=>`<li><div><b>${esc(x.name)}${x.src==='hevy' ? ' <span class="hvb">Hevy</span>' : ''}</b><span>${x.min} min${x.src==='hevy' ? ` · ${x.ex} exercice${x.ex>1?'s':''} · ${x.sets} séries${x.vol ? ` · ${nf(x.vol)} kg soulevés` : ''}` : ''}</span>${x.exn && x.exn.length ? `<span class="hvx">${esc(x.exn.join(', '))}</span>` : ''}</div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-sdel="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : '<div class="empty"><b>Aucune séance</b>Ajoute ton sport du jour.</div>'}
       <button class="hadd" data-h="sport">+ Ajouter une séance</button><button class="hadd hcopy" data-h="hevy">${hevyKey() ? 'Hevy connecté · synchroniser ou régler' : 'Connecter Hevy (séances de muscu automatiques)'}</button></div>${hevyLine()}</section>
-    <section><h2>Pas</h2><div class="card pad"><div class="bct"><span class="mono"><b>${nf(D.steps)}</b> pas</span><span class="fine">≈ ${nf(stepK)} kcal · déjà comptés dans ton niveau d’activité</span></div><div class="bar"><i style="width:${Math.min(100,100*D.steps/8000)}%"></i></div>${syncLine()}<div class="btns">${(state.health.sync||{}).id ? '<button class="btn sm primary" data-h="sync-now">Synchroniser</button>' : '<button class="btn sm primary" data-h="sync">Automatiser avec Santé</button><button class="btn sm" data-h="steps-import">Importer (presse-papiers)</button>'}<button class="btn sm" data-h="steps">Saisir à la main</button>${(state.health.sync||{}).id ? '<button class="btn sm" data-h="sync">Réglages</button>' : ''}</div></div></section>
+    ${stepsCard(D, stepK)}
     <p class="help">Calories des séances = intensité (MET) × poids × durée. C’est une estimation : une montre connectée peut donner des chiffres différents.</p>`;
   }
   // Suivi
@@ -6898,6 +6929,36 @@ function mmZoom(){ const s = document.querySelector('.mmsvg'); if (!s) return; s
   view.addEventListener('touchmove', e => { if (!d0 || e.touches.length!==2) return; e.preventDefault(); ui.mm.z = Math.max(.4, Math.min(1.8, z0 * dist(e.touches) / d0)); mmZoom(); }, { passive:false });
   view.addEventListener('touchend', e => { if (e.touches.length < 2) d0 = 0; }, { passive:true });
 })();
+
+/* ---------- Carte « Pas » (Activité) ---------- */
+const STEP_GOAL = 8000;
+function stepsCard(D, stepK){
+  const s = D.steps || 0, p = Math.min(1, s / STEP_GOAL), reached = s >= STEP_GOAL, tk = todayKey();
+  const R = 52, C = 2 * Math.PI * R;
+  const ks = Array.from({length:7}, (_, i) => key(addDays(new Date(), i - 6))), v = ks.map(k => k===tk ? s : (hPeek(k).steps || 0));
+  const mx = Math.max(STEP_GOAL * 1.25, ...v), filled = v.filter(x => x > 0), avg = filled.length ? Math.round(filled.reduce((a,b) => a+b, 0) / filled.length) : 0;
+  let streak = 0; for (let i = 0; ; i++){ const k = key(addDays(new Date(), -i)), x = k===tk ? s : (hPeek(k).steps || 0); if (x >= STEP_GOAL) streak++; else if (i > 0) break; if (i > 365) break; }
+  const km = s * 0.00075, mins = Math.round(s / 100), gy = 100 - 100 * STEP_GOAL / mx, synced = (state.health.sync || {}).id;
+  return `<section><h2>Pas</h2><div class="card stc ${reached ? 'reached' : ''}">
+    <div class="sthero">
+      <div class="string" role="img" aria-label="${nf(s)} pas sur ${nf(STEP_GOAL)}, ${Math.round(100*p)} %">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="${R}" class="tr"/><circle cx="60" cy="60" r="${R}" class="pr" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - p)).toFixed(1)}" transform="rotate(-90 60 60)"/></svg>
+        <div class="stc-in"><b>${nf(s)}</b><span>pas</span></div>
+      </div>
+      <div class="stside">
+        <span class="lab">Objectif ${nf(STEP_GOAL)}</span>
+        <p class="stleft">${reached ? `<b>Objectif atteint</b>${s > STEP_GOAL ? `<small>+${nf(s - STEP_GOAL)} pas en plus</small>` : ''}` : s ? `Encore <b>${nf(STEP_GOAL - s)}</b> pas` : 'Pas encore de pas aujourd’hui'}</p>
+        <div class="stchips"><span><b>${nf(r1(km))}</b> km</span><span><b>${nf(stepK)}</b> kcal</span><span><b>${mins}</b> min</span></div>
+      </div>
+    </div>
+    <div class="stweek" aria-label="Pas des 7 derniers jours">
+      <div class="stbars"><i class="stgoal" style="top:${gy.toFixed(1)}%"></i>${v.map((x, i) => `<div class="stb ${x >= STEP_GOAL ? 'ok' : ''} ${ks[i]===tk ? 'td' : ''}" title="${nf(x)} pas"><span style="height:${(100 * x / mx).toFixed(1)}%"></span></div>`).join('')}</div>
+      <div class="stdays">${ks.map(k => `<span class="${k===tk ? 'td' : ''}">${k===tk ? 'Auj.' : fmt(parse(k),{weekday:'short'}).replace('.','').slice(0,3)}</span>`).join('')}</div>
+    </div>
+    <div class="ststats"><div><span class="lab">Moyenne 7 j</span><b>${nf(avg)}</b></div><div><span class="lab">Série</span><b>${streak} jour${streak>1?'s':''}</b></div><div><span class="lab">Jours à ${STEP_GOAL/1000} 000</span><b>${v.filter(x => x >= STEP_GOAL).length}/7</b></div></div>
+    <div class="stfoot">${syncLine()}<div class="btns">${synced ? '<button class="btn sm primary" data-h="sync-now">Synchroniser</button>' : '<button class="btn sm primary" data-h="sync">Automatiser avec Santé</button><button class="btn sm" data-h="steps-import">Importer</button>'}<button class="btn sm" data-h="steps">Saisir</button>${synced ? '<button class="btn sm" data-h="sync">Réglages</button>' : ''}</div></div>
+  </div></section>`;
+}
 
 /* ---------- Rendu ---------- */
 const TITLES = { today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
