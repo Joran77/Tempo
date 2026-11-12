@@ -1,5 +1,5 @@
 // Tempo : fonctionnement hors connexion
-const CACHE = 'tempo-14845206';
+const CACHE = 'tempo-99351330';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './data/map.e8441f0251.js', './data/ciq.4851f4535d.js', './data/mic.995a607510.js', './data/b3.c3c88bdf05.js', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon-64.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 const warmNews = () => caches.open(CACHE).then(c => fetch('news/index.json', { cache: 'no-store' }).then(r => r.ok ? (c.put('news/index.json', r.clone()), r.json()) : { dates: [] })

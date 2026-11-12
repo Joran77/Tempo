@@ -1310,6 +1310,29 @@ nav.tabs .in.n5>button{display:flex!important}
 .qagrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .qa{border:0;border-radius:16px;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font:700 13.5px var(--f-body);text-align:center;padding:8px;background:color-mix(in srgb,var(--qc) 14%,var(--surface));color:var(--fg);cursor:pointer}
 .qa span{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--qc);color:var(--surface)}.qa span svg{width:20px;height:20px}
+.weakc{padding:14px}.weakc.empty0 b{display:block;font-weight:700}.weakc span{font-size:13px;color:var(--muted)}
+.weakh{display:flex;align-items:center;gap:12px}.weakh>div{flex:1;display:flex;flex-direction:column;gap:2px}.weakh b{font:700 16px var(--f-display)}
+.weakl{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}.weakl li{display:flex;flex-direction:column;gap:1px;padding-left:10px;border-left:3px solid var(--danger)}
+.weakl li span{font-size:14px;color:var(--fg)}.weakl small{font-size:12px;color:var(--muted)}
+.hdtop{padding:16px}.hdrow{display:flex;align-items:center;gap:16px}
+.hd2{width:118px;height:118px;flex:none}.hd2 circle{fill:none}.hd2 .t1{stroke:var(--surface-2);stroke-width:12}.hd2 .p1{stroke:var(--amber);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset .5s var(--ease-out)}
+.hd2 .t2{stroke:var(--surface-2);stroke-width:9}.hd2 .p2{stroke:var(--ok);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .5s var(--ease-out)}
+.hdnums{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+.hdn{display:flex;flex-direction:column;align-items:flex-start;gap:1px;border:0;background:none;padding:0;text-align:left;color:var(--fg);font:inherit;cursor:pointer}
+.hdn b{font:700 21px/1.15 var(--f-display);font-variant-numeric:tabular-nums}.hdn b small{font:500 13px var(--f-body);color:var(--muted)}.hdn>small{font-size:12px;color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:0}.dot.k{background:var(--amber)}.dot.s{background:var(--ok)}
+.hd2c{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.hdtile{padding:12px;display:flex;flex-direction:column;gap:4px;min-height:150px;box-sizing:border-box}
+.hdtile b{font:700 18px/1.2 var(--f-display);overflow:hidden;text-overflow:ellipsis}.hdtile b small{font:500 13px var(--f-body);color:var(--muted)}.hdtile>small{font-size:12px;color:var(--muted)}
+.hdwb{display:flex;gap:6px;margin-top:auto}.hdwb .btn{min-height:40px}.hdwplus{flex:1;background:color-mix(in srgb,var(--c-cours) 16%,var(--surface));color:var(--c-cours);border-color:transparent;font-weight:700}
+.hdmeals{padding:0;overflow:hidden}
+.hdm{display:flex;align-items:center;gap:10px;padding:6px 8px 6px 14px;border-top:1px solid var(--line);min-height:52px}.hdm:first-child{border-top:0}
+.hdm>i{width:10px;height:10px;border-radius:50%;flex:none}
+.hdml{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:1px;border:0;background:none;padding:6px 0;text-align:left;color:var(--fg);font:inherit;cursor:pointer}
+.hdml b{font-weight:600;font-size:15px}.hdml small{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}.hdml .hdidea{color:var(--accent);font-weight:600}
+.hdk{font:600 14px var(--f-display);font-variant-numeric:tabular-nums}
+.hdadd{width:36px;height:36px;border-radius:50%;border:0;background:var(--surface-2);color:var(--fg);display:grid;place-items:center;flex:none;cursor:pointer}.hdadd svg{width:16px;height:16px}
+@media (prefers-reduced-motion:reduce){.hd2 .p1,.hd2 .p2{transition:none}}
 /* Interactions */
 
 
@@ -1782,7 +1805,7 @@ const CALC_CATS = { add:'Additions', sub:'Soustractions', mul:'Multiplications',
 const LEVELS = { 1:'Facile', 2:'Moyen', 3:'Difficile' };
 const nf = n => Number(n).toLocaleString('fr-FR', { maximumFractionDigits:2 });
 const fmtTime = ms => { const s = Math.max(0, Math.round(ms/1000)); return `${Math.floor(s/60)}:${pad(s%60)}`; };
-function ensureCalc(){ if (!state.calc) state.calc = { history:[], daily:{}, prefs:{ cat:'mix', mix:Object.keys(CALC_CATS), level:2, n:10 } }; }
+function ensureCalc(){ if (!state.calc) state.calc = { history:[], daily:{}, prefs:{ cat:'mix', mix:Object.keys(CALC_CATS).filter(k => k!=='cas'), level:2, n:10 } }; }
 function mkRng(str){ let h = 1779033703 ^ str.length; for (let i=0;i<str.length;i++){ h = Math.imul(h ^ str.charCodeAt(i), 3432918353); h = h<<13 | h>>>19; }
   let a = h>>>0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a>>>15, 1|a); t = t + Math.imul(t ^ t>>>7, 61|t) ^ t; return ((t ^ t>>>14)>>>0)/4294967296; }; }
 const tools = R => ({ ri:(a,b)=>a+Math.floor(R()*(b-a+1)), pick:arr=>arr[Math.floor(R()*arr.length)], R });
@@ -1841,8 +1864,8 @@ function buildSession(opts){
   for (let i=0;i<opts.n;i++){ let g, c, tries=0; do { c = T.pick(cats); g = GEN[c](T, opts.level); } while (qs.some(x=>x.q===g.q) && ++tries < 8); qs.push({ ...g, cat:c }); }
   return { opts, qs, i:0, answers:[], start:Date.now(), end:null };
 }
-const dailyOpts = () => ({ mode:'daily', cat:'mix', mix:Object.keys(CALC_CATS), level:2, n:10, seed:'tempo-defi-'+todayKey() });
-const qText = q => q.q.startsWith('TVA') || q.cat==='ges' ? q.q : `${q.q} = ?`;
+const dailyOpts = () => ({ mode:'daily', cat:'mix', mix:Object.keys(CALC_CATS).filter(k => k!=='cas'), level:2, n:10, seed:'tempo-defi-'+todayKey() });
+const qText = q => q.q.startsWith('TVA') || (q.cat==='ges' || q.cat==='cas') ? q.q : `${q.q} = ?`;
 const ICON_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
 ui.calc = { phase:'home', s:null, filter:'all' };
 
@@ -1883,7 +1906,7 @@ function vCalcPlay(){
   return `<div class="playhead"><span class="mono" id="c-prog">${s.i+1} / ${s.qs.length}</span><span class="lab">${s.opts.mode==='daily'?'Défi du jour':s.opts.mode==='retry'?'Tes erreurs':'Entraînement'}</span><span class="mono" id="c-timer">${fmtTime(Date.now()-s.start)}</span></div>
   <div class="bar"><i id="c-bar" style="width:${100*s.i/s.qs.length}%"></i></div>
   <div class="card qcard" id="c-card"><span class="lab" id="c-cat-l">${CALC_CATS[q.cat]} · ${LEVELS[s.opts.level]}</span>
-    <div class="calc-q mono${q.cat==='ges' ? ' wq' : ''}" id="c-q">${esc(qText(q))}</div>
+    <div class="calc-q mono${(q.cat==='ges' || q.cat==='cas') ? ' wq' : ''}" id="c-q">${esc(qText(q))}</div>
     <form id="c-form" class="ans"><input id="c-ans" class="mono" inputmode="decimal" autocomplete="off" enterkeyhint="next" aria-label="Ta réponse" placeholder="Ta réponse"><button class="btn primary" type="submit">Valider</button></form></div>
   <div class="chint" id="c-hint" hidden></div>
   <div class="btns"><button class="btn" data-c="hint">${bicon('bulb')}Astuce</button><button class="btn" data-c="skip">Passer</button><button class="btn danger" data-c="quit">Arrêter</button></div>`;
@@ -1922,7 +1945,7 @@ function answer(raw, skipped){
   if (s.i >= s.qs.length) return setTimeout(finishSession, 250);
   const nq = s.qs[s.i];
   $('#c-prog').textContent = `${s.i+1} / ${s.qs.length}`; $('#c-bar').style.width = `${100*s.i/s.qs.length}%`;
-  const cq = $('#c-q'); cq.textContent = qText(nq); cq.classList.toggle('wq', nq.cat==='ges'); cq.classList.remove('qin'); void cq.offsetWidth; cq.classList.add('qin'); $('#c-cat-l').textContent = `${CALC_CATS[nq.cat]} · ${LEVELS[s.opts.level]}`;
+  const cq = $('#c-q'); cq.textContent = qText(nq); cq.classList.toggle('wq', (nq.cat==='ges' || nq.cat==='cas')); cq.classList.remove('qin'); void cq.offsetWidth; cq.classList.add('qin'); $('#c-cat-l').textContent = `${CALC_CATS[nq.cat]} · ${LEVELS[s.opts.level]}`;
   const ch = $('#c-hint'); if (ch) ch.hidden = true;
   const inp = $('#c-ans'); inp.value = ''; inp.focus();
 }
@@ -2236,7 +2259,7 @@ function grade(g){
   const U = ui.fc, c = U.cur, wasNew = !c.seen, s = schedule(c, g), practice = U.practice && U.practice.has(c.id);
   if (wasNew && !c.first) c.first = todayKey();
   if (!practice || g===0) Object.assign(c, s, { seen:true });
-  if (g===0){ c.lapses += wasNew ? 0 : 1; c.due = todayKey(); U.queue.splice(Math.min(3, U.queue.length), 0, c); if (practice) U.practice.delete(c.id); }
+  if (g===0){ c.lapses += wasNew ? 0 : 1; c.miss = (c.miss || 0) + 1; c.due = todayKey(); U.queue.splice(Math.min(3, U.queue.length), 0, c); if (practice) U.practice.delete(c.id); }
   else if (!practice) c.due = pickDue(s.ivl, c);
   U.explText = '';
   if (wasNew){ const nd = state.fc.newDay; if (nd.d!==todayKey()){ nd.d = todayKey(); nd.n = 0; nd.q = 0; } nd.n++; }
@@ -3108,7 +3131,7 @@ function srsApply(c, g, practice){
   const wasNew = !c.seen, s = schedule(c, g);
   if (wasNew && !c.first) c.first = todayKey();
   if (!practice || g===0) Object.assign(c, s, { seen:true });
-  if (g===0){ c.lapses += wasNew ? 0 : 1; c.due = todayKey(); } else if (!practice) c.due = pickDue(s.ivl, c);
+  if (g===0){ c.lapses += wasNew ? 0 : 1; c.miss = (c.miss || 0) + 1; c.due = todayKey(); } else if (!practice) c.due = pickDue(s.ivl, c);
   if (wasNew){ const nd = state.fc.newDay; if (nd.d!==todayKey()){ nd.d = todayKey(); nd.n = 0; nd.q = 0; } nd.n++; }
   const tk = todayKey(); state.fc.log[tk] = (state.fc.log[tk]||0) + 1; c.last = tk; delete c.ex;
 }
@@ -3297,7 +3320,7 @@ function startExpress(){
   ensureFc(); const tk = todayKey(), F = state.fc;
   let cards = dueCards().all.slice(0,8).map(c=>({ c, practice:false }));
   if (cards.length < 8) cards = cards.concat(F.cards.filter(c=>c.seen && c.due>tk && !cards.some(x=>x.c===c)).map(c=>({c, r:Math.random()})).sort((a,b)=>a.r-b.r).slice(0, 8-cards.length).map(x=>({ c:x.c, practice:true })));
-  const calcs = buildSession({ mode:'free', cat:'mix', mix:Object.keys(CALC_CATS), level:2, n:4, seed:'x-'+Date.now()+Math.random() }).qs;
+  const calcs = buildSession({ mode:'free', cat:'mix', mix:Object.keys(CALC_CATS).filter(k => k!=='cas'), level:2, n:4, seed:'x-'+Date.now()+Math.random() }).qs;
   const items = []; let ci = 0, ki = 0;
   while (ci < cards.length || ki < calcs.length){ for (let r=0; r<2 && ci<cards.length; r++) items.push({ t:'card', ...cards[ci++] }); if (ki < calcs.length) items.push({ t:'calc', q:calcs[ki++] }); }
   ui.express = { items, i:0, step:'q', start:Date.now(), res:{ cardOk:0, cardN:0, calcOk:0, calcN:0 }, last:null, done:false };
@@ -3314,10 +3337,10 @@ function vExpress(){
     return head + `<div class="card fcard ${X.anim||''}" style="--dc:${deckColor(d)}"><span class="fdeck">Carte · ${esc(d ? d.name : '')}</span><div class="fq">${fmtText(c.q)}</div>${X.step==='a' ? `<div class="fa">${fmtText(c.a)}</div>${c.map && mapG()[c.map] ? mapSvg(c.map,{good:c.map}) : ''}${whyHtml(c)}` : ''}</div>
       ${X.step==='q' ? '<button class="btn primary bigbtn" data-x="show">Voir la réponse</button>' : '<div class="btns"><button class="btn bigbtn" data-x="no">À revoir</button><button class="btn primary bigbtn" data-x="yes">Je savais</button></div>'}`; }
   const q = it.q;
-  if (X.step==='q') return head + `<div class="card qcard ${X.anim ? 'simq next' : ''}"><span class="lab">Calcul · ${catName(q.cat)}</span><div class="calc-q mono${q.cat==='ges' ? ' wq' : ''}">${esc(qText(q))}</div>
+  if (X.step==='q') return head + `<div class="card qcard ${X.anim ? 'simq next' : ''}"><span class="lab">Calcul · ${catName(q.cat)}</span><div class="calc-q mono${(q.cat==='ges' || q.cat==='cas') ? ' wq' : ''}">${esc(qText(q))}</div>
     <form id="x-form" class="ans"><input id="x-ans" class="mono" inputmode="decimal" autocomplete="off" enterkeyhint="done" aria-label="Ta réponse" placeholder="Ta réponse"><button class="btn primary" type="submit">Valider</button></form></div>
     <button class="btn" data-x="skip">Passer</button>`;
-  return head + `<div class="card qcard ${X.last ? 'good' : 'badf'}"><span class="lab">${X.last ? 'Juste' : 'Pas tout à fait'}</span><div class="calc-q mono">${q.cat==='ges' ? esc(q.q) + ' → ' + esc(q.show) : esc(q.q) + ' = ' + nf(q.a)}</div><div class="xtip"><b>Méthode pas à pas</b>${stepsHtml(q)}</div></div>
+  return head + `<div class="card qcard ${X.last ? 'good' : 'badf'}"><span class="lab">${X.last ? 'Juste' : 'Pas tout à fait'}</span><div class="calc-q mono">${(q.cat==='ges' || q.cat==='cas') ? esc(q.q) + ' → ' + esc(q.show) : esc(q.q) + ' = ' + nf(q.a)}</div><div class="xtip"><b>Méthode pas à pas</b>${stepsHtml(q)}</div></div>
     <button class="btn primary bigbtn" data-x="next">Suivant</button>`;
 }
 function expressNext(){ const X = ui.express; X.i++; X.step = 'q'; X.anim = 'next'; if (X.i >= X.items.length) return expressFinish(false); render(); window.scrollTo(0,0); }
@@ -4577,15 +4600,8 @@ function vHealth(){
     return `${hDateBar()}
     ${cloudCard()}${newsCard()}${revalCard()}${hWeighCard()}${adviceCard()}
     ${hStreak() >= 2 ? `<div class="hstreak"><span>${bicon('bolt')}</span>${hStreak()} jours renseignés d’affilée</div>` : ''}
-    <div class="card hsum">${hRing(S.kcal, goal)}<div class="hnums"><div><span>Objectif</span><b class="mono">${nf(T.kcal)}</b></div><div><span>Mangé</span><b class="mono">${nf(r0(S.kcal))}</b></div><div><span>Sport</span><b class="mono">+${nf(r0(sp))}</b></div></div></div>
-    <div class="card hmacr">${hMacroRing('Glucides', S.c, T.c + spC(sp), 'amber')}${hMacroRing('Protéines', S.p, T.p, 'accent')}${hMacroRing('Lipides', S.f, T.f + spF(sp), 'c-alt')}</div>
+    ${hDayTop(D, S, T, goal, sp)}
     ${sp ? `<p class="fine hspn">Séance du jour : +${spC(sp)} g de glucides et +${spF(sp)} g de lipides ajoutés à tes repères.</p>` : ''}${postWorkoutHtml(D)}
-    <div class="hgrid">
-      <div class="card hmini"><span class="lab">Eau</span><b class="mono">${nf(D.water*0.25)} / ${nf(T.water)} L</b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div><div class="hwbtn"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm primary" data-h="water+">+ 1 verre</button></div></div>
-      <div class="card hmini"><span class="lab">Pas</span><b class="mono">${nf(D.steps)}</b><div class="bar"><i style="width:${Math.min(100, 100*D.steps/T.steps)}%"></i></div><span class="fine">Objectif ${nf(T.steps)}</span><div class="hwbtn"><button class="btn sm" data-h="steps" aria-label="Saisir à la main">${bicon('tasks')}</button>${(state.health.sync||{}).id ? `<button class="btn sm primary hsimp" data-h="sync-now" aria-label="Synchroniser avec Santé">${bicon('heart')}Sync</button>` : `<button class="btn sm primary hsimp" data-h="steps-import" aria-label="Importer de Santé">${bicon('heart')}Santé</button>`}</div></div>
-    </div>
-    <section><h2>Repas <button class="link" data-h="go-repas">Détail</button></h2><div class="card"><ul class="hmeals">${MEALS.map(([k,l,ic]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
-      return `<li><span class="hmic">${bicon(ic)}</span><div><b>${l}</b><span>${it.length ? esc(it.map(x=>x.name).slice(0,3).join(', ')) + (it.length>3?'…':'') : 'Rien pour l’instant'}</span></div><span class="hmk"><b class="mono">${nf(r0(kc))}</b><small>/ ${nf(Math.round(T.kcal*mealShare(k)/10)*10)}</small></span><button class="icon-btn" data-h-add="${k}" aria-label="Ajouter au ${l}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></li>`; }).join('')}</ul></div></section>
     ${hInsight(T)}`;
   }
   if (ui.tab==='h-repas'){
@@ -6557,7 +6573,7 @@ function tripStart(min){
   const gap = nC - cards.length; if (gap > 0){ nK += Math.round(gap*15*.5/20); nI += Math.round(gap*15*.5/50); }
   const Tl = tools(Math.random);
   const cI = cards.map(({ c, practice }) => { const it = { t:'card', id:c.id, practice }; if (isQcmCard(c)){ const o = qcmOptions(c); if (o && o.indexOf(c.a.trim()) >= 0){ it.opts = o; it.ai = o.indexOf(c.a.trim()); } } return it; });
-  const kI = buildSession({ mode:'free', cat:'mix', mix:Object.keys(CALC_CATS), level:2, n:nK, seed:'trip-'+Date.now() }).qs.map(q => { const so = simOpts(Tl, q.a, calcWrong(q), q.u || '');
+  const kI = buildSession({ mode:'free', cat:'mix', mix:Object.keys(CALC_CATS).filter(k => k!=='cas'), level:2, n:nK, seed:'trip-'+Date.now() }).qs.map(q => { const so = simOpts(Tl, q.a, calcWrong(q), q.u || '');
     return { t:'calc', q:qText(q), cat:q.cat, a:q.a, show:q.show || nf(q.a), tip:q.tip, steps:stepsFor(q), opts:so.opts, ai:so.ai }; });
   const iI = iaePick('mix', nI).map(x => ({ t:'iae', ...x }));
   const items = []; let a = 0, b = 0, c = 0;
@@ -7084,10 +7100,11 @@ function hubHtml(){
 }
 function vRvEx(){
   ensurePartiels();
-  return `${vPartiels()}<button class="btn primary bigbtn" data-rv="newex">+ Nouvel examen</button>`;
+  return `${weakHtml()}${vPartiels()}<button class="btn primary bigbtn" data-rv="newex">+ Nouvel examen</button>`;
 }
 function vRvTrain(){
   return `<div class="tdshort">
+    <button class="wide" data-cas="1" style="--qc:var(--ok)"><span class="qi">${bicon('tasks')}</span><span class="qtx"><b>Cas chiffrés mélangés</b><span>TVA, amortissements, IS, BFR, CAF, écarts, point mort · 8 cas</span></span><span class="go">${CHEV_R}</span></button>
     <button class="wide xbtn" data-express="1" style="--qc:var(--amber)"><span class="qi">${bicon('bolt')}</span><span class="qtx"><b>Révision express · 5 min</b><span>Cartes et calculs mélangés, pour les temps morts</span></span><span class="go">${CHEV_R}</span></button>
     ${quickTiles()}
     ${v3Tiles()}
@@ -7124,6 +7141,7 @@ function vTodayNew(){
   const exs = (state.partiels||[]).filter(e => e.date >= tk && daysUntil(e.date) <= 7).sort((a,b) => a.date.localeCompare(b.date));
   for (const ex of exs){ const P = examPlan(ex); if (P.L.length && P.today){ const d = daysUntil(ex.date);
     now1 = { t:`${ex.title} · part du jour`, s:`${P.today} carte${P.today>1?'s':''} · examen ${d===0 ? 'aujourd’hui' : fmt(parse(ex.date),{weekday:'long'})} (${cdLabel(d)})`, b:`<button class="nowbtn" data-v3="ex-rev" data-k="${ex.id}">Réviser</button>` }; break; } }
+  if (!now1) for (const ex of exs){ if (daysUntil(ex.date) > 3) continue; const W = weakCards(examCardSets(ex).linked); if (W.length){ now1 = { t:`${ex.title} · points faibles`, s:`${W.length} carte${W.length>1?'s':''} que tu rates souvent, à retravailler avant l’examen`, b:`<button class="nowbtn" data-weak="${ex.id}">Réviser</button>` }; break; } }
   const mt = mitTask();
   if (!now1 && mt && !mt.done) now1 = { t:mt.title, s:'Ta priorité du jour', b:`<button class="nowbtn" data-now-done="${mt.id}">Fait</button>` };
   if (!now1 && due) now1 = { t:`${due} carte${due>1?'s':''} à réviser`, s:'Répétition espacée : c’est le bon moment pour les revoir', b:'<button class="nowbtn" data-quick="cartes">Réviser</button>' };
@@ -7178,8 +7196,82 @@ view.addEventListener('click', e => {
   if (n){ const t = state.tasks.find(x => x.id===n.dataset.nowDone); if (t){ t.done = true; ui.justId = t.id; commit(); toast('Bien joué'); } return; }
   if (e.target.closest('[data-now="ev"]')){ const el = document.querySelector('.evening'); if (el){ el.scrollIntoView({ behavior:'smooth', block:'center' }); setTimeout(() => { const t = document.getElementById('ev-l'); t && t.focus(); }, 400); } return; }
   if (e.target.closest('[data-rv="newex"]')){ partielSheet(); return; }
+  if (e.target.closest('[data-cas]')){ ui.tab = 'calcul'; startSession({ mode:'free', cat:'cas', level:2, n:8, seed:'cas-' + Date.now() + Math.random() }); return; }
   if (e.target.closest('[data-moi="help"]')){ const hb = document.getElementById('btn-help'); hb && hb.click(); return; }
 }, true);
+
+/* ---------- Cas chiffrés : compta, fiscalité, finance, contrôle de gestion ---------- */
+CALC_CATS.cas = 'Cas chiffrés';
+GEN.cas = function(T, L){
+  const k = T.pick(['tva','amort','vnc','cession','is','bfr','delai','caf','ecprix','ecqte','pointmort']);
+  const E = ' €', R = (q, a, u, tip, steps) => ({ q, a, u, tip, steps, tol:.011, show:nf(a)+u }), big = L===1 ? 1 : L===2 ? 2 : 5;
+  if (k==='tva'){ const v = T.ri(20, 80)*1000*big, a = T.ri(5, Math.floor(v/1000/big) - 5)*1000*big, r = (v - a)/5;
+    return R(`Ventes du mois ${nf(v)} € HT, achats ${nf(a)} € HT, TVA 20 % partout. TVA à décaisser ?`, r, E, `TVA collectée − TVA déductible`, [`TVA collectée : 20 % × ${nf(v)} = ${nf(v/5)} €`, `TVA déductible : 20 % × ${nf(a)} = ${nf(a/5)} €`, `À décaisser : ${nf(v/5)} − ${nf(a/5)} = ${nf(r)} €`]); }
+  if (k==='amort'){ const n = T.pick([4,5,8,10]), m = T.ri(2,11), c = n*1200*T.ri(1, 4*big), an = c/n, d = an*(13-m)/12, mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'][m-1];
+    return R(`Machine achetée ${nf(c)} € HT le 1er ${mois}, amortie en linéaire sur ${n} ans. Exercice civil : dotation de la 1re année ?`, d, E, `Annuité × prorata temporis`, [`Annuité pleine : ${nf(c)} ÷ ${n} = ${nf(an)} €`, `Du 1er ${mois} au 31 décembre : ${13-m} mois`, `Dotation : ${nf(an)} × ${13-m}/12 = ${nf(d)} €`]); }
+  if (k==='vnc'){ const n = T.pick([4,5,8,10]), c = n*1000*T.ri(2, 6*big), y = T.ri(1, n-1), v = c - c/n*y;
+    return R(`Véhicule acquis ${nf(c)} €, amorti en linéaire sur ${n} ans, ${y} année${y>1?'s':''} pleine${y>1?'s':''} passée${y>1?'s':''}. Valeur nette comptable ?`, v, E, `VNC = valeur d’origine − amortissements cumulés`, [`Annuité : ${nf(c)} ÷ ${n} = ${nf(c/n)} €`, `Cumul : ${nf(c/n)} × ${y} = ${nf(c/n*y)} €`, `VNC : ${nf(c)} − ${nf(c/n*y)} = ${nf(v)} €`]); }
+  if (k==='cession'){ const c = T.ri(10, 40)*1000*big, cum = T.ri(2, Math.floor(c/1000/big) - 2)*1000*big, v = c - cum, p = Math.max(500, v + (T.ri(1, 7)*500*big) * T.pick([-1, 1])), r = p - v;
+    return R(`Matériel : valeur d’origine ${nf(c)} €, amortissements cumulés ${nf(cum)} €, cédé ${nf(p)} €. Montant de la plus-value ou de la moins-value de cession ?`, Math.abs(r), E, `Prix de cession − VNC`, [`VNC : ${nf(c)} − ${nf(cum)} = ${nf(v)} €`, `Résultat : ${nf(p)} − ${nf(v)} = ${nf(r)} €`, r >= 0 ? `Plus-value de ${nf(r)} €` : `Moins-value de ${nf(-r)} €`]); }
+  if (k==='is'){ const b = T.ri(10, 60)*5000*Math.min(big, 2), red = Math.min(b, 42500), is = red*0.15 + Math.max(0, b - 42500)*0.25;
+    return R(`PME éligible au taux réduit, bénéfice fiscal ${nf(b)} €. Impôt sur les sociétés ?`, is, E, `15 % jusqu’à 42 500 €, 25 % au-delà`, [`15 % × ${nf(red)} = ${nf(red*0.15)} €`, b > 42500 ? `25 % × (${nf(b)} − 42 500) = ${nf((b-42500)*0.25)} €` : `Rien au-delà de 42 500 €`, `IS : ${nf(is)} €`]); }
+  if (k==='bfr'){ const s = T.ri(5, 40)*1000*big, c = T.ri(5, 50)*1000*big, f = T.ri(5, 45)*1000*big, r = s + c - f;
+    return R(`Stocks ${nf(s)} €, créances clients ${nf(c)} €, dettes fournisseurs ${nf(f)} €. BFR d’exploitation ?`, r, E, `Stocks + créances clients − dettes fournisseurs`, [`${nf(s)} + ${nf(c)} = ${nf(s + c)} €`, `− ${nf(f)} = ${nf(r)} €`, r >= 0 ? `Besoin à financer de ${nf(r)} €` : `Ressource de ${nf(-r)} € (BFR négatif)`]); }
+  if (k==='delai'){ const d = T.pick([30,36,45,54,60,72,90]), ca = T.ri(2, 20)*36000*big, cr = ca*d/360;
+    return R(`Créances clients ${nf(cr)} € TTC, CA annuel ${nf(ca)} € TTC. Délai moyen de paiement clients (jours, année de 360 j) ?`, d, ' j', `Créances ÷ CA TTC × 360`, [`${nf(cr)} ÷ ${nf(ca)} = ${nf(cr/ca)}`, `× 360 = ${d} jours`]); }
+  if (k==='caf'){ const r = T.ri(1, 40)*1000*big, dot = T.ri(5, 30)*1000*big, rep = T.ri(0, 8)*1000*big, a = r + dot - rep;
+    return R(`Résultat net ${nf(r)} €, dotations aux amortissements et provisions ${nf(dot)} €, reprises ${nf(rep)} € (pas de cession). CAF ?`, a, E, `Résultat + dotations − reprises`, [`Les dotations sont des charges non décaissées : on les ajoute`, `Les reprises sont des produits non encaissés : on les retire`, `CAF : ${nf(r)} + ${nf(dot)} − ${nf(rep)} = ${nf(a)} €`]); }
+  if (k==='ecprix'){ const qr = T.ri(5, 40)*100, pp = T.pick([4,5,6,8,10,12,15]), pr = pp + T.pick([-1,-0.5,0.5,1,1.5,2]), e = Math.round((pr - pp)*qr*100)/100;
+    return R(`Matière : ${nf(qr)} kg consommés achetés ${nf(pr)} €/kg, prix prévu ${nf(pp)} €/kg. Montant de l’écart sur prix ?`, Math.abs(e), E, `(prix réel − prix prévu) × quantité réelle`, [`(${nf(pr)} − ${nf(pp)}) × ${nf(qr)} = ${nf(e)} €`, e > 0 ? `Défavorable : on a payé plus cher que prévu` : `Favorable : on a payé moins cher que prévu`]); }
+  if (k==='ecqte'){ const qp = T.ri(10, 40)*100, qr = qp + T.ri(-6, 8)*50 || qp + 100, pp = T.pick([4,5,6,8,10,12]), e = (qr - qp)*pp;
+    return R(`Matière : ${nf(qr)} kg consommés pour ${nf(qp)} kg prévus, prix prévu ${nf(pp)} €/kg. Montant de l’écart sur quantité ?`, Math.abs(e), E, `(quantité réelle − quantité prévue) × prix prévu`, [`(${nf(qr)} − ${nf(qp)}) × ${nf(pp)} = ${nf(e)} €`, e > 0 ? `Défavorable : on a consommé plus que prévu` : `Favorable : on a consommé moins que prévu`]); }
+  const ca = T.ri(4, 30)*12000*big, m = T.ri(3, 11), sr = ca*m/12;
+  return R(`Seuil de rentabilité ${nf(sr)} €, CA annuel ${nf(ca)} € réparti régulièrement. Point mort atteint au bout de combien de mois ?`, m, ' mois', `SR ÷ CA × 12`, [`${nf(sr)} ÷ ${nf(ca)} = ${nf(sr/ca)}`, `× 12 = ${m} mois`]);
+};
+
+/* ---------- Mes points faibles (carnet d'erreurs automatique) ---------- */
+const weakScore = c => (c.miss || 0) + (c.lapses || 0);
+function weakCards(list){ ensureFc(); return (list || state.fc.cards).filter(c => c.seen && weakScore(c) >= 2 && !isMastered(c)).sort((a,b) => weakScore(b) - weakScore(a)); }
+function weakHtml(){
+  const W = weakCards(); if (!W.length) return `<div class="card weakc empty0"><div><b>Mes points faibles</b><span>Les cartes que tu rates au moins deux fois apparaîtront ici, pour les retravailler d’un coup.</span></div></div>`;
+  return `<div class="card weakc"><div class="weakh"><div><b>Mes points faibles</b><span>${W.length} carte${W.length>1?'s':''} ratée${W.length>1?'s':''} plusieurs fois</span></div><button class="btn sm primary" data-weak="all">Réviser</button></div>
+    <ul class="weakl">${W.slice(0, 4).map(c => { const d = deckOf(c.deck); return `<li><span>${esc(mmShort(c.q, 70))}</span><small>${esc(d ? d.name : '')} · ratée ${weakScore(c)} fois</small></li>`; }).join('')}</ul>
+    ${W.length > 4 ? `<p class="fine">… et ${W.length - 4} autre${W.length-4>1?'s':''}.</p>` : ''}</div>`;
+}
+view.addEventListener('click', e => { const b = e.target.closest('[data-weak]'); if (!b) return; e.stopImmediatePropagation();
+  const ex = b.dataset.weak !== 'all' && (state.partiels||[]).find(x => x.id===b.dataset.weak), L = weakCards(ex ? examCardSets(ex).linked : null);
+  if (!L.length) return toast('Aucun point faible pour l’instant');
+  reviewCardsList(L, ex ? `${ex.title} · points faibles` : 'Mes points faibles'); window.scrollTo(0,0); }, true);
+
+/* ---------- Santé · Journée : calories et pas liés, eau, séance, repas ---------- */
+function hDayTop(D, S, T, goal, sp){
+  const sg = stepGoal(), pk = Math.min(1, goal ? S.kcal/goal : 0), ps = Math.min(1, D.steps/sg), C1 = 2*Math.PI*50, C2 = 2*Math.PI*34, left = Math.round(goal - S.kcal);
+  const tc = T.c + spC(sp), tf = T.f + spF(sp), mb = (l, v, t, col) => `<div class="rmac"><div class="rmach"><span>${l}</span><span><b>${r0(v)}</b> / ${r0(t)} g</span></div><div class="rmbar" style="--mc:var(--${col})"><i style="width:${(t ? Math.min(100, 100*v/t) : 0).toFixed(1)}%"></i></div></div>`;
+  const s0 = D.sport[0], sk = r0(sportKcal(D)), mins = D.sport.reduce((a,x) => a + (+x.min || 0), 0);
+  const h = new Date().getHours(), isToday = ui.hday === todayKey(), nextMeal = isToday ? (h < 10 ? 'pdj' : h < 14 ? 'dej' : h < 17 ? 'col' : 'din') : null;
+  let idea = null; if (nextMeal && !D.food.some(x => x.meal===nextMeal)){ try { const r = recSuggest(nextMeal).list[0]; idea = r ? r.R.name : null; } catch(_){} }
+  return `<div class="card hdtop">
+    <div class="hdrow">
+      <svg class="hd2" viewBox="0 0 120 120" role="img" aria-label="${nf(r0(S.kcal))} kcal sur ${nf(goal)}, ${nf(D.steps)} pas sur ${nf(sg)}">
+        <circle cx="60" cy="60" r="50" class="t1"/><circle cx="60" cy="60" r="50" class="p1" stroke-dasharray="${C1.toFixed(1)}" stroke-dashoffset="${(C1*(1-pk)).toFixed(1)}" transform="rotate(-90 60 60)"/>
+        <circle cx="60" cy="60" r="34" class="t2"/><circle cx="60" cy="60" r="34" class="p2" stroke-dasharray="${C2.toFixed(1)}" stroke-dashoffset="${(C2*(1-ps)).toFixed(1)}" transform="rotate(-90 60 60)"/>
+      </svg>
+      <div class="hdnums">
+        <button class="hdn" data-hub="h-repas"><span class="lab"><i class="dot k"></i>Calories</span><b>${nf(r0(S.kcal))} <small>/ ${nf(goal)}</small></b><small>${left >= 0 ? `reste ${nf(left)} kcal` : `${nf(-left)} kcal au-dessus`}${sp ? ` · +${nf(r0(sp))} séance` : ''}</small></button>
+        <button class="hdn" data-hub="h-sport"><span class="lab"><i class="dot s"></i>Pas</span><b>${nf(D.steps)} <small>/ ${nf(sg)}</small></b><small>${D.steps >= sg ? 'objectif atteint' : `encore ${nf(sg - D.steps)}`}</small></button>
+      </div>
+    </div>
+    <div class="rmacs">${mb('Protéines', S.p, T.p, 'accent')}${mb('Glucides', S.c, tc, 'amber')}${mb('Lipides', S.f, tf, 'c-alt')}</div>
+  </div>
+  <div class="hd2c">
+    <div class="card hdtile"><span class="lab">Eau</span><b>${nf(D.water*0.25)} <small>/ ${nf(T.water)} L</small></b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div>
+      <div class="hdwb"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm hdwplus" data-h="water+">+ 1 verre</button></div></div>
+    <div class="card hdtile"><span class="lab">Séance</span>${s0 ? `<b>${esc(s0.name)}</b><small>${mins ? mins + ' min · ' : ''}${nf(sk)} kcal${s0.src==='hevy' ? ' · depuis Hevy' : ''}</small>${D.sport.length > 1 ? `<small>+ ${D.sport.length-1} autre${D.sport.length>2?'s':''}</small>` : ''}` : `<b>Aucune</b><small>pas encore de séance</small>`}
+      <button class="btn sm" data-h="sport" style="margin-top:auto">+ Séance</button></div>
+  </div>
+  <section><h2>Repas du jour <button class="link" data-hub="h-repas">Détail</button></h2><div class="card hdmeals">${MEALS.map(([k, l]) => { const it = D.food.filter(x => x.meal===k), kc = it.reduce((a,x) => a + x.kcal, 0);
+    return `<div class="hdm"><i style="background:var(--${MEAL_COL[k]})"></i><button class="hdml" data-hub="h-repas"><b>${l}</b>${it.length ? `<small>${esc(it.map(x => x.name).slice(0, 2).join(', '))}${it.length > 2 ? '…' : ''}</small>` : k===nextMeal && idea ? `<small class="hdidea">Idée : ${esc(idea)}</small>` : ''}</button><span class="hdk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span><button class="hdadd" data-h-add="${k}" aria-label="Ajouter au ${l.toLowerCase()}">${ICON_PLUS}</button></div>`; }).join('')}</div></section>`;
+}
 
 /* ---------- Rendu ---------- */
 const TITLES = { rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
