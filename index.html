@@ -4877,18 +4877,27 @@ async function syncSteps(manual){
     if (!r.ok) throw new Error(r.status===404 ? 'Gist introuvable : vérifie le lien.' : r.status===403 ? 'GitHub limite les lectures pour l’instant, réessaie dans une heure.' : 'Erreur GitHub ' + r.status);
     const j = await r.json(), files = Object.values(j.files || {}), f = files.find(x => /pas/i.test(x.filename)) || files[0];
     const txt = f ? (f.content || '') : '', tk = todayKey(); let n = 0, newest = null;
-    txt.split(/\r?\n/).forEach(l => { const m = l.match(/(\d{4})-(\d{2})-(\d{2})\D+(\d[\d\s  ]*)/); if (!m) return;
-      const k = `${m[1]}-${m[2]}-${m[3]}`, v = parseInt(m[4].replace(/[^\d]/g,''), 10); if (k > tk || !(v >= 0 && v < 200000)) return;
+    const MOIS = ['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'], p2 = x => String(x).padStart(2,'0');
+    const parseLine = l => { l = l.replace(/ | /g, ' ');
+      let m = l.match(/(\d{4})-(\d{1,2})-(\d{1,2})[^;\t,]*[;\t,]\s*(\d[\d ]*)/); if (m) return [`${m[1]}-${p2(m[2])}-${p2(m[3])}`, m[4]];
+      m = l.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})[^;\t,]*[;\t,]\s*(\d[\d ]*)/); if (m) return [`${m[3]}-${p2(m[2])}-${p2(m[1])}`, m[4]];
+      m = l.match(/(\d{1,2})\s+([a-zéû]+)\.?\s+(\d{4})[^;\t]*[;\t]\s*(\d[\d ]*)/i); if (m){ const i = MOIS.findIndex(x => m[2].toLowerCase().startsWith(x.slice(0,3))); if (i >= 0) return [`${m[3]}-${p2(i+1)}-${p2(m[1])}`, m[4]]; }
+      return null; };
+    let lines = 0; S.raw = txt.slice(0, 160);
+    txt.split(/\r?\n/).forEach(l => { const P = parseLine(l); if (!P) return; lines++;
+      const k = P[0], v = parseInt(P[1].replace(/[^\d]/g,''), 10); if (k > tk || !(v >= 0 && v < 200000)) return;
       if (!v && !H.days[k]) return; const D = hDay(k); if (D.steps !== v){ D.steps = v; n++; } if (!newest || k > newest) newest = k; });
-    S.at = Date.now(); S.ok = new Date().toISOString(); S.err = null; S.newest = newest;
-    if (n || manual){ commit(); if (manual) toast(n ? `${n} jour${n>1?'s':''} de pas mis à jour` : 'Déjà à jour'); } else save();
+    S.at = Date.now(); S.ok = new Date().toISOString(); S.err = null; S.newest = newest; S.lines = lines;
+    if (!lines) S.err = txt.trim() ? 'le gist est lu, mais aucune ligne « date;pas » n’y est reconnue. Vérifie le raccourci (étapes 3 et 4).' : 'le gist est vide : le raccourci n’a encore rien envoyé.';
+    else if (newest && daysUntil(newest) < -1) S.err = `le raccourci n’a rien envoyé depuis le ${fmt(parse(newest),{day:'numeric',month:'long'})}. Lance « Pas Tempo Sync » à la main dans Raccourcis pour voir son erreur.`;
+    if (n || manual){ commit(); if (manual) toast(S.err ? 'Problème : ' + S.err : n ? `${n} jour${n>1?'s':''} de pas mis à jour` : 'Déjà à jour, données jusqu’à aujourd’hui'); } else save();
   } catch(e){ S.at = Date.now(); S.err = e && e.message && !/fetch|network|Load failed/i.test(e.message) ? e.message : 'Pas de connexion à GitHub pour l’instant.'; save(); if (manual){ render(); toast(S.err); } }
   syncBusy = false;
 }
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') syncSteps(false); });
 setTimeout(() => syncSteps(false), 1500);
 const syncLine = () => { const S = (state.health||{}).sync; if (!S || !S.id) return '';
-  return S.err ? `<p class="fine warnt">Synchronisation : ${esc(S.err)}</p>` : S.ok ? `<p class="fine">Synchronisé avec Santé ${fmt(new Date(S.ok),{weekday:'short',hour:'2-digit',minute:'2-digit'})}${S.newest ? ` · données jusqu’au ${fmt(parse(S.newest),{day:'numeric',month:'short'})}` : ''}</p>` : ''; };
+  return S.err ? `<p class="fine warnt">Synchronisation : ${esc(S.err)}</p>${S.raw && !S.lines ? `<p class="fine">Début du gist : <code>${esc(S.raw)}</code></p>` : ''}` : S.ok ? `<p class="fine">Synchronisé avec Santé ${fmt(new Date(S.ok),{weekday:'short',hour:'2-digit',minute:'2-digit'})}${S.newest ? ` · données jusqu’au ${fmt(parse(S.newest),{day:'numeric',month:'short'})}` : ''}</p>` : ''; };
 const SC_SHORTCUT = (id, tok) => `<ol class="steps">
   <li>App <b>Raccourcis</b> → <b>+</b> → nomme-le <b>Pas Tempo Sync</b>.</li>
   <li>Action <b>Rechercher des échantillons de santé</b> : Type <b>Nombre de pas</b> · filtre <b>Date de début</b> <b>est dans les derniers</b> <b>7 jours</b> · <b>Grouper par : Jour</b> · Trier par Date de début.</li>
