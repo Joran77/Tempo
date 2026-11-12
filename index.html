@@ -7096,14 +7096,15 @@ function vRepasJour(D, S, T, goal, sp){
 }
 
 /* ---------- Organisation en 5 onglets : Aujourd'hui, Réviser, Agenda, Santé, Moi ---------- */
-const RV_TABS = ['rv','rv-train','cartes','calcul','sudoku','iae','actu'];
-const navGroup = t => t==='today' || t==='accueil' ? 'today' : RV_TABS.includes(t) ? 'rv' : t==='agenda' ? 'agenda' : String(t).startsWith('h-') ? 'h-jour' : t==='moi' || t==='params' ? 'moi' : 'today';
+const RV_TABS = ['rv','rv-train','cartes','calcul','sudoku','iae'];
+const navGroup = t => t==='today' || t==='accueil' || t==='actu' ? 'today' : RV_TABS.includes(t) ? 'rv' : t==='agenda' ? 'agenda' : String(t).startsWith('h-') ? 'h-jour' : t==='moi' || t==='params' ? 'moi' : 'today';
 function syncModeFromTab(){
   const m = navGroup(ui.tab)==='h-jour' ? 'health' : 'study';
   if (m !== appMode){ appMode = m; try { localStorage.setItem('tempo.mode', m); } catch(_){} document.documentElement.dataset.mode = m; }
 }
 function hubHtml(){
   const t = ui.tab, g = navGroup(t), seg = (items, cur) => `<div class="seg hubseg c${items.length}" role="tablist">${items.map(([k, l]) => `<button role="tab" data-hub="${k}" aria-selected="${k===cur}" aria-pressed="${k===cur}">${l}</button>`).join('')}</div>`;
+  if (t==='actu') return `<button class="hubback" data-hub="today">${CHEV_L}Aujourd’hui</button>`;
   if (g==='rv'){
     if (t==='cartes' && !['home', undefined, null].includes(ui.fc.view)) return '';
     if (['rv','rv-train','cartes'].includes(t)) return seg([['rv','Examens'],['cartes','Matières'],['rv-train','S’entraîner']], t);
@@ -7127,7 +7128,6 @@ function vRvTrain(){
     <button class="wide xbtn" data-express="1" style="--qc:var(--amber)"><span class="qi">${bicon('bolt')}</span><span class="qtx"><b>Révision express · 5 min</b><span>Cartes et calculs mélangés, pour les temps morts</span></span><span class="go">${CHEV_R}</span></button>
     ${quickTiles()}
     ${v3Tiles()}
-    <button class="wide" data-hub="actu" style="--qc:var(--c-cours)"><span class="qi">${bicon('cards')}</span><span class="qtx"><b>Veille éco et compta</b><span>L’actualité qui peut tomber en cours ou à l’oral</span></span><span class="go">${CHEV_R}</span></button>
   </div>`;
 }
 function vMoi(){
@@ -7177,6 +7177,8 @@ function vTodayNew(){
   return `${cloudCard()}${newsCard()}${banner()}${backupBanner()}
     <div class="card nowc"><span class="nowk">${esc(hello)} · maintenant</span><div class="nowr"><div><b>${esc(now1.t)}</b><span>${esc(now1.s)}</span></div>${now1.b}</div></div>
     <div class="tdgs c${T ? 3 : 2}">${gauges}</div>
+    ${(() => { const N = NEWS.list[0], fresh = N && N.date === tk;
+      return `<button class="wide nwbtn" data-hub="actu" style="--qc:var(--c-cours)"><span class="qi">${NEWS_ICON}</span><span class="qtx"><b>${fresh ? 'Le point du jour' : N ? `Point d’actualité du ${fmt(parse(N.date),{day:'numeric',month:'long'})}` : 'Point d’actualité'}</b><span>${N ? esc(N.lede || ((N.items||[])[0]||{}).title || '') : 'Politique, économie, international et entreprises, chaque matin vers 6 h 45'}</span></span><span class="go">${CHEV_R}</span></button>`; })()}
     ${exs.some(e => e.id !== nowEx) ? `<section><h2>${nowEx ? 'Autres examens' : 'Examens'} <button class="link" data-hub="rv">Tout voir</button></h2>${examCountdowns(nowEx)}</section>` : ''}
     ${mitCard(tl)}
     <section><h2>Tâches du jour <span class="hlinks"><button class="link" data-add-task="1">+ Ajouter</button><button class="link" data-v3="mj-tasks">Agenda</button></span></h2>
