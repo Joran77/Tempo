@@ -1242,6 +1242,48 @@ nav.tabs button[aria-current="page"]{color:color-mix(in srgb,var(--accent) 86%,v
 .stgoalbtn{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;background:var(--surface-2);border:0;border-radius:999px;padding:5px 11px;font:600 13px var(--f-body);color:var(--muted);cursor:pointer}
 .stgoalbtn svg{width:13px;height:13px}
 .stgoalbtn:active{transform:scale(.97)}
+.rsum{padding:18px;margin-bottom:6px}
+.rsumh{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.rkc{margin:2px 0 0;line-height:1}.rkc b{font:700 34px/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}.rkc span{color:var(--muted);font-size:14px}
+.rleft{text-align:right;display:flex;flex-direction:column;gap:2px}.rleft b{font:700 22px/1 var(--f-display);color:var(--ok);font-variant-numeric:tabular-nums}
+.rsum.over .rleft b{color:var(--danger)}
+.rstack{display:flex;height:12px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin:14px 0 8px;gap:2px}
+.rstack i{display:block;height:100%;transition:width .5s var(--ease-out)}
+.rleg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--muted)}
+.rleg i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:0}
+.rmacs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.rmach{display:flex;flex-direction:column;gap:1px;font-size:12px;color:var(--muted)}
+.rmach b{color:var(--fg);font:700 16px var(--f-display);font-variant-numeric:tabular-nums}
+.rmbar{height:6px;border-radius:999px;background:var(--surface-2);margin-top:6px;overflow:hidden}
+.rmbar i{display:block;height:100%;background:var(--mc);border-radius:999px;transition:width .5s var(--ease-out)}
+.rsp{margin:12px 0 0}
+section.rmc{margin:0}section.rmc+section.rmc{margin-top:-8px}.rmc .card{overflow:hidden}
+.rtarget b.mono{font-family:var(--f-display);font-weight:700}
+.rmch2{display:flex;align-items:center;gap:12px;padding:14px 14px 12px 16px}
+.rmic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--mc) 16%,transparent);color:var(--mc)}
+.rmic svg{width:20px;height:20px}
+.rmtt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}.rmtt b{font:700 17px var(--f-display)}.rmtt span{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.rmadd{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:var(--mc);color:var(--surface);cursor:pointer;flex:none;transition:transform .15s var(--ease-out)}
+.rmadd svg{width:20px;height:20px}.rmadd:active{transform:scale(.92)}
+.rmprog{height:4px;margin:0 16px 4px;border-radius:999px;background:var(--surface-2);overflow:hidden}.rmprog i{display:block;height:100%;background:var(--mc);border-radius:999px}
+.rfood{list-style:none;margin:0;padding:0 0 4px}
+.rfood li{display:flex;align-items:center;gap:10px;padding:10px 8px 10px 16px;border-top:1px solid var(--line)}
+.rfood li:first-child{border-top:0}
+.rfood li>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rfood b{font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rfood span{font-size:12px;color:var(--muted)}
+.rfood .rfk{font:600 15px var(--f-display);color:var(--fg);font-variant-numeric:tabular-nums}
+.rdel{width:36px;height:36px;border:0;background:none;color:var(--muted);display:grid;place-items:center;border-radius:50%;cursor:pointer;opacity:.7}
+.rdel svg{width:15px;height:15px}.rdel:active{background:var(--surface-2)}
+.rcopy{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:calc(100% - 28px);margin:2px 14px 14px;padding:10px 12px;border:1px dashed color-mix(in srgb,var(--mc) 50%,var(--line));border-radius:12px;background:none;color:var(--fg);text-align:left;cursor:pointer;font:inherit}
+.rcopy span{font-weight:600;font-size:14px;color:var(--mc)}.rcopy small{color:var(--muted);font-size:12px}
+.rnone{margin:4px 2px 0}
+.shopadd .row{display:flex;gap:8px;margin:8px 0 12px}
+.shopadd input,.shopadd select{flex:1;min-width:0;min-height:46px;box-sizing:border-box;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:12px;padding:11px 12px;font:16px var(--f-body);-webkit-appearance:none;appearance:none}
+.shopadd select{flex:0 0 40%;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23889' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:16px}
+.shopadd input:focus,.shopadd select:focus{outline:2px solid var(--accent);outline-offset:1px}
+details.rlib + details.rlib{margin-top:10px}
+@media (prefers-reduced-motion:reduce){.rstack i,.rmbar i{transition:none}}
 /* Interactions */
 
 
@@ -4531,13 +4573,7 @@ function vHealth(){
     if (rs==='semaine') return rSegHtml() + vPlan();
     if (rs==='courses') return rSegHtml() + vShop();
     if (rs==='recettes') return rSegHtml() + vRecipes();
-    return `${rSegHtml()}${hDateBar()}
-    <div class="card hline"><span><b class="mono">${nf(r0(S.kcal))}</b> / ${nf(goal)} kcal</span><span class="fine">P ${r0(S.p)} g · G ${r0(S.c)} g · L ${r0(S.f)} g</span></div>
-    ${mealIdeasHtml()}
-    ${MEALS.map(([k,l]) => { const it = D.food.filter(x=>x.meal===k), kc = it.reduce((a,x)=>a+x.kcal,0);
-      return `<section><h2>${l} <span class="mono hk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span></h2><div class="card">${it.length ? `<ul class="hfood">${it.map(x=>`<li><div><b>${esc(x.name)}</b><span>${x.g ? nf(x.g) + ' g · ' : ''}P ${nf(r1(x.p))} · G ${nf(r1(x.c))} · L ${nf(r1(x.f))}</span></div><span class="mono">${nf(r0(x.kcal))}</span><button class="icon-btn sm" data-h-del="${x.id}" aria-label="Supprimer">${ICON_X}</button></li>`).join('')}</ul>` : ''}
-        <button class="hadd" data-h-add="${k}">+ Ajouter un aliment</button>${!it.length ? (() => { const yk = key(addDays(parse(ui.hday), -1)), y = hPeek(yk).food.filter(x=>x.meal===k); return y.length ? `<button class="hadd hcopy" data-h-copy="${k}">Copier ${l.toLowerCase()} d’hier · ${esc(y.map(x=>x.name).slice(0,2).join(', '))}${y.length>2?'…':''} (${nf(r0(y.reduce((a,x)=>a+x.kcal,0)))} kcal)</button>` : ''; })() : ''}</div></section>`; }).join('')}
-    ${assocHtml()}`;
+    return vRepasJour(D, S, T, goal, sp);
   }
   if (ui.tab==='h-sport'){
     const w = lastWeight() || 70, stepK = r0(D.steps * 0.0005 * w);
@@ -5328,7 +5364,7 @@ function mealIdeasHtml(){
       ${(() => { const as = recAssoc(x.R.it, x.S.g, x.S.tot).slice(0,2); return as.length ? `<div class="rtags">${as.map(a => `<i>${esc(ASSOC_BY[a].t)}</i>`).join('')}</div>` : ''; })()}
     </button>`).join('')}</div>
     ${list.length > 3 ? `<button class="hadd" data-h="midx">Autres idées (${list.length} possibles)</button>` : ''}`
-    : `<div class="card empty"><b>Aucune recette ne colle</b>Assouplis tes préférences (temps, matériel, allergies) ou change de repas.</div>`}
+    : `<p class="fine rnone">Aucune recette ne correspond à tes préférences pour ce repas. Assouplis-les (temps, matériel, allergies) ou choisis un autre repas.</p>`}
   </section>`;
 }
 function assocHtml(){
@@ -6963,6 +6999,38 @@ function stepsCard(D, stepK){
     <div class="ststats"><div><span class="lab">Moyenne 7 j</span><b>${nf(avg)}</b></div><div><span class="lab">Série</span><b>${streak} jour${streak>1?'s':''}</b></div><div><span class="lab">Jours à ${nf(STEP_GOAL)}</span><b>${v.filter(x => x >= STEP_GOAL).length}/7</b></div></div>
     <div class="stfoot">${syncLine()}<div class="btns">${synced ? '<button class="btn sm primary" data-h="sync-now">Synchroniser</button>' : '<button class="btn sm primary" data-h="sync">Automatiser avec Santé</button><button class="btn sm" data-h="steps-import">Importer</button>'}<button class="btn sm" data-h="steps">Saisir</button>${synced ? '<button class="btn sm" data-h="sync">Réglages</button>' : ''}</div></div>
   </div></section>`;
+}
+
+/* ---------- Onglet Repas · Jour ---------- */
+const MEAL_COL = { pdj:'amber', dej:'ok', din:'c-alt', col:'c-cours' };
+const ICON_PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+function vRepasJour(D, S, T, goal, sp){
+  const left = goal - S.kcal, over = left < 0, tc = T.c + spC(sp), tf = T.f + spF(sp);
+  const per = MEALS.map(([k]) => ({ k, kc: D.food.filter(x => x.meal===k).reduce((a,x) => a + x.kcal, 0) }));
+  const tot = Math.max(goal, S.kcal) || 1;
+  const macro = (l, v, t, col) => { const p = t ? Math.min(100, 100 * v / t) : 0;
+    return `<div class="rmac"><div class="rmach"><span>${l}</span><span><b>${r0(v)}</b> / ${r0(t)} g</span></div><div class="rmbar" style="--mc:var(--${col})"><i style="width:${p.toFixed(1)}%"></i></div></div>`; };
+  const yk = key(addDays(parse(ui.hday), -1));
+  return `${rSegHtml()}${hDateBar()}
+  <div class="card rsum ${over ? 'over' : ''}">
+    <div class="rsumh"><div><span class="lab">Mangé</span><p class="rkc"><b>${nf(r0(S.kcal))}</b><span> / ${nf(goal)} kcal</span></p></div>
+      <div class="rleft"><span class="lab">${over ? 'Dépassé de' : 'Reste'}</span><b>${nf(Math.abs(r0(left)))}</b></div></div>
+    <div class="rstack" aria-hidden="true">${per.map(x => x.kc ? `<i style="width:${(100 * x.kc / tot).toFixed(2)}%;background:var(--${MEAL_COL[x.k]})"></i>` : '').join('')}</div>
+    <div class="rleg">${MEALS.map(([k, l]) => `<span><i style="background:var(--${MEAL_COL[k]})"></i>${l.replace('Petit-déjeuner','Petit-déj')}</span>`).join('')}</div>
+    <div class="rmacs">${macro('Protéines', S.p, T.p, 'accent')}${macro('Glucides', S.c, tc, 'amber')}${macro('Lipides', S.f, tf, 'c-alt')}</div>
+    ${sp ? `<p class="fine rsp">Séance du jour : +${nf(r0(sp))} kcal ajoutées à ton objectif.</p>` : ''}
+  </div>
+  ${MEALS.map(([k, l, ic]) => { const it = D.food.filter(x => x.meal===k), kc = it.reduce((a,x) => a + x.kcal, 0), tg = Math.round(T.kcal * mealShare(k) / 10) * 10;
+    const y = !it.length ? hPeek(yk).food.filter(x => x.meal===k) : [];
+    return `<section class="rmc" style="--mc:var(--${MEAL_COL[k]})"><div class="card">
+      <div class="rmch2"><span class="rmic">${bicon(ic)}</span><div class="rmtt"><b>${l}</b><span>${it.length ? `${nf(r0(kc))} kcal${tg ? ` · repère ${nf(tg)}` : ''}` : tg ? `Repère ≈ ${nf(tg)} kcal` : 'Rien pour l’instant'}</span></div>
+        <button class="rmadd" data-h-add="${k}" aria-label="Ajouter au ${l.toLowerCase()}">${ICON_PLUS}</button></div>
+      ${tg && it.length ? `<div class="rmprog"><i style="width:${Math.min(100, 100 * kc / tg).toFixed(1)}%"></i></div>` : ''}
+      ${it.length ? `<ul class="rfood">${it.map(x => `<li><div><b>${esc(x.name)}</b><span>${x.g ? nf(x.g) + ' g · ' : ''}P ${nf(r1(x.p))} · G ${nf(r1(x.c))} · L ${nf(r1(x.f))}</span></div><span class="rfk">${nf(r0(x.kcal))}</span><button class="rdel" data-h-del="${x.id}" aria-label="Supprimer ${esc(x.name)}">${ICON_X}</button></li>`).join('')}</ul>` : ''}
+      ${y.length ? `<button class="rcopy" data-h-copy="${k}"><span>Reprendre comme hier</span><small>${esc(y.map(x => x.name).slice(0, 2).join(', '))}${y.length > 2 ? '…' : ''} · ${nf(r0(y.reduce((a,x) => a + x.kcal, 0)))} kcal</small></button>` : ''}
+    </div></section>`; }).join('')}
+  ${mealIdeasHtml()}
+  ${assocHtml()}`;
 }
 
 /* ---------- Rendu ---------- */
