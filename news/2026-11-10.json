@@ -1,0 +1,274 @@
+{
+ "date": "2026-11-10",
+ "figures": [
+  {
+   "label": "Smic net mensuel au 1er décembre 2026",
+   "note": "+1,6 %, contre 1 477,93 € auparavant",
+   "source": "Public Sénat",
+   "value": "1 502 €"
+  },
+  {
+   "label": "Inflation en France, octobre 2026",
+   "note": "Sur un an ; +0,4 % sur le mois",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Après 0,0 % au 2e trimestre",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Inflation zone euro, octobre 2026",
+   "note": "Estimation rapide ; sous-jacente stable à 2,5 %",
+   "source": "Eurostat (via Euronews)",
+   "value": "4,0 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Maintenu le 29 octobre 2026",
+   "source": "Euronews",
+   "value": "2,5 %"
+  },
+  {
+   "label": "CAC 40, clôture du 9 novembre",
+   "note": "+1,2 % sur la séance",
+   "source": "Zonebourse",
+   "value": "8 233,30 pts"
+  },
+  {
+   "label": "Brent, clôture du 9 novembre",
+   "note": "Environ −5,9 % sur la séance",
+   "source": "The Nation",
+   "value": "92,57 $"
+  }
+ ],
+ "generatedAt": "2026-11-10T06:44:01+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/pouvoir-dachat-sebastien-lecornu-annonce-une-hausse-anticipee-du-smic-a-1-502-euros-des-le-1er-decembre"
+    },
+    {
+     "name": "24matins",
+     "url": "https://www.24matins.fr/smic-a-1-500-euros-nets-lexecutif-vise-un-cap-tres-modeste-1423716"
+    }
+   ],
+   "summary": "À l'issue de la conférence sociale réunie lundi à Matignon, Sébastien Lecornu a annoncé une revalorisation anticipée du Smic de 1,6 %, un mois avant la hausse automatique de janvier. Le gouvernement demande aux branches dont les minima sont sous le Smic de renégocier rapidement et prévoit de conditionner les allègements de cotisations patronales au niveau de ces minima. D'autres mesures doivent passer par amendement au budget : prime de partage de la valeur élargie et plafond d'exonération des heures supplémentaires porté à 10 000 euros.",
+   "title": "Le Smic relevé à 1 502 euros net dès le 1er décembre",
+   "why": "La revalorisation du Smic et le conditionnement des allègements de charges modifient directement le coût du travail : un sujet central en paie, en contrôle de gestion et dans le pilotage de la masse salariale."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Econostrum",
+     "url": "https://econostrum.info/smic-gouvernement-depasser-1-500-euros-net-mois/"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/pouvoir-dachat-sebastien-lecornu-annonce-une-hausse-anticipee-du-smic-a-1-502-euros-des-le-1er-decembre"
+    },
+    {
+     "name": "24matins",
+     "url": "https://www.24matins.fr/smic-a-1-500-euros-nets-lexecutif-vise-un-cap-tres-modeste-1423716"
+    }
+   ],
+   "summary": "Avant la conférence, la CFDT réclamait 100 euros net de plus par mois et la CGT une hausse d'environ 10 %, soit près de 150 euros ; FO demandait un Smic fixé à 80 % du salaire médian. Les organisations patronales mettent en avant la faiblesse des marges des entreprises et le risque pour l'emploi. Le Premier ministre a présenté la mesure comme une étape, et doit recevoir vendredi les syndicats de la fonction publique.",
+   "title": "Syndicats et patronat : des attentes éloignées de l'annonce",
+   "why": "Comprendre les positions de chaque partenaire social aide à anticiper les négociations salariales de branche, qui pèseront sur les budgets 2027 des entreprises."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Banque des Territoires",
+     "url": "https://www.banquedesterritoires.fr/plfss-2027-les-senateurs-sengagent-tenir-le-niveau-de-deficit-prevu-par-le-gouvernement"
+    },
+    {
+     "name": "PolitiqueMatin",
+     "url": "https://www.politiquematin.fr/plfss-2027-senat-transmission-deficit-127-milliards-20261103-0036"
+    },
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/plfss-2027-calendrier-examen-date-par-date"
+    }
+   ],
+   "summary": "Rejeté par l'Assemblée le 23 octobre, le PLFSS 2027 est examiné au Sénat depuis lundi dans sa version initiale, avec un vote solennel prévu le 18 novembre. Le texte vise un déficit de 12,7 milliards d'euros pour les régimes de base, contre 21,8 milliards attendus en 2026. La commission des affaires sociales, présidée par Philippe Mouiller, s'engage à tenir ce niveau et propose de revenir sur la suspension de la réforme des retraites.",
+   "title": "Budget de la Sécurité sociale : le Sénat entame l'examen du texte",
+   "why": "Le déficit de la Sécurité sociale et la trajectoire des retraites sont des éléments majeurs des finances publiques, suivis de près par les agences de notation et les marchés."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    }
+   ],
+   "summary": "Après le rejet unanime de sa partie recettes le 4 novembre, le projet de loi de finances sera examiné au Sénat du 20 novembre au 9 décembre. Selon LCP, le gouvernement, sans majorité à l'Assemblée, peut chercher un accord de non-censure suivi d'un 49.3, laisser expirer les délais constitutionnels pour recourir aux ordonnances, ou faire voter une loi spéciale.",
+   "title": "Budget de l'État 2027 : quelles issues après le rejet à l'Assemblée ?",
+   "why": "Le calendrier budgétaire conditionne la fiscalité des entreprises et des ménages en 2027 : un point de vigilance pour toute prévision financière."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Economie Matin",
+     "url": "https://www.economiematin.fr/banque-france-enquete-novembre-2026-industrie-croissance-t4-091126-2140"
+    }
+   ],
+   "summary": "Selon l'enquête mensuelle de conjoncture publiée lundi, l'activité industrielle d'octobre a été soutenue par l'aéronautique et l'électronique, tandis que l'automobile reste en difficulté. Le taux d'utilisation des capacités s'établit à 76,6 %, et 12 % des industriels ont relevé leurs prix, contre 8 % en moyenne à cette période. La Banque de France évoque une progression modérée de l'activité au 4e trimestre, sans la chiffrer.",
+   "title": "Banque de France : une industrie légèrement au-dessus de sa tendance",
+   "why": "Ces enquêtes de conjoncture sont des indicateurs avancés de la croissance et des tensions sur les prix, utiles pour bâtir des hypothèses budgétaires."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    }
+   ],
+   "summary": "D'après l'Insee, les prix à la consommation ont progressé de 3,4 % sur un an en octobre 2026. Le PIB a reculé de 0,1 % au 3e trimestre, après une stagnation au 2e. La confiance des ménages a perdu 5 points en octobre, à 80 ; prochaines publications : l'inflation définitive le 13 novembre, puis le PIB détaillé le 27 novembre.",
+   "title": "France : inflation à 3,4 % et PIB en léger recul au 3e trimestre",
+   "why": "Une inflation élevée combinée à une activité atone (risque de stagflation) complique les arbitrages de prix, de salaires et d'investissement des entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/04/inflation-de-la-zone-euro-a-4-lenergie-ravive-les-attentes-de-hausse-des-taux-de-la-bce"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/29/la-bce-maintient-les-taux-a-25-alors-que-lagarde-annonce-un-depart-anticipe"
+    }
+   ],
+   "summary": "L'estimation rapide d'Eurostat situe l'inflation de la zone euro à 4 % en octobre, son plus haut niveau depuis septembre 2023, l'énergie progressant de 20,8 % sur un an. La BCE a maintenu son taux de dépôt à 2,5 % le 29 octobre, après deux hausses en 2026 ; des économistes anticipent un relèvement de 25 points de base lors de la réunion des 16 et 17 décembre. Christine Lagarde a annoncé qu'elle quitterait la présidence de la BCE le 7 février 2027.",
+   "title": "Zone euro : inflation à 4 %, une hausse de taux de la BCE envisagée",
+   "why": "Les taux directeurs déterminent le coût du crédit et le taux d'actualisation utilisé dans l'évaluation des projets d'investissement."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "The Nation",
+     "url": "https://www.nationthailand.com/news/world/40073309"
+    },
+    {
+     "name": "Fortune",
+     "url": "https://fortune.com/article/price-of-oil-11-09-2026/"
+    }
+   ],
+   "summary": "Le Brent a clôturé lundi à 92,57 dollars, en baisse d'environ 5,9 %, et le WTI à 86,85 dollars, selon The Nation. Le repli a suivi les propos de Donald Trump jugeant de nouvelles frappes sur l'Iran très peu probables si les négociations progressent. Le baril reste toutefois bien au-dessus de son niveau d'il y a un an, autour de 64 dollars.",
+   "title": "Le pétrole recule nettement sur l'espoir d'une détente avec l'Iran",
+   "why": "Le prix du pétrole pèse sur l'inflation, les coûts de transport et les marges des entreprises : c'est une hypothèse clé des budgets prévisionnels."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/cac-40-la-bourse-de-paris-dans-le-vert-grace-a-la-chute-de-l-or-noir-ce785fd3df8ef320"
+    },
+    {
+     "name": "Trading Economics",
+     "url": "https://fr.tradingeconomics.com/france/stock-market/news/533424"
+    }
+   ],
+   "summary": "La Bourse de Paris a terminé lundi à 8 233,30 points, aidée par le recul du pétrole et un rebond des valeurs technologiques. Airbus a progressé de près de 5 % après l'annonce d'un rachat d'actions pouvant atteindre 5 milliards d'euros d'ici 2029, et Safran d'environ 3,5 %. Le luxe a reculé (LVMH −1,8 %), tout comme TotalEnergies ; Crédit Agricole a proposé une fusion entre sa filiale italienne et Banco BPM.",
+   "title": "Le CAC 40 gagne 1,2 %, porté par Airbus et Safran",
+   "why": "Un rachat d'actions est un mode de rémunération des actionnaires qui réduit le nombre de titres et augmente mécaniquement le bénéfice par action."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163775/early-edition-november-9-2026/"
+    },
+    {
+     "name": "The Times of Israel",
+     "url": "https://www.timesofisrael.com/liveblog-november-9-2026/"
+    }
+   ],
+   "summary": "Le vice-président J. D. Vance mène depuis deux semaines des discussions indirectes avec l'Iran, avec le Qatar et le Pakistan comme médiateurs, en vue d'un nouveau cessez-le-feu et d'une reprise des négociations nucléaires. Donald Trump a jugé de nouvelles frappes très improbables tant que les pourparlers avancent, et devait recevoir lundi le Premier ministre qatari. Le secrétaire d'État Marco Rubio a, lui, rejeté les dernières propositions iraniennes ; Téhéran les défend.",
+   "title": "Iran : Washington poursuit les discussions indirectes, sans percée",
+   "why": "L'issue du conflit conditionne la circulation dans le détroit d'Ormuz, donc l'approvisionnement mondial en pétrole et les prix de l'énergie."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Kyiv Independent",
+     "url": "https://kyivindependent.com/power-to-zaporizhzhia-nuclear-power-plant-cut-restored-iaea-says/"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163775/early-edition-november-9-2026/"
+    }
+   ],
+   "summary": "La Russie dit avoir visé des sous-stations électriques ukrainiennes, tandis que des drones ukrainiens ont touché une raffinerie à Kirichi, dans le nord-ouest de la Russie. La centrale de Zaporijjia a été privée de sa ligne externe pendant une dizaine d'heures, selon l'AIEA. Des discussions américano-russes doivent se tenir cette semaine à Abou Dhabi ; le ministre Jean-Noël Barrot a indiqué que la France y participerait.",
+   "title": "Ukraine : frappes sur l'énergie et pourparlers attendus à Abou Dhabi",
+   "why": "Les attaques sur les infrastructures énergétiques et l'évolution des négociations influencent les prix de l'énergie en Europe et les budgets de défense."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "The Times of Israel",
+     "url": "https://www.timesofisrael.com/liveblog-november-9-2026/"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163775/early-edition-november-9-2026/"
+    }
+   ],
+   "summary": "Après les élections de mi-mandat du 4 novembre, les démocrates contrôlent la Chambre des représentants et le Sénat. Donald Trump a remplacé sa cheffe de cabinet Susie Wiles par Stephen Miller. J. D. Vance a estimé que la guerre en Iran avait coûté des sièges aux républicains ; Donald Trump a maintenu que cette guerre était justifiée.",
+   "title": "États-Unis : après les midterms, remaniement à la Maison-Blanche",
+   "why": "Un Congrès d'opposition peut bloquer budgets et réformes fiscales américaines, avec des effets sur le dollar, les taux et les marchés mondiaux."
+  }
+ ],
+ "lede": "Sébastien Lecornu a annoncé lundi un Smic porté à 1 502 euros net dès le 1er décembre, alors que le Sénat ouvre l'examen du budget de la Sécurité sociale. Les marchés ont rebondi, portés par la chute du pétrole sur fond d'espoirs diplomatiques autour de l'Iran.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Sébastien Lecornu a annoncé une hausse anticipée de 1,6 %, de 1 477,93 à 1 502 euros net par mois.",
+   "options": [
+    "1 478 euros",
+    "1 502 euros",
+    "1 578 euros",
+    "1 625 euros"
+   ],
+   "q": "À combien le Smic net mensuel sera-t-il porté au 1er décembre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le texte vise 12,7 milliards d'euros en 2027, contre 21,8 milliards attendus en 2026 ; la commission du Sénat s'engage à tenir ce niveau.",
+   "options": [
+    "8,5 milliards d'euros",
+    "21,8 milliards d'euros",
+    "24,0 milliards d'euros",
+    "12,7 milliards d'euros"
+   ],
+   "q": "Quel déficit des régimes de base le PLFSS 2027 examiné au Sénat vise-t-il ?"
+  },
+  {
+   "answer": 0,
+   "explain": "La BCE a maintenu son taux de dépôt à 2,5 %, après deux hausses en juin et septembre 2026.",
+   "options": [
+    "2,5 %",
+    "2,0 %",
+    "2,9 %",
+    "3,4 %"
+   ],
+   "q": "Quel est le niveau du taux de dépôt de la BCE après sa réunion du 29 octobre 2026 ?"
+  }
+ ]
+}

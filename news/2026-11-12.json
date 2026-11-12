@@ -1,0 +1,242 @@
+{
+ "date": "2026-11-12",
+ "figures": [
+  {
+   "label": "Taux de chômage BIT, 3e trimestre 2026",
+   "note": "+0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "PIB, 3e trimestre 2026",
+   "note": "Après une stabilité au 2e trimestre",
+   "source": "Insee / Banque de France",
+   "value": "-0,1 %"
+  },
+  {
+   "label": "Croissance prévue en 2026",
+   "note": "Contre 0,4 % prévu en septembre",
+   "source": "Banque de France",
+   "value": "≈ 0,3 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Maintenu le 29 octobre ; prochaine réunion en décembre",
+   "source": "BCE",
+   "value": "2,5 %"
+  },
+  {
+   "label": "Inflation zone euro, octobre 2026",
+   "note": "Premières estimations, contre 3,8 % en septembre",
+   "source": "Eurostat (via presse)",
+   "value": "4 %"
+  },
+  {
+   "label": "CAC 40, clôture du 11 novembre",
+   "note": "+0,66 % sur la séance",
+   "source": "AFP / MoneyVox",
+   "value": "8 332,87 pts"
+  },
+  {
+   "label": "Brent, 11 novembre (vers 18 h)",
+   "note": "+2,74 % sur la journée",
+   "source": "AFP / MoneyVox",
+   "value": "94,00 $"
+  }
+ ],
+ "generatedAt": "2026-11-12T06:58:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Daf-Mag",
+     "url": "https://www.daf-mag.fr/reglementation-1243/fiscalite-2115/budget-2027-lassemblee-nationale-rejette-le-texte-le-senat-reprend-la-main-28079"
+    },
+    {
+     "name": "APVF",
+     "url": "https://www.apvf.asso.fr/actualite_evenement/plf-2027-apres-le-rejet-du-budget-par-lassemblee-nationale-le-senat-sapprete-a-examiner-un-texte-aux-hypotheses-economiques-contestees/"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/dossiers/budget-2027-440523"
+    }
+   ],
+   "summary": "Le 4 novembre, les députés ont rejeté la partie recettes du projet de loi de finances pour 2027 par 458 voix contre et deux abstentions, ce qui entraîne le rejet de l'ensemble du texte. Le Sénat examinera en séance, à partir du 20 novembre, la version initiale du gouvernement, qui vise un déficit public de 5 % du PIB en 2027, après 5,4 % attendus en 2026. Le ministre des Comptes publics, David Amiel, estime que les amendements adoptés par les députés auraient porté ce déficit à 5,9 %. La rapporteure générale du Sénat, Christine Lavarde, juge l'hypothèse de croissance de 1 % pour 2027 trop optimiste.",
+   "title": "Budget 2027 : après le rejet à l'Assemblée, le Sénat reprend le texte le 20 novembre",
+   "why": "Le calendrier est serré : le Parlement a jusqu'à mi-décembre pour adopter un budget, faute de quoi le gouvernement pourrait recourir à une procédure exceptionnelle. Les hypothèses macroéconomiques d'un budget sont un bon cas pratique de prévision et de contrôle budgétaire."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/plfss-2027-calendrier-examen-date-par-date"
+    },
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/budget-secu-2027-vote-seance-premiers-articles-supprimes"
+    }
+   ],
+   "summary": "Rejeté par l'Assemblée le 23 octobre sans examen de la partie dépenses, le projet de loi de financement de la Sécurité sociale (PLFSS) pour 2027 est examiné par le Sénat du 9 au 18 novembre, sur la base du texte du gouvernement. Celui-ci prévoit un déficit de la Sécurité sociale de 12,7 milliards d'euros en 2027 ; selon la ministre Stéphanie Rist, les amendements votés par les députés l'auraient porté à 24 milliards. Une commission mixte paritaire doit ensuite chercher un compromis entre les deux chambres. Le délai constitutionnel de 50 jours expire le 26 novembre à minuit.",
+   "title": "Budget de la Sécurité sociale : le Sénat en première lecture jusqu'au 18 novembre",
+   "why": "Le PLFSS fixe notamment les cotisations, les allègements de charges et l'objectif de dépenses d'assurance maladie, des paramètres qui pèsent directement sur le coût du travail dans les entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/gel-dun-an-des-promotions-des-fonctionnaires-non-revalorisation-des-prestations-baisse-des-dotations-la-cour-des-comptes-avance-ses-idees-deconomies"
+    }
+   ],
+   "summary": "La Cour des comptes, présidée par Amélie de Montchalin, a présenté le 9 novembre 18 mesures de court terme chiffrées, dont 11 à 14 milliards figurent déjà dans les projets de budget 2027. Parmi elles : la suspension d'un an des avancements dans la fonction publique (3,9 milliards), la non-revalorisation des prestations sociales hors minima (4,8 milliards en 2027) et le passage du taux intermédiaire de TVA de 10 % à 13 % (4,3 milliards). La Cour indique que ces pistes sont à la disposition du Parlement et des candidats à l'élection présidentielle, sans prendre part au débat politique.",
+   "title": "La Cour des comptes propose 18 mesures pour 32 à 38 milliards d'euros d'économies",
+   "why": "La Cour rappelle que la masse salariale publique représente 370 milliards d'euros, soit 22 % des dépenses publiques : un ordre de grandeur utile pour analyser les leviers de maîtrise des coûts."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/le-gouverneur-de-la-banque-de-france-voit-la-croissance-autour-de-0-3-en-2026-19b65d4d755e33cbad40fe59a52dc2b5"
+    },
+    {
+     "name": "Banque de France",
+     "url": "https://www.banque-france.fr/fr/publications-et-statistiques/publications/enquete-mensuelle-de-conjoncture-debut-novembre-2026"
+    }
+   ],
+   "summary": "Le gouverneur de la Banque de France, Emmanuel Moulin, a indiqué le 10 novembre que la croissance française devrait avoisiner 0,3 % en 2026, contre 0,4 % prévu en septembre. Cette révision fait suite au recul du PIB de 0,1 % au troisième trimestre mesuré par l'Insee. L'enquête mensuelle de conjoncture de la Banque de France, menée auprès d'environ 8 500 entreprises, anticipe une progression modérée de l'activité au quatrième trimestre, ce qui éviterait une récession technique (deux trimestres de baisse consécutifs).",
+   "title": "La Banque de France table sur une croissance d'environ 0,3 % en 2026",
+   "why": "Une croissance plus faible réduit les recettes fiscales et complique la réduction du déficit. La notion de récession technique est un classique des épreuves d'économie."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9118603"
+    },
+    {
+     "name": "Presse Agence",
+     "url": "https://presseagence.fr/paris-economie-linsee-devoile-son-calendrier-des-indicateurs-cles-pour-novembre/"
+    }
+   ],
+   "summary": "Selon l'Insee, le taux de chômage au sens du Bureau international du travail s'établit à 8,2 % de la population active au troisième trimestre 2026, en hausse de 0,4 point sur un an. Cette publication intervient alors que le PIB a reculé de 0,1 % sur la même période. L'Insee publiera vendredi 13 novembre les résultats définitifs de l'indice des prix d'octobre et une première estimation de l'indice du coût du travail du troisième trimestre.",
+   "title": "Le taux de chômage atteint 8,2 % au troisième trimestre 2026",
+   "why": "Le chômage BIT est l'indicateur de référence du marché du travail ; sa hausse en période de faible croissance illustre la relation entre activité et emploi (loi d'Okun)."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/29/la-bce-maintient-les-taux-a-25-alors-que-lagarde-annonce-un-depart-anticipe"
+    },
+    {
+     "name": "L'Économiste Maghrébin",
+     "url": "https://www.leconomistemaghrebin.com/2026/11/06/la-bce-nexclut-pas-une-nouvelle-hausse-des-taux-en-decembre/"
+    }
+   ],
+   "summary": "La Banque centrale européenne a maintenu son taux de dépôt à 2,5 % le 29 octobre, après deux hausses cette année, dont la dernière en septembre. L'inflation de la zone euro a atteint 4 % en octobre selon les premières estimations, après 3,8 % en septembre. D'après des sources citées par Reuters, certains membres du Conseil envisagent une hausse de 0,25 point en décembre, sous réserve des prochaines données. Christine Lagarde a par ailleurs annoncé qu'elle quitterait la présidence de la BCE le 7 février 2027, avant la fin de son mandat.",
+   "title": "BCE : taux de dépôt à 2,5 %, une hausse en décembre n'est pas exclue",
+   "why": "Les taux directeurs déterminent le coût du crédit pour les entreprises et les ménages, ainsi que le taux d'actualisation utilisé dans les choix d'investissement."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/11/ukraine-russie-un-accord-sur-un-echange-de-prisonniers-a-abu-dhabi"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/164111/early-edition-november-11-2026/"
+    }
+   ],
+   "summary": "Deux jours de pourparlers entre délégations ukrainienne et russe, sous médiation américaine, se sont achevés le 11 novembre à Abou Dhabi. Le seul résultat annoncé est un échange de prisonniers, qui pourrait concerner 1 000 à 1 500 personnes de chaque côté selon Volodymyr Zelensky ; les chiffres définitifs devaient être arrêtés jeudi. Aucun progrès n'a été annoncé sur un cessez-le-feu ni sur les questions territoriales, Moscou réclamant toujours le retrait ukrainien du Donbass. Les émissaires américains Jared Kushner et Steve Witkoff doivent rencontrer Vladimir Poutine à Moscou, puis Volodymyr Zelensky.",
+   "title": "Ukraine-Russie : accord sur un vaste échange de prisonniers à Abou Dhabi",
+   "why": "L'évolution du conflit pèse sur les prix de l'énergie, les budgets de défense européens et la confiance des entreprises en Europe."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/11/les-prix-du-petrole-montent-avec-les-attaques-contre-les-tankers-dans-le-detroit-dormuz"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/164111/early-edition-november-11-2026/"
+    }
+   ],
+   "summary": "Les Gardiens de la révolution iraniens ont affirmé que trois pétroliers avaient pris feu dans le détroit d'Ormuz, et l'armée iranienne a indiqué qu'un navire avait heurté une mine. Le ministre indien du Transport maritime a fait état de quatre marins blessés sur un pétrolier sous pavillon libérien. Le secrétaire d'État américain Marco Rubio a estimé que la pression économique rendait inutiles de grandes opérations militaires, tout en n'excluant pas une riposte en cas de franchissement de « lignes rouges ». Le Brent a fini la journée en hausse de 2,74 %, à 94 dollars vers 18 h.",
+   "title": "Détroit d'Ormuz : nouvelles attaques de pétroliers, le Brent proche de 94 dollars",
+   "why": "Environ un cinquième du pétrole mondial transite par ce détroit : son blocage partiel se répercute sur l'inflation, les coûts de transport et les marges des entreprises."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Commission européenne",
+     "url": "https://france.representation.ec.europa.eu/informations-et-evenements/informations/la-commission-mobilise-les-investissements-en-faveur-du-redressement-et-de-la-reconstruction-de-2026-11-11_fr"
+    }
+   ],
+   "summary": "La Commission européenne et les autorités ukrainiennes organisent les 12 et 13 novembre à Varsovie une conférence consacrée aux investissements dans le redressement de l'Ukraine. Elle est ouverte par la commissaire à l'élargissement Marta Kos et le ministre ukrainien de l'Économie Oleksandr Kravchenko. Le programme prévoit pour la première fois des rencontres directes entre entreprises et pouvoirs publics. Les priorités affichées portent sur les réformes de gouvernance, le financement des PME, l'énergie et les industries stratégiques.",
+   "title": "Reconstruction de l'Ukraine : conférence UE-Ukraine sur l'investissement à Varsovie",
+   "why": "La reconstruction ukrainienne représente un marché important pour les entreprises européennes et mobilise des instruments de financement publics et privés."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "MoneyVox (AFP)",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111198/le-cac-40-nage-dans-le-vert-totalenergies-carbure-les-infos-bourse-du-11-novembre"
+    },
+    {
+     "name": "Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/11-novembre-l-ia-rallume-la-flamme-dans-un-marche-deserte-ce785edbdd8bf52c"
+    }
+   ],
+   "summary": "Lors d'une séance peu active en raison du 11 novembre férié, le CAC 40 a clôturé à 8 332,87 points, en hausse de 0,66 %. Les valeurs liées aux semi-conducteurs et à l'intelligence artificielle ont progressé après des résultats trimestriels de l'américain CoreWeave supérieurs aux attentes : Soitec a gagné 11,93 % et STMicroelectronics 5,16 %. Schneider Electric (+3,04 %) et TotalEnergies (+1,50 %), soutenu par la hausse du pétrole, ont aussi avancé.",
+   "title": "Bourse : le CAC 40 gagne 0,66 %, porté par les semi-conducteurs",
+   "why": "Ces mouvements montrent comment les résultats d'une entreprise étrangère peuvent faire réévaluer tout un secteur, et comment le prix du pétrole influe sur les valeurs énergétiques."
+  }
+ ],
+ "lede": "Après le rejet du budget de l'État par l'Assemblée, le Sénat examine le budget de la Sécurité sociale tandis que la Cour des comptes chiffre jusqu'à 38 milliards d'euros d'économies possibles. Côté conjoncture, la Banque de France abaisse sa prévision de croissance 2026 à environ 0,3 % et le chômage atteint 8,2 %.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Le PLF 2027 initial vise 5 % du PIB, après 5,4 % attendus en 2026 ; 5,9 % correspond à l'estimation du ministre après les votes des députés.",
+   "options": [
+    "4,5 % du PIB",
+    "5,4 % du PIB",
+    "5 % du PIB",
+    "5,9 % du PIB"
+   ],
+   "q": "Quel déficit public le projet de budget initial du gouvernement vise-t-il pour 2027 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "La hausse du taux intermédiaire de TVA est chiffrée à 4,3 milliards ; le gel des promotions à 3,9 milliards et la suppression de l'abattement à 7,3 milliards en 2027.",
+   "options": [
+    "Passer la TVA intermédiaire de 10 % à 13 %",
+    "Geler un an les promotions des fonctionnaires",
+    "Réformer le FCTVA des collectivités",
+    "Supprimer l'abattement de 10 % des retraités"
+   ],
+   "q": "Quelle mesure de la Cour des comptes rapporterait environ 4,3 milliards d'euros ?"
+  },
+  {
+   "answer": 3,
+   "explain": "L'Insee mesure un taux de chômage de 8,2 %, en hausse de 0,4 point sur un an.",
+   "options": [
+    "7,6 %",
+    "7,8 %",
+    "8,6 %",
+    "8,2 %"
+   ],
+   "q": "Quel est le taux de chômage BIT en France au troisième trimestre 2026 selon l'Insee ?"
+  }
+ ]
+}

@@ -1333,6 +1333,25 @@ nav.tabs .in.n5>button{display:flex!important}
 .hdk{font:600 14px var(--f-display);font-variant-numeric:tabular-nums}
 .hdadd{width:36px;height:36px;border-radius:50%;border:0;background:var(--surface-2);color:var(--fg);display:grid;place-items:center;flex:none;cursor:pointer}.hdadd svg{width:16px;height:16px}
 @media (prefers-reduced-motion:reduce){.hd2 .p1,.hd2 .p2{transition:none}}
+.ttime{font:700 12px var(--f-body);color:var(--fg);background:var(--surface-2);border-radius:6px;padding:1px 6px;font-variant-numeric:tabular-nums}
+.wday li .wt{font:700 12px var(--f-body);color:var(--muted);margin-right:6px;font-variant-numeric:tabular-nums}
+.tlall{padding:12px 4px 4px}.tlall>.lab{padding:0 12px}
+.tlex{display:flex;align-items:center;gap:8px;width:calc(100% - 24px);margin:8px 12px 4px;border:0;border-radius:10px;padding:10px 12px;background:var(--amber-soft);color:var(--fg);font:inherit;text-align:left;cursor:pointer}.tlex svg{width:18px;height:18px;color:var(--amber)}
+.tl{position:relative;padding:0;overflow:hidden;margin-top:0}
+.tlh{position:absolute;left:0;right:0;height:var(--hpx);border:0;border-top:1px solid var(--line);background:none;padding:0;text-align:left;cursor:pointer;display:block}
+.tlh:first-child{border-top:0}
+.tlh span{position:absolute;left:10px;top:4px;font:600 11px var(--f-body);color:var(--muted);font-variant-numeric:tabular-nums}
+.tlh:active{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.tlnow{position:absolute;left:52px;right:0;height:2px;background:var(--danger);z-index:3;pointer-events:none}
+.tlnow::before{content:"";position:absolute;left:-5px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--danger)}
+.tlb{position:absolute;z-index:2;display:flex;gap:6px;align-items:flex-start;box-sizing:border-box;padding:4px 6px;border-radius:10px;background:color-mix(in srgb,var(--tc) 18%,var(--surface));border-left:4px solid var(--tc);overflow:hidden}
+.tlb.done{opacity:.55}.tlb.done b{text-decoration:line-through}
+.tlck{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--tc);background:none;display:grid;place-items:center;padding:0;color:var(--tc);cursor:pointer}
+.tlb.done .tlck{background:var(--tc);color:var(--surface)}.tlck svg{width:14px;height:14px}
+.tlbody{flex:1;min-width:0;display:flex;flex-direction:column;align-items:flex-start;border:0;background:none;padding:0;text-align:left;color:var(--fg);font:inherit;cursor:pointer;height:100%}
+.tlbody b{font-size:13.5px;font-weight:700;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.tlbody span{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tlb.short .tlbody{flex-direction:row;gap:6px;align-items:center}.tlb.short .tlck{width:18px;height:18px}
 /* Interactions */
 
 
@@ -1616,7 +1635,7 @@ const ICON_MORE = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" c
 const CHEV_L = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg>';
 const CHEV_R = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>';
 
-const sortTasks = a => [...a].sort((x,y) => (x.done - y.done) || (y.prio - x.prio));
+const sortTasks = a => [...a].sort((x,y) => (x.done - y.done) || ((x.time || '99') < (y.time || '99') ? -1 : (x.time || '99') > (y.time || '99') ? 1 : 0) || (y.prio - x.prio));
 const tasksOn = k => { materialize(k); return state.tasks.filter(t => t.date === k); };
 const weekBucket = wk => state.tasks.filter(t => !t.date && t.week === wk);
 
@@ -1636,7 +1655,7 @@ function taskRow(t){
   return `<li class="task ${t.done?'done':''} ${ui.justId===t.id?'just':''}" data-id="${t.id}">
     <button class="check" data-act="toggle" aria-label="${t.done?'Marquer à faire':'Marquer comme fait'}">${ICON_CHECK}</button>
     <div class="body"><div class="title"><span>${esc(t.title)}</span></div>
-      <div class="meta"><span class="chip ${t.cat}">${CATS[t.cat]||'Perso'}</span>${t.routine?`<span class="repi" title="Tâche répétée">${ICON_REP}</span>`:''}${t.prio?'<span class="prio">Prioritaire</span>':''}${t.pomos?`<span class="pomo">${t.pomos} pomodoro${t.pomos>1?'s':''}</span>`:''}${t.ex?'<span>exemple</span>':''}${t.examId && (state.partiels||[]).some(x=>x.id===t.examId) && t.plan!=='E' ? (() => { const ex = state.partiels.find(x=>x.id===t.examId), k = /^[LR]:/.test(t.plan||'') ? t.plan.slice(2) : null;
+      <div class="meta">${t.time ? `<span class="ttime">${t.time}–${tEnd(t)}</span>` : ''}<span class="chip ${t.cat}">${CATS[t.cat]||'Perso'}</span>${t.routine?`<span class="repi" title="Tâche répétée">${ICON_REP}</span>`:''}${t.prio?'<span class="prio">Prioritaire</span>':''}${t.pomos?`<span class="pomo">${t.pomos} pomodoro${t.pomos>1?'s':''}</span>`:''}${t.ex?'<span>exemple</span>':''}${t.examId && (state.partiels||[]).some(x=>x.id===t.examId) && t.plan!=='E' ? (() => { const ex = state.partiels.find(x=>x.id===t.examId), k = /^[LR]:/.test(t.plan||'') ? t.plan.slice(2) : null;
         if (!k){ const P = examPlan(ex); if (!P.L.length) return ''; return P.today ? `<button class="study" data-act="study">Part du jour : ${P.today} carte${P.today>1?'s':''}</button>` : `<button class="study" data-act="study">${t.done || P.doneToday ? 'Part du jour faite' : 'Tout est à jour'} · s’entraîner</button>`; }
         const n = notionCards(ex, k).length; return n ? `<button class="study" data-act="study">Réviser ${n} carte${n>1?'s':''}</button>` : ''; })() : t.deck && deckOf(t.deck) ? `<button class="study" data-act="study">Réviser ${esc(deckOf(t.deck).name)}</button>` : ''}</div></div>
     <button class="more" data-act="menu" aria-label="Actions" aria-expanded="${open}">${ICON_MORE}</button>
@@ -1738,7 +1757,7 @@ function vAgenda(){
     body = `<div class="daynav"><button class="icon-btn" data-day="-1" aria-label="Jour précédent">${CHEV_L}</button>
       <div class="t"><button data-act="today"><b>${fmt(d,{weekday:'long',day:'numeric',month:'long'})}</b><span>${rel}${isToday?'':' · revenir à aujourd’hui'}</span></button></div>
       <button class="icon-btn" data-day="1" aria-label="Jour suivant">${CHEV_R}</button></div>
-      <div class="card">${list.length?`<ul class="tasks">${list.map(taskRow).join('')}</ul>`:`<div class="empty"><b>Rien de prévu</b>Appuie sur « Tâche » pour ajouter quelque chose à ce jour.</div>`}</div>`;
+      ${dayAgendaHtml(ui.day, list)}`;
     const wb = weekBucket(key(monday(d))).filter(t=>!t.done);
     if (wb.length) body += `<section><h2>À caser cette semaine</h2><div class="card"><ul class="tasks">${sortTasks(wb).map(taskRow).join('')}</ul></div></section>`;
   } else if (ui.seg === 'semaine'){
@@ -1749,7 +1768,7 @@ function vAgenda(){
       const d = addDays(ws,i), k = key(d), l = sortTasks(tasksOn(k)); all.push(...l);
       const dn = l.filter(t=>t.done).length;
       rows += `<div class="card wday ${k===tk?'today':''}"><button class="hd" data-open-day="${k}"><b>${fmt(d,{weekday:'long',day:'numeric'})}</b><span class="mono">${l.length?`${dn}/${l.length}`:'—'}</span></button>
-        ${l.length?`<ul>${l.map(t=>`<li class="${t.done?'done':''}"><i class="dot"></i><span>${esc(t.title)}</span></li>`).join('')}</ul>`:''}</div>`;
+        ${l.length?`<ul>${l.map(t=>`<li class="${t.done?'done':''}"><i class="dot"></i>${t.time ? `<b class="wt">${t.time}</b>` : ''}<span>${esc(t.title)}</span></li>`).join('')}</ul>`:''}</div>`;
     }
     const wb = sortTasks(weekBucket(ui.weekStart)); all.push(...wb);
     const pct = all.length ? Math.round(100*all.filter(t=>t.done).length/all.length) : 0;
@@ -2467,7 +2486,7 @@ function materialize(k){
     if (r.monthly){ const sd = +r.start.slice(8), dd = parse(k), last = new Date(dd.getFullYear(), dd.getMonth()+1, 0).getDate(); if (dd.getDate() !== Math.min(sd, last)) continue; }
     else { if (!r.days.includes(wdIdx(k))) continue; if ((r.every||1) > 1 && Math.round((monday(parse(k)) - monday(parse(r.start))) / 604800000) % r.every) continue; }
     if (state.tasks.some(t => t.routine===r.id && t.date===k)) continue;
-    state.tasks.push({ id:uid(), title:r.title, date:k, cat:r.cat, prio:r.prio, done:false, routine:r.id, deck:r.deck||null, sub:(r.sub||[]).map(t => ({ id:uid(), t, done:false })) }); ch = true;
+    state.tasks.push({ id:uid(), title:r.title, date:k, time:r.time || null, dur:r.dur || null, cat:r.cat, prio:r.prio, done:false, routine:r.id, deck:r.deck||null, sub:(r.sub||[]).map(t => ({ id:uid(), t, done:false })) }); ch = true;
   }
   if (ch) save();
 }
@@ -3024,9 +3043,9 @@ function vPartiels(){
     ${past.length ? `<details class="pastx"><summary>Examens passés (${past.length})</summary><div class="plist">${past.map(ex=>`<div class="card pcard past"><div class="phead"><div class="pcd"><b class="mono">✓</b></div><div><h3>${esc(ex.title)}</h3><p>${fmt(parse(ex.date),{day:'numeric',month:'long'})} · ${partielStats(ex).done}/${partielStats(ex).total} révisions faites</p></div></div><div class="btns"><button class="btn sm danger" data-px-del="${ex.id}">Supprimer</button></div></div>`).join('')}</div></details>` : ''}
     <p class="help">Chaque chapitre est vu deux fois, à quelques jours d’écart : réviser en plusieurs séances espacées fait mieux retenir que tout revoir la veille.</p>`;
 }
-function examCountdowns(){
+function examCountdowns(skip){
   ensurePartiels(); const tk = todayKey();
-  const up = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 7).sort((a,b)=>a.date.localeCompare(b.date));
+  const up = state.partiels.filter(e=>e.date >= tk && daysUntil(e.date) <= 7 && e.id !== skip).sort((a,b)=>a.date.localeCompare(b.date));
   return up.map(ex => { const d = daysUntil(ex.date), st = partielStats(ex);
     return `<button class="excd ${urgency(d)}" data-v3="ex-rev" data-k="${ex.id}" aria-label="Réviser ${esc(ex.title)}"><span class="jx"><b class="mono">${cdLabel(d)}</b></span>
       <span class="ext"><b>${esc(ex.title)}</b><span>${fmt(parse(ex.date),{weekday:'long',day:'numeric',month:'short'})} · ${(() => { const t = examTodayLabel(ex); return t ? `<b class="extoday">${t}</b>` : `${st.done}/${st.total} révisions`; })()}${st.overdue?` · <em>${st.overdue} en retard</em>`:''}</span><span class="bar"><i style="width:${st.p}%"></i></span></span></button>`; }).join('');
@@ -6034,7 +6053,7 @@ function vParams(){
   const row = (h2, ic, t, d, extra) => `<button class="prow" data-h2="${h2}"><span class="ic">${bicon(ic)}</span><span><b>${t}</b><small>${d}</small></span>${extra || CHEV_R}</button>`;
   const tog = (k, t, d) => `<button type="button" class="toggle" data-h2="notif" data-k="${k}" aria-pressed="${N[k]!==false}"><span><b>${t}</b><small>${d}</small></span><i></i></button>`;
   return `<button class="back" data-h2="params-back">${CHEV_L}Retour</button>${cloudCard()}
-    <section><h2>Espace</h2><div class="card pad"><div class="seg pmode">${[['study','Études'],['health','Santé']].map(([k,l]) => `<button data-h2="mode" data-k="${k}" aria-pressed="${appMode===k}">${l}</button>`).join('')}</div><p class="fine">Études : agenda, révisions, calcul, sudoku. Santé : repas, activité, poids, planning et courses.</p></div></section>
+
     <section><h2>Apparence</h2><div class="card plist">${row('look','sun','Thème et couleurs', pal ? `Thème actuel : ${pal}` : 'Clair, sombre et palettes')}</div></section>
     ${tabsParamsHtml()}<section><h2>Préférences</h2><div class="card pad"><div class="field"><label for="pp-name">Prénom</label><input id="pp-name" maxlength="30" value="${esc(userName())}" placeholder="Affiché sur l’accueil" data-p2-name></div></div></section>
     <section><h2>Profil nutritionnel</h2><div class="card plist">${row('profile','target', P ? goalName(goalOf(P)) : 'Créer mon profil', T ? `${nf(T.kcal)} kcal · P ${T.p} g · G ${T.c} g · L ${T.f} g` : 'Sexe, âge, taille, poids, activité, objectif')}${row('mprefs','heart','Préférences alimentaires', 'Régime, allergies, temps, matériel, budget, répartition')}</div></section>
@@ -7137,11 +7156,11 @@ function vTodayNew(){
   const H = state.health, T = H && H.profile ? hTargets() : null, D = T ? hPeek(tk) : null;
   const hello = `${hour < 5 ? 'Bonne nuit' : hour < 18 ? 'Bonjour' : 'Bonsoir'}${userName() ? ' ' + userName() : ''}`;
   // Maintenant : la chose la plus utile à faire tout de suite
-  let now1 = null;
+  let now1 = null, nowEx = null;
   const exs = (state.partiels||[]).filter(e => e.date >= tk && daysUntil(e.date) <= 7).sort((a,b) => a.date.localeCompare(b.date));
   for (const ex of exs){ const P = examPlan(ex); if (P.L.length && P.today){ const d = daysUntil(ex.date);
-    now1 = { t:`${ex.title} · part du jour`, s:`${P.today} carte${P.today>1?'s':''} · examen ${d===0 ? 'aujourd’hui' : fmt(parse(ex.date),{weekday:'long'})} (${cdLabel(d)})`, b:`<button class="nowbtn" data-v3="ex-rev" data-k="${ex.id}">Réviser</button>` }; break; } }
-  if (!now1) for (const ex of exs){ if (daysUntil(ex.date) > 3) continue; const W = weakCards(examCardSets(ex).linked); if (W.length){ now1 = { t:`${ex.title} · points faibles`, s:`${W.length} carte${W.length>1?'s':''} que tu rates souvent, à retravailler avant l’examen`, b:`<button class="nowbtn" data-weak="${ex.id}">Réviser</button>` }; break; } }
+    nowEx = ex.id; now1 = { t:`${ex.title} · part du jour`, s:`${P.today} carte${P.today>1?'s':''} · examen ${d===0 ? 'aujourd’hui' : fmt(parse(ex.date),{weekday:'long'})} (${cdLabel(d)})`, b:`<button class="nowbtn" data-v3="ex-rev" data-k="${ex.id}">Réviser</button>` }; break; } }
+  if (!now1) for (const ex of exs){ if (daysUntil(ex.date) > 3) continue; const W = weakCards(examCardSets(ex).linked); if (W.length){ nowEx = ex.id; now1 = { t:`${ex.title} · points faibles`, s:`${W.length} carte${W.length>1?'s':''} que tu rates souvent, à retravailler avant l’examen`, b:`<button class="nowbtn" data-weak="${ex.id}">Réviser</button>` }; break; } }
   const mt = mitTask();
   if (!now1 && mt && !mt.done) now1 = { t:mt.title, s:'Ta priorité du jour', b:`<button class="nowbtn" data-now-done="${mt.id}">Fait</button>` };
   if (!now1 && due) now1 = { t:`${due} carte${due>1?'s':''} à réviser`, s:'Répétition espacée : c’est le bon moment pour les revoir', b:'<button class="nowbtn" data-quick="cartes">Réviser</button>' };
@@ -7158,7 +7177,7 @@ function vTodayNew(){
   return `${cloudCard()}${newsCard()}${banner()}${backupBanner()}
     <div class="card nowc"><span class="nowk">${esc(hello)} · maintenant</span><div class="nowr"><div><b>${esc(now1.t)}</b><span>${esc(now1.s)}</span></div>${now1.b}</div></div>
     <div class="tdgs c${T ? 3 : 2}">${gauges}</div>
-    ${exs.length ? `<section><h2>Examens <button class="link" data-hub="rv">Tout voir</button></h2>${examCountdowns()}</section>` : ''}
+    ${exs.some(e => e.id !== nowEx) ? `<section><h2>${nowEx ? 'Autres examens' : 'Examens'} <button class="link" data-hub="rv">Tout voir</button></h2>${examCountdowns(nowEx)}</section>` : ''}
     ${mitCard(tl)}
     <section><h2>Tâches du jour <span class="hlinks"><button class="link" data-add-task="1">+ Ajouter</button><button class="link" data-v3="mj-tasks">Agenda</button></span></h2>
       <div class="card">${rest.length ? `<ul class="tasks">${rest.slice(0, 8).map(taskRow).join('')}</ul>${rest.length > 8 ? `<button class="more-row" data-v3="mj-tasks">+ ${rest.length-8} autre${rest.length-8>1?'s':''}</button>` : ''}` : '<p class="empty"><b>Aucune tâche aujourd’hui</b>Ajoute-en une avec le bouton +.</p>'}</div></section>
@@ -7272,6 +7291,45 @@ function hDayTop(D, S, T, goal, sp){
   <section><h2>Repas du jour <button class="link" data-hub="h-repas">Détail</button></h2><div class="card hdmeals">${MEALS.map(([k, l]) => { const it = D.food.filter(x => x.meal===k), kc = it.reduce((a,x) => a + x.kcal, 0);
     return `<div class="hdm"><i style="background:var(--${MEAL_COL[k]})"></i><button class="hdml" data-hub="h-repas"><b>${l}</b>${it.length ? `<small>${esc(it.map(x => x.name).slice(0, 2).join(', '))}${it.length > 2 ? '…' : ''}</small>` : k===nextMeal && idea ? `<small class="hdidea">Idée : ${esc(idea)}</small>` : ''}</button><span class="hdk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span><button class="hdadd" data-h-add="${k}" aria-label="Ajouter au ${l.toLowerCase()}">${ICON_PLUS}</button></div>`; }).join('')}</div></section>`;
 }
+
+/* ---------- Agenda horaire : vue Jour en vrai agenda ---------- */
+const TL_H = 62, CAT_COL = { cours:'accent', alternance:'c-cours', perso:'c-perso' };
+const tMin = s => { const [h, m] = String(s).split(':').map(Number); return h*60 + (m||0); };
+const hhmm = m => `${pad(Math.floor(m/60) % 24)}:${pad(m % 60)}`;
+const tEnd = t => hhmm(tMin(t.time) + (t.dur || 60));
+const durL = m => m < 60 ? `${m} min` : m % 60 ? `${Math.floor(m/60)} h ${pad(m%60)}` : `${m/60} h`;
+function dayAgendaHtml(k, list){
+  const timed = list.filter(t => t.time).sort((a,b) => tMin(a.time) - tMin(b.time)), untimed = list.filter(t => !t.time);
+  const exams = (state.partiels||[]).filter(e => e.date===k);
+  const h0 = Math.min(7, ...timed.map(t => Math.floor(tMin(t.time)/60))), h1 = Math.max(23, ...timed.map(t => Math.ceil((tMin(t.time) + (t.dur||60))/60)));
+  // colonnes pour les créneaux qui se chevauchent
+  const lanes = [], pos = new Map(); let group = [], gEnd = -1;
+  const flush = () => { const n = Math.max(1, ...group.map(t => pos.get(t).lane + 1)); group.forEach(t => pos.get(t).n = n); group = []; };
+  timed.forEach(t => { const s = tMin(t.time), e = s + (t.dur || 60);
+    if (s >= gEnd && group.length){ flush(); lanes.length = 0; }
+    let l = lanes.findIndex(x => x <= s); if (l < 0){ l = lanes.length; lanes.push(e); } else lanes[l] = e;
+    pos.set(t, { lane:l, n:1 }); group.push(t); gEnd = Math.max(gEnd, e); });
+  if (group.length) flush();
+  const now = new Date(), nowM = now.getHours()*60 + now.getMinutes(), isToday = k === todayKey();
+  const hours = []; for (let h = h0; h < h1; h++) hours.push(h);
+  return `${exams.length || untimed.length ? `<div class="card tlall"><span class="lab">Toute la journée</span>
+      ${exams.map(e => `<button class="tlex" data-hub="rv">${bicon('calendar')}<b>Examen · ${esc(e.title)}</b></button>`).join('')}
+      ${untimed.length ? `<ul class="tasks">${untimed.map(taskRow).join('')}</ul>` : ''}</div>` : ''}
+    <div class="card tl" style="--hpx:${TL_H}px;height:${(h1 - h0)*TL_H + 8}px">
+      ${hours.map(h => `<button class="tlh" style="top:${(h - h0)*TL_H}px" data-tl-new="${pad(h)}:00" aria-label="Ajouter à ${h} h"><span>${pad(h)}:00</span></button>`).join('')}
+      ${isToday && nowM >= h0*60 && nowM <= h1*60 ? `<i class="tlnow" style="top:${((nowM - h0*60)/60*TL_H).toFixed(1)}px"></i>` : ''}
+      ${timed.map(t => { const p = pos.get(t), s = tMin(t.time), d = t.dur || 60, top = (s - h0*60)/60*TL_H, hgt = Math.max(24, d/60*TL_H - 3);
+        return `<div class="tlb ${t.done ? 'done' : ''} ${hgt < 44 ? 'short' : ''}" style="--tc:var(--${CAT_COL[t.cat] || 'accent'});top:${top.toFixed(1)}px;height:${hgt.toFixed(1)}px;left:calc(58px + (100% - 64px) * ${p.lane}/${p.n});width:calc((100% - 64px) / ${p.n} - 4px)">
+          <button class="tlck" data-tl-done="${t.id}" aria-label="${t.done ? 'Marquer à faire' : 'Marquer comme fait'}">${t.done ? ICON_CHECK : ''}</button>
+          <button class="tlbody" data-tl-edit="${t.id}"><b>${esc(t.title)}</b><span>${t.time} – ${tEnd(t)}</span></button></div>`; }).join('')}
+    </div>
+    <p class="fine">Touche une heure pour y ajouter une tâche. Les tâches sans heure restent en haut.</p>`;
+}
+view.addEventListener('click', e => {
+  const n = e.target.closest('[data-tl-new]'); if (n){ e.stopImmediatePropagation(); taskSheet(null, { date:ui.day, time:n.dataset.tlNew, dur:60 }); return; }
+  const ed = e.target.closest('[data-tl-edit]'); if (ed){ e.stopImmediatePropagation(); const t = state.tasks.find(x => x.id===ed.dataset.tlEdit); if (t) taskSheet(t); return; }
+  const dn = e.target.closest('[data-tl-done]'); if (dn){ e.stopImmediatePropagation(); const t = state.tasks.find(x => x.id===dn.dataset.tlDone); if (t){ t.done = !t.done; ui.justId = t.id; commit(); } return; }
+}, true);
 
 /* ---------- Rendu ---------- */
 const TITLES = { rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
@@ -7390,12 +7448,12 @@ function deleteSeries(r, t){
   state.tasks = state.tasks.filter(x => x !== t && !(x.routine === r.id && !x.done && x.date >= tk));
   state.tasks.forEach(x => { if (x.routine === r.id) delete x.routine; });
 }
-function taskSheet(t){
+function taskSheet(t, pre){
   ensureFc(); ensureRoutines();
   const isNew = !t;
   const base = ui.tab==='agenda' && ui.seg==='jour' ? ui.day : todayKey();
   const r0 = t && t.routine ? state.routines.find(r=>r.id===t.routine) : null;
-  const d = t || { title:'', date: base, cat:'cours', prio:false, deck:null };
+  const d = t || { title:'', date: base, cat:'cours', prio:false, deck:null, ...(pre || {}) };
   let when = d.date ? 'date' : 'week', cat = d.cat, prio = !!d.prio;
   let days = r0 ? [...r0.days] : [], every = r0 && r0.every===2 ? 2 : 1, until = r0 && r0.until || '';
   let rep = !r0 ? 'none' : r0.monthly ? 'monthly' : days.length===7 ? 'daily' : days.join()==='0,1,2,3,4' && every===1 ? 'weekdays' : 'custom';
@@ -7406,6 +7464,8 @@ function taskSheet(t){
       <p class="fine" id="t-scope-h"></p></div>` : ''}
     <div class="field"><label for="t-title">Intitulé</label><input id="t-title" required maxlength="120" value="${esc(d.title)}" placeholder="Ex. Réviser le bilan fonctionnel"></div>
     <div class="field" id="t-date-f"><label for="t-date">Date</label><input type="date" id="t-date" value="${d.date || (t && t.week ? '' : base)}"><p class="fine" id="t-date-h"></p></div>
+    <div class="two" id="t-time-f"><div class="field"><label for="t-time">Heure <small class="opt">facultatif</small></label><input type="time" id="t-time" step="300" value="${d.time || (r0 && r0.time) || ''}"></div>
+      <div class="field"><label for="t-dur">Durée</label><select id="t-dur">${[15,30,45,60,90,120,180,240].map(m => `<option value="${m}" ${((d.dur || (r0 && r0.dur) || 60))===m ? 'selected' : ''}>${durL(m)}</option>`).join('')}</select></div></div>
     <div class="field" id="t-rep-f"><span class="lab">Programmer</span>
       <div class="seg" id="t-mode"><button type="button" data-m="once">Une seule fois</button><button type="button" data-m="series">En série</button></div>
       <div id="t-ser">
@@ -7431,6 +7491,7 @@ function taskSheet(t){
       when = dateIn.value ? 'date' : 'week';
       const occ = r0 && scope==='occ';
       repF.hidden = when==='week' || occ;
+      s.querySelector('#t-time-f').hidden = when==='week';
       s.querySelector('#t-date-h').textContent = when==='week' ? 'Sans date : la tâche reste dans « À caser cette semaine ».' : occ ? 'Changer la date déplace seulement cette occurrence.' : '';
       if (r0){ s.querySelectorAll('#t-scope button').forEach(b => b.setAttribute('aria-pressed', b.dataset.sc===scope));
         s.querySelector('#t-scope-h').textContent = scope==='occ' ? `Seule la tâche du ${fmt(parse(t.date || todayKey()),{weekday:'long',day:'numeric',month:'long'})} change. Elle sort de la série.` : `Série : ${repeatLabel(r0).toLowerCase()}. Les occurrences à venir sont mises à jour, celles déjà faites restent.`; }
@@ -7476,29 +7537,30 @@ function taskSheet(t){
       const title = s.querySelector('#t-title').value.trim(); if (!title) return;
       const sub = subs.map(x => ({ ...x, t:x.t.trim() })).filter(x => x.t), subT = sub.map(x => x.t);
       const dk = dateIn.value || todayKey(), deck = s.querySelector('#t-deck').value || null;
+      const time = when==='week' ? null : (s.querySelector('#t-time').value || null), dur = +s.querySelector('#t-dur').value || 60;
       const repeat = when!=='week' && rep!=='none' && (rep==='monthly' || days.length > 0), dsorted = [...days].sort((a,b)=>a-b);
       const serie = () => ({ days:dsorted, every: rep==='custom' ? every : 1, monthly: rep==='monthly', until: untilIn.value && untilIn.value >= dk ? untilIn.value : null });
       const weekOf = () => key(monday((t && t.week) ? parse(t.week) : (ui.tab==='agenda' && ui.seg==='semaine') ? parse(ui.weekStart) : (ui.tab==='agenda' && ui.seg==='jour') ? parse(ui.day) : new Date()));
       if (isNew){
-        if (repeat){ const r = { id:uid(), title, cat, prio, deck, ...serie(), start:dk, skip:[], sub:subT }; state.routines.push(r); materialize(dk); close(); commit(); toast(`Tâche en série : ${repeatLabel(r).toLowerCase()}`); return; }
-        state.tasks.push(when==='week' ? { id:uid(), title, cat, prio, deck, done:false, date:null, week:weekOf(), sub } : { id:uid(), title, cat, prio, deck, done:false, date:dk, sub });
+        if (repeat){ const r = { id:uid(), title, cat, prio, deck, time, dur, ...serie(), start:dk, skip:[], sub:subT }; state.routines.push(r); materialize(dk); close(); commit(); toast(`Tâche en série : ${repeatLabel(r).toLowerCase()}`); return; }
+        state.tasks.push(when==='week' ? { id:uid(), title, cat, prio, deck, time, dur, done:false, date:null, week:weekOf(), sub } : { id:uid(), title, cat, prio, deck, time, dur, done:false, date:dk, sub });
         close(); commit(); toast('Tâche ajoutée'); return;
       }
       if (r0 && scope==='occ'){
         skipRoutineDate(t); delete t.routine;
         if (when==='week'){ t.date = null; t.week = weekOf(); } else { t.date = dk; delete t.week; }
-        Object.assign(t, { title, cat, prio, deck, sub }); delete t.ex;
+        Object.assign(t, { title, cat, prio, deck, time, dur, sub }); delete t.ex;
         close(); commit(); toast('Occurrence modifiée, le reste de la série ne change pas'); return;
       }
       if (when==='week'){ skipRoutineDate(t); t.date = null; t.week = weekOf(); }
       else { if (t.date && t.date!==dk) moveTask(t, dk); else t.date = dk; delete t.week; }
-      Object.assign(t, { title, cat, prio, deck, sub }); delete t.ex;
+      Object.assign(t, { title, cat, prio, deck, time, dur, sub }); delete t.ex;
       if (repeat){
         const tk = todayKey();
-        if (r0){ Object.assign(r0, { title, cat, prio, deck, sub:subT, ...serie() });
+        if (r0){ Object.assign(r0, { title, cat, prio, deck, time, dur, sub:subT, ...serie() });
           state.tasks = state.tasks.filter(x => !(x!==t && x.routine===r0.id && !x.done && x.date > tk));
           if (t.date) materialize(t.date); }
-        else { const r = { id:uid(), title, cat, prio, deck, ...serie(), start:t.date || dk, skip:[], sub:subT }; state.routines.push(r); t.routine = r.id; }
+        else { const r = { id:uid(), title, cat, prio, deck, time, dur, ...serie(), start:t.date || dk, skip:[], sub:subT }; state.routines.push(r); t.routine = r.id; }
       } else if (r0){
         state.routines = state.routines.filter(x=>x!==r0);
         state.tasks = state.tasks.filter(x => !(x!==t && x.routine===r0.id && !x.done && x.date > todayKey()));

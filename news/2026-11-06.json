@@ -1,0 +1,254 @@
+{
+ "date": "2026-11-06",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 5 novembre",
+   "note": "+0,34 % sur la séance, après +1,96 % la veille",
+   "source": "BFM Bourse",
+   "value": "8 205 points"
+  },
+  {
+   "label": "Brent, clôture du 5 novembre",
+   "note": "Rebond de 3,67 $ après une chute de plus de 8 % mercredi",
+   "source": "L'EnerGeek (d'après Reuters)",
+   "value": "98,29 $"
+  },
+  {
+   "label": "Taux directeur de la Banque d'Angleterre",
+   "note": "+0,25 point, première hausse depuis août 2023",
+   "source": "AFP / Boursorama",
+   "value": "4 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé lors de la réunion du 29 octobre",
+   "source": "Zonebourse / Bourse Direct",
+   "value": "2,50 %"
+  },
+  {
+   "label": "Inflation en France, septembre 2026 (sur un an)",
+   "note": "Indice des prix à la consommation",
+   "source": "Insee",
+   "value": "3,1 %"
+  },
+  {
+   "label": "Euro/dollar, 5 novembre en fin de séance européenne",
+   "note": "Cours relevé à la clôture de Paris",
+   "source": "BFM Bourse",
+   "value": "1,1230"
+  },
+  {
+   "label": "Vote sur la partie recettes du PLF 2027",
+   "note": "Scrutin du 4 novembre au soir à l'Assemblée",
+   "source": "LCP",
+   "value": "0 pour, 458 contre"
+  }
+ ],
+ "generatedAt": "2026-11-06T06:45:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-l-assemblee-rejette-a-l-unanimite-la-partie-recettes-le-projet-de-loi-de"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    }
+   ],
+   "summary": "Mercredi soir, les députés ont rejeté la première partie du projet de loi de finances pour 2027 par 458 voix contre et aucune pour. La partie dépenses ne sera donc pas examinée à l'Assemblée et le texte initial du gouvernement part au Sénat. Le ministre des Comptes publics, David Amiel, a estimé que la version amendée aurait porté le déficit public de 5 % à 5,9 % du PIB, un chiffrage contesté notamment par le député Nicolas Sansu (GDR).",
+   "title": "Budget 2027 : l'Assemblée rejette la partie recettes, sans aucune voix pour",
+   "why": "Le calendrier budgétaire conditionne la fiscalité et les dépenses de 2027 ; c'est un cas concret de procédure des finances publiques (première lecture, navette, délais constitutionnels)."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat (avec AFP)",
+     "url": "https://www.publicsenat.fr/actualites/politique/manifestation-du-5-novembre-sebastien-lecornu-annonce-une-conference-sociale-avec-les-syndicats-et-le-patronat-lundi"
+    },
+    {
+     "name": "France Mag",
+     "url": "https://www.francemag.fr/article/3952/greve-du-5-novembre-apres-une-mobilisation-massive-sebastien-lecornu-convoque-syndicats-et-patronat-a-matignon"
+    }
+   ],
+   "summary": "Environ 600 000 personnes ont manifesté jeudi selon un bilan provisoire du ministère de l'Intérieur, près de 1,6 million selon la CGT. En fin de journée, Sébastien Lecornu a annoncé une conférence sociale avec syndicats et patronat le lundi 9 novembre à Matignon, centrée sur le pouvoir d'achat et les salaires. La CFDT demande une hausse du Smic de 100 euros net, la CGT une hausse de 10 % et l'indexation des salaires sur les prix ; le ministre du Travail, Jean-Pierre Farandou, juge le sujet du Smic ouvert tout en évoquant ses effets sur l'emploi.",
+   "title": "Après la mobilisation du 5 novembre, une conférence sociale convoquée lundi",
+   "why": "Une revalorisation du Smic ou des salaires pèserait directement sur la masse salariale des entreprises, un poste clé en contrôle de gestion."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    }
+   ],
+   "summary": "Le Sénat doit examiner le budget de la Sécurité sociale du 12 au 17 novembre, puis le budget de l'État du 20 novembre au 8 décembre, avec un vote solennel prévu le 9 décembre. Sa commission des affaires sociales propose de relever de 1 260 à 1 500 euros le plafond des pensions indexées sur l'inflation, à objectif de déficit inchangé. La rapporteure générale Christine Lavarde (LR) juge trop optimiste le scénario économique du gouvernement. Faute de vote définitif avant le 17 décembre à minuit, le gouvernement pourrait recourir aux ordonnances.",
+   "title": "Le Sénat prépare l'examen du budget : calendrier et premières propositions",
+   "why": "Comprendre la navette parlementaire et les délais de l'article 47 de la Constitution est utile pour anticiper les mesures fiscales qui s'appliqueront en 2027."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "AFP / Boursorama",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/la-banque-d-angleterre-remonte-son-taux-a-4-et-sonne-l-alerte-sur-l-inflation-303d131feca2f4593f6deb1101bffb2d"
+    }
+   ],
+   "summary": "La Banque d'Angleterre a relevé jeudi son taux de 0,25 point, à 4 %, sa première hausse depuis août 2023, avec une seule voix dissidente favorable à une hausse plus forte. L'inflation britannique atteignait 3,5 % sur un an en septembre et la banque centrale prévoit désormais 4,5 % en 2027. Son gouverneur, Andrew Bailey, a indiqué que cette décision ne devait pas être vue comme le début d'une longue série de hausses.",
+   "title": "La Banque d'Angleterre relève son taux directeur à 4 %",
+   "why": "Une banque centrale qui remonte ses taux renchérit le coût de financement des entreprises et peut annoncer un mouvement similaire ailleurs en Europe."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "L'EnerGeek",
+     "url": "https://lenergeek.com/2026/11/06/petrole-rebond-brent-5-novembre-2026-ormuz/"
+    },
+    {
+     "name": "L'EnerGeek",
+     "url": "https://lenergeek.com/2026/11/05/brent-wti-chute-stocks-petrole-ormuz-2026/"
+    }
+   ],
+   "summary": "Après un recul de plus de 8 % mercredi, le Brent a regagné 3,67 dollars jeudi pour finir à 98,29 dollars le baril, le WTI s'établissant à 90,52 dollars. Le marché reste dépendant de la situation dans le détroit d'Ormuz, bloqué par l'Iran depuis février, où de nouveaux incidents visant des navires ont été signalés. En Europe, le prix du gaz (TTF) a aussi nettement reculé en début de semaine.",
+   "title": "Pétrole : le Brent rebondit vers 98 dollars après une forte chute",
+   "why": "Le prix de l'énergie se répercute sur l'inflation et sur les coûts des entreprises : c'est une hypothèse centrale de tout budget prévisionnel."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Zonebourse / Bourse Direct",
+     "url": "https://www.boursedirect.fr/fr/actualites/categorie/analyse-de-la-tendance-des-marches/la-bce-laisse-ses-taux-inchanges-christine-lagarde-demissionnera-en-fevrier-zone-bourse-f14113e4a1d8380801535cf3823ed6ebc9bf797d"
+    }
+   ],
+   "summary": "Lors de sa réunion du 29 octobre, la Banque centrale européenne a maintenu son taux de dépôt à 2,50 % et son taux de refinancement à 2,65 %. Christine Lagarde a informé le Conseil des gouverneurs qu'elle quitterait la présidence de l'institution le 7 février 2027. Le contraste avec la hausse décidée jeudi à Londres est suivi par les marchés.",
+   "title": "BCE : taux inchangés et succession de Christine Lagarde en vue",
+   "why": "Les taux de la BCE déterminent le coût du crédit en zone euro, pour les entreprises comme pour les emprunteurs immobiliers."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-la-debacle-des-valeurs-liees-a-l-ia-fait-chuter-le-nasdaq-de-4-le-cac-40-resiste-au-dessus-des-8200-points-1173263.html"
+    },
+    {
+     "name": "Moneyvox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111137/le-cac-40-resiste-air-france-klm-s-envole-le-journal-de-la-bourse-du-jeudi-5-novembre"
+    }
+   ],
+   "summary": "Le CAC 40 a gagné 0,34 % jeudi, à 8 205 points, alors que le Nasdaq reculait d'environ 4 % sous l'effet de ventes sur les valeurs liées à l'intelligence artificielle. À Paris, les valeurs de semi-conducteurs ont souffert, Soitec perdant 16,7 % et STMicroelectronics 9,3 %. Aux États-Unis, Nvidia et AMD ont nettement reculé.",
+   "title": "Le CAC 40 termine en légère hausse malgré la chute du Nasdaq",
+   "why": "La composition sectorielle d'un indice explique sa résistance relative : un réflexe utile pour analyser un portefeuille ou une valorisation."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Moneyvox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111137/le-cac-40-resiste-air-france-klm-s-envole-le-journal-de-la-bourse-du-jeudi-5-novembre"
+    },
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-la-debacle-des-valeurs-liees-a-l-ia-fait-chuter-le-nasdaq-de-4-le-cac-40-resiste-au-dessus-des-8200-points-1173263.html"
+    }
+   ],
+   "summary": "L'action Air France-KLM a progressé de 12,06 % jeudi, à 12,63 euros. Le groupe a publié un chiffre d'affaires de 9,92 milliards d'euros et un résultat opérationnel en hausse de 10 %, à 1,35 milliard d'euros. Il a aussi relevé sa prévision de facture annuelle de carburant à 9,2 milliards de dollars.",
+   "title": "Air France-KLM bondit de 12 % après ses résultats trimestriels",
+   "why": "Un bon exemple de lecture de résultats : la croissance du résultat opérationnel malgré la hausse d'un coût majeur (le carburant) illustre l'analyse de la marge."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Havana Times (d'après Democracy Now)",
+     "url": "https://havanatimes.org/news/international-news-briefs-for-thursday-november-5-2026/"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163503/early-edition-november-5-2026/"
+    }
+   ],
+   "summary": "Selon les décomptes partiels, les démocrates ont obtenu au moins 240 sièges à la Chambre des représentants contre 147 pour les républicains, plusieurs dizaines de courses restant à trancher. Au Sénat, le groupe démocrate devrait compter au moins 54 membres, l'Alaska et le Mississippi restant très serrés. Côté républicain, Mike Johnson ne briguera pas la direction du groupe, tandis que le démocrate Hakeem Jeffries s'est porté candidat à la présidence de la Chambre.",
+   "title": "États-Unis : les démocrates remportent la Chambre aux élections de mi-mandat",
+   "why": "Un Congrès d'opposition pèse sur le budget fédéral et la politique commerciale américaine, donc sur les marchés et les entreprises exportatrices."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "RFI / Yahoo Actualités",
+     "url": "https://fr.news.yahoo.com/russie-confirme-prendra-part-n%C3%A9gociations-103648054.html"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163503/early-edition-november-5-2026/"
+    }
+   ],
+   "summary": "Le Kremlin a confirmé qu'une délégation russe dirigée par Vladimir Medinski participera à des pourparlers avec l'Ukraine et les États-Unis à Abou Dhabi. Moscou exige le retrait des troupes ukrainiennes de l'est du Donbass, ce que Kiev refuse. Sur le terrain, le bilan d'une frappe russe sur un centre d'aide à Komyshuvakha est monté à 42 morts, selon Reuters cité par Just Security.",
+   "title": "Ukraine : des négociations à trois prévues à Abou Dhabi les 10 et 11 novembre",
+   "why": "L'issue des discussions influence les prix de l'énergie, les sanctions et les budgets de défense européens."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163503/early-edition-november-5-2026/"
+    },
+    {
+     "name": "Foreign Exchanges",
+     "url": "https://www.foreignexchanges.news/p/world-roundup-november-5-2026"
+    }
+   ],
+   "summary": "Selon les Gardiens de la révolution, deux pétroliers et un remorqueur ont pris feu après avoir emprunté des routes non autorisées dans le détroit d'Ormuz. Reuters rapporte par ailleurs que l'Iran a transmis aux États-Unis une proposition sur le nucléaire par l'intermédiaire du Qatar. Le Trésor américain a sanctionné des entreprises et des personnes en Inde et en Turquie accusées de soutenir l'Iran.",
+   "title": "Iran : incidents à Ormuz et proposition nucléaire transmise via le Qatar",
+   "why": "Environ un cinquième du pétrole mondial transite par Ormuz : chaque évolution diplomatique ou militaire y fait bouger les cours."
+  }
+ ],
+ "lede": "L'Assemblée nationale a rejeté sans aucune voix pour la partie recettes du budget 2027, transmis au Sénat dans sa version initiale. Après une journée de mobilisation sociale, Matignon convoque syndicats et patronat lundi, tandis que la Banque d'Angleterre relève ses taux et que le pétrole reste très volatil.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "La première partie du PLF 2027 a été rejetée par 458 voix contre et aucune pour ; le texte initial du gouvernement est transmis au Sénat.",
+   "options": [
+    "289 voix",
+    "312 voix",
+    "458 voix",
+    "377 voix"
+   ],
+   "q": "Combien de députés ont voté contre la partie recettes du budget 2027, le 4 novembre ?"
+  },
+  {
+   "answer": 0,
+   "explain": "La BoE a relevé son taux de 0,25 point à 4 %, sa première hausse depuis août 2023.",
+   "options": [
+    "4 %",
+    "3,75 %",
+    "4,25 %",
+    "3,5 %"
+   ],
+   "q": "À quel niveau la Banque d'Angleterre a-t-elle porté son taux directeur jeudi ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Elle réunira syndicats et patronat le lundi 9 novembre à Matignon, autour du pouvoir d'achat et des salaires.",
+   "options": [
+    "Le vendredi 6 novembre",
+    "Le mardi 17 novembre",
+    "Le mercredi 11 novembre",
+    "Le lundi 9 novembre"
+   ],
+   "q": "Quand se tient la conférence sociale annoncée par Sébastien Lecornu ?"
+  }
+ ]
+}

@@ -1,0 +1,270 @@
+{
+ "date": "2026-11-11",
+ "figures": [
+  {
+   "label": "Smic net mensuel au 1er décembre 2026",
+   "note": "+1,6 %, contre 1 477,93 € auparavant",
+   "source": "Public Sénat",
+   "value": "1 502 €"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Après 0,0 % au 2e trimestre",
+   "source": "Insee (via Reuters)",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Inflation France, septembre 2026 (sur un an)",
+   "note": "Indice des prix à la consommation",
+   "source": "Insee",
+   "value": "3,1 %"
+  },
+  {
+   "label": "Croissance France attendue en 2026",
+   "note": "Estimation du gouverneur de la Banque de France, contre 0,4 % prévu en septembre",
+   "source": "Banque de France (via Reuters)",
+   "value": "≈ 0,3 %"
+  },
+  {
+   "label": "CAC 40, clôture du 10 novembre",
+   "note": "+0,55 % sur la séance, plus haut depuis le 8 septembre",
+   "source": "AFP",
+   "value": "8 278,59 pts"
+  },
+  {
+   "label": "Brent (échéance janvier), 10 novembre",
+   "note": "−1,17 % ; près de −11 % en une semaine",
+   "source": "AFP",
+   "value": "91,49 $"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre ; prochaine réunion en décembre",
+   "source": "BCE (via Euronews)",
+   "value": "2,5 %"
+  }
+ ],
+ "generatedAt": "2026-11-11T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    },
+    {
+     "name": "Assemblée nationale",
+     "url": "https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/examen-de-la-premiere-partie-du-projet-de-loi-de-finances-pour-2027"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/05/budget-2027-lassemblee-nationale-rejette-le-texte-a-lunanimite"
+    }
+   ],
+   "summary": "L'Assemblée nationale a rejeté le 4 novembre la partie recettes du projet de loi de finances pour 2027 (458 voix contre, aucune pour), ce qui vaut rejet du texte en première lecture. Le Sénat examine désormais la version initiale du gouvernement : le budget de la Sécurité sociale du 12 au 18 novembre, puis le PLF du 20 novembre au 9 décembre. Matignon renvoie la recherche d'un compromis à décembre.",
+   "title": "Budget 2027 : le Sénat prend la main après le rejet du texte à l'Assemblée",
+   "why": "Si le Parlement ne s'est pas prononcé avant le 17 décembre, le gouvernement peut en théorie recourir aux ordonnances (article 47 de la Constitution), une voie jamais utilisée pour un budget sous la Ve République : un cas d'école de procédure budgétaire."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/hausse-du-smic-a-1502-euros-l-annonce-du-gouvernement-n-a-convaincu-ni-les-syndicats-ni"
+    }
+   ],
+   "summary": "Après la conférence sociale du 9 novembre à Matignon, la CFDT a jugé la hausse de 1,6 % insuffisante et la CGT a appelé à une journée de mobilisation le 17 novembre. LFI et le PCF dénoncent une mesure trop faible, Laurent Wauquiez réclame plutôt des baisses de dépenses et de charges, et le Medef estime que la réponse n'est pas adaptée.",
+   "title": "Hausse du Smic : syndicats, gauche, droite et patronat critiquent l'annonce",
+   "why": "Le coût du travail au niveau du Smic pèse directement sur les marges des entreprises de main-d'œuvre : c'est une donnée clé en contrôle de gestion et en paie."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/pouvoir-dachat-sebastien-lecornu-annonce-une-hausse-anticipee-du-smic-a-1-502-euros-des-le-1er-decembre"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/hausse-du-smic-a-1502-euros-l-annonce-du-gouvernement-n-a-convaincu-ni-les-syndicats-ni"
+    }
+   ],
+   "summary": "La hausse de 1,6 % combine une revalorisation automatique de 1 % avancée d'un mois et un « coup de pouce » de 0,6 %. Le gouvernement prévoit aussi d'étendre la prime de partage de la valeur aux entreprises de plus de 50 salariés et de relever de 7 500 € à 10 000 € le plafond d'exonération des heures supplémentaires. Ces mesures doivent passer par amendements au budget.",
+   "title": "Le Smic passera à 1 502 € net au 1er décembre, avec plusieurs mesures salariales",
+   "why": "Pour un alternant en comptabilité, ces changements touchent directement le calcul de la paie, des charges sociales et des provisions de fin d'année."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/la-france-devrait-eviter-de-tomber-en-recession-au-t4-selon-la-bdf-46f46683bc50e039ac12730f8684c356"
+    },
+    {
+     "name": "Économie Matin",
+     "url": "https://www.economiematin.fr/banque-france-enquete-novembre-2026-industrie-croissance-t4-091126-2140"
+    }
+   ],
+   "summary": "Selon son enquête de conjoncture publiée le 9 novembre auprès d'environ 8 500 entreprises, la Banque de France anticipe une croissance modérée du PIB au 4e trimestre, ce qui éviterait une récession technique après le recul de 0,1 % au 3e trimestre. L'industrie (pharmacie, automobile, aéronautique) devrait accélérer en novembre ; l'indicateur d'incertitude est en forte hausse.",
+   "title": "La Banque de France table sur une croissance modérée au 4e trimestre",
+   "why": "Une récession technique se définit par deux trimestres consécutifs de baisse du PIB : une notion souvent demandée aux épreuves de culture économique."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/le-gouverneur-de-la-banque-de-france-voit-la-croissance-autour-de-0-3-en-2026-19b65d4d755e33cbad40fe59a52dc2b5"
+    }
+   ],
+   "summary": "Emmanuel Moulin a indiqué le 10 novembre qu'il voyait la croissance française autour de 0,3 % en 2026. La Banque de France prévoyait 1 % en début d'année, puis 0,5 % en juin et 0,4 % en septembre ; le gouverneur juge ce dernier chiffre difficile à atteindre après un 3e trimestre négatif.",
+   "title": "Le gouverneur de la Banque de France abaisse son estimation de croissance 2026",
+   "why": "Une croissance plus faible réduit les recettes fiscales et complique l'objectif de déficit du budget 2027."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Quartz (AFP)",
+     "url": "https://fr.qz.com/cac-40-hausse-petrole-inflation-americaine-bourse-111026"
+    },
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111191/cac-40-en-hausse-nvidia-renault-jour-ferie-le-journal-de-la-bourse-du-mardi-10-novembre-2026"
+    }
+   ],
+   "summary": "Les prix à la consommation aux États-Unis ont augmenté de 0,4 % en octobre, contre 0,3 % attendu, et de 0,3 % hors alimentation et énergie. Aucun taux sur un an n'a été publié, faute de données comparables pour octobre 2025 en raison du shutdown. La prochaine décision de la Réserve fédérale est attendue le 9 décembre.",
+   "title": "Inflation américaine : +0,4 % sur un mois en octobre, au-dessus des attentes",
+   "why": "Une hausse des taux de la Fed renchérirait le dollar et le coût du crédit, avec des effets sur les marchés européens et les entreprises exportatrices."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/03/zone-euro-les-gouvernements-designent-leurs-candidats-a-la-presidence-de-la-bce"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/29/la-bce-maintient-les-taux-a-25-alors-que-lagarde-annonce-un-depart-anticipe"
+    }
+   ],
+   "summary": "Christine Lagarde quittera la présidence de la BCE le 7 février 2027, avant la fin de son mandat. Les pays de la zone euro devaient proposer leurs candidats avant le 6 novembre ; l'Espagnol Pablo Hernández de Cos et le Néerlandais Klaas Knot sont cités parmi les favoris. Le candidat retenu doit réunir au moins 16 des 21 pays représentant 65 % de la population de la zone.",
+   "title": "Succession de Christine Lagarde : les candidatures à la BCE se précisent",
+   "why": "Le profil du futur président orientera la politique des taux, qui détermine le coût de financement des entreprises et des États."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163937/early-edition-november-10-2026/"
+    },
+    {
+     "name": "Foreign Exchanges",
+     "url": "https://www.foreignexchanges.news/p/world-roundup-november-10-2026"
+    }
+   ],
+   "summary": "Délégations russe et ukrainienne se sont retrouvées le 10 novembre à Abou Dhabi, pour la première fois depuis février sous médiation américaine ; les discussions se poursuivent le 11. L'envoyé américain Jared Kushner a fait état d'écarts réduits et Volodymyr Zelensky a qualifié les échanges de constructifs. Moscou demande toujours la cession du reste du Donbass.",
+   "title": "Ukraine-Russie : reprise des pourparlers à Abou Dhabi sous médiation américaine",
+   "why": "Une avancée diplomatique pourrait faire baisser les prix de l'énergie et l'incertitude, deux paramètres clés des prévisions budgétaires des entreprises européennes."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/10/trump-assure-que-la-guerre-avec-liran-touche-a-sa-fin-selon-teheran-aucun-pourparler-nest-"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/usa-iran-le-petrole-a-encore-baisse-avec-les-espoirs-de-desescalade-f7658a05d517d8541046d5a9509dae10"
+    }
+   ],
+   "summary": "Donald Trump a jugé le 9 novembre de nouvelles frappes très peu probables et évoqué une dynamique vers la fin du conflit ; le secrétaire d'État Marco Rubio a exclu une opération militaire majeure. Le ministre iranien Abbas Araghchi dément toute réunion, et l'agence Tasnim affirme que l'Iran pose sept conditions préalables à des discussions.",
+   "title": "Iran : Trump évoque la fin du conflit, Téhéran dément toute négociation",
+   "why": "Le conflit et le blocus pèsent sur le détroit d'Ormuz, passage clé du pétrole mondial : toute évolution se répercute sur les prix des carburants et l'inflation."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163937/early-edition-november-10-2026/"
+    },
+    {
+     "name": "Foreign Exchanges",
+     "url": "https://www.foreignexchanges.news/p/world-roundup-november-10-2026"
+    }
+   ],
+   "summary": "La France attribue aux Gardiens de la révolution iraniens le piratage de systèmes de réfrigération de supermarchés. Le ministre des Affaires étrangères Jean-Noël Barrot a annoncé des sanctions et l'ambassadeur d'Iran a été convoqué le 10 novembre. Le même jour, les ministres des Affaires étrangères du G7 étaient réunis à Paris.",
+   "title": "Cyberattaque contre des supermarchés : Paris convoque l'ambassadeur d'Iran",
+   "why": "Les cyberattaques contre des équipements industriels sont un risque opérationnel croissant que les entreprises doivent intégrer dans leur contrôle interne et leurs assurances."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111191/cac-40-en-hausse-nvidia-renault-jour-ferie-le-journal-de-la-bourse-du-mardi-10-novembre-2026"
+    },
+    {
+     "name": "Quartz (AFP)",
+     "url": "https://fr.qz.com/cac-40-hausse-petrole-inflation-americaine-bourse-111026"
+    }
+   ],
+   "summary": "Le CAC 40 a clôturé le 10 novembre à 8 278,59 points (+0,55 %), son plus haut depuis le 8 septembre, aidé par la baisse du pétrole. ArcelorMittal a gagné 2,96 %, Safran 2,26 % après un objectif relevé par Bernstein, et Renault 2,19 % après un relèvement de recommandation de Jefferies ; le titre Renault reste en baisse d'environ 17 % depuis janvier.",
+   "title": "CAC 40 en hausse, Renault et Safran portés par des relèvements d'objectifs",
+   "why": "Les révisions d'objectifs de cours par les analystes montrent comment les anticipations de résultats influencent la valorisation d'une entreprise."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/usa-iran-le-petrole-a-encore-baisse-avec-les-espoirs-de-desescalade-f7658a05d517d8541046d5a9509dae10"
+    }
+   ],
+   "summary": "Le baril de Brent a clôturé à 91,49 dollars le 10 novembre (−1,17 %) après être passé sous 90 dollars en séance ; le WTI a fini à 86,04 dollars. Les deux références ont perdu près de 11 % en une semaine, sur l'espoir d'une désescalade entre Washington et Téhéran.",
+   "title": "Le Brent passe brièvement sous 90 dollars, une première depuis août",
+   "why": "Le prix du pétrole entre dans les coûts de transport et d'énergie de nombreuses entreprises et influence directement l'inflation."
+  }
+ ],
+ "lede": "Le gouvernement a annoncé une hausse du Smic de 1,6 % au 1er décembre, jugée insuffisante par les syndicats, tandis que le Sénat s'apprête à examiner un budget 2027 rejeté par l'Assemblée. À l'international, Russes et Ukrainiens ont repris des pourparlers à Abou Dhabi et le pétrole recule sur fond d'espoir de désescalade avec l'Iran.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Le Smic net passe de 1 477,93 € à 1 502 €, soit +1,6 % : 1 % de revalorisation automatique avancée et 0,6 % de coup de pouce.",
+   "options": [
+    "1 477 €",
+    "1 489 €",
+    "1 502 €",
+    "1 520 €"
+   ],
+   "q": "À combien s'élèvera le Smic net mensuel au 1er décembre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Le délai de 70 jours prévu par l'article 47 de la Constitution, compté à partir du 9 octobre, expire le 17 décembre à minuit.",
+   "options": [
+    "17 décembre",
+    "9 décembre",
+    "31 décembre",
+    "11 décembre"
+   ],
+   "q": "Jusqu'à quelle date le Parlement a-t-il pour se prononcer sur le PLF 2027 avant un possible recours aux ordonnances ?"
+  },
+  {
+   "answer": 1,
+   "explain": "Les discussions, sous médiation américaine, se sont tenues à Abou Dhabi, une première depuis février 2026.",
+   "options": [
+    "Doha",
+    "Abou Dhabi",
+    "Istanbul",
+    "Riyad"
+   ],
+   "q": "Dans quelle ville Russes et Ukrainiens ont-ils repris leurs pourparlers le 10 novembre ?"
+  }
+ ]
+}

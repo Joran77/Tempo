@@ -1,0 +1,270 @@
+{
+ "date": "2026-11-09",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 6 novembre",
+   "note": "−0,81 % sur la séance, +2,1 % sur la semaine",
+   "source": "BFM Bourse",
+   "value": "8 139 points"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Première estimation, après 0,0 % au 2e trimestre",
+   "source": "Insee / DG Trésor",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Inflation zone euro, octobre 2026",
+   "note": "Estimation rapide, après 3,8 % en septembre",
+   "source": "Eurostat, via Reuters",
+   "value": "4 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre, après deux hausses en 2026",
+   "source": "BCE",
+   "value": "2,5 %"
+  },
+  {
+   "label": "Brent, échéance janvier (6 novembre)",
+   "note": "−0,7 % sur la séance",
+   "source": "BFM Bourse",
+   "value": "97,58 $"
+  },
+  {
+   "label": "Euro/dollar, 6 novembre",
+   "note": "−0,7 % sur la séance",
+   "source": "BFM Bourse",
+   "value": "1,1152 $"
+  },
+  {
+   "label": "Créations d'emplois aux États-Unis, octobre",
+   "note": "Chômage à 4,1 %, contre 4,2 % en septembre",
+   "source": "Bureau of Labor Statistics",
+   "value": "+165 000"
+  }
+ ],
+ "generatedAt": "2026-11-09T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/pouvoir-d-achat-sebastien-lecornu-reunira-syndicats-et-patronat-lundi-pour-apporter-des"
+    },
+    {
+     "name": "L'Échiquier social",
+     "url": "https://www.lechiquiersocial.com/lagenda-politique-les-temps-forts-de-la-semaine-du-9-au-15-novembre/"
+    }
+   ],
+   "summary": "Le Premier ministre Sébastien Lecornu réunit ce lundi 9 novembre les organisations syndicales et patronales sur le pouvoir d'achat. La réunion suit la journée de mobilisation du 5 novembre : près de 600 000 manifestants selon le gouvernement, 1,6 million selon la CGT. La CFDT demande 100 euros nets de plus sur le Smic, qui n'a pas connu de coup de pouce depuis 2012. Le ministre du Travail, Jean-Pierre Farandou, a évoqué une application dès le 1er décembre en cas d'accord rapide.",
+   "title": "Conférence sociale à Matignon sur les salaires et le Smic",
+   "why": "Une revalorisation du Smic modifie directement la masse salariale des entreprises et les calculs de coût du travail que l'on retrouve en contrôle de gestion."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    },
+    {
+     "name": "Assemblée nationale",
+     "url": "https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/examen-de-la-premiere-partie-du-projet-de-loi-de-finances-pour-2027"
+    }
+   ],
+   "summary": "Les députés ont rejeté la partie recettes du projet de loi de finances 2027 le 4 novembre (458 voix contre), après celle du budget de la Sécurité sociale le 23 octobre. Les deux textes sont transmis au Sénat dans leur version initiale. Les sénateurs examinent le PLFSS du 9 au 18 novembre, puis le PLF du 20 novembre au 9 décembre. Parmi les options du gouvernement figurent le 49.3, les ordonnances après expiration des délais constitutionnels ou une loi spéciale.",
+   "title": "Après son rejet à l'Assemblée, le budget 2027 arrive au Sénat",
+   "why": "Le calendrier budgétaire conditionne la fiscalité et les cotisations applicables aux entreprises au 1er janvier 2027."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "L'Échiquier social",
+     "url": "https://www.lechiquiersocial.com/lagenda-politique-les-temps-forts-de-la-semaine-du-9-au-15-novembre/"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/pouvoir-d-achat-sebastien-lecornu-reunira-syndicats-et-patronat-lundi-pour-apporter-des"
+    }
+   ],
+   "summary": "Une intersyndicale (CGT, FSU, FO, Sud et organisations étudiantes et lycéennes) appelle à la grève et à manifester mardi. Elle reproche au gouvernement d'avoir écarté la fonction publique de la conférence sociale. Le ministre des Comptes publics, David Amiel, poursuit de son côté des échanges séparés avec les représentants des agents publics.",
+   "title": "Grève dans l'éducation et l'enseignement supérieur mardi 10 novembre",
+   "why": "Les rémunérations de la fonction publique pèsent lourd dans les dépenses de l'État et donc dans la trajectoire du déficit."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Direction générale du Trésor",
+     "url": "https://www.tresor.economie.gouv.fr/Articles/2026/10/30/flash-conjoncture-france-le-pib-recule-legerement-au-3e-trimestre"
+    }
+   ],
+   "summary": "Selon la première estimation de l'Insee, l'activité a reculé de 0,1 % au 3e trimestre 2026, après une stagnation au 2e trimestre. La consommation des ménages progresse de 0,4 %, mais l'investissement baisse de 0,6 % et les exportations de 1,7 %. Le commerce extérieur retire 0,6 point à la croissance. L'acquis de croissance pour 2026 s'établit à 0,2 %.",
+   "title": "Le PIB français recule de 0,1 % au troisième trimestre",
+   "why": "Deux trimestres sans croissance pèsent sur les prévisions de chiffre d'affaires des entreprises et sur les recettes fiscales de l'État."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "L'Économiste Maghrébin (agences)",
+     "url": "https://www.leconomistemaghrebin.com/2026/11/06/la-bce-nexclut-pas-une-nouvelle-hausse-des-taux-en-decembre/"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/29/la-bce-maintient-les-taux-a-25-alors-que-lagarde-annonce-un-depart-anticipe"
+    }
+   ],
+   "summary": "La Banque centrale européenne a laissé son taux de dépôt à 2,5 % le 29 octobre, après deux hausses cette année. L'inflation de la zone euro a atteint 4 % en octobre selon l'estimation rapide, soit le double de la cible de 2 %. Selon Reuters, des membres du Conseil des gouverneurs envisagent une hausse de 25 points de base en décembre. Christine Lagarde a indiqué que de nombreux indicateurs seraient publiés d'ici là.",
+   "title": "La BCE n'écarte pas une hausse de taux en décembre",
+   "why": "Une hausse des taux renchérit le coût de l'endettement des entreprises et augmente le taux d'actualisation utilisé pour évaluer les investissements."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/bourse/actualites/bce-statu-quo-attendu-sur-les-taux-les-regards-tournes-vers-l-apres-lagarde-85fa5968dfdf52496264aebed23b00ce"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/29/la-bce-maintient-les-taux-a-25-alors-que-lagarde-annonce-un-depart-anticipe"
+    }
+   ],
+   "summary": "Christine Lagarde quittera la présidence de la BCE le 7 février 2027, environ neuf mois avant la fin de son mandat. Les dirigeants de la zone euro doivent désigner son successeur d'ici la fin de l'année. Les noms de Pablo Hernández de Cos, ancien gouverneur de la Banque d'Espagne, et de Klaas Knot, ancien gouverneur de la banque centrale néerlandaise, sont cités.",
+   "title": "Succession de Christine Lagarde : une décision attendue d'ici fin 2026",
+   "why": "Le profil du prochain président peut infléchir l'orientation de la politique monétaire et donc les conditions de financement en zone euro."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Presse Agence",
+     "url": "https://presseagence.fr/paris-economie-linsee-devoile-son-calendrier-des-indicateurs-cles-pour-novembre/"
+    },
+    {
+     "name": "Club Patrimoine",
+     "url": "https://www.clubpatrimoine.com/contenus/croissance-france"
+    }
+   ],
+   "summary": "L'Insee publie mardi 10 novembre à 7 h 30 le taux de chômage au sens du BIT pour le 3e trimestre 2026. Vendredi 13 novembre, il diffusera l'indice des prix à la consommation définitif d'octobre et une estimation de l'indice du coût du travail du 3e trimestre. En septembre, l'institut avait abaissé sa prévision de croissance 2026 de 0,7 % à 0,4 %.",
+   "title": "Chômage du 3e trimestre et inflation : la semaine des chiffres Insee",
+   "why": "Chômage, prix et coût du travail sont les indicateurs de base pour suivre la conjoncture et indexer salaires et contrats."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html"
+    },
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111151/le-cac-40-victime-de-onde-de-choc-sur-la-bulle-ia-le-journal-de-la-bourse-du-vendredi-6-novembre"
+    }
+   ],
+   "summary": "La Bourse de Paris a cédé 0,81 % vendredi, à 8 139 points, tout en gagnant 2,1 % sur la semaine. La veille, le Nasdaq avait perdu 5,5 % et l'indice des semi-conducteurs plus de 12 %, sur fond d'inquiétudes autour de l'intelligence artificielle. Teleperformance a chuté de 15,3 % après un chiffre d'affaires trimestriel en baisse de 1,2 %, tandis qu'Air France-KLM a gagné 7,1 %.",
+   "title": "Le CAC 40 recule après la chute des valeurs technologiques",
+   "why": "Ces mouvements illustrent la sensibilité des valorisations aux anticipations de résultats, notion centrale en analyse financière."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Yahoo Actualités (RFI/AFP)",
+     "url": "https://fr.news.yahoo.com/russie-confirme-prendra-part-n%C3%A9gociations-103648054.html"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/video/2026/11/08/latest-news-bulletin-november-8th-2026-midday"
+    }
+   ],
+   "summary": "Le Kremlin a confirmé qu'une délégation russe, conduite par Vladimir Medinski, participera à des discussions avec l'Ukraine et les États-Unis à Abou Dhabi. Selon l'émissaire américain Steve Witkoff, elles porteront sur les garanties de sécurité, la désescalade et l'aide humanitaire. Moscou exige le retrait des forces ukrainiennes de la région de Donetsk, ce que Kiev refuse. Le 7 novembre, des frappes russes ont touché la région de Kiev.",
+   "title": "Ukraine : nouvelles négociations trilatérales à Abou Dhabi les 10 et 11 novembre",
+   "why": "L'issue des discussions influence les prix de l'énergie et les perspectives des entreprises européennes exposées à la région."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Al Jazeera",
+     "url": "https://aljazeera.com/news/2026/11/6/israels-herzog-to-name-a-candidate-to-form-government-on-sunday"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/video/2026/11/08/latest-news-bulletin-november-8th-2026-midday"
+    }
+   ],
+   "summary": "Après les législatives, 67 députés sur 120 ont recommandé Gadi Eisenkot, contre 46 pour Benyamin Netanyahou, dont le Likud reste le premier parti avec 27 sièges. Le président Isaac Herzog l'a chargé de constituer une coalition. Il dispose de 28 jours, prolongeables de 14. Benyamin Netanyahou a appelé à un gouvernement d'union nationale.",
+   "title": "Israël : Gadi Eisenkot chargé de former le gouvernement",
+   "why": "Un changement de gouvernement en Israël peut modifier la situation régionale, qui pèse sur les cours du pétrole."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Notes from Poland",
+     "url": "https://notesfrompoland.com/2026/11/07/fatalities-reported-in-shooting-on-historical-market-square-in-krakow/"
+    }
+   ],
+   "summary": "Samedi 7 novembre vers 15 heures, un homme a tiré depuis une voiture sur la grand-place de Cracovie. Selon la police, l'attaque a fait six morts et quinze blessés. Le suspect, un Polonais de 24 ans, a été arrêté. Le ministre de l'Intérieur a qualifié les faits d'attentat terroriste d'extrême droite ; le bilan peut encore évoluer.",
+   "title": "Pologne : six morts dans une fusillade sur la place du Marché de Cracovie",
+   "why": "Il s'agit de l'un des faits majeurs de l'actualité européenne du week-end, avec des conséquences possibles sur le débat sécuritaire en Pologne."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Wikipédia (COP31)",
+     "url": "https://en.wikipedia.org/wiki/2026_United_Nations_Climate_Change_Conference"
+    },
+    {
+     "name": "L'Échiquier social",
+     "url": "https://www.lechiquiersocial.com/lagenda-politique-les-temps-forts-de-la-semaine-du-9-au-15-novembre/"
+    }
+   ],
+   "summary": "La 31e conférence de l'ONU sur le climat se tient du 9 au 20 novembre à Antalya. Elle est présidée par le ministre turc de l'Environnement, Murat Kurum, tandis que l'Australien Chris Bowen préside les négociations, en vertu d'un accord conclu en 2025. Le sommet des dirigeants est prévu les 11 et 12 novembre ; Emmanuel Macron n'y participera pas.",
+   "title": "La COP31 s'ouvre à Antalya, en Turquie",
+   "why": "Les décisions climatiques se traduisent ensuite en obligations de reporting extra-financier et en coûts carbone pour les entreprises."
+  }
+ ],
+ "lede": "Sébastien Lecornu réunit ce lundi syndicats et patronat à Matignon sur les salaires et le Smic, le jour où le Sénat ouvre l'examen du budget de la Sécurité sociale. Les marchés restent fragilisés par la chute des valeurs technologiques, et la BCE n'exclut pas une hausse de taux en décembre.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Le PIB a reculé de 0,1 %, après une stagnation au 2e trimestre ; l'acquis de croissance pour 2026 est de 0,2 %.",
+   "options": [
+    "+0,2 %",
+    "0,0 %",
+    "−0,1 %",
+    "−0,4 %"
+   ],
+   "q": "Quelle a été l'évolution du PIB français au 3e trimestre 2026, selon la première estimation ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Le taux de dépôt est resté à 2,5 % ; une hausse à 2,75 % est envisagée pour décembre.",
+   "options": [
+    "2,5 %",
+    "2,0 %",
+    "2,75 %",
+    "3,0 %"
+   ],
+   "q": "À quel niveau la BCE a-t-elle maintenu son taux de dépôt le 29 octobre ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le PLFSS est examiné au Sénat du 9 au 18 novembre ; le PLF suivra du 20 novembre au 9 décembre.",
+   "options": [
+    "Le 13 novembre",
+    "Le 26 novembre",
+    "Le 9 décembre",
+    "Le 18 novembre"
+   ],
+   "q": "Quand le Sénat termine-t-il l'examen du budget de la Sécurité sociale 2027 ?"
+  }
+ ]
+}

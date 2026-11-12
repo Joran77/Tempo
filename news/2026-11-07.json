@@ -1,0 +1,246 @@
+{
+ "date": "2026-11-07",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 6 novembre",
+   "note": "−0,81 % sur la séance, environ +2,1 % sur la semaine",
+   "source": "BFM Bourse / AFP",
+   "value": "8 139 points"
+  },
+  {
+   "label": "Brent (janvier), 6 novembre",
+   "note": "−0,7 % sur la séance, plus de −12 % sur la semaine",
+   "source": "BFM Bourse",
+   "value": "97,58 $"
+  },
+  {
+   "label": "Euro/dollar, 6 novembre",
+   "note": "L'euro cède environ 0,7 % face au dollar",
+   "source": "BFM Bourse",
+   "value": "1,115 $"
+  },
+  {
+   "label": "PIB France, T3 2026",
+   "note": "Première estimation, après 0,0 % au T2",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Inflation France, septembre 2026",
+   "note": "Sur un an (IPC) ; octobre définitif publié le 13 novembre",
+   "source": "Insee",
+   "value": "3,1 %"
+  },
+  {
+   "label": "Chômage France, T2 2026",
+   "note": "+0,2 point ; chiffre du T3 attendu le 10 novembre",
+   "source": "Insee",
+   "value": "8,3 %"
+  },
+  {
+   "label": "Créations d'emplois aux États-Unis, octobre",
+   "note": "Taux de chômage en recul de 4,2 % à 4,1 %",
+   "source": "BFM Bourse",
+   "value": "165 000"
+  }
+ ],
+ "generatedAt": "2026-11-07T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    },
+    {
+     "name": "Assemblée nationale",
+     "url": "https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/examen-de-la-premiere-partie-du-projet-de-loi-de-finances-pour-2027"
+    }
+   ],
+   "summary": "Le 4 novembre, les députés ont rejeté la partie recettes du projet de loi de finances pour 2027, ce qui vaut rejet de l'ensemble du texte en première lecture. Le texte est transmis au Sénat dans sa version initiale, sans les amendements adoptés par les députés. Le budget de la Sécurité sociale, lui aussi rejeté, sera examiné au Sénat à partir du 9 novembre, et le budget de l'État du 20 novembre au 9 décembre.",
+   "title": "Budget 2027 : rejeté à l'Assemblée, le projet de loi de finances part au Sénat",
+   "why": "Sans accord, le gouvernement peut recourir au 49.3, à des ordonnances une fois les délais constitutionnels écoulés, ou à une loi spéciale : un cas d'école de procédure budgétaire et de finances publiques."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites"
+    }
+   ],
+   "summary": "Après une journée de mobilisation le 5 novembre, chiffrée à 600 000 manifestants selon Public Sénat, le Premier ministre a annoncé une conférence sociale lundi avec les partenaires sociaux. Il entend y apporter des réponses sur le pouvoir d'achat. Il a parallèlement demandé un nouvel effort sur les dépenses de l'État dans le cadre du budget 2027.",
+   "title": "Sébastien Lecornu convoque syndicats et patronat lundi à Matignon",
+   "why": "Les arbitrages sur les salaires, les cotisations et la dépense publique se discutent en même temps que le budget : leurs effets toucheront directement la masse salariale des entreprises."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites"
+    }
+   ],
+   "summary": "Édouard Philippe a écarté le principe d'une primaire, que soutiennent notamment Bruno Retailleau, Gabriel Attal et David Lisnard selon Public Sénat. L'entourage de Bruno Retailleau lui attribue la responsabilité d'une division, ce que son camp conteste. Le même jour, La France insoumise a présenté une nouvelle version de son programme, avec 1 069 mesures dont 238 nouvelles.",
+   "title": "Présidentielle 2027 : Édouard Philippe refuse une primaire de la droite et du centre",
+   "why": "La structuration de l'offre politique avant 2027 conditionne les orientations fiscales et budgétaires des prochaines années."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites"
+    }
+   ],
+   "summary": "Lors d'une table ronde au Sénat le 5 novembre, le Medef, Les Entrepreneurs et l'U2P ont critiqué la réduction des allègements généraux de cotisations prévue par le budget 2027. Ces organisations estiment que la mesure pèserait sur l'économie. Au Sénat, la commission des affaires sociales propose par ailleurs de relever de 1 260 à 1 500 euros le plafond des pensions revalorisées au niveau de l'inflation.",
+   "title": "Budget 2027 : le patronat s'oppose à la baisse des allègements de cotisations",
+   "why": "Les allègements généraux réduisent le coût du travail près du Smic : leur réduction modifie directement le calcul des charges sociales patronales."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html"
+    },
+    {
+     "name": "Trading Economics",
+     "url": "https://tradingeconomics.com/commodity/brent-crude-oil"
+    }
+   ],
+   "summary": "Le baril de Brent a terminé vendredi autour de 97,6 dollars, en recul de plus de 12 % sur la semaine. Les cours ont réagi aux espoirs de détente au Moyen-Orient, l'Iran ayant transmis une proposition nucléaire aux États-Unis par l'intermédiaire du Qatar. Téhéran conditionne toutefois la réouverture complète du détroit d'Ormuz à la levée du blocus naval et des sanctions.",
+   "title": "Le Brent enregistre sa plus forte baisse hebdomadaire depuis mars 2020",
+   "why": "Le prix du pétrole pèse sur l'inflation, les coûts de transport et les marges des entreprises : c'est une variable clé des budgets prévisionnels."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html"
+    }
+   ],
+   "summary": "Le rapport mensuel sur l'emploi publié le 6 novembre fait état de 165 000 créations nettes de postes en octobre, très au-dessus du consensus. Le taux de chômage recule de 4,2 % à 4,1 %. Selon BFM Bourse, ces chiffres renforcent l'hypothèse d'un nouveau resserrement monétaire de la Réserve fédérale.",
+   "title": "États-Unis : 165 000 emplois créés en octobre, au-delà des attentes",
+   "why": "Un marché du travail solide pousse les banques centrales à maintenir des taux élevés, ce qui renchérit le coût du financement et pèse sur la valorisation des actions."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9100803"
+    }
+   ],
+   "summary": "L'Insee publiera le 10 novembre le taux de chômage au sens du BIT pour le troisième trimestre 2026, après 8,3 % au deuxième trimestre. Selon la première estimation publiée le 30 octobre, le PIB a reculé de 0,1 % au troisième trimestre, après une stagnation au deuxième. L'inflation définitive d'octobre est attendue le 13 novembre.",
+   "title": "Insee : le chômage du troisième trimestre publié mardi 10 novembre",
+   "why": "Ces trois indicateurs, croissance, chômage et inflation, sont la base de toute analyse conjoncturelle et des hypothèses retenues dans le budget."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Reuters via Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/usa-stephen-miller-remplace-susie-wiles-comme-chef-de-cabinet-ce785fd2dd8ef422"
+    }
+   ],
+   "summary": "Donald Trump a annoncé le 6 novembre sur les réseaux sociaux que Stephen Miller, jusqu'ici chef de cabinet adjoint, succéderait à Susie Wiles à partir de lundi. Le président a salué le travail de Susie Wiles, sans préciser les raisons de son départ. Ce changement intervient quelques jours après les élections de mi-mandat.",
+   "title": "Maison Blanche : Stephen Miller nommé chef de cabinet à la place de Susie Wiles",
+   "why": "Le chef de cabinet pilote l'agenda de la Maison Blanche : ce poste influence les décisions sur le commerce, les droits de douane et la politique étrangère."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Reuters via Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/trump-affirme-que-les-etats-unis-discutent-avec-des-representants-iraniens-ce785fd2dd80f120"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163619/early-edition-november-6-2026/"
+    }
+   ],
+   "summary": "Le président américain a déclaré le 6 novembre que son administration était en contact avec des représentants iraniens. La veille, il avait indiqué qu'il déciderait prochainement d'une éventuelle reprise de l'action militaire. Selon un responsable iranien cité par Reuters, l'Iran a transmis une proposition nucléaire via le Qatar, que les États-Unis examinent.",
+   "title": "Iran : Donald Trump affirme que Washington discute avec Téhéran",
+   "why": "L'issue de ces échanges conditionne la circulation dans le détroit d'Ormuz et donc les prix de l'énergie en Europe."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Politique Matin",
+     "url": "https://www.politiquematin.fr/ukraine-kremlin-europeens-discussions-securite-6-novembre-2026"
+    },
+    {
+     "name": "Just Security",
+     "url": "https://www.justsecurity.org/163619/early-edition-november-6-2026/"
+    }
+   ],
+   "summary": "Le porte-parole du Kremlin, Dmitri Peskov, a estimé le 6 novembre que l'Europe devrait prendre part aux futures discussions sur la sécurité liées à un règlement en Ukraine. Il reproche aux Européens de ne pas avoir désigné d'interlocuteur commun. Des pourparlers sous médiation américaine sont annoncés les 10 et 11 novembre à Abou Dhabi.",
+   "title": "Ukraine : le Kremlin juge que les Européens devront participer aux discussions",
+   "why": "La place de l'Union européenne dans une éventuelle négociation pèsera sur ses dépenses de défense et sur le financement de la reconstruction ukrainienne."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html"
+    },
+    {
+     "name": "Quartz (AFP)",
+     "url": "https://fr.qz.com/cac-40-bourse-paris-baisse-valeurs-ia-luxe-110626"
+    }
+   ],
+   "summary": "Le CAC 40 a clôturé vendredi à 8 139 points, en baisse de 0,81 %, après la forte chute de Wall Street la veille, mais il gagne environ 2,1 % sur la semaine. TP, ex-Teleperformance, a perdu 15,3 % après une croissance décevante et des perspectives abaissées. Air France-KLM a gagné 7,1 % après un relèvement de recommandation de Barclays.",
+   "title": "Bourse de Paris : le CAC 40 recule de 0,81 %, TP chute de plus de 15 %",
+   "why": "L'exemple de TP montre comment le marché sanctionne une révision des prévisions : la qualité de la communication financière pèse directement sur la valorisation."
+  }
+ ],
+ "lede": "Le projet de budget 2027 de l'État, rejeté par l'Assemblée nationale, part au Sénat dans sa version initiale, tandis que Sébastien Lecornu convoque une conférence sociale lundi. À l'international, Washington affirme discuter avec Téhéran et le Brent signe sa plus forte baisse hebdomadaire depuis 2020.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Le rejet de la première partie, consacrée aux recettes, vaut rejet de l'ensemble du texte en première lecture, qui part au Sénat dans sa version initiale.",
+   "options": [
+    "La partie dépenses",
+    "La partie recettes",
+    "L'article d'équilibre",
+    "Le volet investissements"
+   ],
+   "q": "Quelle partie du projet de loi de finances 2027 les députés ont-ils rejetée le 4 novembre, entraînant le rejet du texte entier ?"
+  },
+  {
+   "answer": 3,
+   "explain": "165 000 créations nettes, bien au-delà des attentes, avec un taux de chômage en recul à 4,1 %.",
+   "options": [
+    "59 000",
+    "110 000",
+    "210 000",
+    "165 000"
+   ],
+   "q": "Combien d'emplois l'économie américaine a-t-elle créés en octobre 2026 selon le rapport publié le 6 novembre ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Donald Trump a annoncé que Stephen Miller, jusqu'ici chef de cabinet adjoint, prendrait le poste à partir de lundi.",
+   "options": [
+    "Stephen Miller",
+    "Marco Rubio",
+    "Pete Hegseth",
+    "Kirill Dmitriev"
+   ],
+   "q": "Qui succède à Susie Wiles comme chef de cabinet de la Maison Blanche ?"
+  }
+ ]
+}

@@ -1,0 +1,270 @@
+{
+ "date": "2026-11-04",
+ "figures": [
+  {
+   "label": "Inflation en France, octobre 2026 (sur un an)",
+   "note": "Estimation provisoire ; énergie +24,1 % sur un an",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Première estimation, après 0,0 % au 2e trimestre",
+   "source": "Insee",
+   "value": "-0,1 %"
+  },
+  {
+   "label": "Taux de chômage BIT, 2e trimestre 2026",
+   "note": "Chiffre du 3e trimestre publié le 10 novembre",
+   "source": "Insee",
+   "value": "8,3 %"
+  },
+  {
+   "label": "CAC 40, clôture du 3 novembre",
+   "note": "-0,34 % sur la séance",
+   "source": "MoneyVox / JKN",
+   "value": "8 020,31 pts"
+  },
+  {
+   "label": "Brent, clôture du 3 novembre",
+   "note": "Prix du baril, en léger repli",
+   "source": "Prixdubaril.com",
+   "value": "103,60 $"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre 2026",
+   "source": "BCE / AFP",
+   "value": "2,5 %"
+  },
+  {
+   "label": "Note de la France chez Fitch",
+   "note": "Perspective passée de stable à négative le 30 octobre",
+   "source": "Fitch / AFP",
+   "value": "A+"
+  }
+ ],
+ "generatedAt": "2026-11-04T06:45:00+01:00",
+ "items": [
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "NewsCord (synthèse de 19 médias)",
+     "url": "https://newscord.org/article/democrats-projected-to-take-control-of-us-senate-and-house-in-2026-midterms--Story_20261104_Midterms2026Republikcd3095f9_1865d6ffe6c4"
+    },
+    {
+     "name": "CBS News",
+     "url": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/"
+    }
+   ],
+   "summary": "Selon les projections des grands médias américains, dont NBC News, les démocrates prennent le contrôle de la Chambre des représentants et du Sénat lors des élections de mi-mandat du 3 novembre. Les républicains détenaient jusqu'ici les deux chambres. Le décompte de certains sièges se poursuit, notamment en Californie. Donald Trump s'est dit prêt à accepter les résultats, tandis que le chef des démocrates à la Chambre, Hakeem Jeffries, a salué une victoire de son camp.",
+   "title": "Midterms : les démocrates donnés vainqueurs au Congrès américain",
+   "why": "Un Congrès d'opposition peut bloquer les textes budgétaires et fiscaux de la Maison-Blanche : cela pèse sur la politique économique américaine, le dollar et les marchés mondiaux."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-le-marathon-de-la-partie-recettes-n-etant-pas-termine-le-vote-solennel-prevu"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    }
+   ],
+   "summary": "Le vote solennel sur la première partie du projet de loi de finances 2027, consacrée aux recettes, prévu le mardi 3 novembre, n'a pas eu lieu : 758 amendements restaient à examiner lundi à minuit. Aucune nouvelle date n'est fixée ; l'examen pourrait s'achever en fin de semaine. Faute de majorité, un rejet de cette partie est jugé probable par la presse parlementaire, ce qui renverrait au Sénat le texte initial du gouvernement.",
+   "title": "Budget 2027 : le vote sur la partie recettes reporté à l'Assemblée",
+   "why": "La partie recettes fixe les impôts et taxes de l'année : c'est la base de tout le budget de l'État et de la trajectoire du déficit public."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    },
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/budget-2027-calendrier-assemblee-cinq-semaines"
+    }
+   ],
+   "summary": "L'Assemblée a jusqu'au 17 novembre à minuit pour se prononcer en première lecture. Le Sénat doit examiner le budget de la Sécurité sociale à partir du 12 novembre et le budget de l'État du 20 novembre au 8 décembre. Si le Parlement ne statue pas en 70 jours, soit d'ici le 17 décembre, l'article 47 de la Constitution permet de mettre le budget en œuvre par ordonnance, une option jamais utilisée sous la Ve République. Le Premier ministre, Sébastien Lecornu, pourrait aussi recourir au 49.3 plus tard dans la procédure.",
+   "title": "Budget : délais constitutionnels, 49.3 et ordonnances en toile de fond",
+   "why": "Comprendre ces règles (article 47, loi spéciale, 49.3) est utile pour suivre les finances publiques et leurs effets sur les taux d'emprunt de l'État."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "Sortir à Paris",
+     "url": "https://www.sortiraparis.com/en/news/in-paris/articles/354559-protest-and-strike-on-november-5-2026-transport-schools-and-routes-what-to-expect"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/21/france-decus-apres-la-reunion-avec-le-gouvernement-les-syndicats-appellent-a-une-mobilisat"
+    }
+   ],
+   "summary": "La CFDT, la CGT, FO, l'Unsa et la FSU appellent à une journée de grève et de manifestations le jeudi 5 novembre. Les syndicats réclament des hausses de salaires et une révision du projet de budget 2027. Des perturbations sont attendues à la SNCF (TGV, TER, RER, Transilien) et dans les collèges et lycées. Après une réunion à Matignon le 21 octobre, la CGT a estimé qu'aucune mesure n'avait été annoncée, tandis que la CFTC a jugé qu'une discussion sur le salaire minimum avait été ouverte.",
+   "title": "Grève intersyndicale jeudi 5 novembre : transports et écoles concernés",
+   "why": "Pour un alternant, c'est un enjeu pratique (trajets, organisation du travail) et un cas concret de dialogue social sur les salaires."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/fichier/version-html/9107965/IR266_IPCprov_oct26.pdf"
+    }
+   ],
+   "summary": "Selon l'estimation provisoire de l'Insee, l'indice des prix à la consommation progresse de 3,4 % sur un an en octobre 2026, après 3,1 % en septembre. Cette hausse est tirée par l'énergie (+24,1 % sur un an) et, dans une moindre mesure, par les services (+2,7 %). L'indice harmonisé européen atteint 3,8 %. Les chiffres définitifs seront publiés le 13 novembre.",
+   "title": "Inflation : les prix augmenteraient de 3,4 % sur un an en octobre",
+   "why": "L'inflation influence les salaires, les taux d'intérêt et l'indexation des contrats : un indicateur central en contrôle de gestion pour actualiser budgets et prix."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/fichier/version-html/9111036/IR263_CNT1e_%203T2026.pdf"
+    }
+   ],
+   "summary": "D'après la première estimation de l'Insee, le PIB a baissé de 0,1 % au troisième trimestre 2026, après une stagnation au deuxième. La consommation des ménages progresse de 0,4 %, mais les exportations chutent de 1,7 % et le commerce extérieur retire 0,6 point à la croissance. L'investissement recule de 0,6 %. L'acquis de croissance pour 2026 s'établit à 0,2 %.",
+   "title": "Le PIB français recule de 0,1 % au troisième trimestre",
+   "why": "La lecture des contributions (demande intérieure, commerce extérieur, stocks) est un exercice classique d'analyse macroéconomique, utile pour les épreuves et les études de cas."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "AFP via Bourse Direct",
+     "url": "https://www.boursedirect.fr/fr/actualites/categorie/economie/fitch-maintient-la-note-a-de-la-france-mais-abaisse-sa-perspective-afp-35717ca7477a1412cbf12e0f1dd194967c722339"
+    },
+    {
+     "name": "Économie Matin",
+     "url": "https://www.economiematin.fr/?p=237102"
+    }
+   ],
+   "summary": "L'agence de notation Fitch a conservé, le 30 octobre, la note A+ de la France, mais a abaissé sa perspective de stable à négative. Elle cite une croissance plus faible, une nouvelle dégradation budgétaire, des taux d'emprunt plus élevés et la fragmentation politique. Le ministre de l'Économie, Roland Lescure, y voit la confirmation de la nécessité d'adopter d'ici la fin de l'année un budget ramenant le déficit à 5 %.",
+   "title": "Fitch maintient la note A+ de la France mais passe la perspective à négative",
+   "why": "Une perspective négative annonce une possible dégradation de la note, ce qui peut renchérir le coût de la dette publique et, par ricochet, celui du crédit aux entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "AFP via Boursorama",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/la-bce-maintient-ses-taux-focus-sur-l-apres-lagarde-85fa5968dfdf52496264aebed23b00ce"
+    },
+    {
+     "name": "Banque centrale européenne",
+     "url": "https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/2026/html/ecb.is261029~5c5ffe99e5.fr.html"
+    }
+   ],
+   "summary": "La Banque centrale européenne a maintenu ses taux le 29 octobre, le taux de dépôt restant à 2,5 %, après deux relèvements plus tôt dans l'année. Christine Lagarde a indiqué qu'une hausse avait été débattue et que la direction serait claire si la situation se confirmait. Elle a aussi annoncé qu'elle quitterait la présidence de la BCE le 7 février ; ses successeurs possibles doivent être désignés par les dirigeants de la zone euro d'ici la fin de l'année.",
+   "title": "BCE : taux inchangés, une hausse envisagée en décembre",
+   "why": "Les taux directeurs déterminent le coût du financement des entreprises et le taux d'actualisation utilisé dans les choix d'investissement."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "RFI / AFP via Yahoo",
+     "url": "https://fr.news.yahoo.com/russie-confirme-prendra-part-n%C3%A9gociations-103648054.html"
+    },
+    {
+     "name": "The Times of Israel (Reuters, AFP)",
+     "url": "https://www.timesofisrael.com/liveblog-november-03-2026/"
+    }
+   ],
+   "summary": "Le Kremlin a confirmé qu'une délégation russe, conduite par Vladimir Medinski, participera à des discussions trilatérales avec l'Ukraine et les États-Unis à Abou Dhabi les 10 et 11 novembre. L'émissaire américain Steve Witkoff, qui les a annoncées, évoque les garanties de sécurité, la désescalade et l'humanitaire. Moscou réclame toujours le retrait ukrainien du Donetsk, ce que Kiev refuse. Le même jour, la Russie a annoncé des frappes sur des installations énergétiques ukrainiennes.",
+   "title": "Ukraine : nouvelles négociations prévues à Abou Dhabi les 10 et 11 novembre",
+   "why": "L'évolution du conflit pèse sur les prix de l'énergie en Europe, donc sur l'inflation et les coûts des entreprises."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "The Times of Israel (Reuters, AP)",
+     "url": "https://www.timesofisrael.com/liveblog-november-03-2026/"
+    },
+    {
+     "name": "Prixdubaril.com",
+     "url": "https://prixdubaril.com/news-petrole/75174-les-prix-du-petrole-baissent-avec-les-espoirs-de-desescalade.html"
+    }
+   ],
+   "summary": "Selon le Wall Street Journal, repris par Reuters, les États-Unis ont frappé l'île iranienne de Qeshm, dans le détroit d'Ormuz. Un responsable américain cité par l'AP parle de frappes défensives contre des tirs de missiles sol-air visant des moyens américains. Un haut responsable iranien a indiqué à Reuters qu'un accord pour mettre fin à la guerre restait lointain. Le Qatar joue un rôle d'intermédiaire.",
+   "title": "Iran : frappes américaines sur l'île de Qeshm, détroit d'Ormuz",
+   "why": "Le détroit d'Ormuz est un point de passage clé du pétrole mondial : les tensions y expliquent en grande partie le niveau élevé du baril et de l'inflation énergétique."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/economie-et-social/l-agenda-europeen-quels-sont-les-principaux-evenements-prevus-du-2-au-8-novembre-2026/"
+    }
+   ],
+   "summary": "La Commission européenne doit publier ce mercredi 4 novembre ses rapports annuels sur l'élargissement, avec des feuilles de route pour l'Ukraine, la Moldavie, le Monténégro et l'Albanie. Elle présentera aussi son programme de travail pour 2027. Jeudi, Parlement européen et États membres poursuivent leurs discussions sur l'euro numérique, dont l'émission est envisagée à partir de 2029.",
+   "title": "UE : la Commission présente ses rapports sur l'élargissement",
+   "why": "L'élargissement et l'euro numérique auront des effets sur le marché unique, les paiements et la trésorerie des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111099/biomerieux-rubis-le-journal-de-la-bourse-du-mardi-3-novembre-2026"
+    },
+    {
+     "name": "JKN",
+     "url": "https://news.jkn.co.kr/editions/french/post/1068193"
+    },
+    {
+     "name": "Prixdubaril.com",
+     "url": "https://prixdubaril.com/news-petrole/75174-les-prix-du-petrole-baissent-avec-les-espoirs-de-desescalade.html"
+    }
+   ],
+   "summary": "Le CAC 40 a terminé la séance du 3 novembre à 8 020,31 points (-0,34 %), dans l'attente des élections américaines et sur fond de doutes sur la rentabilité de l'IA. Alstom a perdu 4,8 %, après une chute de 26,1 % la veille liée à un avertissement sur ses résultats. BioMérieux a gagné 4,8 % grâce à un chiffre d'affaires trimestriel de 1,04 milliard d'euros, en hausse de 9,9 %. Le Brent a clôturé à 103,60 dollars, en repli.",
+   "title": "Bourse : le CAC 40 recule de 0,34 %, Alstom poursuit sa chute",
+   "why": "Le cas Alstom illustre l'effet d'un avertissement sur résultats (« profit warning ») : quand marge et trésorerie prévues se dégradent, le marché revalorise brutalement l'entreprise."
+  }
+ ],
+ "lede": "Aux États-Unis, les projections des médias donnent les démocrates vainqueurs des élections de mi-mandat face au camp de Donald Trump. En France, le vote des députés sur les recettes du budget 2027 est reporté, à la veille d'une journée de grève intersyndicale et dans un contexte d'inflation à 3,4 %.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "L'IPC progresse de 3,4 % sur un an (après 3,1 % en septembre). Le 3,8 % correspond à l'indice harmonisé européen (IPCH).",
+   "options": [
+    "2,7 %",
+    "3,1 %",
+    "3,4 %",
+    "3,8 %"
+   ],
+   "q": "Selon l'estimation provisoire de l'Insee, quelle est l'inflation en France sur un an en octobre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Fitch a conservé la note A+ mais a abaissé la perspective de stable à négative, ce qui signale un risque de dégradation future.",
+   "options": [
+    "Note A+ maintenue, perspective négative",
+    "Note abaissée de A+ à A",
+    "Note A+ maintenue, perspective stable",
+    "Note relevée de A+ à AA-"
+   ],
+   "q": "Quelle décision l'agence Fitch a-t-elle prise le 30 octobre sur la dette française ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le commerce extérieur retire 0,6 point au PIB, les exportations chutant de 1,7 %, alors que la consommation des ménages progresse de 0,4 %.",
+   "options": [
+    "La baisse de la consommation des ménages",
+    "Le recul des dépenses publiques",
+    "La forte baisse des stocks",
+    "Le commerce extérieur, avec des exportations en recul"
+   ],
+   "q": "Quel est le principal facteur qui a fait reculer le PIB français au 3e trimestre 2026 ?"
+  }
+ ]
+}

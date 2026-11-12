@@ -1,0 +1,246 @@
+{
+ "date": "2026-11-08",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 6 novembre",
+   "note": "−0,81 % sur la séance, +2,1 % sur la semaine",
+   "source": "BFM Bourse",
+   "value": "8 139 pts"
+  },
+  {
+   "label": "Inflation en France, octobre 2026",
+   "note": "Sur un an, estimation provisoire ; définitif le 13 novembre",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Sur un trimestre, après 0,0 % au 2e trimestre",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Emplois créés aux États-Unis, octobre",
+   "note": "Chômage à 4,1 %, contre 4,2 % en septembre",
+   "source": "MoneyVox / BFM Bourse",
+   "value": "+165 000"
+  },
+  {
+   "label": "Brent, 6 novembre",
+   "note": "Le baril, contrat de janvier, −0,7 %",
+   "source": "BFM Bourse",
+   "value": "97,58 $"
+  },
+  {
+   "label": "Euro/dollar, 6 novembre",
+   "note": "−0,7 % sur la séance",
+   "source": "BFM Bourse",
+   "value": "1,1152 $"
+  },
+  {
+   "label": "Déficit visé de la Sécurité sociale, 2027",
+   "note": "Régimes de base, contre 21,8 Md€ attendus en 2026",
+   "source": "PolitiqueMatin / Sénat",
+   "value": "12,7 Md€"
+  }
+ ],
+ "generatedAt": "2026-11-08T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/dossier-legislatif/plfss2027.html"
+    },
+    {
+     "name": "Banque des Territoires",
+     "url": "https://www.banquedesterritoires.fr/plfss-2027-les-senateurs-sengagent-tenir-le-niveau-de-deficit-prevu-par-le-gouvernement"
+    },
+    {
+     "name": "PolitiqueMatin",
+     "url": "https://www.politiquematin.fr/plfss-2027-senat-transmission-deficit-127-milliards-20261103-0036"
+    }
+   ],
+   "summary": "La discussion générale du PLFSS 2027 s'ouvre au Sénat le 9 novembre, pour un vote solennel prévu le 18 novembre. Le texte arrive dans sa version initiale, l'Assemblée ayant rejeté sa partie recettes le 23 octobre. Il vise un déficit des régimes de base de 12,7 milliards d'euros en 2027. La commission des affaires sociales a rétabli la réforme des retraites, revenant sur la suspension votée l'an dernier.",
+   "title": "Le Sénat commence lundi l'examen du budget de la Sécurité sociale 2027",
+   "why": "Le PLFSS fixe les recettes et dépenses de la protection sociale, un poste majeur des finances publiques ; l'ONDAM et les soldes par branche sont des notions classiques des épreuves de finances publiques."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/05/budget-2027-lassemblee-nationale-rejette-le-texte-a-lunanimite"
+    }
+   ],
+   "summary": "Les députés ont rejeté le 4 novembre la partie recettes du projet de loi de finances par 458 voix contre, aucune pour et 2 abstentions. Le texte initial est transmis au Sénat, qui l'examinera du 20 novembre au 9 décembre. Une commission mixte paritaire suivra ; selon LCP, le gouvernement pourrait ensuite recourir au 49.3, à une loi spéciale ou, après le 17 décembre, aux ordonnances. Matignon estime que le compromis viendra après le passage au Sénat.",
+   "title": "Budget de l'État 2027 : après le rejet unanime, quelles suites ?",
+   "why": "Le délai constitutionnel de 70 jours et les outils de la procédure budgétaire (CMP, 49.3, loi spéciale) sont au cœur du droit des finances publiques."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/10/29/la-bce-maintient-les-taux-a-25-alors-que-lagarde-annonce-un-depart-anticipe"
+    }
+   ],
+   "summary": "Selon l'estimation provisoire de l'Insee, les prix à la consommation augmenteraient de 3,4 % sur un an en octobre et de 0,4 % sur un mois. Le résultat définitif sera publié le 13 novembre. Dans la zone euro, l'inflation atteignait 3,8 % en septembre, près du double de la cible de 2 % de la BCE.",
+   "title": "L'inflation française estimée à 3,4 % sur un an en octobre",
+   "why": "Le niveau d'inflation pèse sur le pouvoir d'achat, les taux d'intérêt et l'indexation des salaires et des contrats, que l'on retrouve en comptabilité et en contrôle de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Presse Agence",
+     "url": "https://presseagence.fr/paris-economie-linsee-devoile-son-calendrier-des-indicateurs-cles-pour-novembre/"
+    }
+   ],
+   "summary": "L'Insee a estimé le recul du PIB français à 0,1 % au 3e trimestre 2026, après une stagnation au 2e trimestre. Le taux de chômage du 3e trimestre sera publié le 10 novembre ; il était de 8,3 % au 2e trimestre, en hausse de 0,2 point. Le PIB révisé est attendu le 27 novembre.",
+   "title": "PIB en recul au 3e trimestre, chômage du trimestre publié mardi",
+   "why": "Croissance et chômage conditionnent les recettes fiscales et le déficit, donc les arbitrages budgétaires en cours au Parlement."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111151/le-cac-40-victime-de-onde-de-choc-sur-la-bulle-ia-le-journal-de-la-bourse-du-vendredi-6-novembre"
+    },
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-alors-que-le-nasdaq-a-accuse-sa-pire-seance-en-19-mois-le-cac-40-chute-de-18-rattrape-par-le-climat-d-aversion-au-risque-1173337.html"
+    }
+   ],
+   "summary": "L'économie américaine a créé 165 000 postes en octobre, alors que le consensus se situait autour de 60 000. Le taux de chômage est passé de 4,2 % à 4,1 %. Les salaires ont progressé de 0,4 % sur le mois et de 3,1 % sur un an. Selon les analystes cités, ces chiffres réduisent la marge de la Fed pour baisser ses taux.",
+   "title": "États-Unis : 165 000 emplois créés en octobre, au-dessus des attentes",
+   "why": "Le marché du travail américain guide la politique de la Fed, qui influence le dollar, les taux mondiaux et la valorisation des actifs."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Reuters via The Moscow Times",
+     "url": "https://www.themoscowtimes.com/2026/11/07/russia-pounds-power-facilities-around-kyiv-damages-major-bridge-a94198"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/11/07/russian-strikes-on-kyiv-injure-five-and-damage-bridge-and-energy-facilities"
+    }
+   ],
+   "summary": "Dans la nuit du 6 au 7 novembre, la Russie a visé le réseau énergétique autour de Kyiv avec des missiles et des drones ; le pont Pivnichnyi a été endommagé et fermé. L'armée de l'air ukrainienne fait état de 36 missiles balistiques, dont 4 interceptés, et de 149 drones abattus sur 172. Les autorités recensent au moins 2 morts dans le pays. Moscou dit avoir visé des cibles militaro-industrielles et énergétiques.",
+   "title": "Ukraine : frappes russes sur les installations énergétiques autour de Kyiv",
+   "why": "Les attaques sur l'énergie pèsent sur l'économie ukrainienne et sur le coût de l'aide européenne, sujet récurrent des budgets de l'UE."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "The Times of Israel",
+     "url": "https://www.timesofisrael.com/liveblog-november-07-2026/"
+    }
+   ],
+   "summary": "Le président américain a indiqué le 7 novembre que les États-Unis avaient mené des frappes limitées contre un système de défense antiaérienne iranien. Les médias d'État iraniens ont signalé deux explosions sur l'île de Qeshm, dans le détroit d'Ormuz. Le Qatar affirme poursuivre sa médiation entre Washington et Téhéran.",
+   "title": "Iran : Donald Trump annonce de nouvelles frappes limitées",
+   "why": "Le détroit d'Ormuz est un point de passage clé du pétrole ; les tensions dans la zone se répercutent sur le prix de l'énergie et sur l'inflation."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "NBC News",
+     "url": "https://www.nbcwashington.com/elections/election-day-after-2026-midterms-congress-results-live-updates/4177248/"
+    },
+    {
+     "name": "CBS News",
+     "url": "https://www.cbsnews.com/live-updates/house-election-results-2026/"
+    }
+   ],
+   "summary": "Après les élections de mi-mandat du 3 novembre, les démocrates ont obtenu la majorité à la Chambre des représentants et au Sénat, selon les projections des grands médias américains. Au Sénat, ils ont gagné au moins sept sièges, dont le Texas et l'Ohio. Le président républicain de la Chambre, Mike Johnson, ne briguera pas la direction de la minorité.",
+   "title": "États-Unis : les démocrates contrôlent les deux chambres du Congrès",
+   "why": "Un Congrès d'opposition peut bloquer des textes budgétaires et fiscaux du président, avec des effets sur les marchés et le dollar."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html"
+    },
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111151/le-cac-40-victime-de-onde-de-choc-sur-la-bulle-ia-le-journal-de-la-bourse-du-vendredi-6-novembre"
+    }
+   ],
+   "summary": "L'indice parisien a terminé vendredi à 8 139 points, après avoir perdu jusqu'à 1,9 % en séance, mais gagne 2,1 % sur la semaine. La veille, le Nasdaq avait chuté de 5,5 % et l'indice des semi-conducteurs de plus de 12 %. Les analystes cités évoquent la crainte d'une réglementation plus stricte de l'IA après la victoire démocrate. Wall Street a rebondi vendredi, portée par Nvidia et AMD.",
+   "title": "Le CAC 40 recule de 0,81 %, rattrapé par les craintes sur l'IA",
+   "why": "Les valorisations très élevées des valeurs liées à l'IA illustrent le risque de correction des marchés, utile pour comprendre l'évaluation d'entreprise et le coût du capital."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111151/le-cac-40-victime-de-onde-de-choc-sur-la-bulle-ia-le-journal-de-la-bourse-du-vendredi-6-novembre"
+    },
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-malgre-des-chiffres-de-l-emploi-solides-et-un-sursaut-du-nasdaq-le-cac-40-finit-la-semaine-en-baisse-1173355.html"
+    }
+   ],
+   "summary": "Teleperformance a reculé de 15,3 %, à 68,44 euros, après une croissance jugée décevante et des prévisions revues à la baisse. Air France-KLM a gagné 7,1 % après un relèvement de recommandation de Barclays, au lendemain d'une hausse de 12,1 %. Capgemini a cédé 2,8 % et Euronext 2,5 %.",
+   "title": "Teleperformance chute de 15 %, Air France-KLM bondit de 7 %",
+   "why": "Ces écarts montrent comment le marché réagit aux révisions de prévisions et aux recommandations d'analystes, deux éléments clés de la communication financière."
+  }
+ ],
+ "lede": "Le Sénat ouvre lundi l'examen du budget de la Sécurité sociale, après le rejet à l'unanimité du budget de l'État par les députés. Sur les marchés, le CAC 40 a fini vendredi en baisse sous l'effet des craintes autour de l'IA, malgré un rapport sur l'emploi américain supérieur aux attentes.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Le texte vise 12,7 Md€ en 2027, contre 21,8 Md€ attendus en 2026 ; la commission sénatoriale s'est engagée à tenir ce niveau.",
+   "options": [
+    "8,4 milliards d'euros",
+    "21,8 milliards d'euros",
+    "12,7 milliards d'euros",
+    "15,2 milliards d'euros"
+   ],
+   "q": "Quel déficit des régimes de base de la Sécurité sociale le PLFSS 2027 vise-t-il ?"
+  },
+  {
+   "answer": 0,
+   "explain": "165 000 postes ont été créés, bien au-delà d'un consensus autour de 60 000, et le chômage est passé à 4,1 %.",
+   "options": [
+    "165 000",
+    "65 000",
+    "210 000",
+    "118 000"
+   ],
+   "q": "Combien d'emplois l'économie américaine a-t-elle créés en octobre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Passé le délai constitutionnel de 70 jours, le budget peut être mis en œuvre par ordonnances, selon l'article 47 de la Constitution.",
+   "options": [
+    "Le référendum",
+    "Le vote bloqué",
+    "La motion de censure",
+    "Les ordonnances"
+   ],
+   "q": "Après le 17 décembre, quel outil le gouvernement peut-il utiliser si le budget n'est pas adopté ?"
+  }
+ ]
+}

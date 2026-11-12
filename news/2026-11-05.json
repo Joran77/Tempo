@@ -1,0 +1,234 @@
+{
+ "date": "2026-11-05",
+ "figures": [
+  {
+   "label": "Inflation zone euro, octobre 2026",
+   "note": "Estimation rapide, après 3,8 % en septembre ; énergie +20,8 %",
+   "source": "Eurostat",
+   "value": "4,0 %"
+  },
+  {
+   "label": "Inflation France (IPC), octobre 2026",
+   "note": "Sur un an, estimation provisoire",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Sur un trimestre, après 0,0 % au 2e trimestre",
+   "source": "Insee",
+   "value": "-0,1 %"
+  },
+  {
+   "label": "Taux de chômage BIT, 2e trimestre 2026",
+   "note": "+0,2 point ; prochain chiffre le 10 novembre",
+   "source": "Insee",
+   "value": "8,3 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre ; prochaine réunion les 16 et 17 décembre",
+   "source": "BCE",
+   "value": "2,5 %"
+  },
+  {
+   "label": "CAC 40, clôture du 4 novembre",
+   "note": "+1,96 % sur la séance",
+   "source": "Moneyvox",
+   "value": "8 178 pts"
+  },
+  {
+   "label": "Baril de Brent, 5 novembre au matin",
+   "note": "Environ -9 % mercredi, sous 100 $ pour la première fois depuis début octobre",
+   "source": "L'Energeek",
+   "value": "93,83 $"
+  }
+ ],
+ "generatedAt": "2026-11-05T06:43:55+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "PolitiqueMatin",
+     "url": "https://www.politiquematin.fr/budget-2027-rejet-recettes-assemblee-458-voix-4-novembre"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    }
+   ],
+   "summary": "Mercredi 4 novembre, les députés ont rejeté la première partie du projet de loi de finances pour 2027, consacrée aux recettes, sans aucune voix pour. Les débats avaient commencé le 13 octobre. Des majorités différentes se sont formées sur les amendements, mais aucune pour soutenir le texte final. La partie dépenses n'est donc pas examinée à l'Assemblée et le texte initial du gouvernement est transmis au Sénat.",
+   "title": "Budget 2027 : l'Assemblée rejette la partie recettes par 458 voix contre 0",
+   "why": "Un rejet de la première partie interrompt la lecture du budget à l'Assemblée : c'est un cas d'école de procédure budgétaire (LOLF, article 47 de la Constitution) utile pour comprendre comment se fixent impôts et dépenses de l'État."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    },
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/plfss-2027-calendrier-examen-date-par-date"
+    }
+   ],
+   "summary": "Selon le calendrier publié par Public Sénat, le Sénat examine le budget de la Sécurité sociale (PLFSS) à partir de la mi-novembre, puis le budget de l'État en séance du 20 novembre au 8 décembre, avec un vote solennel le 9 décembre. Une commission mixte paritaire est prévue mi-décembre pour le budget de l'État. Si le Parlement ne s'est pas prononcé dans les 70 jours, la Constitution permet de mettre le budget en vigueur par ordonnance, délai qui expirerait le 17 décembre ; aucun gouvernement de la Ve République ne l'a jamais fait. Le PLFSS avait lui-même été rejeté à l'Assemblée le 23 octobre.",
+   "title": "Budget et Sécurité sociale : le Sénat prend le relais, l'échéance du 17 décembre en vue",
+   "why": "Les options restantes (commission mixte paritaire, 49.3 en nouvelle lecture, ordonnances, loi spéciale) déterminent si la France aura un budget au 1er janvier, avec des effets directs sur la fiscalité des entreprises et des ménages."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "Economie Matin",
+     "url": "https://www.economiematin.fr/coupes-budgetaires-54-milliards-pouvoir-achat-2026"
+    }
+   ],
+   "summary": "La CFDT, la CGT, FO, l'Unsa et la FSU appellent salariés du public et du privé, retraités et jeunes à la grève ce 5 novembre. Les syndicats demandent notamment des hausses de salaires et de pensions, le dégel du point d'indice et une réforme fiscale. Ils contestent les économies prévues par le gouvernement de Sébastien Lecornu, évaluées dans leur appel à 54 milliards d'euros.",
+   "title": "Journée de grève interprofessionnelle ce jeudi contre le projet de budget 2027",
+   "why": "Le débat oppose deux leviers classiques de finances publiques, baisse des dépenses ou hausse des recettes, et peut peser sur les arbitrages au Sénat."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Economie Matin",
+     "url": "https://www.economiematin.fr/inflation-zone-euro-octobre-2026-eurostat-energie-4-pourcent-0511"
+    },
+    {
+     "name": "France Épargne",
+     "url": "https://www.france-epargne.fr/news/zone-euro-lenergie-a-20-8-pousse-linflation-a-4-en-octobre"
+    }
+   ],
+   "summary": "Selon l'estimation rapide d'Eurostat publiée le 4 novembre, les prix ont augmenté de 4,0 % sur un an dans la zone euro en octobre, après 3,8 % en septembre. L'énergie progresse de 20,8 %, les services de 3,3 % et l'alimentation de 1,6 %. L'inflation sous-jacente, hors énergie et alimentation, reste stable à 2,5 %. En France, l'indice harmonisé s'établit à 3,8 %.",
+   "title": "Zone euro : l'inflation atteint 4,0 % en octobre, tirée par l'énergie",
+   "why": "L'écart entre inflation globale et sous-jacente montre un choc d'offre énergétique : c'est la donnée clé pour anticiper la politique de la BCE et les coûts des entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    }
+   ],
+   "summary": "Le tableau de bord de la conjoncture de l'Insee, mis à jour le 30 octobre, indique un recul du PIB de 0,1 % au troisième trimestre, après une stagnation au deuxième. Les prix à la consommation augmenteraient de 3,4 % sur un an en octobre, selon l'estimation provisoire. L'emploi salarié privé baisse de 0,1 % sur le trimestre et la confiance des ménages perd 5 points, à 80. Le taux de chômage du 2e trimestre était de 8,3 % ; le chiffre du 3e trimestre est attendu le 10 novembre.",
+   "title": "Insee : le PIB recule de 0,1 % au 3e trimestre, l'inflation à 3,4 % en octobre",
+   "why": "Une croissance négative combinée à une inflation élevée complique à la fois les prévisions des entreprises et l'équilibre du budget de l'État, dont les recettes dépendent de l'activité."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/10/29/ecb-holds-rates-at-25-as-lagarde-announces-early-exit-with-inflation-near-double-the-targe"
+    },
+    {
+     "name": "France Épargne",
+     "url": "https://www.france-epargne.fr/news/zone-euro-lenergie-a-20-8-pousse-linflation-a-4-en-octobre"
+    }
+   ],
+   "summary": "Lors de sa réunion du 29 octobre, la Banque centrale européenne a laissé son taux de dépôt à 2,5 %, après deux hausses cette année, la dernière en septembre. Christine Lagarde a annoncé quitter la présidence le 7 février 2027, environ neuf mois avant la fin de son mandat. Plusieurs noms circulent pour sa succession, dont l'Espagnol Pablo Hernández de Cos et le Néerlandais Klaas Knot. La prochaine réunion de politique monétaire est prévue les 16 et 17 décembre.",
+   "title": "BCE : taux de dépôt maintenu à 2,5 %, Christine Lagarde partira le 7 février 2027",
+   "why": "Le taux de dépôt guide le coût du crédit pour les entreprises et les ménages ; l'inflation à 4 % publiée cette semaine relance la question d'une nouvelle hausse en décembre."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Forbes",
+     "url": "https://www.forbes.com/sites/saradorn/2026/11/04/midterm-election-results-live-updates-democrats-sweep-house-and-senate-some-races-still-too-close-to-call/"
+    },
+    {
+     "name": "Moneyvox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111121/les-banques-profitent-du-bond-du-cac-40-le-journal-de-la-bourse-du-mercredi-4-novembre-2026"
+    }
+   ],
+   "summary": "Les démocrates ont obtenu la majorité dans les deux chambres du Congrès lors des élections du 3 novembre, selon les projections reprises par plusieurs médias. Au Sénat, le décompte provisoire publié par Forbes donne 54 sièges aux démocrates contre 44 aux républicains, avec deux courses encore non tranchées, au Mississippi et en Alaska. Les nouveaux élus siégeront à partir de janvier. Donald Trump conserve la présidence jusqu'en 2029 mais devra composer avec un Congrès d'opposition.",
+   "title": "États-Unis : les démocrates reprennent la Chambre et le Sénat aux élections de mi-mandat",
+   "why": "Un Congrès opposé au président peut bloquer lois et budgets fédéraux : les marchés ont aussitôt réagi, notamment sur les taux obligataires et le pétrole."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Al Jazeera (avec Reuters et Anadolu)",
+     "url": "https://www.aljazeera.com/news/2026/11/4/iran-says-us-reply-to-hormuz-plan-unconvincing-trump-confirms-strikes"
+    },
+    {
+     "name": "CBS News",
+     "url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
+    }
+   ],
+   "summary": "Téhéran estime que la réponse des États-Unis à ses sept conditions pour rouvrir le détroit d'Ormuz n'est pas convaincante ; ces conditions incluent la levée des sanctions et la fin du blocus naval américain. Donald Trump a confirmé une frappe américaine contre une installation antiaérienne sur l'île iranienne de Qeshm, présentée par des responsables américains comme défensive. Le Qatar, médiateur, affirme que les deux parties restent engagées dans la négociation. Le détroit reste fortement restreint, avec de nouvelles attaques signalées contre des navires.",
+   "title": "Ormuz : l'Iran juge insuffisante la réponse américaine, Washington confirme une frappe",
+   "why": "Une grande part du pétrole et du gaz mondiaux transite par Ormuz : l'issue des négociations pèse directement sur les prix de l'énergie et donc sur l'inflation européenne."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Moneyvox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111121/les-banques-profitent-du-bond-du-cac-40-le-journal-de-la-bourse-du-mercredi-4-novembre-2026"
+    }
+   ],
+   "summary": "La Bourse de Paris a progressé mercredi, aidée par la baisse des taux obligataires après les élections américaines. BNP Paribas a pris 4,7 %, Société Générale 3,8 % et Crédit Agricole 3,3 %, malgré le passage la veille par Fitch des perspectives de BNP Paribas et du Crédit Agricole de stable à négative, avec une note maintenue à AA-. Kering a gagné 6,36 %, tandis que Thales a cédé 2,36 %, comme d'autres valeurs européennes de la défense. À Wall Street, le S&P 500 a pris 1,3 %.",
+   "title": "Le CAC 40 gagne 1,96 % à 8 178 points, porté par les banques",
+   "why": "La réaction des banques et de la défense illustre comment taux d'intérêt et contexte géopolitique se répercutent sur la valorisation des entreprises cotées."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "L'Energeek",
+     "url": "https://lenergeek.com/2026/11/05/brent-wti-chute-stocks-petrole-ormuz-2026/"
+    },
+    {
+     "name": "GlobalOilShock",
+     "url": "https://globaloilshock.com/en/news/oil-price-week-45-2026/"
+    }
+   ],
+   "summary": "Le baril de Brent a perdu près de 9 % mercredi et s'échangeait à 93,83 dollars jeudi matin, sous les 100 dollars pour la première fois depuis début octobre. Il avait clôturé à 113,43 dollars le 30 octobre. Les opérateurs misent sur une désescalade diplomatique après les élections américaines et les discussions sur Ormuz. Les analystes rappellent toutefois que la circulation dans le détroit reste fortement restreinte et que le gaz européen (TTF) reste bien au-dessus de son niveau d'avant-guerre.",
+   "title": "Pétrole : le Brent repasse sous 100 dollars après une chute d'environ 9 %",
+   "why": "Le prix de l'énergie est un coût majeur pour les entreprises et le premier moteur de l'inflation actuelle : sa baisse, si elle dure, soulagerait marges et pouvoir d'achat."
+  }
+ ],
+ "lede": "L'Assemblée nationale a rejeté sans une seule voix favorable la partie recettes du budget 2027, qui part au Sénat, le jour où l'inflation de la zone euro atteint 4,0 %. Aux États-Unis, les démocrates reprennent le Congrès ; la Bourse de Paris et le pétrole réagissent fortement.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Aucun député n'a voté pour le texte amendé : 458 voix contre. Le texte initial du gouvernement est transmis au Sénat.",
+   "options": [
+    "312 voix contre, 146 pour",
+    "289 voix contre, 170 pour",
+    "458 voix contre, 0 pour",
+    "401 voix contre, 52 pour"
+   ],
+   "q": "Quel a été le résultat du vote de l'Assemblée sur la partie recettes du budget 2027, le 4 novembre ?"
+  },
+  {
+   "answer": 1,
+   "explain": "L'inflation atteint 4,0 %, après 3,8 % en septembre, sous l'effet de l'énergie (+20,8 %). 3,4 % est l'IPC français d'octobre.",
+   "options": [
+    "3,4 %",
+    "4,0 %",
+    "3,8 %",
+    "4,6 %"
+   ],
+   "q": "Quel est le taux d'inflation annuel de la zone euro en octobre 2026, selon l'estimation rapide d'Eurostat ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Elle partira le 7 février 2027, environ neuf mois avant la fin de son mandat de huit ans.",
+   "options": [
+    "17 décembre 2026",
+    "31 octobre 2027",
+    "1er janvier 2027",
+    "7 février 2027"
+   ],
+   "q": "À quelle date Christine Lagarde a-t-elle annoncé qu'elle quitterait la présidence de la BCE ?"
+  }
+ ]
+}
