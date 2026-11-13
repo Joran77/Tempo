@@ -1,0 +1,288 @@
+{
+ "date": "2026-11-13",
+ "generatedAt": "2026-11-13T06:55:00+01:00",
+ "lede": "Le Sénat poursuit l'examen du budget de la Sécurité sociale tandis que l'Insee publie ce matin l'inflation définitive d'octobre, estimée à 3,4 %. À l'international, Nvidia perd son fondateur Jensen Huang, l'UE prépare de nouvelles sanctions contre la Russie et le Brent remonte près de 96 dollars.",
+ "figures": [
+  {
+   "label": "Taux de chômage BIT, 3e trimestre 2026",
+   "note": "−0,1 point sur le trimestre, +0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Inflation sur un an, octobre 2026 (provisoire)",
+   "note": "Chiffre définitif publié ce matin à 8 h 45",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Smic net mensuel au 1er décembre 2026",
+   "note": "+1,6 %, contre 1 477,93 € aujourd'hui",
+   "source": "Gouvernement / Public Sénat",
+   "value": "1 502 €"
+  },
+  {
+   "label": "CAC 40, clôture du 12 novembre",
+   "note": "+0,34 % sur la séance",
+   "source": "Investing.com / Reuters",
+   "value": "8 361,36 pts"
+  },
+  {
+   "label": "Brent, clôture du 12 novembre",
+   "note": "+3,3 % sur la journée",
+   "source": "Investing.com",
+   "value": "95,8 $"
+  },
+  {
+   "label": "Euro / dollar, 12 novembre",
+   "note": "Plus bas niveau depuis environ six mois",
+   "source": "Macrotrends / Wise",
+   "value": "1,11 $"
+  }
+ ],
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Politique Matin",
+     "url": "https://www.politiquematin.fr/senat-vote-article-7-plfss-2027-cotisations-patronales-12-novembre-2026"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-financement-de-la-securite-sociale-pour-2027.html"
+    },
+    {
+     "name": "Legiwatch",
+     "url": "https://www.legiwatch.fr/actualites/financement-securite-sociale-2027-senat-adopte-2026-11-09/"
+    }
+   ],
+   "summary": "Saisis du texte initial du gouvernement après son rejet par l'Assemblée le 23 octobre, les sénateurs ont adopté le 12 novembre l'article 7, qui porte notamment sur les allègements de cotisations patronales. Le Sénat avait déjà voté la partie recettes le 9 novembre par 217 voix contre 127. Le texte vise à ramener le déficit de la Sécurité sociale à 12,7 milliards d'euros en 2027, contre 21,8 milliards en 2026.",
+   "title": "Budget de la Sécu 2027 : le Sénat avance, vote solennel prévu le 18 novembre",
+   "why": "Les allègements de cotisations patronales pèsent directement sur le coût du travail et donc sur les charges sociales que l'on comptabilise en paie."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Cluster17",
+     "url": "https://cluster17.com/sondage-exclusif-pour-politico-presidentielle-2027-le-bloc-central-toujours-en-quete-dun-candidat/"
+    },
+    {
+     "name": "CNews",
+     "url": "https://www.cnews.fr/france/2026-11-11/presidentielle-2027-christine-lagarde-obtiendrait-14-des-voix-au-premier-tour-si"
+    }
+   ],
+   "summary": "Selon une enquête Cluster17 pour Politico réalisée les 9 et 10 novembre auprès de 1 164 personnes, Christine Lagarde recueillerait 14 % des intentions de vote au premier tour, contre 13,5 % pour Édouard Philippe et 11 % pour Gabriel Attal, dans des configurations comparables. L'écart entre les deux premiers reste inférieur à la marge d'erreur. Marine Le Pen et Jean-Luc Mélenchon restent, selon cette enquête, en position de se qualifier pour le second tour.",
+   "title": "Présidentielle 2027 : Christine Lagarde testée pour la première fois dans un sondage",
+   "why": "Un sondage est une photographie à un instant donné, avec une marge d'erreur : savoir le lire est utile pour interpréter les réactions des marchés au contexte politique."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/fin-de-lemploi-a-vie-des-fonctionnaires-hausse-de-la-tva-et-du-salaire-net-ric-suppression-du-departement-et-du-49-3-le-projet-de-bruno-le-maire-non-candidat-a-la-presidentielle"
+    },
+    {
+     "name": "Politique Matin",
+     "url": "https://www.politiquematin.fr/senat-vote-article-7-plfss-2027-cotisations-patronales-12-novembre-2026"
+    }
+   ],
+   "summary": "L'ancien ministre de l'Économie, qui ne se déclare pas candidat, a présenté le 12 novembre un projet comprenant notamment une baisse des cotisations salariales financée en partie par une hausse de la TVA, des changements sur les retraites et un recours accru au référendum. Public Sénat relève que le projet prévoit aussi la fin de l'emploi à vie dans la fonction publique et la suppression du 49.3.",
+   "title": "Bruno Le Maire présente une cinquantaine de propositions pour 2027",
+   "why": "Basculer des cotisations vers la TVA modifie le salaire net et le prix TTC : c'est un mécanisme fiscal classique à connaître en gestion et en fiscalité."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/pouvoir-dachat-sebastien-lecornu-annonce-une-hausse-anticipee-du-smic-a-1-502-euros-des-le-1er-decembre"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/smic-a-1502-euros-prime-carburant-les-annonces-du-gouvernement-sur-le-pouvoir-d-achat"
+    }
+   ],
+   "summary": "À l'issue de la conférence sociale du 9 novembre, le gouvernement a annoncé une hausse anticipée de 1,6 % du Smic au 1er décembre, soit environ 24 euros net de plus par mois. Il propose aussi de relever de 7 500 à 10 000 euros le plafond d'exonération d'impôt des heures supplémentaires et d'élargir la prime de partage de la valeur. La CFDT réclamait 100 euros de plus et la CGT environ 150 euros ; Sébastien Lecornu reçoit ce vendredi les syndicats de la fonction publique.",
+   "title": "Smic à 1 502 euros net dès le 1er décembre et heures sup défiscalisées jusqu'à 10 000 €",
+   "why": "Le nouveau taux horaire s'appliquera dès la paie de décembre : un point concret à vérifier sur les bulletins et dans les grilles des branches."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://insee.fr/fr/statistiques/9118603"
+    },
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-10-france-le-taux-de-chomage-se-replie-legerement-au-3e-trimestre.html"
+    }
+   ],
+   "summary": "Selon l'Insee, le taux de chômage au sens du BIT s'établit à 8,2 % de la population active au troisième trimestre 2026, en baisse de 0,1 point sur le trimestre mais en hausse de 0,4 point sur un an. L'Insee décrit une situation quasi stable, avec une marge d'incertitude de plus ou moins 0,3 point. Le halo autour du chômage concerne environ 1,9 million de personnes.",
+   "title": "Chômage : léger repli à 8,2 % au troisième trimestre",
+   "why": "Le chômage BIT (enquête Insee) diffère des inscrits à France Travail : une distinction classique en économie générale et dans les épreuves de type Score IAE Message."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/fichier/version-html/9107965/IR266_IPCprov_oct26.pdf"
+    },
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-10-30-france-linflation-en-rythme-annuel-accelere-a-34-en-octobre.html"
+    }
+   ],
+   "summary": "L'estimation provisoire publiée le 30 octobre plaçait la hausse des prix à 3,4 % sur un an en octobre, après 3,1 % en septembre, portée par l'énergie (+24,1 % sur un an). L'indice harmonisé européen (IPCH) atteindrait 3,8 %. Les résultats définitifs sont attendus ce vendredi à 8 h 45.",
+   "title": "Inflation : l'Insee publie ce matin le chiffre définitif d'octobre",
+   "why": "L'inflation sert à revaloriser le Smic, les loyers et le taux du Livret A ; seuls les indices définitifs peuvent être utilisés pour les revalorisations contractuelles."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "BCE",
+     "url": "https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/2026/html/ecb.is261029~5c5ffe99e5.fr.html"
+    },
+    {
+     "name": "Meilleurtaux Placement",
+     "url": "https://placement.meilleurtaux.com/placement-financier/actualites/2026-novembre/reunion-bce-29-octobre-ce-que-decision-change-marches-epargne.html"
+    }
+   ],
+   "summary": "Lors de sa réunion du 29 octobre, la BCE a laissé ses trois taux directeurs inchangés, le taux de la facilité de dépôt restant à 2,5 %, après une hausse de 25 points de base en septembre. Christine Lagarde a souligné que la hausse des prix de l'énergie fait peser un risque haussier sur l'inflation et baissier sur la croissance. Plusieurs analyses de marché évoquent la possibilité d'une nouvelle hausse en décembre.",
+   "title": "Zone euro : la BCE face à une inflation qui accélère",
+   "why": "Le niveau des taux directeurs influence le coût du crédit des entreprises et l'actualisation des flux futurs, au cœur de la finance d'entreprise."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/europe/20261111-ukraine-russie-un-%C3%A9change-massif-de-prisonniers-act%C3%A9-apr%C3%A8s-deux-jours-de-pourparlers"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/11/11/abu-dhabi-peace-talks-end-with-prisoner-exchange-agreement-as-us-envoys-prepare-to-meet-pu"
+    }
+   ],
+   "summary": "À l'issue de deux jours de pourparlers sous médiation américaine à Abou Dhabi, Moscou et Kiev se sont entendus sur le principe d'un important échange de prisonniers, sans avancée sur un cessez-le-feu ou les questions territoriales. Volodymyr Zelensky avait évoqué 1 000, voire 1 500 prisonniers de chaque côté. Les émissaires américains Steve Witkoff et Jared Kushner devaient rencontrer Vladimir Poutine à Moscou jeudi, puis Volodymyr Zelensky à Dublin.",
+   "title": "Ukraine-Russie : accord sur un vaste échange de prisonniers après Abou Dhabi",
+   "why": "L'évolution du conflit influence les prix de l'énergie et le climat d'investissement en Europe."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Global Banking & Finance (Reuters)",
+     "url": "https://www.globalbankingandfinance.com/eu-approve-sanctions-russia-monday-france/"
+    },
+    {
+     "name": "Report.az",
+     "url": "https://report.az/en/other-countries/eu-to-sanction-150-more-russian-entities-and-50-banks-france-says"
+    }
+   ],
+   "summary": "Le ministre délégué aux Affaires européennes, Benjamin Haddad, a indiqué sur LCI que l'Union européenne approuverait lundi un nouveau train de sanctions visant 150 entités supplémentaires, dont 50 banques, la France ayant proposé la majorité des ajouts. Selon Reuters, les ambassadeurs de l'UE s'étaient entendus mercredi. Benjamin Haddad a aussi condamné l'interdiction d'entrée en Russie prononcée contre deux journalistes et deux députés français.",
+   "title": "L'UE doit adopter lundi de nouvelles sanctions visant 150 entités russes",
+   "why": "Les sanctions financières obligent les banques européennes à renforcer leurs contrôles de conformité sur les flux et les contreparties."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/11/11/oil-markets-rise-as-investors-monitor-shipping-disruption-in-the-strait-of-hormuz"
+    },
+    {
+     "name": "The Nation",
+     "url": "https://www.nationthailand.com/news/world/40073442"
+    },
+    {
+     "name": "Investing.com",
+     "url": "https://www.investing.com/commodities/brent-oil-historical-data"
+    }
+   ],
+   "summary": "Les perturbations du trafic maritime dans le détroit d'Ormuz se poursuivent, l'armée iranienne ayant fait état de pétroliers touchés par des explosions ou des mines. Le Brent a gagné environ 3,3 % jeudi pour clôturer près de 95,8 dollars le baril, après un plus bas de dix semaines en début de semaine. La hausse de la production saoudienne et des stocks américains a limité le mouvement.",
+   "title": "Détroit d'Ormuz : nouveaux incidents sur des pétroliers, le Brent rebondit",
+   "why": "Le prix du pétrole pèse sur l'inflation française, dont l'énergie est le premier moteur actuellement."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Al Jazeera / Reuters",
+     "url": "https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress"
+    },
+    {
+     "name": "CNBC",
+     "url": "https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html"
+    },
+    {
+     "name": "Next",
+     "url": "https://next.ink/266926/nvidia-se-prepare-a-pousser-son-ceo-jensen-huang-vers-la-sortie/"
+    }
+   ],
+   "summary": "Le cofondateur de Nvidia a démissionné jeudi de ses fonctions de directeur général et de son siège au conseil d'administration, après plusieurs jours de révélations sur sa vie privée et des soupçons de liens avec une personne présentée comme une espionne chinoise. Le groupe n'a pas donné de motif officiel. La directrice financière Colette Kress assure l'intérim ; l'action a clôturé en baisse de 4,34 %.",
+   "title": "Nvidia : Jensen Huang quitte la direction, Colette Kress nommée à l'intérim",
+   "why": "Un cas d'école de risque de gouvernance : la dépendance d'une entreprise à son dirigeant peut peser sur sa valorisation boursière."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Investing.com (Reuters)",
+     "url": "https://www.investing.com/news/stock-market-news/france-stocks-higher-at-close-of-trade-cac-40-up-034-5022817"
+    },
+    {
+     "name": "Trading Economics",
+     "url": "https://tradingeconomics.com/france/stock-market"
+    },
+    {
+     "name": "Macrotrends",
+     "url": "https://www.macrotrends.net/2548/euro-dollar-exchange-rate-historical-chart"
+    }
+   ],
+   "summary": "Le CAC 40 a terminé jeudi en hausse de 0,34 % à 8 361,36 points, son plus haut niveau de clôture depuis fin août, Capgemini signant la meilleure performance de l'indice. De son côté, l'euro a reculé vers 1,11 dollar, son plus bas niveau depuis environ six mois, le dollar étant soutenu par des anticipations de resserrement de la Réserve fédérale.",
+   "title": "Bourse de Paris : quatrième séance de hausse pour le CAC 40",
+   "why": "Un euro plus faible renchérit les importations payées en dollars, comme l'énergie, mais favorise les exportateurs de la zone euro."
+  }
+ ],
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Le gouvernement a annoncé une hausse anticipée de 1,6 %, qui porte le Smic de 1 477,93 € à environ 1 502 € net, soit près de 24 € de plus par mois.",
+   "options": [
+    "1 477 €",
+    "1 502 €",
+    "1 525 €",
+    "1 550 €"
+   ],
+   "q": "À quel montant net mensuel le Smic sera-t-il porté au 1er décembre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le taux s'établit à 8,2 %, en recul de 0,1 point sur le trimestre mais en hausse de 0,4 point sur un an.",
+   "options": [
+    "7,9 %",
+    "8,5 %",
+    "8,0 %",
+    "8,2 %"
+   ],
+   "q": "Quel est le taux de chômage au sens du BIT au 3e trimestre 2026, selon l'Insee ?"
+  },
+  {
+   "answer": 2,
+   "explain": "La directrice financière Colette Kress, en poste depuis 2013, a été nommée directrice générale par intérim pendant la recherche d'un successeur.",
+   "options": [
+    "Lisa Su",
+    "Tim Cook",
+    "Colette Kress",
+    "Ian Buck"
+   ],
+   "q": "Qui assure la direction de Nvidia par intérim après le départ de Jensen Huang ?"
+  }
+ ]
+}

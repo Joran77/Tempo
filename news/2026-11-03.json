@@ -1,5 +1,7 @@
 {
  "date": "2026-11-03",
+ "generatedAt": "2026-11-03T14:20:00+01:00",
+ "lede": "Les députés doivent se prononcer sur la partie recettes du budget 2027, sans majorité pour le gouvernement Lecornu, alors que l'inflation française monte à 3,4 % sous l'effet de l'énergie. Aux États-Unis, c'est le jour des élections de mi-mandat, et le pétrole recule sur l'espoir de négociations avec l'Iran.",
  "figures": [
   {
    "label": "Inflation France (oct., provisoire)",
@@ -44,7 +46,6 @@
    "value": "8 047,69"
   }
  ],
- "generatedAt": "2026-11-03T14:20:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -191,7 +192,6 @@
    "why": "Les marchés européens restent très sensibles au prix de l'énergie, qui pèse sur les coûts des entreprises."
   }
  ],
- "lede": "Les députés doivent se prononcer sur la partie recettes du budget 2027, sans majorité pour le gouvernement Lecornu, alors que l'inflation française monte à 3,4 % sous l'effet de l'énergie. Aux États-Unis, c'est le jour des élections de mi-mandat, et le pétrole recule sur l'espoir de négociations avec l'Iran.",
  "quiz": [
   {
    "answer": 1,

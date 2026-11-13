@@ -1,5 +1,7 @@
 {
  "date": "2026-11-08",
+ "generatedAt": "2026-11-08T06:55:00+01:00",
+ "lede": "Le Sénat ouvre lundi l'examen du budget de la Sécurité sociale, après le rejet à l'unanimité du budget de l'État par les députés. Sur les marchés, le CAC 40 a fini vendredi en baisse sous l'effet des craintes autour de l'IA, malgré un rapport sur l'emploi américain supérieur aux attentes.",
  "figures": [
   {
    "label": "CAC 40, clôture du 6 novembre",
@@ -44,7 +46,6 @@
    "value": "12,7 Md€"
   }
  ],
- "generatedAt": "2026-11-08T06:55:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -207,7 +208,6 @@
    "why": "Ces écarts montrent comment le marché réagit aux révisions de prévisions et aux recommandations d'analystes, deux éléments clés de la communication financière."
   }
  ],
- "lede": "Le Sénat ouvre lundi l'examen du budget de la Sécurité sociale, après le rejet à l'unanimité du budget de l'État par les députés. Sur les marchés, le CAC 40 a fini vendredi en baisse sous l'effet des craintes autour de l'IA, malgré un rapport sur l'emploi américain supérieur aux attentes.",
  "quiz": [
   {
    "answer": 2,

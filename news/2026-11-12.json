@@ -1,5 +1,7 @@
 {
  "date": "2026-11-12",
+ "generatedAt": "2026-11-12T06:58:00+01:00",
+ "lede": "Après le rejet du budget de l'État par l'Assemblée, le Sénat examine le budget de la Sécurité sociale tandis que la Cour des comptes chiffre jusqu'à 38 milliards d'euros d'économies possibles. Côté conjoncture, la Banque de France abaisse sa prévision de croissance 2026 à environ 0,3 % et le chômage atteint 8,2 %.",
  "figures": [
   {
    "label": "Taux de chômage BIT, 3e trimestre 2026",
@@ -44,7 +46,6 @@
    "value": "94,00 $"
   }
  ],
- "generatedAt": "2026-11-12T06:58:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -203,7 +204,6 @@
    "why": "Ces mouvements montrent comment les résultats d'une entreprise étrangère peuvent faire réévaluer tout un secteur, et comment le prix du pétrole influe sur les valeurs énergétiques."
   }
  ],
- "lede": "Après le rejet du budget de l'État par l'Assemblée, le Sénat examine le budget de la Sécurité sociale tandis que la Cour des comptes chiffre jusqu'à 38 milliards d'euros d'économies possibles. Côté conjoncture, la Banque de France abaisse sa prévision de croissance 2026 à environ 0,3 % et le chômage atteint 8,2 %.",
  "quiz": [
   {
    "answer": 2,

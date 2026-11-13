@@ -1,5 +1,7 @@
 {
  "date": "2026-11-07",
+ "generatedAt": "2026-11-07T06:55:00+01:00",
+ "lede": "Le projet de budget 2027 de l'État, rejeté par l'Assemblée nationale, part au Sénat dans sa version initiale, tandis que Sébastien Lecornu convoque une conférence sociale lundi. À l'international, Washington affirme discuter avec Téhéran et le Brent signe sa plus forte baisse hebdomadaire depuis 2020.",
  "figures": [
   {
    "label": "CAC 40, clôture du 6 novembre",
@@ -44,7 +46,6 @@
    "value": "165 000"
   }
  ],
- "generatedAt": "2026-11-07T06:55:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -207,7 +208,6 @@
    "why": "L'exemple de TP montre comment le marché sanctionne une révision des prévisions : la qualité de la communication financière pèse directement sur la valorisation."
   }
  ],
- "lede": "Le projet de budget 2027 de l'État, rejeté par l'Assemblée nationale, part au Sénat dans sa version initiale, tandis que Sébastien Lecornu convoque une conférence sociale lundi. À l'international, Washington affirme discuter avec Téhéran et le Brent signe sa plus forte baisse hebdomadaire depuis 2020.",
  "quiz": [
   {
    "answer": 1,

@@ -1,5 +1,7 @@
 {
  "date": "2026-11-09",
+ "generatedAt": "2026-11-09T06:55:00+01:00",
+ "lede": "Sébastien Lecornu réunit ce lundi syndicats et patronat à Matignon sur les salaires et le Smic, le jour où le Sénat ouvre l'examen du budget de la Sécurité sociale. Les marchés restent fragilisés par la chute des valeurs technologiques, et la BCE n'exclut pas une hausse de taux en décembre.",
  "figures": [
   {
    "label": "CAC 40, clôture du 6 novembre",
@@ -44,7 +46,6 @@
    "value": "+165 000"
   }
  ],
- "generatedAt": "2026-11-09T06:55:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -231,7 +232,6 @@
    "why": "Les décisions climatiques se traduisent ensuite en obligations de reporting extra-financier et en coûts carbone pour les entreprises."
   }
  ],
- "lede": "Sébastien Lecornu réunit ce lundi syndicats et patronat à Matignon sur les salaires et le Smic, le jour où le Sénat ouvre l'examen du budget de la Sécurité sociale. Les marchés restent fragilisés par la chute des valeurs technologiques, et la BCE n'exclut pas une hausse de taux en décembre.",
  "quiz": [
   {
    "answer": 2,

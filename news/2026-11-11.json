@@ -1,5 +1,7 @@
 {
  "date": "2026-11-11",
+ "generatedAt": "2026-11-11T06:55:00+01:00",
+ "lede": "Le gouvernement a annoncé une hausse du Smic de 1,6 % au 1er décembre, jugée insuffisante par les syndicats, tandis que le Sénat s'apprête à examiner un budget 2027 rejeté par l'Assemblée. À l'international, Russes et Ukrainiens ont repris des pourparlers à Abou Dhabi et le pétrole recule sur fond d'espoir de désescalade avec l'Iran.",
  "figures": [
   {
    "label": "Smic net mensuel au 1er décembre 2026",
@@ -44,7 +46,6 @@
    "value": "2,5 %"
   }
  ],
- "generatedAt": "2026-11-11T06:55:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -231,7 +232,6 @@
    "why": "Le prix du pétrole entre dans les coûts de transport et d'énergie de nombreuses entreprises et influence directement l'inflation."
   }
  ],
- "lede": "Le gouvernement a annoncé une hausse du Smic de 1,6 % au 1er décembre, jugée insuffisante par les syndicats, tandis que le Sénat s'apprête à examiner un budget 2027 rejeté par l'Assemblée. À l'international, Russes et Ukrainiens ont repris des pourparlers à Abou Dhabi et le pétrole recule sur fond d'espoir de désescalade avec l'Iran.",
  "quiz": [
   {
    "answer": 2,

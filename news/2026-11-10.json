@@ -1,5 +1,7 @@
 {
  "date": "2026-11-10",
+ "generatedAt": "2026-11-10T06:44:01+01:00",
+ "lede": "Sébastien Lecornu a annoncé lundi un Smic porté à 1 502 euros net dès le 1er décembre, alors que le Sénat ouvre l'examen du budget de la Sécurité sociale. Les marchés ont rebondi, portés par la chute du pétrole sur fond d'espoirs diplomatiques autour de l'Iran.",
  "figures": [
   {
    "label": "Smic net mensuel au 1er décembre 2026",
@@ -44,7 +46,6 @@
    "value": "92,57 $"
   }
  ],
- "generatedAt": "2026-11-10T06:44:01+01:00",
  "items": [
   {
    "cat": "politique",
@@ -235,7 +236,6 @@
    "why": "Un Congrès d'opposition peut bloquer budgets et réformes fiscales américaines, avec des effets sur le dollar, les taux et les marchés mondiaux."
   }
  ],
- "lede": "Sébastien Lecornu a annoncé lundi un Smic porté à 1 502 euros net dès le 1er décembre, alors que le Sénat ouvre l'examen du budget de la Sécurité sociale. Les marchés ont rebondi, portés par la chute du pétrole sur fond d'espoirs diplomatiques autour de l'Iran.",
  "quiz": [
   {
    "answer": 1,

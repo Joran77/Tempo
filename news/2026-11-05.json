@@ -1,5 +1,7 @@
 {
  "date": "2026-11-05",
+ "generatedAt": "2026-11-05T06:43:55+01:00",
+ "lede": "L'Assemblée nationale a rejeté sans une seule voix favorable la partie recettes du budget 2027, qui part au Sénat, le jour où l'inflation de la zone euro atteint 4,0 %. Aux États-Unis, les démocrates reprennent le Congrès ; la Bourse de Paris et le pétrole réagissent fortement.",
  "figures": [
   {
    "label": "Inflation zone euro, octobre 2026",
@@ -44,7 +46,6 @@
    "value": "93,83 $"
   }
  ],
- "generatedAt": "2026-11-05T06:43:55+01:00",
  "items": [
   {
    "cat": "politique",
@@ -195,7 +196,6 @@
    "why": "Le prix de l'énergie est un coût majeur pour les entreprises et le premier moteur de l'inflation actuelle : sa baisse, si elle dure, soulagerait marges et pouvoir d'achat."
   }
  ],
- "lede": "L'Assemblée nationale a rejeté sans une seule voix favorable la partie recettes du budget 2027, qui part au Sénat, le jour où l'inflation de la zone euro atteint 4,0 %. Aux États-Unis, les démocrates reprennent le Congrès ; la Bourse de Paris et le pétrole réagissent fortement.",
  "quiz": [
   {
    "answer": 2,

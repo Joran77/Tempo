@@ -1,5 +1,7 @@
 {
  "date": "2026-11-04",
+ "generatedAt": "2026-11-04T06:45:00+01:00",
+ "lede": "Aux États-Unis, les projections des médias donnent les démocrates vainqueurs des élections de mi-mandat face au camp de Donald Trump. En France, le vote des députés sur les recettes du budget 2027 est reporté, à la veille d'une journée de grève intersyndicale et dans un contexte d'inflation à 3,4 %.",
  "figures": [
   {
    "label": "Inflation en France, octobre 2026 (sur un an)",
@@ -44,7 +46,6 @@
    "value": "A+"
   }
  ],
- "generatedAt": "2026-11-04T06:45:00+01:00",
  "items": [
   {
    "cat": "international",
@@ -231,7 +232,6 @@
    "why": "Le cas Alstom illustre l'effet d'un avertissement sur résultats (« profit warning ») : quand marge et trésorerie prévues se dégradent, le marché revalorise brutalement l'entreprise."
   }
  ],
- "lede": "Aux États-Unis, les projections des médias donnent les démocrates vainqueurs des élections de mi-mandat face au camp de Donald Trump. En France, le vote des députés sur les recettes du budget 2027 est reporté, à la veille d'une journée de grève intersyndicale et dans un contexte d'inflation à 3,4 %.",
  "quiz": [
   {
    "answer": 2,

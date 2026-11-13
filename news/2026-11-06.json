@@ -1,5 +1,7 @@
 {
  "date": "2026-11-06",
+ "generatedAt": "2026-11-06T06:45:00+01:00",
+ "lede": "L'Assemblée nationale a rejeté sans aucune voix pour la partie recettes du budget 2027, transmis au Sénat dans sa version initiale. Après une journée de mobilisation sociale, Matignon convoque syndicats et patronat lundi, tandis que la Banque d'Angleterre relève ses taux et que le pétrole reste très volatil.",
  "figures": [
   {
    "label": "CAC 40, clôture du 5 novembre",
@@ -44,7 +46,6 @@
    "value": "0 pour, 458 contre"
   }
  ],
- "generatedAt": "2026-11-06T06:45:00+01:00",
  "items": [
   {
    "cat": "politique",
@@ -215,7 +216,6 @@
    "why": "Environ un cinquième du pétrole mondial transite par Ormuz : chaque évolution diplomatique ou militaire y fait bouger les cours."
   }
  ],
- "lede": "L'Assemblée nationale a rejeté sans aucune voix pour la partie recettes du budget 2027, transmis au Sénat dans sa version initiale. Après une journée de mobilisation sociale, Matignon convoque syndicats et patronat lundi, tandis que la Banque d'Angleterre relève ses taux et que le pétrole reste très volatil.",
  "quiz": [
   {
    "answer": 2,

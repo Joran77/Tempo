@@ -1367,6 +1367,27 @@ nav.tabs .in.n5>button{display:flex!important}
 .mdr.ok .mdbar i{background:var(--ok)}.mdr.prog .mdbar i{background:var(--c-cours)}.mdr.mid .mdbar i{background:var(--amber)}.mdr.lo .mdbar i{background:var(--danger)}
 .mdr small{font-size:11px;color:var(--muted)}
 .mday .fine{margin-top:12px}
+.wrc{display:flex;align-items:center;gap:12px;padding:14px;flex-wrap:wrap;border:1px dashed var(--accent)}.wrc>div:not(.wrb){flex:1;min-width:180px;display:flex;flex-direction:column;gap:2px}.wrc b{font-size:15px}.wrc span{font-size:13px;color:var(--muted)}
+.wrc .qi{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);flex:none}.wrc .qi svg{width:20px;height:20px}.wrb{display:flex;gap:6px}
+.wrg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0}.wrg>div{background:var(--surface-2);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px}
+.wrg b{font:700 17px var(--f-display);font-variant-numeric:tabular-nums}.wrg span{font-size:11.5px;color:var(--muted);line-height:1.3}
+.wrg,.wrl,.wrc{flex:none}.wrl{display:flex;flex-direction:column;margin:6px 0 12px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.wrrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line);cursor:pointer;min-height:44px;box-sizing:border-box}.wrrow:first-child{border-top:0}
+.wrrow input{width:20px;height:20px;accent-color:var(--accent);flex:none}.wrrow span{display:flex;flex-direction:column;font-size:14px}.wrrow small{font-size:12px;color:var(--muted)}
+.rcopyany{display:block;width:calc(100% - 28px);margin:0 14px 12px;border:0;background:none;color:var(--muted);font:600 13px var(--f-body);text-align:left;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.casintro b{display:block;font:700 17px var(--f-display);margin-bottom:4px}
+.caslist{padding:0;overflow:hidden}.casrow{display:flex;align-items:center;gap:10px;width:100%;border:0;border-top:1px solid var(--line);background:none;padding:12px 14px;text-align:left;color:var(--fg);font:inherit;cursor:pointer}
+.casrow:first-child{border-top:0}.casrow>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.casrow b{font-size:15px}.casrow small{font-size:12.5px;color:var(--muted)}
+.casrow em{font-style:normal;font:700 12px var(--f-body);padding:3px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.casrow em.ok{background:color-mix(in srgb,var(--ok) 18%,var(--surface));color:var(--ok)}.casrow em.mid{background:var(--amber-soft);color:var(--amber)}.casrow em.lo{background:var(--danger-soft);color:var(--danger)}
+.casbox .cash{margin:4px 0 8px;font:700 20px var(--f-display)}.casbox p{margin:0 0 8px;line-height:1.5}.casq{padding:10px 12px;border-radius:10px;background:var(--accent-soft)}
+.field textarea.casans{min-height:180px;font:15px/1.5 var(--f-body)!important}
+.cascor h3{margin:14px 0 4px;font:700 15px var(--f-display);color:var(--accent)}.cascor h3:first-child{margin-top:0}.cascor p{margin:0;line-height:1.5}
+.casul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;line-height:1.45}
+.caspiege{margin-top:14px;padding:10px 12px;border-radius:10px;background:var(--danger-soft)}.caspiege b{color:var(--danger)}.caspiege p{margin:2px 0 0}
+.caspts{padding:0;overflow:hidden}.caspt{display:flex;align-items:center;gap:10px;width:100%;border:0;border-top:1px solid var(--line);background:none;padding:12px 14px;text-align:left;color:var(--fg);font:inherit;cursor:pointer;min-height:48px}
+.caspt:first-child{border-top:0}.caspt i{width:22px;height:22px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;flex:none;color:var(--surface)}.caspt[aria-pressed="true"] i{background:var(--ok);border-color:var(--ok)}.caspt i svg{width:14px;height:14px}
+.tlb{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:pan-y}.tlb.drag{z-index:5;box-shadow:0 10px 24px rgba(0,0,0,.22);opacity:.95;transition:none}
 /* Interactions */
 
 
@@ -2408,13 +2429,14 @@ function fcImportSheet(opt){
     <p id="i-msg" role="status"></p>
     <div class="btns"><button class="btn" data-close>Annuler</button><button class="btn primary" id="i-go">Importer</button></div>`, s => {
     const txt = s.querySelector('#i-text'), msg = s.querySelector('#i-msg'), sel = s.querySelector('#i-deck'), nf_ = s.querySelector('#i-new-f');
-    const preview = () => { if (isSynthText(txt.value)){ const P = parseSynth(txt.value); msg.textContent = `Synthèse reconnue : ${P.chaps.length} chapitre${P.chaps.length>1?'s':''}${P.deck ? ' pour « ' + P.deck + ' »' : ''}. Elle s’affichera dans la carte mentale.`; return; } try { const l = parseCards(txt.value); msg.textContent = txt.value.trim() ? `${l.length} carte${l.length>1?'s':''} reconnue${l.length>1?'s':''}.` : ''; } catch(_) { msg.textContent = 'Le fichier JSON n’est pas lisible.'; } };
+    const preview = () => { if (CASE_RX.test(txt.value)){ const n = parseCases(txt.value).length; msg.textContent = `${n} cas pratique${n>1?'s':''} reconnu${n>1?'s':''}. Ils s’ajouteront dans Réviser → S’entraîner → Cas pratiques.`; return; } if (isSynthText(txt.value)){ const P = parseSynth(txt.value); msg.textContent = `Synthèse reconnue : ${P.chaps.length} chapitre${P.chaps.length>1?'s':''}${P.deck ? ' pour « ' + P.deck + ' »' : ''}. Elle s’affichera dans la carte mentale.`; return; } try { const l = parseCards(txt.value); msg.textContent = txt.value.trim() ? `${l.length} carte${l.length>1?'s':''} reconnue${l.length>1?'s':''}.` : ''; } catch(_) { msg.textContent = 'Le fichier JSON n’est pas lisible.'; } };
     sel.addEventListener('change', () => { nf_.hidden = sel.value!=='__new'; });
     nf_.hidden = sel.value!=='__new';
     txt.addEventListener('input', preview);
     const ib = s.querySelector('#i-both'); ib.addEventListener('click', () => ib.setAttribute('aria-pressed', ib.getAttribute('aria-pressed')!=='true'));
     s.querySelector('#i-file').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { txt.value = r.result; preview(); }; r.readAsText(f); });
     s.querySelector('#i-go').addEventListener('click', () => {
+      if (CASE_RX.test(txt.value)){ const L = parseCases(txt.value); if (!L.length){ msg.textContent = 'Aucun cas complet reconnu : il faut au moins Faits, Question et Conclusion pour chaque cas.'; return; } const C = casesState(); L.forEach(c => { const i = C.user.findIndex(x => x.t===c.t && x.mat===c.mat); if (i >= 0) C.user[i] = { ...c, id:C.user[i].id }; else C.user.push(c); }); close(); commit(); toast(`${L.length} cas pratique${L.length>1?'s':''} importé${L.length>1?'s':''}`); setTimeout(() => { ui.cas = null; ui.tab = 'rv-cas'; render(); window.scrollTo(0,0); }, 200); return; }
       if (isSynthText(txt.value)){ const r = importSynth(txt.value, sel.value!=='__new' ? sel.value : null); if (r.err){ msg.textContent = r.err; return; } close(); commit(); toast(`Synthèse importée : ${r.n} chapitre${r.n>1?'s':''}`); setTimeout(() => openMind({ deck:r.deck.id }), 200); return; }
       let list; try { list = parseCards(txt.value); } catch(_) { msg.textContent = 'Le fichier JSON n’est pas lisible.'; return; }
       if (!list.length){ msg.textContent = 'Aucune carte reconnue. Vérifie qu’il y a bien une question et une réponse par ligne, séparées par ; ou une tabulation.'; return; }
@@ -7105,13 +7127,14 @@ function vRepasJour(D, S, T, goal, sp){
       ${tg && it.length ? `<div class="rmprog"><i style="width:${Math.min(100, 100 * kc / tg).toFixed(1)}%"></i></div>` : ''}
       ${it.length ? `<ul class="rfood">${it.map(x => `<li><div><b>${esc(x.name)}</b><span>${x.g ? nf(x.g) + ' g · ' : ''}P ${nf(r1(x.p))} · G ${nf(r1(x.c))} · L ${nf(r1(x.f))}</span></div><span class="rfk">${nf(r0(x.kcal))}</span><button class="rdel" data-h-del="${x.id}" aria-label="Supprimer ${esc(x.name)}">${ICON_X}</button></li>`).join('')}</ul>` : ''}
       ${y.length ? `<button class="rcopy" data-h-copy="${k}"><span>Reprendre comme hier</span><small>${esc(y.map(x => x.name).slice(0, 2).join(', '))}${y.length > 2 ? '…' : ''} · ${nf(r0(y.reduce((a,x) => a + x.kcal, 0)))} kcal</small></button>` : ''}
+      <button class="rcopyany" data-copy-any="${k}">Copier depuis un autre jour</button>
     </div></section>`; }).join('')}
   ${mealIdeasHtml()}
   ${assocHtml()}`;
 }
 
 /* ---------- Organisation en 5 onglets : Aujourd'hui, Réviser, Agenda, Santé, Moi ---------- */
-const RV_TABS = ['rv','rv-train','cartes','calcul','sudoku','iae'];
+const RV_TABS = ['rv','rv-train','rv-cas','cartes','calcul','sudoku','iae'];
 const navGroup = t => t==='today' || t==='accueil' || t==='actu' ? 'today' : RV_TABS.includes(t) ? 'rv' : t==='agenda' ? 'agenda' : String(t).startsWith('h-') ? 'h-jour' : t==='moi' || t==='params' ? 'moi' : 'today';
 function syncModeFromTab(){
   const m = navGroup(ui.tab)==='h-jour' ? 'health' : 'study';
@@ -7123,7 +7146,7 @@ function hubHtml(){
   if (g==='rv'){
     if (t==='cartes' && !['home', undefined, null].includes(ui.fc.view)) return '';
     if (['rv','rv-train','cartes'].includes(t)) return seg([['rv','Examens'],['cartes','Matières'],['rv-train','S’entraîner']], t);
-    const play = (t==='calcul' && ui.calc.phase==='play') || (t==='sudoku' && ui.su.view!=='home');
+    const play = (t==='calcul' && ui.calc.phase==='play') || (t==='sudoku' && ui.su.view!=='home') || (t==='rv-cas' && ui.cas);
     return play || t==='iae' ? '' : `<button class="hubback" data-hub="rv-train">${CHEV_L}S’entraîner</button>`;
   }
   if (g==='h-jour' && state.health && state.health.profile){
@@ -7139,6 +7162,7 @@ function vRvEx(){
 }
 function vRvTrain(){
   return `<div class="tdshort">
+    <button class="wide" data-hub="rv-cas" style="--qc:var(--c-alt)"><span class="qi">${bicon('cards')}</span><span class="qtx"><b>Cas pratiques corrigés</b><span>Droit public, droit du numérique, fiscalité · méthode majeure / mineure</span></span><span class="go">${CHEV_R}</span></button>
     <button class="wide" data-cas="1" style="--qc:var(--ok)"><span class="qi">${bicon('tasks')}</span><span class="qtx"><b>Cas chiffrés mélangés</b><span>TVA, amortissements, IS, BFR, CAF, écarts, point mort · 8 cas</span></span><span class="go">${CHEV_R}</span></button>
     <button class="wide xbtn" data-express="1" style="--qc:var(--amber)"><span class="qi">${bicon('bolt')}</span><span class="qtx"><b>Révision express · 5 min</b><span>Cartes et calculs mélangés, pour les temps morts</span></span><span class="go">${CHEV_R}</span></button>
     ${quickTiles()}
@@ -7152,6 +7176,7 @@ function vMoi(){
   <div class="moistats"><div class="card"><b>${nf(cards.length)}</b><span>cartes</span></div><div class="card"><b>${cards.length ? Math.round(100*mast/cards.length) : 0} %</b><span>maîtrisées</span></div><div class="card"><b>${nf((state.goals||[]).filter(g => g.value >= g.target).length)}/${nf((state.goals||[]).length)}</b><span>objectifs</span></div></div>
   <section><h2>Mes suivis</h2><div class="card moilist">
     ${row('data-v3="td-goals"', 'Objectifs', `${(state.goals||[]).length} en cours`)}
+    ${row('data-wr="open"', 'Bilan de la semaine', 'et planning de la suivante')}
     ${row('data-journal="1"', 'Journal du soir', 'bilans écrits et vocaux')}
     ${row('data-hub="h-prog"', 'Poids et mensurations', 'Santé · Progrès')}
   </div></section>
@@ -7190,6 +7215,7 @@ function vTodayNew(){
   else gauges += gauge('Cartes', nf(due), due ? 'à réviser' : 'à jour', due ? 30 : 100, 'c-cours', 'data-quick="cartes"');
   const mtc = mitTask(), todo = left.filter(t => !(mtc && mtc.id===t.id)), rest = [...todo, ...tl.filter(t => t.done)];
   return `${cloudCard()}${newsCard()}${banner()}${backupBanner()}
+    ${weekReviewCard()}
     <div class="card nowc"><span class="nowk">${esc(hello)} · maintenant</span><div class="nowr"><div><b>${esc(now1.t)}</b><span>${esc(now1.s)}</span></div>${now1.b}</div></div>
     <div class="tdgs c${T ? 3 : 2}">${gauges}</div>
     ${(() => { const N = NEWS.list[0], fresh = N && N.date === tk;
@@ -7309,6 +7335,271 @@ function hDayTop(D, S, T, goal, sp){
     return `<div class="hdm"><i style="background:var(--${MEAL_COL[k]})"></i><button class="hdml" data-hub="h-repas"><b>${l}</b>${it.length ? `<small>${esc(it.map(x => x.name).slice(0, 2).join(', '))}${it.length > 2 ? '…' : ''}</small>` : k===nextMeal && idea ? `<small class="hdidea">Idée : ${esc(idea)}</small>` : ''}</button><span class="hdk">${it.length ? nf(r0(kc)) + ' kcal' : ''}</span><button class="hdadd" data-h-add="${k}" aria-label="Ajouter au ${l.toLowerCase()}">${ICON_PLUS}</button></div>`; }).join('')}</div></section>`;
 }
 
+/* ---------- Bilan du dimanche et planning de la semaine suivante ---------- */
+function wrWeek(){ const now = new Date(); return key(monday(now.getDay()===1 && now.getHours() < 12 ? addDays(now, -7) : now)); }
+function weekReviewCard(){
+  const now = new Date(), d = now.getDay(), h = now.getHours();
+  if (!((d===0 && h >= 16) || (d===1 && h < 12))) return '';
+  ensureMeta(); if (state.meta.wrDone === wrWeek()) return '';
+  return `<div class="card wrc"><span class="qi">${bicon('calendar')}</span><div><b>Bilan de la semaine</b><span>Ta semaine en chiffres, puis la suivante planifiée en une touche.</span></div>
+    <div class="wrb"><button class="btn sm primary" data-wr="open">Ouvrir</button><button class="btn sm" data-wr="skip">Plus tard</button></div></div>`;
+}
+function weekReviewSheet(){
+  ensureMeta(); ensureFc(); ensureFocus();
+  const wk = wrWeek(), ws = parse(wk), days = [...Array(7)].map((_, i) => key(addDays(ws, i))), tk = todayKey();
+  const next = key(addDays(ws, 7)), target = next > tk ? next : tk;
+  const tasks = state.tasks.filter(t => t.date ? days.includes(t.date) : t.week===wk), tdone = tasks.filter(t => t.done).length;
+  const cards = days.reduce((a, k) => a + ((state.fc.log||{})[k] || 0), 0), focus = days.reduce((a, k) => a + state.focus.sessions.filter(s => s.d===k).reduce((b, s) => b + s.min, 0), 0);
+  const H = state.health, T = H && H.profile ? hTargets() : null;
+  let health = '';
+  if (T){ const ds = days.map(k => hPeek(k)), kc = ds.filter(D => D.food.length).map(D => sumDay(D).kcal), st = ds.map(D => D.steps || 0).filter(Boolean);
+    const W = (H.weights || []).filter(w => days.includes(w.d)), dw = W.length >= 2 ? W[W.length-1].kg - W[0].kg : null;
+    health = `<div class="wrg"><div><b>${kc.length ? nf(r0(kc.reduce((a,b) => a+b, 0)/kc.length)) : '—'}</b><span>kcal / jour<br>(objectif ${nf(T.kcal)})</span></div><div><b>${st.length ? nf(r0(st.reduce((a,b) => a+b, 0)/st.length)) : '—'}</b><span>pas / jour<br>(objectif ${nf(stepGoal())})</span></div><div><b>${dw==null ? '—' : (dw > 0 ? '+' : '') + nf(r1(dw)) + ' kg'}</b><span>poids sur<br>la semaine</span></div></div>`; }
+  const late = state.tasks.filter(t => !t.done && t.date && t.date < target && t.date >= key(addDays(ws, -7))).slice(0, 10);
+  const exams = (state.partiels || []).filter(e => e.date > target && e.date <= key(addDays(parse(target), 13))).sort((a,b) => a.date.localeCompare(b.date));
+  const nextL = fmt(parse(target), { weekday:'long', day:'numeric', month:'long' });
+  sheet(`<h3>Bilan de la semaine</h3><p class="fine">Du ${fmt(ws,{day:'numeric',month:'long'})} au ${fmt(addDays(ws,6),{day:'numeric',month:'long'})}.</p>
+    <div class="wrg"><div><b>${tdone}/${tasks.length}</b><span>tâches faites</span></div><div><b>${nf(cards)}</b><span>cartes révisées</span></div><div><b>${nf(focus)} min</b><span>de concentration</span></div></div>
+    ${health}
+    <h4 class="mh">Préparer la semaine</h4>
+    ${late.length ? `<span class="lab">Tâches non faites · les reporter au ${nextL}</span><div class="wrl">${late.map(t => `<label class="wrrow"><input type="checkbox" data-wr-late="${t.id}" ${t.date < tk ? 'checked' : ''}><span>${esc(t.title)}<small>${t.date===tk ? 'aujourd’hui' : fmt(parse(t.date),{weekday:'short',day:'numeric'})}</small></span></label>`).join('')}</div>` : '<p class="fine">Aucune tâche en retard : bravo.</p>'}
+    ${exams.length ? `<span class="lab">Examens des deux prochaines semaines · bloquer un créneau quotidien</span><div class="wrl">${exams.map(e => `<label class="wrrow"><input type="checkbox" data-wr-ex="${e.id}" checked><span>${esc(e.title)}<small>${fmt(parse(e.date),{weekday:'short',day:'numeric',month:'short'})} · ${cdLabel(daysUntil(e.date))}</small></span></label>`).join('')}</div>
+      <div class="two"><div class="field"><label for="wr-time">Heure du créneau</label><input type="time" id="wr-time" value="18:00" step="300"></div><div class="field"><label for="wr-dur">Durée</label><select id="wr-dur">${[30,45,60,90].map(m => `<option value="${m}" ${m===45 ? 'selected' : ''}>${durL(m)}</option>`).join('')}</select></div></div>
+      <p class="fine">Un créneau « Révision · examen » par jour jusqu’à la veille, relié à ses cartes. Plusieurs examens : les créneaux s’enchaînent.</p>` : '<p class="fine">Pas d’examen dans les deux prochaines semaines.</p>'}
+    <div class="btns"><button class="btn" data-close>Fermer</button><button class="btn primary" id="wr-go">Appliquer</button></div>`, s => {
+    s.querySelector('#wr-go').addEventListener('click', () => {
+      let moved = 0, made = 0;
+      s.querySelectorAll('[data-wr-late]:checked').forEach(c => { const t = state.tasks.find(x => x.id===c.dataset.wrLate); if (t){ moveTask(t, target); moved++; } });
+      const ti = s.querySelector('#wr-time'), du = s.querySelector('#wr-dur'), dur = du ? +du.value : 45; let start = ti && ti.value ? tMin(ti.value) : 18*60;
+      s.querySelectorAll('[data-wr-ex]:checked').forEach(c => { const ex = state.partiels.find(e => e.id===c.dataset.wrEx); if (!ex) return; const title = `Révision · ${ex.title}`;
+        for (let d = parse(target); key(d) < ex.date && key(d) <= key(addDays(parse(target), 13)); d = addDays(d, 1)){ const k = key(d);
+          if (state.tasks.some(t => t.title===title && t.date===k)) continue;
+          state.tasks.push({ id:uid(), title, date:k, time:hhmm(start), dur, cat:'cours', prio:false, done:false, deck:ex.deck || null, sub:[] }); made++; }
+        start += dur; });
+      state.meta.wrDone = wk; close(); commit();
+      toast([moved ? `${moved} tâche${moved>1?'s':''} reportée${moved>1?'s':''}` : '', made ? `${made} créneau${made>1?'x':''} de révision` : ''].filter(Boolean).join(' · ') || 'Bilan fait');
+    });
+  });
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-wr]'); if (!b) return;
+  if (b.dataset.wr==='open') weekReviewSheet(); else { ensureMeta(); state.meta.wrDone = wrWeek(); commit(); } });
+
+/* ---------- Repas : copier depuis n'importe quel jour ---------- */
+function copyMealSheet(meal){
+  const ks = Array.from({ length:30 }, (_, i) => key(addDays(parse(ui.hday), -1 - i))).filter(k => hPeek(k).food.some(x => x.meal===meal)).slice(0, 14);
+  sheet(`<h3>Copier un ${MEAL_N[meal]}</h3><p class="fine">Choisis un jour : ses aliments sont ajoutés à ton ${MEAL_N[meal]} du ${fmt(parse(ui.hday),{weekday:'long',day:'numeric'})}.</p>
+    <div class="qres">${ks.map(k => { const L = hPeek(k).food.filter(x => x.meal===meal); return `<button class="qr" data-cm="${k}"><b>${fmt(parse(k),{weekday:'long',day:'numeric',month:'short'})} · ${nf(r0(L.reduce((a,x) => a + x.kcal, 0)))} kcal</b><span>${esc(L.map(x => x.name).join(', '))}</span></button>`; }).join('') || '<p class="fine">Aucun repas de ce type sur les 30 derniers jours.</p>'}</div>
+    <div class="btns"><button class="btn" data-close>Fermer</button></div>`, s => {
+    s.addEventListener('click', e => { const b = e.target.closest('[data-cm]'); if (!b) return; close(); copyMealFrom(b.dataset.cm, meal); });
+  });
+}
+view.addEventListener('click', e => { const b = e.target.closest('[data-copy-any]'); if (!b) return; e.stopImmediatePropagation(); copyMealSheet(b.dataset.copyAny); }, true);
+
+/* ---------- Agenda : glisser un créneau pour changer son heure ---------- */
+(() => {
+  let D = null;
+  const end = (apply) => { if (!D) return; clearTimeout(D.timer); const el = D.el;
+    if (D.on && apply){ const mins = Math.round(D.dy / TL_H * 60 / 15) * 15, t = state.tasks.find(x => x.id===D.id);
+      if (t && mins){ const nm = Math.max(0, Math.min(23*60 + 45, tMin(t.time) + mins)); t.time = hhmm(nm); ui.tlDragged = Date.now(); commit(); toast(`Déplacé à ${t.time}`); D = null; return; } }
+    if (el){ el.classList.remove('drag'); el.style.transform = ''; } if (D && D.on) ui.tlDragged = Date.now(); D = null; };
+  view.addEventListener('pointerdown', e => { const el = e.target.closest('.tlb'); if (!el || e.target.closest('.tlck')) return; const b = el.querySelector('[data-tl-edit]'); if (!b) return;
+    D = { el, id:b.dataset.tlEdit, y0:e.clientY, dy:0, on:false, timer:setTimeout(() => { if (D){ D.on = true; el.classList.add('drag'); if (navigator.vibrate) navigator.vibrate(10); } }, 300) }; });
+  view.addEventListener('pointermove', e => { if (!D) return; const dy = e.clientY - D.y0;
+    if (!D.on){ if (Math.abs(dy) > 8){ clearTimeout(D.timer); D = null; } return; }
+    D.dy = dy; const snap = Math.round(dy / TL_H * 4) * TL_H / 4; D.el.style.transform = `translateY(${snap}px)`;
+    const t = state.tasks.find(x => x.id===D.id), sp = D.el.querySelector('.tlbody span'); if (t && sp){ const nm = Math.max(0, Math.min(23*60 + 45, tMin(t.time) + Math.round(dy / TL_H * 4) * 15)); sp.textContent = `${hhmm(nm)} – ${hhmm(nm + (t.dur || 60))}`; } });
+  view.addEventListener('pointerup', () => end(true));
+  view.addEventListener('pointercancel', () => end(false));
+  view.addEventListener('touchmove', e => { if (D && D.on) e.preventDefault(); }, { passive:false });
+  view.addEventListener('contextmenu', e => { if (e.target.closest('.tlb')) e.preventDefault(); });
+  view.addEventListener('click', e => { if (ui.tlDragged && Date.now() - ui.tlDragged < 400 && e.target.closest('.tlb')){ e.stopImmediatePropagation(); e.preventDefault(); } }, true);
+})();
+
+/* ---------- Cas pratiques corrigés (méthode : problème, majeure, mineure, conclusion) ---------- */
+const CASES = [
+ { id:'dp-retrait', mat:'Droit public économique', t:'Retirer une autorisation illégale',
+   faits:'Le 2 mars, le maire de Melun accorde à un restaurateur une autorisation d’occuper une partie de la place publique pour sa terrasse. Le 15 août, le service juridique s’aperçoit que l’autorisation est illégale, car le maire n’était pas compétent. Le maire veut la retirer. Le restaurateur n’a commis aucune fraude.',
+   q:'Le maire peut-il retirer l’autorisation ?',
+   pb:'Une administration peut-elle retirer, plus de quatre mois après l’avoir prise, une décision individuelle illégale créatrice de droits ?',
+   maj:['Une décision individuelle accordant une autorisation est créatrice de droits.','Art. L. 242-1 CRPA (jurisprudence Ternon, CE 2001) : l’administration ne peut retirer ou abroger une décision créatrice de droits que si elle est illégale et dans les 4 mois suivant son édiction.','Exception : une décision obtenue par fraude peut être retirée à tout moment (L. 241-2 CRPA).'],
+   min:['L’autorisation de terrasse est une décision individuelle créatrice de droits pour le restaurateur.','Elle est illégale (incompétence), mais elle date du 2 mars : au 15 août, plus de 4 mois se sont écoulés.','Aucune fraude du bénéficiaire : l’exception ne joue pas.'],
+   concl:'Non : le délai de 4 mois est dépassé, le maire ne peut plus retirer ni abroger l’autorisation de sa propre initiative. Il pourra seulement ne pas la renouveler à son terme ou obtenir l’accord du bénéficiaire.',
+   pts:['Qualifier la décision de créatrice de droits','Citer L. 242-1 CRPA ou Ternon','Délai de 4 mois à compter de la décision','Écarter la fraude','Conclure : retrait impossible'],
+   piege:'Le délai de 4 mois court à partir de la décision, pas à partir de la découverte de l’illégalité.' },
+ { id:'dp-imprev', mat:'Droit public économique', t:'Flambée de l’énergie et concession',
+   faits:'La société Restauco est concessionnaire de la cantine scolaire d’une commune depuis 2023. En 2026, une crise internationale fait bondir de 60 % le prix du gaz et de l’électricité : l’exploitation devient lourdement déficitaire. Restauco annonce qu’elle suspend le service à la rentrée tant que la commune ne paie pas la différence.',
+   q:'Restauco peut-elle suspendre le service ? Que peut-elle obtenir ?',
+   pb:'Un cocontractant de l’administration confronté à un bouleversement imprévisible de l’économie du contrat peut-il cesser d’exécuter, et a-t-il droit à une compensation ?',
+   maj:['Théorie de l’imprévision (CE, 1916, Gaz de Bordeaux) : un événement imprévisible, extérieur aux parties, qui bouleverse l’économie du contrat ouvre droit à une indemnité d’imprévision.','Fondement : la continuité du service public. Le cocontractant doit continuer d’exécuter le contrat.','L’imprévision est temporaire : l’indemnité couvre une partie du déficit, pas la totalité, et pas le manque à gagner.'],
+   min:['La crise internationale est extérieure aux parties et n’était pas prévisible lors de la signature en 2023.','Une hausse de 60 % rendant l’exploitation lourdement déficitaire bouleverse l’économie du contrat.','La cantine est un service public : Restauco doit continuer de l’assurer.'],
+   concl:'Non, Restauco ne peut pas suspendre le service : ce serait une faute pouvant justifier une sanction. Elle peut en revanche demander une indemnité d’imprévision à la commune pour une partie du déficit.',
+   pts:['Citer Gaz de Bordeaux (1916)','Les 3 conditions : imprévisible, extérieur, bouleversement','Obligation de continuer (continuité du service public)','Indemnité partielle, pas de suspension','Conclusion claire en deux temps'],
+   piege:'Imprévision n’est pas force majeure : avec l’imprévision on continue d’exécuter ; seule la force majeure (exécution impossible) suspend sans sanction.' },
+ { id:'dp-spic', mat:'Droit public économique', t:'La facture d’eau contestée',
+   faits:'Lucas reçoit de la régie municipale des eaux de sa commune une facture de 1 400 € qu’il estime erronée (fuite après compteur). La régie, gérée directement par la commune, fonctionne comme une entreprise et se finance par les redevances des usagers. Lucas veut saisir le tribunal administratif.',
+   q:'Quel juge Lucas doit-il saisir ?',
+   pb:'Quel juge est compétent pour un litige entre un usager et un service public industriel et commercial géré par une personne publique ?',
+   maj:['Un service public est un SPIC lorsque son objet, ses ressources et son fonctionnement sont comparables à ceux d’une entreprise privée (distribution d’eau, transports, énergie).','Les relations entre un SPIC et ses usagers relèvent du droit privé, même si le service est géré par une personne publique : l’usager est lié par un contrat de droit privé.','Les litiges correspondants relèvent du juge judiciaire.'],
+   min:['La régie des eaux distribue de l’eau, se finance par les redevances et fonctionne comme une entreprise : c’est un SPIC.','Le litige porte sur la facture, donc sur la relation individuelle entre Lucas et le service.','Peu importe que la régie soit gérée directement par la commune.'],
+   concl:'Lucas doit saisir le juge judiciaire (le tribunal judiciaire), pas le tribunal administratif.',
+   pts:['Qualifier le service de SPIC (objet, ressources, fonctionnement)','Relation usager–SPIC = droit privé','Indifférence de la gestion par une personne publique','Conclure : juge judiciaire'],
+   piege:'Le fait que la commune gère elle-même le service ne rend pas le juge administratif compétent pour les litiges avec les usagers d’un SPIC.' },
+ { id:'dp-circ', mat:'Droit public économique', t:'La circulaire qui ajoute une condition',
+   faits:'Un décret accorde une aide aux jeunes entreprises de moins de 3 ans. Une circulaire du ministre, adressée aux préfets, indique que l’aide « ne doit être versée qu’aux entreprises ayant au moins deux salariés ». Une start-up sans salarié se voit refuser l’aide sur ce fondement.',
+   q:'La start-up peut-elle contester la circulaire ? Avec quelles chances ?',
+   pb:'Une circulaire qui impose une condition non prévue par le texte qu’elle interprète peut-elle faire l’objet d’un recours pour excès de pouvoir, et est-elle légale ?',
+   maj:['CE, Sect., 2002, Duvignères : une circulaire dont les dispositions sont impératives peut faire l’objet d’un recours pour excès de pouvoir.','Une circulaire impérative est illégale si elle ajoute au texte une règle nouvelle, si elle méconnaît le sens du texte ou si son auteur est incompétent pour édicter une telle règle.','Un ministre ne dispose pas, en principe, d’un pouvoir réglementaire général pour ajouter des conditions à un décret.'],
+   min:['« Ne doit être versée qu’aux entreprises ayant au moins deux salariés » est une prescription impérative adressée aux préfets.','Le décret ne prévoit aucune condition de nombre de salariés : la circulaire ajoute une règle nouvelle.','Le ministre n’était pas compétent pour le faire.'],
+   concl:'Oui : la circulaire est impérative, donc attaquable par un recours pour excès de pouvoir (dans les 2 mois), et elle devrait être annulée car elle ajoute illégalement une condition au décret. La start-up peut aussi contester le refus d’aide.',
+   pts:['Citer Duvignères (2002)','Caractère impératif de la circulaire','Ajout d’une règle nouvelle au décret','Incompétence du ministre','Conclure : recours recevable et annulation probable'],
+   piege:'Une circulaire purement interprétative et non impérative n’est pas attaquable : tout se joue sur son caractère impératif.' },
+ { id:'dn-video', mat:'Droit du numérique et PI', t:'Des caméras sur les comptables',
+   faits:'L’entreprise Vexa installe des caméras qui filment en continu les postes de travail du service comptable « pour lutter contre les vols ». Les salariés n’ont reçu aucune information, le CSE n’a pas été consulté et les images sont conservées 6 mois.',
+   q:'Ce dispositif est-il conforme ? Que risque Vexa ?',
+   pb:'Une vidéosurveillance filmant en permanence des salariés à leur poste, sans information ni consultation, est-elle licite au regard du RGPD et du Code du travail ?',
+   maj:['La vidéosurveillance est un traitement de données personnelles : base légale de l’intérêt légitime (sécurité des biens), à condition d’être nécessaire et proportionnée (art. 5 et 6 RGPD).','Les salariés doivent être informés individuellement (art. 13 RGPD et C. trav.) et le CSE consulté avant la mise en place.','La CNIL juge disproportionné le fait de filmer un salarié en continu à son poste, sauf circonstances particulières ; les images sont conservées 1 mois maximum en principe.','Sanction CNIL jusqu’à 20 M€ ou 4 % du CA mondial ; une preuve issue d’un dispositif illicite peut être écartée.'],
+   min:['Lutter contre les vols peut être un intérêt légitime, mais filmer en continu les postes de comptables est disproportionné.','Aucune information des salariés ni consultation du CSE.','Conservation de 6 mois : bien au-delà du mois recommandé.'],
+   concl:'Le dispositif n’est pas conforme : Vexa doit le limiter (zones à risque, pas les postes), informer les salariés, consulter le CSE et réduire la conservation à 1 mois. À défaut, elle s’expose à une sanction de la CNIL.',
+   pts:['Base légale : intérêt légitime','Proportionnalité (filmer en continu un poste = excessif)','Information des salariés et avis du CSE','Durée de conservation : 1 mois','Sanction CNIL : 20 M€ ou 4 % du CA'],
+   piege:'Le consentement des salariés n’est pas une bonne base légale : le lien de subordination l’empêche d’être libre.' },
+ { id:'dn-image', mat:'Droit du numérique et PI', t:'La photo de Léa dans la pub',
+   faits:'Léa, assistante comptable, a accepté oralement d’être prise en photo lors du séminaire de son entreprise « pour le journal interne ». Trois mois plus tard, la photo apparaît dans une publicité payante sur les réseaux sociaux. Léa est furieuse.',
+   q:'L’entreprise a-t-elle respecté le droit à l’image de Léa ? Que peut obtenir Léa ?',
+   pb:'Une autorisation donnée pour un usage déterminé de son image vaut-elle pour un autre usage, commercial ?',
+   maj:['Art. 9 C. civ. : chacun a droit au respect de sa vie privée et de son image ; toute diffusion suppose le consentement de la personne.','Le consentement est spécial : il vaut pour un support, une durée et une finalité précis, et s’interprète strictement. C’est à celui qui diffuse de le prouver.','La seule constatation de l’atteinte ouvre droit à réparation, sans avoir à prouver une faute ; le juge peut ordonner le retrait, en référé si urgent.'],
+   min:['Léa a consenti à un usage interne (journal), pas à une publicité commerciale.','Le consentement oral sera difficile à prouver pour l’entreprise, et ne couvre de toute façon pas la publicité.','La diffusion publicitaire porte donc atteinte à son droit à l’image.'],
+   concl:'Non : l’entreprise a dépassé l’autorisation. Léa peut exiger le retrait de la publicité (en référé si besoin) et des dommages-intérêts, sans avoir à prouver de faute.',
+   pts:['Art. 9 du Code civil','Consentement spécial et interprété strictement','Preuve du consentement à la charge du diffuseur','Réparation sans preuve d’une faute','Conclure : retrait + dommages-intérêts'],
+   piege:'Accepter d’être photographiée n’est pas accepter n’importe quelle diffusion : chaque usage demande son autorisation.' },
+ { id:'dn-logo', mat:'Droit du numérique et PI', t:'Le logo payé mais pas cédé',
+   faits:'La SARL Bistrot Malin a payé 800 € à Tom, graphiste indépendant, pour un logo original. Aucun contrat écrit n’a été signé. Un an plus tard, la SARL dépose ce logo comme marque à l’INPI et l’imprime sur ses produits vendus en supermarché. Tom réclame une rémunération supplémentaire.',
+   q:'Qui est titulaire des droits sur le logo ? Tom a-t-il raison ?',
+   pb:'Le paiement d’une création suffit-il à transférer au client les droits d’auteur, en l’absence de contrat écrit ?',
+   maj:['Le droit d’auteur naît du seul fait de la création d’une œuvre de l’esprit originale, sans formalité (L. 111-1 CPI) ; un logo peut être protégé quel que soit son mérite ou sa destination.','L’œuvre est distincte de son support et de son paiement : acheter la création ne transfère pas les droits.','Art. L. 131-3 CPI : la cession doit être écrite, chaque droit cédé mentionné (reproduction, représentation…) et le domaine délimité (étendue, destination, lieu, durée).','Exploiter une œuvre sans autorisation est une contrefaçon (L. 122-4 CPI).'],
+   min:['Le logo est original : Tom en est l’auteur et le titulaire des droits.','Sans contrat écrit, aucun droit n’a été cédé ; les 800 € paient la prestation, pas une cession.','Le dépôt de marque et l’exploitation commerciale utilisent l’œuvre sans autorisation.'],
+   concl:'Tom reste titulaire des droits : la SARL commet une contrefaçon et son dépôt de marque est fragile. Elle doit négocier avec Tom un contrat de cession écrit (avec rémunération), précisant les droits et usages.',
+   pts:['Protection sans formalité, originalité','Payer ≠ céder les droits','L. 131-3 : cession écrite et délimitée','Exploitation sans autorisation = contrefaçon','Solution : contrat de cession écrit'],
+   piege:'Exception à connaître : pour un logiciel créé par un salarié dans ses fonctions, les droits vont à l’employeur (L. 113-9). Tom est indépendant : elle ne s’applique pas.' },
+ { id:'dn-forum', mat:'Droit du numérique et PI', t:'Un commentaire diffamatoire sur le forum',
+   faits:'Sur le forum de l’association des étudiants GEA, modéré a posteriori par son président, un internaute anonyme écrit : « Le trésorier, Marc D., a détourné 2 000 € de la caisse l’an dernier. » Marc signale le message le 3 mai. Le président le laisse en ligne jusqu’au 20 juin.',
+   q:'S’agit-il d’une diffamation ? Le président peut-il être poursuivi ?',
+   pb:'Une imputation d’un fait précis publiée sur un forum modéré a posteriori engage-t-elle la responsabilité du directeur de la publication ?',
+   maj:['Loi du 29 juillet 1881, art. 29 : la diffamation est l’allégation d’un fait précis portant atteinte à l’honneur ou à la considération d’une personne identifiée ; l’injure est une expression outrageante sans fait précis.','Art. 93-3 de la loi de 1982 : le directeur de la publication d’un espace de contributions modéré a posteriori n’est responsable que s’il avait connaissance du message et ne l’a pas retiré promptement.','Prescription : 3 mois à compter de la première publication.'],
+   min:['« A détourné 2 000 € de la caisse » vise Marc nommément et impute un fait précis et vérifiable : c’est une diffamation.','Le président modère a posteriori ; il a eu connaissance du message le 3 mai par le signalement.','En le laissant en ligne près de 7 semaines, il ne l’a pas retiré promptement.'],
+   concl:'Oui, c’est une diffamation, et le président peut être poursuivi comme directeur de la publication. Marc doit agir dans les 3 mois de la publication.',
+   pts:['Distinguer diffamation et injure (fait précis)','Art. 93-3 : modération a posteriori','Connaissance + absence de retrait prompt','Prescription de 3 mois','Conclusion sur la responsabilité du président'],
+   piege:'Avec une modération a priori, le directeur de la publication est auteur principal : il a lu le message avant de le publier.' },
+ { id:'dn-preuve', mat:'Droit du numérique et PI', t:'L’enregistrement caché du manager',
+   faits:'Inès, salariée, réclame le paiement de 120 heures supplémentaires. Son employeur nie et ne tient aucun décompte. Sa seule preuve : un enregistrement réalisé à l’insu de son manager, où celui-ci reconnaît lui demander de rester tard « sans les déclarer ».',
+   q:'L’enregistrement est-il recevable devant le conseil de prud’hommes ?',
+   pb:'Une preuve obtenue de manière déloyale peut-elle être produite en justice dans un litige civil ?',
+   maj:['Avant 2023, la preuve obtenue de façon déloyale (enregistrement clandestin) était irrecevable en matière civile.','Cass. ass. plén., 22 décembre 2023 : une preuve déloyale peut être recevable si elle est indispensable à l’exercice du droit à la preuve et si l’atteinte aux droits de l’autre partie est strictement proportionnée au but poursuivi.','Le juge met en balance le droit à la preuve et les droits contraires (vie privée, loyauté).'],
+   min:['L’enregistrement est clandestin, donc déloyal.','Il est indispensable : l’employeur ne tient aucun décompte et c’est la seule preuve d’Inès.','L’atteinte est limitée : l’échange porte sur l’organisation du travail, pas sur la vie privée du manager.'],
+   concl:'Probablement oui : depuis 2023, l’enregistrement peut être déclaré recevable car il est indispensable et l’atteinte est proportionnée. Le juge appréciera au cas par cas.',
+   pts:['Situation avant 2023 : irrecevable','Ass. plén. 22 décembre 2023','Condition 1 : indispensable au droit à la preuve','Condition 2 : atteinte proportionnée','Conclusion nuancée (appréciation du juge)'],
+   piege:'Ce n’est pas automatique : si Inès avait d’autres preuves (mails, badgeuse), l’enregistrement ne serait plus indispensable.' },
+ { id:'fi-tva-vp', mat:'Fiscalité', t:'La voiture du commercial',
+   faits:'La SAS Novaplan, assujettie à la TVA, achète 30 000 € HT une voiture de tourisme pour son commercial. Elle paie aussi chaque mois 400 € HT de gazole pour ce véhicule. Le comptable veut déduire toute la TVA sur la voiture et sur le carburant.',
+   q:'Quelle TVA Novaplan peut-elle récupérer ?',
+   pb:'La TVA grevant l’achat d’un véhicule de tourisme et de son carburant est-elle déductible ?',
+   maj:['La TVA n’est déductible que sur les dépenses nécessaires à l’activité taxable, sauf exclusions prévues par la loi.','Les véhicules conçus pour transporter des personnes (véhicules de tourisme) sont exclus du droit à déduction, sauf activités particulières (taxis, auto-écoles, location…).','Carburant des véhicules de tourisme : TVA déductible à 80 % pour le gazole comme pour l’essence.'],
+   min:['La voiture du commercial est un véhicule de tourisme et Novaplan n’exerce pas une activité dérogatoire : TVA sur l’achat non déductible (6 000 €).','Le gazole : 400 € HT × 20 % = 80 € de TVA par mois, déductible à 80 %, soit 64 € par mois.'],
+   concl:'Novaplan ne peut pas récupérer les 6 000 € de TVA sur la voiture (ils s’ajoutent au coût de l’immobilisation). Elle peut récupérer 64 € par mois sur le carburant (768 € par an).',
+   pts:['Principe : dépense utile à l’activité taxable','Exclusion des véhicules de tourisme','Exceptions (taxis, auto-écoles…) écartées','Carburant : 80 %','Calculs : 6 000 € non déductibles, 64 € par mois'],
+   piege:'Un véhicule utilitaire (camionnette) ouvre droit à déduction : tout dépend de la nature du véhicule, pas de son usage professionnel.' },
+ { id:'fi-is-taux', mat:'Fiscalité', t:'Le taux réduit d’IS',
+   faits:'La SAS Kalia réalise 3 M€ de chiffre d’affaires et un bénéfice fiscal de 120 000 €. Son capital est entièrement libéré. Il est détenu à 60 % par un grand groupe industriel coté et à 40 % par ses deux fondateurs.',
+   q:'Quel est le montant de l’impôt sur les sociétés de Kalia ?',
+   pb:'Une société détenue majoritairement par un grand groupe peut-elle bénéficier du taux réduit d’IS des PME ?',
+   maj:['Taux normal de l’IS : 25 %.','Taux réduit de 15 % sur les 42 500 premiers euros de bénéfice si : chiffre d’affaires inférieur à 10 M€, capital entièrement libéré, et capital détenu à au moins 75 % par des personnes physiques (ou par des sociétés remplissant elles-mêmes ces conditions).'],
+   min:['CA de 3 M€ et capital libéré : ces deux conditions sont remplies.','Mais les personnes physiques ne détiennent que 40 % ; le groupe industriel coté ne remplit pas les conditions : la condition des 75 % n’est pas remplie.','Le taux de 25 % s’applique donc à tout le bénéfice : 120 000 × 25 % = 30 000 €.'],
+   concl:'Kalia ne bénéficie pas du taux réduit : son IS est de 30 000 € (au lieu de 25 750 € si elle y avait eu droit : 15 % × 42 500 + 25 % × 77 500).',
+   pts:['Taux normal 25 %','Les 3 conditions du taux réduit','Condition de détention à 75 % non remplie','Calcul : 30 000 €','Comparaison avec le taux réduit (25 750 €)'],
+   piege:'Ne pas s’arrêter au chiffre d’affaires : les trois conditions sont cumulatives.' },
+ { id:'dp-resil', mat:'Droit public économique', t:'La commune reprend le nettoyage en régie',
+   faits:'En janvier 2026, une commune a conclu avec la société Proprex un marché de nettoyage de ses écoles pour 4 ans. En septembre, le nouveau conseil municipal décide de confier ce nettoyage à ses propres agents et notifie à Proprex la résiliation du marché. Le contrat ne prévoit aucune clause de résiliation.',
+   q:'La commune peut-elle résilier ? Proprex a-t-elle droit à quelque chose ?',
+   pb:'L’administration peut-elle résilier unilatéralement un contrat administratif pour un motif d’intérêt général sans clause le prévoyant, et à quelle condition ?',
+   maj:['L’administration dispose, même sans clause, d’un pouvoir de résiliation unilatérale pour motif d’intérêt général : c’est l’un de ses pouvoirs inhérents au contrat administratif.','Le cocontractant a alors droit à une indemnisation intégrale de son préjudice : dépenses engagées et manque à gagner, sauf clause contraire.','La résiliation-sanction, elle, suppose une faute du cocontractant.'],
+   min:['Un marché passé par une commune pour l’entretien de ses écoles est un contrat administratif.','Reprendre un service en régie, par choix de gestion, peut constituer un motif d’intérêt général.','Proprex n’a commis aucune faute : il ne s’agit pas d’une sanction.'],
+   concl:'Oui, la commune peut résilier sans clause pour un motif d’intérêt général. Proprex doit être indemnisée intégralement : frais engagés et bénéfice qu’elle aurait réalisé jusqu’au terme du marché.',
+   pts:['Pouvoir de résiliation pour motif d’intérêt général, même sans clause','Qualification du contrat administratif','Distinguer de la résiliation-sanction','Indemnisation intégrale (manque à gagner inclus)','Conclusion'],
+   piege:'Ne pas confondre : la résiliation pour faute n’ouvre pas droit à indemnisation du manque à gagner.' },
+];
+const CASE_RX = /^\s*#\s*Cas\s+pratiques?\b/i;
+function parseCases(text){
+  const lines = String(text).replace(/\r/g,'').split('\n'); let mat = '', cur = null, key = null; const out = [];
+  const L = { 'faits':'faits', 'question':'q', 'problème':'pb', 'probleme':'pb', 'problème juridique':'pb', 'majeure':'maj', 'mineure':'min', 'conclusion':'concl', 'points clés':'pts', 'points cles':'pts', 'piège':'piege', 'piege':'piege' };
+  for (const raw of lines){ const l = raw.trim(); if (!l) continue;
+    let m = l.match(/^#\s*Cas\s+pratiques?\s*[;:–-]?\s*(.*)$/i); if (m){ mat = m[1].trim(); continue; }
+    m = l.match(/^##\s+(.+)$/); if (m){ cur = { id:'u-' + uid(), mat, t:m[1].trim(), faits:'', q:'', pb:'', maj:[], min:[], concl:'', pts:[], piege:'' }; out.push(cur); key = null; continue; }
+    if (!cur) continue;
+    m = l.match(/^([A-Za-zÀ-ÿ ]{4,20})\s*:\s*(.*)$/); const k = m && L[m[1].trim().toLowerCase()];
+    if (k){ key = k; if (m[2]) Array.isArray(cur[k]) ? cur[k].push(m[2].replace(/^[-•]\s*/,'')) : cur[k] = m[2]; continue; }
+    if (!key) continue;
+    const it = l.replace(/^[-•*]\s*/, ''); Array.isArray(cur[key]) ? cur[key].push(it) : cur[key] = (cur[key] ? cur[key] + ' ' : '') + it;
+  }
+  return out.filter(c => c.faits && c.q && c.concl);
+}
+const allCases = () => [...CASES, ...((state.cases && state.cases.user) || [])];
+function casesState(){ state.cases = state.cases || { user:[], res:{} }; state.cases.res = state.cases.res || {}; state.cases.user = state.cases.user || []; return state.cases; }
+function vCases(){
+  const C = casesState(), cur = ui.cas && allCases().find(c => c.id===ui.cas.id);
+  if (cur) return vCaseOne(cur);
+  const by = {}; allCases().forEach(c => (by[c.mat] = by[c.mat] || []).push(c));
+  const done = allCases().filter(c => C.res[c.id]).length;
+  return `<div class="card pad casintro"><b>Cas pratiques corrigés</b><p class="fine">Lis les faits, rédige ta réponse (problème, majeure, mineure, conclusion), puis compare avec la correction et coche les points que tu avais. ${done}/${allCases().length} faits.</p></div>
+    ${Object.entries(by).map(([m, L]) => `<section><h2>${esc(m)}</h2><div class="card caslist">${L.map(c => { const r = C.res[c.id];
+      return `<button class="casrow" data-cas-open="${c.id}"><span><b>${esc(c.t)}</b><small>${esc(mmShort(c.q, 80))}</small></span>${r ? `<em class="${r.s/r.n >= .8 ? 'ok' : r.s/r.n >= .5 ? 'mid' : 'lo'}">${r.s}/${r.n}</em>` : '<em>à faire</em>'}</button>`; }).join('')}</div></section>`).join('')}
+    <section><h2>Ajouter mes propres cas</h2><div class="card pad"><p class="fine">Envoie-moi ton cours avec le prompt ci-dessous : je te renvoie un fichier de cas pratiques corrigés à importer dans Matières → Importer un fichier.</p><button class="btn sm" data-copy-cas="1">Copier le prompt cas pratiques</button></div></section>`;
+}
+function vCaseOne(c){
+  const C = casesState(), r = C.res[c.id] || {}, show = ui.cas.show, draft = (C.draft || {})[c.id] || '';
+  const list = a => `<ul class="casul">${a.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+  return `<button class="hubback" data-cas-back="1">${CHEV_L}Tous les cas</button>
+    <div class="card pad casbox"><span class="lab">${esc(c.mat)}</span><h2 class="cash">${esc(c.t)}</h2><p>${esc(c.faits)}</p><p class="casq"><b>${esc(c.q)}</b></p></div>
+    <div class="field"><label for="cas-ans">Ta réponse</label><textarea id="cas-ans" class="casans" placeholder="Problème juridique… Majeure (règles)… Mineure (application aux faits)… Conclusion…">${esc(draft)}</textarea></div>
+    ${show ? `<div class="card pad cascor">
+      <h3>Problème juridique</h3><p>${esc(c.pb)}</p>
+      <h3>Majeure</h3>${list(c.maj)}
+      <h3>Mineure</h3>${list(c.min)}
+      <h3>Conclusion</h3><p>${esc(c.concl)}</p>
+      ${c.piege ? `<div class="caspiege"><b>Piège</b><p>${esc(c.piege)}</p></div>` : ''}</div>
+      <section><h2>Coche ce que tu avais</h2><div class="card caspts">${c.pts.map((p, i) => `<button class="caspt" data-cas-pt="${i}" aria-pressed="${!!(r.got || []).includes(i)}"><i>${(r.got || []).includes(i) ? ICON_CHECK : ''}</i><span>${esc(p)}</span></button>`).join('')}</div>
+      <p class="fine">Score : <b>${(r.got || []).length}/${c.pts.length}</b>. Les points sont ceux qu’un correcteur attend ; la mineure, où l’on applique chaque condition aux faits, rapporte le plus.</p></section>`
+    : `<button class="btn primary bigbtn" data-cas-show="1">Voir la correction</button>`}`;
+}
+const CAS_PROMPT = `Crée des cas pratiques corrigés à partir de ce cours pour mon appli Tempo (BUT GEA).
+
+Format exact, en texte brut :
+# Cas pratique ; [nom exact de la matière dans Tempo]
+## [Titre court du cas]
+Faits : [situation réaliste de 4 à 6 phrases, avec noms, dates et montants]
+Question : [la question posée]
+Problème : [le problème juridique formulé de façon générale]
+Majeure :
+- [règle, article ou arrêt précis du cours]
+- [autre règle ou condition]
+Mineure :
+- [application de chaque condition aux faits]
+Conclusion : [réponse claire à la question]
+Points clés :
+- [point attendu par un correcteur, 4 à 6 points]
+Piège : [l’erreur classique à éviter]
+
+Fais 5 à 8 cas couvrant les notions les plus importantes. N’invente aucune règle : utilise uniquement le cours, et cite les articles et arrêts qui y figurent.`;
+document.addEventListener('click', e => { const b = e.target.closest('[data-copy-cas]'); if (!b) return;
+  if (navigator.clipboard) navigator.clipboard.writeText(CAS_PROMPT).then(() => { b.textContent = 'Prompt copié'; setTimeout(() => b.textContent = 'Copier le prompt cas pratiques', 2000); }, () => toast('Copie impossible')); });
+view.addEventListener('input', e => { if (e.target.id !== 'cas-ans' || !ui.cas) return; const C = casesState(); C.draft = C.draft || {}; C.draft[ui.cas.id] = e.target.value.slice(0, 6000); clearTimeout(ui.casT); ui.casT = setTimeout(save, 600); });
+view.addEventListener('click', e => {
+  let b;
+  if ((b = e.target.closest('[data-cas-open]'))){ e.stopImmediatePropagation(); ui.cas = { id:b.dataset.casOpen, show:false }; render(); window.scrollTo(0,0); return; }
+  if ((b = e.target.closest('[data-cas-back]'))){ e.stopImmediatePropagation(); ui.cas = null; render(); window.scrollTo(0,0); return; }
+  if ((b = e.target.closest('[data-cas-show]'))){ e.stopImmediatePropagation(); ui.cas.show = true; const C = casesState(), c = allCases().find(x => x.id===ui.cas.id); if (!C.res[c.id]) C.res[c.id] = { got:[], s:0, n:c.pts.length, d:todayKey() }; commit(); return; }
+  if ((b = e.target.closest('[data-cas-pt]'))){ e.stopImmediatePropagation(); const C = casesState(), c = allCases().find(x => x.id===ui.cas.id), r = C.res[c.id], i = +b.dataset.casPt;
+    r.got = r.got.includes(i) ? r.got.filter(x => x!==i) : [...r.got, i]; r.s = r.got.length; r.n = c.pts.length; r.d = todayKey(); const y = window.scrollY; commit(); window.scrollTo(0, y); return; }
+}, true);
+
 /* ---------- Agenda horaire : vue Jour en vrai agenda ---------- */
 const TL_H = 62, CAT_COL = { cours:'accent', alternance:'c-cours', perso:'c-perso' };
 const tMin = s => { const [h, m] = String(s).split(':').map(Number); return h*60 + (m||0); };
@@ -7367,7 +7658,7 @@ function microDayHtml(D){
 view.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('[data-fold-micday]')) ui.micDayOpen = e.target.open; }, true);
 
 /* ---------- Rendu ---------- */
-const TITLES = { rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
+const TITLES = { 'rv-cas':'Cas pratiques', rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
   if (ui.tab==='accueil') ui.tab = 'today';
   if (ui.tab==='h-sport') ui.tab = 'h-jour';
@@ -7380,7 +7671,7 @@ function render(){
   const miss = tabNeeds(ui.tab); if (miss.length){ view.innerHTML = '<div class="card empty"><b>Chargement…</b>Un instant, Tempo prépare cette page.</div>'; Promise.all(miss.map(needData)).then(() => render()); return; }
   const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='today' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
   isEntering = vk !== lastVK; lastVK = vk;
-  view.innerHTML = hubHtml() + (ui.tab==='rv' ? vRvEx() : ui.tab==='rv-train' ? vRvTrain() : ui.tab==='moi' ? vMoi() : ui.tab==='today' ? vTodayNew() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes());
+  view.innerHTML = hubHtml() + (ui.tab==='rv-cas' ? vCases() : ui.tab==='rv' ? vRvEx() : ui.tab==='rv-train' ? vRvTrain() : ui.tab==='moi' ? vMoi() : ui.tab==='today' ? vTodayNew() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes());
   view.classList.remove('anim');
   if (isEntering && motionOK()){ void view.offsetWidth; [...view.children].forEach((c,i)=>c.style.setProperty('--i', Math.min(i,8))); view.classList.add('anim'); clearTimeout(animT); animT = setTimeout(()=>view.classList.remove('anim'), 1400); }
   if (view.querySelector('canvas[data-b3]')) body3dMount(view, window.__b3ms || {});
