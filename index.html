@@ -1359,6 +1359,14 @@ nav.tabs .in.n5>button{display:flex!important}
 .tlfold>summary i{width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s var(--ease-out);margin-top:-4px}
 .tlfold[open]>summary i{transform:rotate(-135deg);margin-top:4px}.tlfold[open]>summary{border-radius:var(--r,16px) var(--r,16px) 0 0;border-bottom:0}
 .tlfold[open] .tl{border-top-left-radius:0;border-top-right-radius:0}.tlfold>.fine{margin-top:8px}
+.mday .foldin{padding-top:2px}
+.mdgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}
+.mdr{display:flex;flex-direction:column;gap:4px;min-width:0}
+.mdh{display:flex;flex-direction:column;gap:1px;font-size:12px;color:var(--muted)}.mdh b{color:var(--fg);font:700 15px var(--f-display);font-variant-numeric:tabular-nums}
+.mdbar{height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden}.mdbar i{display:block;height:100%;border-radius:999px;background:var(--muted);transition:width .5s var(--ease-out)}
+.mdr.ok .mdbar i{background:var(--ok)}.mdr.prog .mdbar i{background:var(--c-cours)}.mdr.mid .mdbar i{background:var(--amber)}.mdr.lo .mdbar i{background:var(--danger)}
+.mdr small{font-size:11px;color:var(--muted)}
+.mday .fine{margin-top:12px}
 /* Interactions */
 
 
@@ -7292,6 +7300,7 @@ function hDayTop(D, S, T, goal, sp){
     </div>
     <div class="rmacs">${mb('Protéines', S.p, T.p, 'accent')}${mb('Glucides', S.c, tc, 'amber')}${mb('Lipides', S.f, tf, 'c-alt')}</div>
   </div>
+  ${microDayHtml(D)}
   <div class="hd2c one">
     <div class="card hdtile"><span class="lab">Eau</span><b>${nf(D.water*0.25)} <small>/ ${nf(T.water)} L</small></b><div class="hglass">${Array.from({length:Math.ceil(T.water/0.25)}, (_,i)=>`<i class="${i<D.water?'on':''}"></i>`).join('')}</div>
       <div class="hdwb"><button class="btn sm" data-h="water-" aria-label="Retirer un verre">−</button><button class="btn sm hdwplus" data-h="water+">+ 1 verre</button></div></div>
@@ -7340,6 +7349,22 @@ view.addEventListener('click', e => {
   const ed = e.target.closest('[data-tl-edit]'); if (ed){ e.stopImmediatePropagation(); const t = state.tasks.find(x => x.id===ed.dataset.tlEdit); if (t) taskSheet(t); return; }
   const dn = e.target.closest('[data-tl-done]'); if (dn){ e.stopImmediatePropagation(); const t = state.tasks.find(x => x.id===dn.dataset.tlDone); if (t){ t.done = !t.done; ui.justId = t.id; commit(); } return; }
 }, true);
+
+/* ---------- Santé · Journée : micronutriments du jour ---------- */
+function microDayHtml(D){
+  const ref = micRef(), sum = {}, known = {}; let kcal = 0;
+  MIC_INFO.forEach(([k]) => { sum[k] = 0; known[k] = 0; });
+  D.food.forEach(x => { kcal += x.kcal; const m = entryMicros(x); MIC_INFO.forEach(([k]) => { if (m && m[k] != null){ sum[k] += m[k]; known[k] += x.kcal; } }); });
+  const rows = MIC_INFO.map(([k, l, u, d, lim]) => { const v = sum[k], r = ref[k] ? v/ref[k] : 0, cov = kcal ? known[k]/kcal : 0;
+    const st = !D.food.length ? 'na' : lim ? (r <= 1 ? 'ok' : r <= 1.25 ? 'mid' : 'lo') : (r >= 1 ? 'ok' : 'prog');
+    return { k, l, u, d, lim, v, r, cov, st }; });
+  const got = rows.filter(x => !x.lim && x.r >= 1).length, need = rows.filter(x => !x.lim).length, over = rows.filter(x => x.lim && x.r > 1);
+  const row = x => `<div class="mdr ${x.st}"><div class="mdh"><span>${x.l}</span><span><b>${nf(x.d ? r1(x.v) : r0(x.v))}</b> / ${x.lim ? 'max ' : ''}${nf(ref[x.k])} ${x.u}</span></div><div class="mdbar"><i style="width:${Math.min(100, 100*x.r).toFixed(1)}%"></i></div>${x.cov < .5 && D.food.length ? '<small>données partielles</small>' : ''}</div>`;
+  return `<details class="card hmicro mday" ${ui.micDayOpen ? 'open' : ''} data-fold-micday><summary><span><b>Micronutriments</b><small>${D.food.length ? `${got}/${need} repères atteints${over.length ? ` · ${over.map(x => x.l.toLowerCase()).join(', ')} au-dessus de la limite` : ''}` : 'Note un repas pour voir tes vitamines et minéraux'}</small></span><i aria-hidden="true"></i></summary>
+    <div class="foldin">${D.food.length ? `<div class="mdgrid">${rows.map(row).join('')}</div>
+      <p class="fine">Repères journaliers Anses pour un adulte (sel et sucres : à ne pas dépasser). Les valeurs viennent de la table Ciqual ; certaines vitamines ne sont pas mesurées pour tous les aliments. <button class="link" data-hub="h-suivi">Moyenne sur 7 jours et aliments conseillés</button></p>` : '<p class="fine">Les apports du jour s’affichent dès que tu notes un repas.</p>'}</div></details>`;
+}
+view.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('[data-fold-micday]')) ui.micDayOpen = e.target.open; }, true);
 
 /* ---------- Rendu ---------- */
 const TITLES = { rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
