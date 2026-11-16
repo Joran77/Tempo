@@ -1,0 +1,268 @@
+{
+ "date": "2026-11-15",
+ "figures": [
+  {
+   "label": "Inflation en France, octobre 2026",
+   "note": "Glissement annuel, résultat définitif (3,1 % en septembre)",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage, 3e trimestre 2026",
+   "note": "Au sens du BIT, +0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Croissance du PIB, 3e trimestre 2026",
+   "note": "Variation sur un trimestre",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "CAC 40, clôture du 13 novembre",
+   "note": "+0,09 % sur la séance, +2,8 % sur la semaine",
+   "source": "Euronext / BFM Bourse",
+   "value": "8 368,91 pts"
+  },
+  {
+   "label": "Pétrole Brent, clôture du 13 novembre",
+   "note": "Baril, −2,52 % sur la semaine",
+   "source": "Prixdubaril.com",
+   "value": "95,84 $"
+  },
+  {
+   "label": "Dossiers de surendettement, janv.-oct. 2026",
+   "note": "+10,2 % sur un an",
+   "source": "Banque de France (via franceinfo)",
+   "value": "136 097"
+  }
+ ],
+ "generatedAt": "2026-11-15T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/presidentielle-larcher-veut-reunir-les-candidats-de-la-droite-et-du-centre-la-pression-monte-sur-philippe-c0a73dc48120a2eb7fcbc3a048411956"
+    },
+    {
+     "name": "ICI",
+     "url": "https://www.ici.fr/infos/politique/presidentielle-2027-gerard-larcher-veut-reunir-les-candidats-de-la-droite-et-du-centre-pour-une-methode-de-departage-9012250"
+    }
+   ],
+   "summary": "Le président du Sénat a proposé samedi aux candidats de la droite et du centre de se retrouver rapidement pour fixer une méthode de départage, en vue d'une candidature unique au début de 2027. Son appel, selon l'AFP, exclut Éric Zemmour et Raphaël Glucksmann. Bruno Retailleau a de son côté proposé une primaire les 31 janvier et 7 février, tandis qu'Édouard Philippe, qui tenait meeting à Toulouse, reste opposé à une primaire.",
+   "title": "Présidentielle : Gérard Larcher propose de réunir les candidats de la droite et du centre",
+   "why": "L'organisation des candidatures à droite et au centre conditionne l'offre politique de 2027, et donc les futurs programmes économiques et fiscaux soumis aux électeurs."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-de-la-securite-sociale-le-senat-adopte-un-volet-recettes-affaibli"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-financement-de-la-securite-sociale-pour-2027.html"
+    }
+   ],
+   "summary": "Les sénateurs ont voté vendredi la partie recettes du PLFSS 2027 ; les groupes de gauche et le groupe RN-UDR ont voté contre. Selon le ministre des Comptes publics David Amiel, les amendements adoptés dégradent le solde d'environ 3,2 milliards d'euros par rapport au texte initial, une estimation qu'il présente comme provisoire. Le rapporteur général Olivier Henno (Union centriste) annonce des économies dans la partie dépenses, examinée jusqu'au 17 novembre avant un vote solennel le 18.",
+   "title": "Budget de la Sécu 2027 : le Sénat adopte le volet recettes par 200 voix contre 110",
+   "why": "Le PLFSS fixe les cotisations et les dépenses sociales de 2027 : il touche directement la paie, les charges patronales et l'équilibre des comptes publics."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "L'Argus de l'assurance",
+     "url": "https://www.argusdelassurance.com/reglementation/vie-publique/projet-de-loi-de-financement-de-la-securite-sociale-plfss/budget-de-la-secu-2027-le-senat-supprime-la-contribution-exceptionnelle-de-11-milliard-deuros-sur-les-complementaires-sante.ZBWA4EZHQBGJBBCTFTPO2IG6LI.html"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-de-la-securite-sociale-le-senat-adopte-un-volet-recettes-affaibli"
+    }
+   ],
+   "summary": "Lors de l'examen du PLFSS 2027, le Sénat a adopté par 339 voix contre une l'amendement du rapporteur général supprimant l'article 12, qui reconduisait une contribution exceptionnelle à la charge des complémentaires santé. Les sénateurs ont fait valoir le risque d'une répercussion sur les cotisations des adhérents ; le gouvernement y était opposé. La majorité sénatoriale envisage de compenser en transférant aux complémentaires des dépenses de prévention.",
+   "title": "Le Sénat supprime la contribution de 1,1 milliard d'euros sur les complémentaires santé",
+   "why": "Exemple concret d'arbitrage entre recette publique et coût pour les ménages et les entreprises qui financent les mutuelles de leurs salariés."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Insee (accueil)",
+     "url": "https://www.insee.fr/fr/accueil"
+    }
+   ],
+   "summary": "Dans ses résultats définitifs publiés vendredi 13 novembre, l'Insee confirme que les prix à la consommation ont augmenté de 3,4 % sur un an en octobre 2026, après 3,1 % en septembre. L'institut a publié le même jour un coût du travail en hausse de 2,5 % sur un an au troisième trimestre. L'estimation provisoire de l'inflation de novembre est attendue le 27 novembre.",
+   "title": "L'Insee confirme une inflation de 3,4 % sur un an en octobre",
+   "why": "L'inflation sert de référence pour l'indexation de nombreux montants (Smic, pensions, loyers, Livret A) et pèse sur les décisions de la BCE."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    }
+   ],
+   "summary": "Selon l'Insee, le taux de chômage au sens du BIT s'établit à 8,2 % de la population active au troisième trimestre 2026, soit 0,1 point de moins qu'au trimestre précédent mais 0,4 point de plus qu'un an plus tôt. Sur la même période, le PIB a reculé de 0,1 %.",
+   "title": "Chômage : 8,2 % au troisième trimestre, en hausse de 0,4 point sur un an",
+   "why": "Le chômage et la croissance sont deux indicateurs clés de la conjoncture, utiles pour analyser l'environnement économique d'une entreprise ou d'un budget public."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/surendettement-10-2-de-dossiers-supplementaires-deposes-a-la-banque-de-france-depuis-le-debut-de-l-annee-2026_8282537.html"
+    },
+    {
+     "name": "La finance pour tous",
+     "url": "https://www.lafinancepourtous.com/2026/10/27/surendettement-hausse-des-depots-de-dossiers-en-septembre-2026/"
+    }
+   ],
+   "summary": "De janvier à octobre 2026, 136 097 dossiers de surendettement ont été déposés à la Banque de France, soit 10,2 % de plus qu'un an plus tôt, selon des données consultées par France Inter. Les inscriptions pour incidents de paiement atteignent 730 136 (+6,4 %). La hausse prolonge celles de 2025 (+9,8 %) et de 2024 (+6 %).",
+   "title": "Surendettement : les dépôts de dossiers progressent de 10,2 % depuis janvier",
+   "why": "C'est un indicateur suivi de près par les banques pour évaluer le risque de crédit des particuliers, et un signal sur le pouvoir d'achat des ménages."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/europe/ukraine/ukraine-lhypothese-dun-donbass-russe-en-echange-dune-protection-de-lotan-63c4248e-e038-11f1-b029-43a761592972"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/ukraine-lamerique-ne-peut-pas-negocier-a-notre-place-alerte-la-cheffe-de-la-diplomatie-europeenne"
+    }
+   ],
+   "summary": "Le président ukrainien Volodymyr Zelensky a affirmé samedi que les négociateurs américains envisageraient une cession du Donbass à la Russie en échange d'une protection de l'Otan pour l'Ukraine. La cheffe de la diplomatie européenne Kaja Kallas a pour sa part estimé que la levée des sanctions et le sort des avoirs russes gelés relèvent des seuls Européens, et que les États-Unis ne peuvent pas négocier à leur place.",
+   "title": "Ukraine : Zelensky évoque une piste américaine Donbass contre protection de l'Otan",
+   "why": "L'issue des négociations sur l'Ukraine influence les prix de l'énergie, les dépenses de défense européennes et le climat des marchés."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/14/trump-rencontrera-xi-et-poutine-en-chine-la-semaine-prochaine-selon-la-maison-blanche"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/usa/"
+    }
+   ],
+   "summary": "Selon la Maison Blanche, Donald Trump doit rencontrer Xi Jinping et Vladimir Poutine jeudi à Shenzhen, en marge du sommet de l'Apec, après une étape aux Philippines pour une réunion de l'Asean. Pékin et Moscou n'avaient pas confirmé la rencontre vendredi. Des responsables américains cités par l'AFP indiquent que la guerre en Iran sera abordée, mais pas l'Ukraine.",
+   "title": "La Maison Blanche annonce une rencontre Trump-Xi-Poutine en Chine",
+   "why": "Une rencontre entre les dirigeants des trois puissances peut peser sur les relations commerciales, les droits de douane et les marchés de l'énergie."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-seance-sans-entrain-pour-le-cac-40-qui-gagne-cependant-28-sur-une-semaine-parfaite-1173786.html"
+    },
+    {
+     "name": "Prixdubaril.com",
+     "url": "https://prixdubaril.com/petrole-index/prevision-des-cours-du-petrole.html"
+    }
+   ],
+   "summary": "Le CAC 40 a clôturé vendredi à 8 368,91 points (+0,09 %), après une semaine de hausse continue. TotalEnergies a signé la plus forte progression de l'indice (+1,65 %), soutenue par la remontée du pétrole, tandis que Kering a reculé de 2,4 % après les résultats du groupe suisse Richemont. Le Brent a terminé la semaine à 95,84 dollars, en baisse de 2,52 % sur cinq séances.",
+   "title": "Bourse de Paris : le CAC 40 finit la semaine en hausse de 2,8 %",
+   "why": "Suivre l'indice phare et ses principaux mouvements aide à comprendre comment les résultats d'entreprises et les matières premières se traduisent en valorisation boursière."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/eramet-lance-son-augmentation-de-capital-d-environ-500-mlns-54aca9943a8e7ba53567f3646651d549"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/marches/eramet-consent-une-forte-decote-pour-son-augmentation-de-capital-et-chute-en-bou_706071"
+    }
+   ],
+   "summary": "Le groupe minier a lancé vendredi une augmentation de capital d'environ 500 millions d'euros avec maintien du droit préférentiel de souscription, au prix de 14,49 euros par action nouvelle. Les droits se négocient du 16 au 25 novembre et la souscription court du 18 au 27 novembre ; l'APE s'engage sur environ 64 % de l'opération. L'action a nettement reculé à l'annonce, un actionnaire ne souscrivant pas voyant sa part passer de 1 % à 0,45 %.",
+   "title": "Eramet lance une augmentation de capital de 500 millions d'euros avec forte décote",
+   "why": "Cas d'école sur l'augmentation de capital avec DPS : décote, dilution, valeur théorique du droit et renforcement des fonds propres."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "ICI (AFP)",
+     "url": "https://www.ici.fr/infos/faits-divers-justice/cyberattaque-maileva-filiale-du-groupe-la-poste-annonce-un-vol-de-donnees-touchant-22-millions-de-personnes-5448938"
+    },
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/societe/cyberattaque/cyberattaque-maileva-filiale-du-groupe-la-poste-annonce-un-vol-de-donnees-touchant-22-millions-de-personnes-802b7302-e060-11f1-9a29-f4bab172af08"
+    }
+   ],
+   "summary": "La Poste a indiqué samedi à l'AFP que Maileva, plateforme de courriers professionnels de sa filiale Docaposte, a subi mi-septembre une cyberattaque ayant exposé les prénoms, noms et adresses postales de 22 millions de personnes destinataires de courriers de ses entreprises clientes. Maileva a notifié la CNIL, déposé plainte et informé les entreprises concernées ; une enquête judiciaire est en cours.",
+   "title": "Cyberattaque chez Maileva (La Poste) : 22 millions de personnes concernées",
+   "why": "L'incident rappelle les obligations des entreprises au titre du RGPD et le risque cyber qui pèse sur les prestataires de services de gestion documentaire."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "CNews",
+     "url": "https://www.cnews.fr/france/2026-11-14/manifestations-du-14-novembre-paris-le-cortege-selance-place-de-la-republique"
+    },
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/france/20261113-manifestations-du-14-novembre-parcours-revendications-s%C3%A9curit%C3%A9-ce-qu-il-faut-savoir"
+    }
+   ],
+   "summary": "Selon le ministère de l'Intérieur, quelque 106 000 personnes ont manifesté samedi en France, dont 24 000 à Paris, pour le cinquième week-end consécutif de mobilisation contre la vie chère, à l'appel de la coordination des Gilets jaunes et d'organisations de jeunesse. La semaine précédente avait réuni 146 000 manifestants selon la même source. À 17 h, 121 personnes avaient été interpellées.",
+   "title": "« Vie chère » : 106 000 manifestants en France pour l'acte V, selon l'Intérieur",
+   "why": "Le mouvement illustre les tensions autour du pouvoir d'achat, au moment où le Parlement examine les budgets de l'État et de la Sécurité sociale."
+  }
+ ],
+ "lede": "Le Sénat a adopté le volet recettes du budget de la Sécurité sociale, dont le solde se dégrade provisoirement de 3,2 milliards d'euros. À droite, Gérard Larcher propose de réunir les candidats pour départager une candidature unique, tandis que l'Insee confirme une inflation de 3,4 % en octobre.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Le chômage au sens du BIT atteint 8,2 %, soit 0,4 point de plus qu'un an plus tôt.",
+   "options": [
+    "7,8 %",
+    "8,2 %",
+    "8,6 %",
+    "7,4 %"
+   ],
+   "q": "Quel est le taux de chômage en France au 3e trimestre 2026, selon l'Insee ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Eramet lève environ 500 millions d'euros avec maintien du DPS, à 14,49 euros par action nouvelle.",
+   "options": [
+    "300 millions d'euros",
+    "800 millions d'euros",
+    "650 millions d'euros",
+    "500 millions d'euros"
+   ],
+   "q": "Quel montant Eramet vise-t-il avec son augmentation de capital lancée le 13 novembre ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Le président du Sénat veut fixer une méthode de départage en vue d'une candidature unique en 2027.",
+   "options": [
+    "Gérard Larcher",
+    "Bruno Retailleau",
+    "Xavier Bertrand",
+    "Yaël Braun-Pivet"
+   ],
+   "q": "Qui a proposé samedi de réunir les candidats de la droite et du centre ?"
+  }
+ ]
+}

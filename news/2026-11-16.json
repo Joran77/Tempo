@@ -1,0 +1,272 @@
+{
+ "date": "2026-11-16",
+ "figures": [
+  {
+   "label": "Inflation en France, octobre 2026 (sur un an)",
+   "note": "Résultat définitif ; énergie +24,1 % sur un an",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Acquis de croissance 2026 : 0,2 %",
+   "source": "Insee",
+   "value": "-0,1 %"
+  },
+  {
+   "label": "CAC 40, clôture du 13 novembre",
+   "note": "+0,09 % sur la séance, +2,8 % sur la semaine",
+   "source": "Boursorama / BFM Bourse",
+   "value": "8 368,91 pts"
+  },
+  {
+   "label": "Brent, clôture du 13 novembre",
+   "note": "Prix du baril, en recul de 2,5 % sur la semaine",
+   "source": "Investing.com / prixdubaril.com",
+   "value": "95,84 $"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre ; prochaine réunion le 17 décembre",
+   "source": "BCE",
+   "value": "2,50 %"
+  },
+  {
+   "label": "Smic net au 1er décembre 2026",
+   "note": "Hausse de 1,6 %, soit environ 24 € par mois",
+   "source": "Gouvernement / Ouest-France",
+   "value": "1 502 €"
+  }
+ ],
+ "generatedAt": "2026-11-16T06:41:56+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-de-la-securite-sociale-le-senat-adopte-un-volet-recettes-affaibli"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    }
+   ],
+   "summary": "Les sénateurs ont validé le 13 novembre le volet recettes du projet de loi de financement de la Sécurité sociale pour 2027, la gauche et le RN votant contre. Le gouvernement estime que les modifications votées creusent le déficit de 3,2 milliards d'euros ; la majorité sénatoriale annonce des économies sur les dépenses. Le vote solennel est prévu le 18 novembre, puis le budget de l'État arrive au Sénat le 20 novembre, après son rejet à l'Assemblée.",
+   "title": "Budget de la Sécu : le Sénat adopte la partie recettes, 200 voix contre 110",
+   "why": "Le PLFSS et le PLF fixent les cotisations, les prélèvements et le déficit public : ce sont des notions centrales en finance publique et en fiscalité."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/emmanuel-macron-affirme-que-ceux-qui-veulent-rationner-l-aide-a-l-ukraine-veulent-l-obliger-a-une-paix-injuste_8282819.html"
+    },
+    {
+     "name": "Le JDD",
+     "url": "https://www.lejdd.fr/International/sil-navait-pas-ruine-notre-pays-attaquee-sur-lukraine-marine-le-pen-renvoie-emmanuel-macron-a-son-bilan-188790"
+    }
+   ],
+   "summary": "Le 14 novembre, Emmanuel Macron a estimé sur X que limiter les moyens de l'Ukraine reviendrait à lui imposer une paix défavorable. Marine Le Pen, candidate du RN pour 2027, prévoit de cesser l'aide financière à Kiev après six mois si elle est élue. Elle a répondu que la situation budgétaire de la France, qu'elle impute au bilan du président, réduit les marges de manœuvre. L'entourage présidentiel juge cette position isolante pour la France en Europe.",
+   "title": "Aide à l'Ukraine : échange entre Emmanuel Macron et Marine Le Pen",
+   "why": "Le débat lie politique étrangère et contrainte budgétaire, un thème qui devrait peser dans la campagne présidentielle de 2027."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/inflation/l-inflation-en-france-a-atteint-3-4-sur-un-an-en-octobre_8280635.html"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/france-l-inflation-a-bien-atteint-3-4-sur-un-an-en-octobre-selon-l-insee-0846fec8a39bf83d611abf29c1b35bf5"
+    }
+   ],
+   "summary": "L'Insee a publié le 13 novembre ses résultats définitifs : les prix à la consommation augmentent de 3,4 % sur un an en octobre, après 3,1 % en septembre. L'énergie progresse de 24,1 % sur un an, tirée par le gaz et les produits pétroliers, et les services de 2,6 %. Un an plus tôt, avant la guerre au Moyen-Orient, l'inflation n'était que de 0,9 %.",
+   "title": "L'inflation confirmée à 3,4 % en octobre, au plus haut depuis janvier 2024",
+   "why": "L'inflation sert à revaloriser contrats, loyers et livrets ; elle influence aussi la politique de taux de la BCE et le coût du financement des entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/economie/salaires/hausses-des-salaires-les-mesures-annoncees-par-le-gouvernement-couteront-plus-dun-milliard-deuros-selon-david-amiel-e86ff3ba-e0cf-11f1-9a29-f4bab172af08"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/pouvoir-achat/il-y-aura-bien-une-hausse-des-points-pour-les-plus-bas-salaires-de-la-fonction-publique-confirme-le-ministre-david-amiel_8283254.html"
+    }
+   ],
+   "summary": "Le ministre des Comptes publics, David Amiel, a chiffré dimanche sur franceinfo le coût des annonces de la semaine pour les finances publiques. Le Smic passera à 1 502 euros net au 1er décembre, soit +1,6 %. Les plus bas salaires de la fonction publique seront aussi revalorisés : 1,35 million d'agents concernés, pour environ 350 euros brut par an en moyenne.",
+   "title": "Hausses des bas salaires : un coût d'un peu plus d'un milliard d'euros",
+   "why": "Une hausse du Smic se répercute sur la masse salariale, les charges sociales et les allègements de cotisations : un calcul classique en paie et en contrôle de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/fichier/version-html/9111036/IR263_CNT1e_%203T2026.pdf"
+    },
+    {
+     "name": "France Épargne",
+     "url": "https://www.france-epargne.fr/news/le-pib-francais-recule-de-01-au-troisieme-trimestre-la-cible-de-05-pour-2026-seloigne"
+    }
+   ],
+   "summary": "Selon la première estimation de l'Insee, l'activité recule légèrement au troisième trimestre, après une stagnation au printemps. La consommation des ménages progresse de 0,4 %, mais l'investissement baisse de 0,6 % et le commerce extérieur retire 0,6 point au PIB. L'acquis de croissance pour 2026 tombe à 0,2 %, sous l'objectif de 0,5 % du gouvernement.",
+   "title": "Croissance : le PIB français a reculé de 0,1 % au troisième trimestre",
+   "why": "Une croissance faible réduit les recettes fiscales et complique la réduction du déficit visée par le budget 2027."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Conseil de l'UE",
+     "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/11/12/joint-statement-by-president-costa-and-president-von-der-leyen-following-their-meeting-with-president-zelenskyy-in-dublin/"
+    },
+    {
+     "name": "The Irish Times",
+     "url": "https://www.irishtimes.com/politics/2026/11/12/eu-meetings-dublin-road-closures-traffic-disruption-latest/"
+    }
+   ],
+   "summary": "En marge du sommet de la Communauté politique européenne du 12 novembre à Dublin, Volodymyr Zelensky a rencontré les envoyés américains Steve Witkoff et Jared Kushner, qui sortaient de discussions avec Vladimir Poutine à Moscou. Les pourparlers d'Abou Dhabi n'ont débouché que sur un accord de principe pour un échange de prisonniers. Les présidents du Conseil européen et de la Commission ont réaffirmé le soutien financier et militaire de l'UE.",
+   "title": "Ukraine : Zelensky rencontre les émissaires américains à Dublin",
+   "why": "L'issue des négociations pèse sur les prix de l'énergie, les dépenses de défense européennes et la confiance des marchés."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/usa/l-espace-aerien-des-etats-unis-a-rouvert-apres-l-annulation-de-6-000-vols_8282150.html"
+    },
+    {
+     "name": "RTS",
+     "url": "https://www.rts.ch/info/monde/2026/article/etats-unis-tous-les-avions-cloues-au-sol-dans-le-pays-29415686.html"
+    }
+   ],
+   "summary": "Les autorités américaines ont suspendu tous les décollages pendant environ quatre heures le 13 novembre, à cause de communications et de radars défaillants dans plusieurs centres de contrôle. L'espace aérien a rouvert dans la soirée, heure de Washington, mais le retour à la normale doit prendre plusieurs jours. Le ministre des Transports, Sean Duffy, a mis en cause des équipements vieillissants.",
+   "title": "États-Unis : 6 000 vols annulés après une panne du contrôle aérien",
+   "why": "L'incident illustre le coût d'infrastructures sous-financées : la Maison-Blanche venait de demander 30,1 milliards de dollars au Congrès pour moderniser le système."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/monde/iran/guerre-au-moyen-orient-attaques-iraniennes-pas-besoin-dun-accord-selon-donald-trump-les-dernieres-infos-eb9a0038-de5b-11f1-86b6-0a2fbb1d8ed9"
+    },
+    {
+     "name": "prixdubaril.com",
+     "url": "https://prixdubaril.com/petrole-index/cours-de-cloture-baril-petrole.html"
+    }
+   ],
+   "summary": "L'Iran a visé des pétroliers dans le détroit d'Ormuz et un radar américain à Bahreïn, selon les informations publiées le 13 novembre. Donald Trump a déclaré que les États-Unis n'avaient plus besoin d'un accord avec Téhéran, même si des échanges par médiateurs se poursuivent. Le Brent a terminé la semaine à 95,84 dollars, en recul de 2,5 % sur cinq séances.",
+   "title": "Ormuz : nouvelles attaques iraniennes, Trump dit ne plus chercher d'accord",
+   "why": "Le détroit d'Ormuz est un point de passage clé du pétrole mondial : ses tensions expliquent une grande partie de l'inflation énergétique en France."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "SEC (communiqué Nvidia)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm"
+    },
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/wall-street-ouvre-en-baisse-nvidia-plonge-apres-la-demission-de-jensen-huang-520b05d70a23d74b8b6b96aa32ae7b5d"
+    }
+   ],
+   "summary": "Le conseil d'administration de Nvidia a annoncé le 12 novembre la démission immédiate de son cofondateur et PDG, Jensen Huang, visé par des révélations sur sa vie privée. La directrice financière Colette Kress devient PDG par intérim et Harvey C. Jones est nommé président du conseil. L'action a chuté d'environ 13 % à l'ouverture le jour de l'annonce ; les résultats trimestriels restent prévus le 17 novembre.",
+   "title": "Nvidia : Jensen Huang démissionne, Colette Kress assure l'intérim",
+   "why": "Nvidia pèse environ 5 % de l'indice MSCI World : son cours influence de nombreux fonds indiciels détenus en PEA ou en assurance vie."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/eramet-lance-son-augmentation-de-capital-d-environ-500-mlns-1ed934fa68a37d171390e18b22595d36"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/marches/eramet-consent-une-forte-decote-pour-son-augmentation-de-capital-et-chute-en-bou_706071"
+    }
+   ],
+   "summary": "Le groupe minier a lancé le 13 novembre une augmentation de capital avec maintien du droit préférentiel de souscription, à 14,49 euros par action nouvelle, soit une décote d'environ 62 %. L'Agence des participations de l'État s'engage sur environ 64 % de l'opération et deviendra premier actionnaire. Les droits se négocient du 16 au 25 novembre ; l'action a perdu plus de 7 % vendredi.",
+   "title": "Eramet lance une augmentation de capital de 500 millions d'euros",
+   "why": "Cas pratique d'augmentation de capital : DPS, décote, dilution et renforcement des fonds propres pour réduire l'endettement."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/fonction-publique-sebastien-lecornu-ouvre-une-discussion-d-un-mois-sur-les-bas-salaires"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/greve/la-cfdt-rejoint-l-appel-a-la-greve-dans-la-fonction-publique-le-17-novembre-estimant-que-les-propositions-du-gouvernement-ne-constituent-pas-de-veritables-avancees_8281298.html"
+    }
+   ],
+   "summary": "Après une réunion à Matignon le 13 novembre, Sébastien Lecornu a ouvert une discussion d'un mois avec les syndicats sur les bas salaires et fixé un rendez-vous au 11 décembre. La CFDT a jugé les propositions insuffisantes et rejoint l'appel à la grève de mardi, désormais soutenu par toute l'intersyndicale. La CGT réclame une hausse générale du point d'indice.",
+   "title": "Fonction publique : l'intersyndicale maintient la grève du 17 novembre",
+   "why": "Les rémunérations publiques représentent une part importante des dépenses de l'État et pèsent directement sur le budget en discussion."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/victime-d-une-cyberattaque-maileva-une-filiale-du-groupe-la-poste-annonce-un-vol-de-donnees-touchant-22-millions-de-personnes_8282825.html"
+    },
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/societe/cyberattaque/cyberattaque-maileva-filiale-du-groupe-la-poste-annonce-un-vol-de-donnees-touchant-22-millions-de-personnes-802b7302-e060-11f1-9a29-f4bab172af08"
+    }
+   ],
+   "summary": "La Poste a annoncé le 14 novembre que sa filiale Maileva, spécialisée dans l'envoi de courrier dématérialisé pour les entreprises, a subi une cyberattaque mi-septembre. Les noms, prénoms et adresses postales de 22 millions de personnes ont été dérobés. La CNIL a été notifiée, une plainte déposée et une enquête judiciaire est en cours.",
+   "title": "Cyberattaque chez Maileva (La Poste) : 22 millions de personnes concernées",
+   "why": "Le RGPD impose aux entreprises de notifier les fuites et expose à des sanctions : la cybersécurité est devenue un risque à part entière dans la gestion d'une entreprise."
+  }
+ ],
+ "lede": "L'Insee a confirmé une inflation de 3,4 % sur un an en octobre, portée par l'énergie, pendant que le gouvernement chiffre à plus d'un milliard d'euros ses hausses de bas salaires. Le budget de la Sécurité sociale avance au Sénat, et la démission du patron de Nvidia continue de peser sur les marchés.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "L'Insee a confirmé 3,4 % sur un an, après 3,1 % en septembre. 2,6 % correspond aux seuls services.",
+   "options": [
+    "3,1 %",
+    "2,6 %",
+    "3,4 %",
+    "3,7 %"
+   ],
+   "q": "Selon les résultats définitifs de l'Insee, quelle a été l'inflation en France sur un an en octobre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Les actions nouvelles sont émises à 14,49 €, soit une décote d'environ 62 % par rapport au cours du 11 novembre (38,48 €).",
+   "options": [
+    "14,49 €",
+    "25,39 €",
+    "13,09 €",
+    "38,48 €"
+   ],
+   "q": "À quel prix Eramet propose-t-il ses actions nouvelles dans son augmentation de capital ?"
+  },
+  {
+   "answer": 3,
+   "explain": "La directrice financière Colette Kress devient PDG par intérim ; Harvey C. Jones est nommé président du conseil.",
+   "options": [
+    "Harvey Jones",
+    "Jay Puri",
+    "Lisa Su",
+    "Colette Kress"
+   ],
+   "q": "Qui assure la direction de Nvidia par intérim après la démission de Jensen Huang ?"
+  }
+ ]
+}

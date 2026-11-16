@@ -1,0 +1,284 @@
+{
+ "date": "2026-11-14",
+ "figures": [
+  {
+   "label": "Inflation en France (octobre 2026, sur un an)",
+   "note": "Chiffre définitif, après 3,1 % en septembre",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Inflation harmonisée IPCH France (octobre 2026)",
+   "note": "Indice utilisé pour comparer les pays de la zone euro",
+   "source": "Insee",
+   "value": "3,7 %"
+  },
+  {
+   "label": "Taux de chômage BIT (3e trimestre 2026)",
+   "note": "−0,1 point sur le trimestre, +0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "PIB zone euro (3e trimestre 2026, sur un trimestre)",
+   "note": "Après +0,6 % au 2e trimestre ; +1,3 % sur un an",
+   "source": "Eurostat",
+   "value": "+0,4 %"
+  },
+  {
+   "label": "Taux de l'État français à 10 ans (TEC 10, 13 novembre)",
+   "note": "Référence des emprunts d'État à 10 ans",
+   "source": "Agence France Trésor",
+   "value": "4,89 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE (novembre 2026)",
+   "note": "Inchangé lors de la réunion du 29 octobre",
+   "source": "BCE",
+   "value": "2,50 %"
+  },
+  {
+   "label": "CAC 40 (clôture du 13 novembre)",
+   "note": "+0,09 % sur la séance, +2,82 % sur la semaine",
+   "source": "Euronext / AFP",
+   "value": "8 368,91 pts"
+  },
+  {
+   "label": "Baril de Brent (13 novembre)",
+   "note": "Contrat livrable en janvier, quasi stable",
+   "source": "AFP",
+   "value": "95,84 $"
+  }
+ ],
+ "generatedAt": "2026-11-14T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "MoneyVox (avec AFP)",
+     "url": "https://www.moneyvox.fr/votre-argent/actualites/111209/budget-2027-lecornu-veut-faire-de-la-question-agricole-un-des-leviers-majeurs-de-compromis-budgetaire"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    }
+   ],
+   "summary": "Jeudi 12 novembre, le Premier ministre Sébastien Lecornu a indiqué que la question agricole serait l'un des thèmes principaux d'un compromis budgétaire, comme l'avait été la suspension de la réforme des retraites pour le budget 2026. Il a renvoyé à décembre, après l'examen au Sénat, les réponses sur la manière dont le texte sera adopté. Il a écarté le recours à une loi spéciale qui se contenterait de reconduire les crédits.",
+   "title": "Budget 2027 : Lecornu veut faire de l'agriculture un axe majeur de compromis",
+   "why": "Le choix entre 49.3 avec compromis, ordonnances ou loi spéciale détermine quand et comment les mesures fiscales de 2027 s'appliqueront aux entreprises et aux ménages."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Quartz (avec AFP)",
+     "url": "https://fr.qz.com/senat-examen-budget-securite-sociale-2027-rejet-assemblee-110926"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-l-assemblee-rejette-a-l-unanimite-la-partie-recettes-le-projet-de-loi-de"
+    }
+   ],
+   "summary": "Rejetés en première lecture par les députés (458 voix contre, aucune pour sur la partie recettes du budget de l'État), les textes budgétaires sont au Sénat. Le budget de la Sécurité sociale y est débattu jusqu'au vote solennel du 18 novembre ; le budget de l'État suivra du 20 novembre au 9 décembre. Le gouvernement pourra légiférer par ordonnances à partir du 26 novembre pour la Sécurité sociale et du 17 décembre pour l'État si le Parlement ne s'est pas prononcé.",
+   "title": "Le Sénat examine les budgets 2027 après leur rejet à l'Assemblée",
+   "why": "Ce calendrier est un cas pratique de procédure budgétaire (articles 47 et 47-1 de la Constitution), utile pour comprendre le cadre des finances publiques."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/inflation/l-inflation-en-france-a-atteint-3-4-sur-un-an-en-octobre_8280635.html"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/france-l-inflation-a-bien-atteint-3-4-sur-un-an-en-octobre-selon-l-insee-0846fec8a39bf83d611abf29c1b35bf5"
+    }
+   ],
+   "summary": "Les résultats définitifs publiés le 13 novembre confirment l'estimation provisoire : les prix à la consommation ont augmenté de 3,4 % sur un an en octobre, après 3,1 % en septembre, un niveau inédit depuis janvier 2024. L'énergie progresse de 24,1 % sur un an, portée par le gaz et les produits pétroliers. L'indice harmonisé (IPCH) atteint 3,7 %.",
+   "title": "Inflation : l'Insee confirme 3,4 % sur un an en octobre",
+   "why": "L'inflation sert à revaloriser le Smic, à indexer les loyers et à calculer le taux du Livret A ; elle influence aussi les décisions de la BCE."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/zone-euro-le-pib-augmente-de-0-4-au-troisieme-trimestre-deuxieme-estimation-8af3ec7ff5a5039260ea50a107a787f2"
+    },
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-13-zone-euro-croissance-du-pib-confirmee-a-04-au-3e-trimestre.html"
+    }
+   ],
+   "summary": "Selon la deuxième estimation d'Eurostat publiée le 13 novembre, le PIB de la zone euro a progressé de 0,4 % au troisième trimestre, contre 0,6 % au deuxième, et de 0,5 % dans l'ensemble de l'UE. Sur un an, la croissance de la zone euro atteint 1,3 %. L'emploi est resté stable sur le trimestre.",
+   "title": "Zone euro : croissance confirmée à 0,4 % au troisième trimestre",
+   "why": "La croissance européenne conditionne les débouchés des entreprises françaises et pèse sur les arbitrages de politique monétaire de la BCE."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/13/france-et-allemagne-proches-dun-accord-sur-de-cos-a-la-tete-de-la-bce"
+    }
+   ],
+   "summary": "Un responsable de l'UE a indiqué vendredi que deux candidatures avaient été déposées pour succéder à Christine Lagarde, qui quittera la BCE en février : celles de l'Espagnol Pablo Hernández de Cos et du Néerlandais Klaas Knot. Selon El País, la France et l'Allemagne seraient proches d'un accord en faveur de Pablo Hernández de Cos. António Costa doit consulter le Parlement européen et la BCE à partir du sommet du 26 novembre.",
+   "title": "Succession de Christine Lagarde : deux candidats pour présider la BCE",
+   "why": "La personnalité du futur président de la BCE peut influencer l'orientation des taux d'intérêt, donc le coût du crédit pour les entreprises et l'État."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/usa-les-prix-a-la-production-augmentent-moins-que-prevu-en-octobre-446e56c91fa604dc493c31247b917d9c"
+    },
+    {
+     "name": "Quartz (avec AFP)",
+     "url": "https://fr.qz.com/prix-production-americains-hausse-octobre-inflation-111326"
+    }
+   ],
+   "summary": "D'après le département du Travail, les prix à la production pour la demande finale ont augmenté de 0,3 % en octobre, un peu moins que les 0,4 % attendus. Sur un an, la hausse atteint 6,5 %, le rythme le plus élevé depuis novembre 2022. La Réserve fédérale maintient pour l'instant son taux directeur entre 3,75 % et 4,00 %.",
+   "title": "États-Unis : les prix à la production en hausse de 6,5 % sur un an",
+   "why": "Les prix à la production annoncent souvent l'évolution des prix à la consommation et orientent les anticipations sur les taux de la Fed."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/13/lue-integre-litalie-et-la-pologne-a-lequipe-de-paix-sur-lukraine-au-detriment-de-kaja-kall"
+    },
+    {
+     "name": "Reuters (via Yahoo)",
+     "url": "https://www.yahoo.com/news/articles/europes-security-cannot-part-ukraine-161929677.html"
+    },
+    {
+     "name": "Quartz (avec AP)",
+     "url": "https://fr.qz.com/les-dirigeants-de-lue-nomment-une-quipe-europenne-pour-les-pourparlers-de-paix-en-ukraine"
+    }
+   ],
+   "summary": "Réunis à Dublin le 13 novembre, les dirigeants européens ont convenu que l'Europe serait représentée par les institutions de l'UE et cinq pays de la coalition des volontaires : France, Allemagne, Italie, Pologne et Royaume-Uni, a annoncé António Costa. Ils n'ont pas nommé d'envoyé unique, contrairement à ce que souhaitait la cheffe de la diplomatie européenne Kaja Kallas. Le Kremlin a de son côté conditionné une participation européenne à des gages de bonne volonté.",
+   "title": "Ukraine : l'UE désigne une équipe commune pour les pourparlers de paix",
+   "why": "L'issue des négociations sur l'Ukraine pèse sur les prix de l'énergie, les budgets de défense et la stabilité économique européenne."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/13/liran-affirme-avoir-detruit-un-radar-americain-a-bahrein-apres-une-attaque-americaine-au-s"
+    }
+   ],
+   "summary": "Les Gardiens de la révolution iraniens ont affirmé vendredi avoir détruit un radar d'alerte américain à Bahreïn, en représailles à une frappe sur le sud de l'Iran. Le commandement américain Centcom indique avoir abattu deux drones iraniens et ne signale ni blessé ni dégât. Des médiations du Qatar et du Pakistan se poursuivent ; Téhéran pose comme conditions la levée des sanctions et la fin du blocus naval.",
+   "title": "Golfe : l'Iran dit avoir frappé un radar américain, Washington dément",
+   "why": "Les tensions autour du détroit d'Ormuz influencent directement le prix du pétrole, donc l'inflation et les coûts des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/le-directeur-general-de-nvidia-jensen-huang-demissionne-le-cours-de-l-action-s-effondre-68a1df7bccb0c34926e2b3197324ffdf"
+    },
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/nvidia-US67066G1040/actualites/nvidia-il-incarnait-l-adn-de-nvidia-jensen-huang-quitte-l-entreprise-qu-il-a-cofondee-l-action-chute-de-14-a-wall-street-1173657.html"
+    }
+   ],
+   "summary": "Le cofondateur de Nvidia a quitté jeudi ses fonctions de directeur général et son siège au conseil d'administration, avec effet immédiat, après des informations de presse sur sa vie privée. La directrice financière Colette Kress assure l'intérim pendant la recherche d'un successeur. Le titre a chuté jusqu'à 14 % en séance jeudi.",
+   "title": "Nvidia : démission de Jensen Huang, l'action sous pression",
+   "why": "Cet épisode illustre le « risque homme-clé » et le rôle de la gouvernance d'entreprise dans la valorisation boursière."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/cinq-sur-cinq-pour-le-cac-40-sur-la-semaine-de2fcbec62e3ccc0a2e58f1c60018d85"
+    },
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-seance-sans-entrain-pour-le-cac-40-qui-gagne-cependant-28-sur-une-semaine-parfaite-1173786.html"
+    }
+   ],
+   "summary": "Le CAC 40 a terminé vendredi en légère hausse de 0,09 %, à 8 368,91 points, au plus haut depuis fin août. Sur la semaine, l'indice gagne 2,82 %, sa meilleure performance hebdomadaire depuis début avril. La séance a été marquée par l'affaire Nvidia et les données d'inflation américaines.",
+   "title": "Bourse de Paris : cinq séances de hausse et +2,82 % sur la semaine",
+   "why": "Le suivi des indices permet de relier actualité macroéconomique et valorisation des grandes entreprises cotées."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Quartz (avec AFP)",
+     "url": "https://fr.qz.com/brent-stable-dollars-baril-iran-petrole-111326"
+    },
+    {
+     "name": "Prix du baril",
+     "url": "https://prixdubaril.com/news-petrole/75209-le-brent-au-dessus-de-96-dollars-les-houthis-visent-le-petrole-saoudien.html"
+    }
+   ],
+   "summary": "Le Brent livrable en janvier a terminé vendredi quasi stable, à 95,84 dollars le baril, selon l'AFP. L'Agence internationale de l'énergie estime que l'offre mondiale devrait dépasser la demande au dernier trimestre 2026, une première depuis le début de la guerre en Iran fin février. Le Brent reste en forte hausse sur un an.",
+   "title": "Pétrole : l'AIE prévoit un excédent d'offre au quatrième trimestre",
+   "why": "Le prix du baril se répercute sur les coûts de transport et d'énergie des entreprises, et donc sur leurs marges."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/pouvoir-dachat-sebastien-lecornu-annonce-une-hausse-anticipee-du-smic-a-1-502-euros-des-le-1er-decembre"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/smic-a-1502-euros-prime-carburant-les-annonces-du-gouvernement-sur-le-pouvoir-d-achat"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/marches/le-smic-augmente-de-1-6-au-1er-decembre-2026-pour-atteindre-1-502-euros-net_705848"
+    }
+   ],
+   "summary": "À l'issue de la conférence sociale du 9 novembre, le gouvernement a annoncé une revalorisation anticipée de 1,6 % du Smic au 1er décembre, soit environ 24 euros net de plus par mois. La CFDT réclamait 100 euros net et la CGT une hausse de 10 %. Selon la CGT, le coup de pouce réel serait d'environ 5 euros, la hausse automatique de janvier étant avancée.",
+   "title": "Le Smic passera à 1 502 euros net au 1er décembre",
+   "why": "Le Smic sert de base au calcul de la rémunération minimale des alternants ; cette hausse les concerne donc directement."
+  }
+ ],
+ "lede": "L'Insee confirme une inflation de 3,4 % en octobre, au plus haut depuis début 2024, tirée par l'énergie. En Europe, les dirigeants réunis à Dublin ont fixé l'équipe qui représentera l'UE dans les pourparlers sur l'Ukraine, tandis que la démission du patron de Nvidia continue de peser sur les marchés.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "L'Insee confirme 3,4 % sur un an. 3,7 % correspond à l'indice harmonisé (IPCH) et 3,1 % au chiffre de septembre.",
+   "options": [
+    "3,1 %",
+    "3,7 %",
+    "3,4 %",
+    "2,6 %"
+   ],
+   "q": "Quel taux d'inflation sur un an l'Insee a-t-il confirmé pour octobre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Les dirigeants ont retenu l'« E5 » de la coalition des volontaires : France, Allemagne, Italie, Pologne et Royaume-Uni.",
+   "options": [
+    "France, Allemagne, Italie, Pologne, Royaume-Uni",
+    "France, Allemagne, Espagne, Pologne, Pays-Bas",
+    "France, Allemagne, Italie, Espagne, Royaume-Uni",
+    "France, Pologne, Italie, Pays-Bas, Irlande"
+   ],
+   "q": "Quels pays forment, avec les institutions de l'UE, l'équipe européenne pour les pourparlers sur l'Ukraine ?"
+  },
+  {
+   "answer": 3,
+   "explain": "La directrice financière Colette Kress est directrice générale par intérim ; Harvey Jones préside le conseil et pilote la recherche d'un successeur.",
+   "options": [
+    "Harvey Jones, président du conseil",
+    "Chris Malachowsky, cofondateur",
+    "Curtis Priem, cofondateur du groupe",
+    "Colette Kress, directrice financière"
+   ],
+   "q": "Qui assure l'intérim à la direction générale de Nvidia après la démission de Jensen Huang ?"
+  }
+ ]
+}
