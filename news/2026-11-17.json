@@ -1,0 +1,290 @@
+{
+ "date": "2026-11-17",
+ "figures": [
+  {
+   "label": "Inflation sur un an, octobre 2026",
+   "note": "Chiffre définitif, après 3,1 % en septembre",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage, 3e trimestre 2026",
+   "note": "+0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Croissance du PIB, 3e trimestre 2026",
+   "note": "Après 0,0 % au trimestre précédent",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre ; prochaine réunion le 17 décembre",
+   "source": "BCE",
+   "value": "2,50 %"
+  },
+  {
+   "label": "OAT 10 ans, 16 novembre",
+   "note": "Écart de 155 points de base avec le Bund allemand",
+   "source": "Banque de France (via Ideal Investisseur)",
+   "value": "4,93 %"
+  },
+  {
+   "label": "CAC 40, clôture du 16 novembre",
+   "note": "−0,20 %, fin d'une série de cinq hausses",
+   "source": "Euronext / Zonebourse",
+   "value": "8 352 pts"
+  },
+  {
+   "label": "Smic net mensuel au 1er décembre",
+   "note": "Hausse de 1,6 % avancée d'un mois",
+   "source": "Gouvernement",
+   "value": "≈ 1 502 €"
+  }
+ ],
+ "generatedAt": "2026-11-17T06:39:34+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Le JDD",
+     "url": "https://www.lejdd.fr/Societe/greve-du-17-novembre-et-colere-lyceenne-les-rendez-vous-les-perturbations-et-la-reponse-du-gouvernement-188895"
+    },
+    {
+     "name": "Maire-info",
+     "url": "https://www.maire-info.com/fonction-publique/salaires-dans-la-fonction-publique-ce-quil-faut-comprendre-des-mesures-annonca-es-par-le-gouvernement-art26-31286"
+    },
+    {
+     "name": "France 3 Régions",
+     "url": "https://france3-regions.franceinfo.fr/hauts-de-france/nord-0/lille/greve-du-17-novembre-ter-ecoles-manifestations-a-quoi-s-attendre-pour-le-mouvement-de-mardi-dans-le-nord-et-le-pas-de-calais-3450702.html"
+    }
+   ],
+   "summary": "Une intersyndicale (CGT, Unsa, FSU, Solidaires, CFE-CGC, FA-FP), rejointe par FO et la CFDT Fonction publique, appelle à la grève et à manifester ce 17 novembre ; la CGT recense près de 179 rassemblements. Reçus à Matignon le 13 novembre, les syndicats n'ont pas obtenu de hausse générale du point d'indice, gelé depuis 2023. Le gouvernement a annoncé des points supplémentaires pour les agents des premiers échelons et rappelle qu'une hausse de 1 % du point coûterait environ 2,4 milliards d'euros ; les syndicats jugent ces mesures insuffisantes.",
+   "title": "Grève dans la fonction publique ce mardi pour le dégel du point d'indice",
+   "why": "Le point d'indice sert de base au calcul de la paie des agents publics : c'est un levier majeur de la masse salariale de l'État, donc du déficit public."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-de-la-securite-sociale-le-senat-adopte-un-volet-recettes-affaibli"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-financement-de-la-securite-sociale-pour-2027.html"
+    }
+   ],
+   "summary": "Le Sénat achève l'examen du projet de loi de financement de la Sécurité sociale pour 2027, rejeté en octobre par l'Assemblée nationale. Le volet recettes a été adopté le 13 novembre par 200 voix contre 110, les groupes de gauche et le groupe RN-UDR votant contre. Selon le ministre des Comptes publics, David Amiel, les amendements votés dégradent le solde d'environ 3,2 milliards d'euros ; la majorité sénatoriale annonce des économies dans la partie dépenses. Le texte vise un déficit de 12,7 milliards d'euros en 2027, contre 21,8 milliards attendus en 2026.",
+   "title": "Budget de la Sécu 2027 : vote solennel du Sénat attendu mercredi 18 novembre",
+   "why": "Le PLFSS fixe les cotisations sociales et les dépenses de santé et de retraite : il touche directement la paie, les charges des entreprises et les comptes publics."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/l-assemblee-nationale-rejette-a-l-unanimite-le-budget-de-l-etat-2027-en-premiere-lecture_8268527.html"
+    },
+    {
+     "name": "Assemblée nationale",
+     "url": "https://www.assemblee-nationale.fr/dyn/actualites-accueil-hub/examen-de-la-premiere-partie-du-projet-de-loi-de-finances-pour-2027"
+    },
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/budget-2027-calendrier-assemblee-cinq-semaines"
+    }
+   ],
+   "summary": "Après le rejet de la partie recettes du projet de loi de finances par l'Assemblée nationale le 4 novembre (458 voix contre, aucune pour), l'ensemble du texte a été rejeté en première lecture sans examen des dépenses. Le Sénat examinera la version initiale du gouvernement à partir du 20 novembre ; ce projet vise un déficit public de 5 % du PIB en 2027. Le Parlement dispose d'un délai courant jusqu'au 17 décembre.",
+   "title": "Budget de l'État 2027 : le Sénat prend le relais à partir du 20 novembre",
+   "why": "Comprendre la procédure budgétaire (première lecture, délais constitutionnels, recours possible au 49.3 ou aux ordonnances) est utile en finances publiques."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Journée mondiale",
+     "url": "https://www.journee-mondiale.com/inflation-a-3-4-ce-que-l-insee-confirme-pour-votre-budget-le-13-novembre-2026-14595.htm"
+    }
+   ],
+   "summary": "L'Insee a publié le 13 novembre le chiffre définitif de l'inflation d'octobre : les prix à la consommation augmentent de 3,4 % sur un an, après 3,1 % en septembre. L'énergie reste le principal moteur de la hausse. L'estimation provisoire pour novembre est attendue le 27 novembre.",
+   "title": "Inflation : l'Insee confirme 3,4 % sur un an en octobre",
+   "why": "L'inflation sert à indexer de nombreux montants (Smic, loyers, pensions) et pèse sur les décisions de taux de la BCE."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Insee (accueil)",
+     "url": "https://www.insee.fr/fr/accueil"
+    }
+   ],
+   "summary": "Selon l'Insee, le taux de chômage au sens du BIT atteint 8,2 % au troisième trimestre 2026, en hausse de 0,4 point sur un an. Le PIB a reculé de 0,1 % sur la même période, après une stagnation au trimestre précédent. Le détail des comptes trimestriels sera publié le 27 novembre.",
+   "title": "Chômage à 8,2 % et PIB en léger recul au 3e trimestre",
+   "why": "Deux trimestres sans croissance et un chômage en hausse renseignent sur la conjoncture, un point clé pour la prévision et le contrôle de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "info.gouv.fr",
+     "url": "https://www.info.gouv.fr/actualite/conference-sociale-hausse-du-smic-de-1-6"
+    },
+    {
+     "name": "le-smic.fr",
+     "url": "https://le-smic.fr/actualites/smic-hausse-anticipee-decembre-2026"
+    }
+   ],
+   "summary": "À l'issue de la conférence sociale du 9 novembre, le gouvernement a annoncé que la revalorisation du Smic, habituellement au 1er janvier, sera avancée au 1er décembre et portée à 1,6 %. Le Smic horaire brut passerait de 12,31 € à environ 12,51 €, soit près de 1 502 € net par mois à temps plein. La CFDT juge cette hausse insuffisante.",
+   "title": "Le Smic augmentera de 1,6 % dès le 1er décembre",
+   "why": "Une hausse du Smic se répercute sur la paie de décembre et sur le coût du travail des entreprises : un cas concret pour la paie et la comptabilité."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites-amp/la-bce-laisse-ses-taux-inchanges-l-inflation-pourrait-peser-sur-la-croissance-9ff96a59ee53fb73018e56ccc8595e20"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/10/29/ecb-holds-rates-at-25-as-lagarde-announces-early-exit-with-inflation-near-double-the-targe"
+    }
+   ],
+   "summary": "La BCE a maintenu le 29 octobre son taux de dépôt à 2,50 %, son taux de refinancement à 2,65 % et son taux de prêt marginal à 2,90 %, après deux hausses en juin et septembre. Christine Lagarde a annoncé qu'elle quitterait la présidence le 7 février 2027. Selon Reuters, plusieurs gouverneurs jugent une nouvelle hausse possible lors de la réunion du 17 décembre.",
+   "title": "BCE : taux inchangés, une hausse en décembre reste envisagée",
+   "why": "Les taux directeurs déterminent le coût du crédit pour les entreprises et les ménages, et influencent le taux d'emprunt de l'État français."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/premiers-pourparlers-entre-l-ukraine-l-europe-et-les-etats-unis-annonce-zelensky-c82ae9012d6e90526f3378ee0dcc92e2"
+    },
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/europe/20261116-ukraine-en-direct-russie-600-drones-lanc%C3%A9s-sur-moscou-maire-capitale"
+    }
+   ],
+   "summary": "Volodymyr Zelensky a annoncé lundi que des négociateurs désignés par les Européens se sont joints pour la première fois aux émissaires ukrainiens et américains pour préparer de futures négociations avec la Russie. L'Allemagne, la France, l'Italie, la Pologne et le Royaume-Uni, ainsi que l'UE, doivent être représentés. Le président ukrainien a par ailleurs affirmé que la Russie reçoit davantage de missiles nord-coréens.",
+   "title": "Ukraine : premiers pourparlers communs avec Européens et Américains",
+   "why": "L'issue du conflit conditionne les prix de l'énergie, les budgets de défense européens et le climat des marchés."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/asie-pacifique/20261116-paix-mondiale-menu-rencontre-trilat%C3%A9rale-chine-xi-trump-poutine"
+    },
+    {
+     "name": "RTS",
+     "url": "https://www.rts.ch/info/monde/2026/article/trump-xi-et-poutine-se-rencontrent-jeudi-en-chine-29415799.html"
+    }
+   ],
+   "summary": "Une première rencontre trilatérale entre Donald Trump, Xi Jinping et Vladimir Poutine est prévue jeudi 19 novembre à Shenzhen, en marge du sommet de l'APEC. Le Kremlin l'a confirmée ; Pékin a indiqué lundi que la paix mondiale serait au menu. Donald Trump a dit vouloir y aborder la guerre en Ukraine.",
+   "title": "Trump, Xi et Poutine doivent se réunir jeudi à Shenzhen",
+   "why": "Les relations entre les trois premières puissances militaires pèsent sur le commerce mondial, les droits de douane et les chaînes d'approvisionnement."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France (Reuters)",
+     "url": "https://www.ouest-france.fr/monde/iran/guerre-au-moyen-orient-petrolier-attaque-pres-du-detroit-dormuz-porte-avions-americain-le-point-sur-la-nuit-d72226d6-e23d-11f1-a3b1-0c6de532ce7d"
+    },
+    {
+     "name": "The National",
+     "url": "https://www.thenationalnews.com/news/gulf/2026/11/16/iran-attacks-bahrain-in-blatant-challenge-to-peace-push/"
+    }
+   ],
+   "summary": "Un pétrolier a été attaqué lundi à environ 13 km au nord de Khasab (Oman), près du détroit d'Ormuz, selon l'agence britannique UKMTO citée par Reuters ; le navire a été immobilisé. Bahreïn a de son côté indiqué avoir intercepté des drones iraniens, une attaque revendiquée par les Gardiens de la révolution. Les pourparlers pour mettre fin à la guerre restent dans l'impasse.",
+   "title": "Moyen-Orient : un pétrolier attaqué près du détroit d'Ormuz",
+   "why": "Une grande partie du pétrole mondial transite par Ormuz : chaque incident peut faire varier le prix du baril et donc l'inflation."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Mediaterranee",
+     "url": "https://www.mediaterranee.com/1612026-cac-40-paris-termine-8-352-points-fin-de-cinq-hausses-daffilee.html"
+    },
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111256/cac-40-en-baisse-nvidia-le-journal-de-la-bourse-du-lundi-16-novembre-2026"
+    },
+    {
+     "name": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/matieres-premieres/cours/8xBRN/"
+    }
+   ],
+   "summary": "La Bourse de Paris a terminé lundi à 8 352 points, en baisse de 0,20 %, après avoir gagné 2,8 % la semaine précédente. Accor, Danone et EssilorLuxottica ont limité le repli. Le baril de Brent a reculé d'environ 3 %, autour de 93 dollars.",
+   "title": "Le CAC 40 recule de 0,20 % et met fin à cinq séances de hausse",
+   "why": "Suivre les indices et le pétrole aide à relier actualité macroéconomique, valorisation des entreprises et coûts de production."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Journal du Geek",
+     "url": "https://journaldugeek.com/bon-plan/quatre-jours-apres-sa-demission-jensen-huang-prepare-deja-son-retour-chez-nvidia"
+    },
+    {
+     "name": "FranceTransactions",
+     "url": "https://www.francetransactions.com/actus/news-bourse/marches/nvidia-109-milliards-de-dollars-de-chiffre-d-affaires-attendus-les-resultats.html"
+    }
+   ],
+   "summary": "Nvidia présente ce mardi après la clôture de Wall Street (vers 22 h 20, heure de Paris) les comptes de son 3e trimestre fiscal. Ce sont les premiers depuis la démission de son fondateur Jensen Huang la semaine dernière, à la suite de révélations sur sa vie privée ; la directrice financière Colette Kress assure l'intérim. Le marché attend un chiffre d'affaires d'environ 109 milliards de dollars.",
+   "title": "Nvidia publie ce soir ses résultats, les premiers sans Jensen Huang",
+   "why": "Une succession non préparée à la tête d'un groupe majeur illustre l'enjeu de gouvernance et son effet sur la valorisation boursière."
+  }
+ ],
+ "lede": "Journée de grève dans la fonction publique ce mardi, après le refus du gouvernement de dégeler le point d'indice, pendant que le Sénat termine l'examen du budget de la Sécurité sociale. À l'international, Européens, Américains et Ukrainiens ont tenu de premiers pourparlers communs, et les marchés attendent ce soir les résultats de Nvidia.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "L'Insee a confirmé 3,4 % sur un an en octobre, après 3,1 % en septembre.",
+   "options": [
+    "3,1 %",
+    "3,4 %",
+    "2,9 %",
+    "3,8 %"
+   ],
+   "q": "Quel taux d'inflation sur un an l'Insee a-t-il confirmé pour octobre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le gouvernement a avancé la revalorisation au 1er décembre et l'a portée à 1,6 %, soit environ 1 502 € net par mois.",
+   "options": [
+    "1,2 %",
+    "2,4 %",
+    "0,9 %",
+    "1,6 %"
+   ],
+   "q": "De combien le Smic augmentera-t-il au 1er décembre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "La rencontre trilatérale est prévue le 19 novembre à Shenzhen, en marge du sommet de l'APEC.",
+   "options": [
+    "Shenzhen",
+    "Pékin",
+    "Shanghai",
+    "Canton"
+   ],
+   "q": "Dans quelle ville doit se tenir jeudi la rencontre Trump-Xi-Poutine ?"
+  }
+ ]
+}
