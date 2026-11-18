@@ -1,0 +1,298 @@
+{
+ "date": "2026-11-18",
+ "figures": [
+  {
+   "label": "Inflation en France (octobre 2026, sur un an)",
+   "note": "Chiffre définitif publié le 13 novembre, après 3,1 % en septembre",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage (3e trimestre 2026)",
+   "note": "En hausse de 0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Croissance du PIB (3e trimestre 2026)",
+   "note": "Variation par rapport au trimestre précédent",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "CAC 40 (clôture du 17 novembre)",
+   "note": "Baisse de 1,62 % sur la séance",
+   "source": "BFM Bourse",
+   "value": "8 216,78 pts"
+  },
+  {
+   "label": "Baril de Brent (clôture du 17 novembre)",
+   "note": "Hausse de 0,76 % sur la séance",
+   "source": "AFP via Quartz",
+   "value": "93,14 $"
+  },
+  {
+   "label": "Taux de dépôt de la BCE (depuis le 29 octobre)",
+   "note": "Maintenu lors de la dernière réunion",
+   "source": "BCE via Euronews",
+   "value": "2,5 %"
+  },
+  {
+   "label": "Chiffre d'affaires de Nvidia (trimestre clos le 25 octobre)",
+   "note": "En hausse de 103 % sur un an",
+   "source": "Nvidia (SEC)",
+   "value": "115,8 Md$"
+  }
+ ],
+ "generatedAt": "2026-11-18T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/france/20261117-france-presidentielle-2027-reforme-des-retraites-marine-le-pen-depart-a-60-ou-62-ans-capitalisation-conditions-durcies"
+    },
+    {
+     "name": "AFP via Tahiti Infos (réactions)",
+     "url": "https://www.tahiti-infos.com/%E2%80%8BTravailler-plus-partir-plus-tot-Le-Pen-promet-de-reformer-les-retraites-des-son-arrivee-au-pouvoir_a240090.html"
+    }
+   ],
+   "summary": "La candidate du Rassemblement national a présenté mardi un projet qui ramènerait l'âge légal de départ à 62 ans, et à 60 ans pour les personnes ayant commencé à travailler avant 20 ans. Elle prévoit aussi un pilier de capitalisation obligatoire pour les actifs et une abrogation de la réforme de 2023 au 1er janvier 2028. Elle affirme que le projet serait entièrement financé et diviserait par deux le déficit des retraites d'ici 2032.",
+   "title": "Présidentielle 2027 : Marine Le Pen présente son projet de réforme des retraites",
+   "why": "Le financement des retraites pèse lourdement sur les comptes sociaux : comprendre la différence entre répartition et capitalisation est une base en finance publique comme en gestion de l'épargne."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "AFP via Tahiti Infos",
+     "url": "https://www.tahiti-infos.com/%E2%80%8BTravailler-plus-partir-plus-tot-Le-Pen-promet-de-reformer-les-retraites-des-son-arrivee-au-pouvoir_a240090.html"
+    },
+    {
+     "name": "L'Express via Orange Actu",
+     "url": "https://actu.orange.fr/politique/presidentielle-2027-les-candidats-s-echarpent-sur-la-retraite-par-capitalisation-ou-par-repartition-l-express-via-6medias-CNT000002tLaTb.html"
+    }
+   ],
+   "summary": "Selon l'AFP, Paul Midy, cadre de la campagne de Gabriel Attal (Renaissance), et Maël de Calan, porte-parole d'Édouard Philippe (Horizons), ont mis en cause la crédibilité financière du projet. Le ministre des Comptes publics, David Amiel, l'a jugé insoutenable financièrement et injuste socialement. Gabriel Attal estime de son côté que le problème tient au système par répartition lui-même plutôt qu'à l'âge de départ.",
+   "title": "Réactions au projet du RN : la majorité et le gouvernement contestent son financement",
+   "why": "La campagne présidentielle s'organise autour du coût des promesses : savoir lire un chiffrage et ses hypothèses est une compétence directement utile en contrôle de gestion."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/europe/ukraine/soldats-francais-envoyes-en-ukraine-le-gouvernement-confirme-des-missions-ponctuelles-loin-de-la-ligne-de-front-77919f64-e295-11f1-9a72-32f9104dab1b"
+    },
+    {
+     "name": "AFP via Yahoo Actualités",
+     "url": "https://fr.news.yahoo.com/l-sait-soldats-fran%C3%A7ais-d%C3%A9ploy%C3%A9s-174720397.html"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites"
+    }
+   ],
+   "summary": "Après des révélations de RFI lundi, la ministre déléguée aux Armées, Alice Rufo, a confirmé mardi à l'Assemblée la présence d'un nombre limité de militaires français en Ukraine, pour des formations et de la maintenance de matériels, loin du front. Elle assure que la France n'est pas cobelligérante. La diplomatie russe dit avoir mis Paris en garde, et des parlementaires réclament davantage d'informations sur la mission.",
+   "title": "Soldats français en Ukraine : le gouvernement confirme des missions de soutien",
+   "why": "Ce dossier touche au contrôle du Parlement sur l'exécutif et aux relations avec la Russie, qui influencent l'énergie et les marchés européens."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "CNews",
+     "url": "https://www.cnews.fr/france/2026-11-18/budget-de-la-securite-sociale-pour-2027-un-vote-solennel-prevu-au-senat-ce"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-financement-de-la-securite-sociale-pour-2027.html"
+    },
+    {
+     "name": "UNCCAS",
+     "url": "https://www.unccas.org/plf-et-plfss-2027-le-senat-la-manoeuvre-les-ordonnances-se-profilent"
+    }
+   ],
+   "summary": "Rejeté par l'Assemblée le 23 octobre, le PLFSS pour 2027 est examiné par le Sénat dans sa version gouvernementale ; la partie recettes y a été adoptée le 13 novembre par 200 voix contre 110. Le texte vise à ramener le déficit de la Sécurité sociale de 21,8 à 12,7 milliards d'euros. Les sénateurs ont supprimé à l'unanimité le gel en 2027 des pensions supérieures à 1 260 euros. Une commission mixte paritaire suivra, le délai constitutionnel expirant le 26 novembre.",
+   "title": "Budget de la Sécurité sociale 2027 : vote solennel au Sénat ce mercredi",
+   "why": "Le PLFSS fixe cotisations, prestations et allègements de charges : il a un effet direct sur la paie et le coût du travail dans les entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/l-assemblee-nationale-rejette-a-l-unanimite-le-budget-de-l-etat-2027-en-premiere-lecture_8268527.html"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-pour-2027.html"
+    }
+   ],
+   "summary": "Rejeté par les députés le 4 novembre par 458 voix contre 0, le projet de loi de finances pour 2027 sera examiné au Sénat à partir du 20 novembre dans sa version initiale, avec un vote prévu le 9 décembre. Il vise un déficit public de 5 % du PIB en 2027 et repose sur une prévision de croissance de 1,8 %. La dette atteindrait 121,7 % du PIB et sa charge 91,2 milliards d'euros.",
+   "title": "Budget de l'État 2027 : le Sénat entame l'examen vendredi",
+   "why": "La charge de la dette augmente avec les taux d'intérêt : c'est un exemple concret du lien entre politique monétaire, endettement et marges de manœuvre budgétaires."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/economie/greve/direct-greve-du-17-novembre-les-chiffres-de-la-mobilisation-en-baisse-un-manifestant-gravement-blesse-a-nantes-306d3f8b-37a1-4f3e-a6fd-c694969ca173"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/societe/manifestations/greves-dans-la-fonction-publique-mouvement-lyceen-manifestations-a-quoi-s-attendre-pour-la-mobilisation-du-17-novembre_8284415.html"
+    },
+    {
+     "name": "Europe 1",
+     "url": "https://www.europe1.fr/societe/en-direct-manifestations-du-17-novembre-146000-manifestants-en-france-selon-le-ministere-de-linterieur-1238553"
+    }
+   ],
+   "summary": "Les syndicats de la fonction publique ont manifesté mardi pour une hausse générale des salaires et du point d'indice, inchangé depuis 2023. Le ministère de l'Intérieur a compté 146 000 manifestants, dont 28 000 à Paris, la CGT en revendique plus de 500 000. Le gouvernement a annoncé une hausse du Smic de 1,6 % au 1er décembre et un relèvement des plus bas salaires publics, jugé insuffisant par les syndicats.",
+   "title": "Salaires : 146 000 manifestants selon l'Intérieur, plus de 500 000 selon la CGT",
+   "why": "Avec une inflation à 3,4 %, la question des salaires touche la masse salariale des employeurs, publics comme privés, un poste clé en paie et en contrôle de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Insee (accueil)",
+     "url": "https://www.insee.fr/fr/accueil"
+    }
+   ],
+   "summary": "L'Insee a confirmé une hausse des prix de 3,4 % sur un an en octobre, après 3,1 % en septembre, contre 3,8 % en estimation provisoire. Le taux de chômage atteint 8,2 % au troisième trimestre, en hausse de 0,4 point sur un an, et le PIB a reculé de 0,1 % sur la même période. L'estimation provisoire de l'inflation de novembre est attendue le 27 novembre.",
+   "title": "Conjoncture : inflation à 3,4 % et chômage à 8,2 % selon l'Insee",
+   "why": "Inflation, chômage et croissance sont les trois indicateurs de base pour analyser l'environnement d'une entreprise et préparer ses prévisions budgétaires."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/asie-pacifique/20261118-sommet-de-l-apec-xi-jinping-re%C3%A7oit-vladimir-poutine-avant-un-sommet-in%C3%A9dit-avec-donald-trump"
+    },
+    {
+     "name": "NPR",
+     "url": "https://www.npr.org/sections/world/"
+    }
+   ],
+   "summary": "Xi Jinping a reçu mercredi Vladimir Poutine à Shenzhen, en ouverture du sommet de la Coopération économique Asie-Pacifique (Apec). Donald Trump, arrivé mardi à Manille pour le début de sa tournée asiatique, est attendu en Chine pour un premier sommet trilatéral jeudi 19 novembre. Pékin a confirmé la réunion sans en préciser l'ordre du jour.",
+   "title": "Sommet inédit Trump-Xi-Poutine prévu jeudi à Shenzhen",
+   "why": "Une rencontre entre les trois puissances peut peser sur le commerce mondial, l'énergie et les droits de douane, donc sur les chaînes d'approvisionnement des entreprises."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "WORLD Radio",
+     "url": "https://wng.org/podcasts/tuesday-morning-news-november-17-2026-1794851862"
+    },
+    {
+     "name": "Foreign Exchanges (d'après Reuters)",
+     "url": "https://www.foreignexchanges.news/p/world-roundup-november-17-2026"
+    }
+   ],
+   "summary": "Le porte-avions USS Theodore Roosevelt a rejoint le Moyen-Orient, où les États-Unis maintiennent un blocus visant les exportations pétrolières iraniennes. Les Gardiens de la révolution ont mis en garde les compagnies maritimes contre la route sud du détroit d'Ormuz. Selon Reuters, l'armée américaine a de nouveau frappé l'île iranienne de Qeshm, et les négociations sur le nucléaire restent bloquées.",
+   "title": "Iran : un troisième porte-avions américain arrive, tensions autour d'Ormuz",
+   "why": "Le détroit d'Ormuz est un point de passage majeur du pétrole : ses tensions se répercutent sur le prix de l'énergie et donc sur l'inflation en Europe."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "NPR",
+     "url": "https://www.npr.org/sections/world/"
+    },
+    {
+     "name": "Reuters via Devdiscourse",
+     "url": "https://www.devdiscourse.com/article/international/4007830-reuters-world-news-summary"
+    }
+   ],
+   "summary": "Le président Volodymyr Zelensky a annoncé une attaque de drones et de missiles contre le pont de Kertch, qui relie la Russie à la Crimée annexée. Selon des responsables russes cités par Reuters, les dégâts sont limités et une voie a rouvert environ 17 heures après la fermeture. L'attaque intervient alors que Washington dit observer des progrès dans les discussions sur l'Ukraine.",
+   "title": "Guerre en Ukraine : Kiev frappe le pont reliant la Russie à la Crimée",
+   "why": "L'évolution du conflit conditionne les sanctions, les prix de l'énergie et les dépenses de défense européennes, trois sujets qui pèsent sur les budgets publics."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-plombe-par-les-inquietudes-autour-de-nvidia-et-le-recul-du-luxe-le-cac-40-cloture-en-forte-baisse-1173960.html"
+    },
+    {
+     "name": "MoneyVox",
+     "url": "https://www.moneyvox.fr/bourse/actualites/111288/intel-chute-de-28-deutsche-bank-et-dassault-systemes-reculent-les-infos-bourse-du-17-novembre-2026"
+    },
+    {
+     "name": "AFP via Quartz",
+     "url": "https://fr.qz.com/petrole-hausse-brent-iran-qeshm-exces-offre-111726"
+    }
+   ],
+   "summary": "La Bourse de Paris a clôturé mardi à 8 216,78 points, après une baisse de 0,2 % lundi. Hermès a cédé 5,1 %, Kering 3,6 % et LVMH 2,7 %, tandis que Dassault Systèmes et Capgemini ont aussi nettement reculé. TotalEnergies a été la seule valeur de l'indice à finir en légère hausse. Le Brent a clôturé à 93,14 dollars, en hausse de 0,76 %, et l'euro se maintient autour de 1,10 dollar.",
+   "title": "Le CAC 40 recule de 1,62 %, pénalisé par le luxe et la technologie",
+   "why": "La séance montre comment l'attente d'une seule publication (Nvidia) peut faire bouger tout un marché : un cas d'école sur l'aversion au risque."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Nvidia (communiqué déposé à la SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000088/q3fy27pr.htm"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/marches/nvidia-devoile-des-resultats-records-son-chiffre-d-affaires-bondit-de-103-en_706262"
+    },
+    {
+     "name": "Économie Matin",
+     "url": "https://www.economiematin.fr/nvidia-resultats-trimestre-115-8-milliards-tresorerie-novembre-2026"
+    }
+   ],
+   "summary": "Le fabricant américain de puces a annoncé mardi soir un chiffre d'affaires en hausse de 103 % sur un an pour son trimestre clos le 25 octobre, dont 107,6 milliards pour les centres de données. Sa marge brute atteint environ 75 % et le groupe prévoit 130 milliards de dollars pour le trimestre suivant. L'entreprise est dirigée par intérim par sa directrice financière, Colette Kress.",
+   "title": "Nvidia publie un chiffre d'affaires trimestriel de 115,8 milliards de dollars",
+   "why": "Nvidia illustre l'écart possible entre résultat comptable et trésorerie : ses créances clients et ses stocks ont fortement augmenté, un point à surveiller en analyse financière."
+  }
+ ],
+ "lede": "Le Sénat vote ce mercredi sur le budget de la Sécurité sociale pour 2027, au lendemain d'une journée de mobilisation des fonctionnaires pour les salaires. Marine Le Pen a détaillé son projet de retraites, la Bourse de Paris a reculé de 1,6 % avant des résultats record de Nvidia.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "L'Intérieur a compté 146 000 manifestants, dont 28 000 à Paris ; la CGT en revendique plus de 500 000.",
+   "options": [
+    "Environ 28 000",
+    "Environ 500 000",
+    "Environ 146 000",
+    "Environ 260 000"
+   ],
+   "q": "Combien de manifestants le ministère de l'Intérieur a-t-il comptés en France le 17 novembre ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Le CAC 40 a perdu 1,62 % à 8 216,78 points, pénalisé par le luxe et la technologie avant les résultats de Nvidia.",
+   "options": [
+    "Baisse de 1,62 %",
+    "Baisse de 0,20 %",
+    "Hausse de 0,34 %",
+    "Baisse de 2,70 %"
+   ],
+   "q": "Quelle a été la variation du CAC 40 lors de la séance du mardi 17 novembre ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le projet fixe l'âge légal à 62 ans, et à 60 ans pour ceux qui ont commencé à travailler avant 20 ans.",
+   "options": [
+    "60 ans",
+    "64 ans",
+    "63 ans",
+    "62 ans"
+   ],
+   "q": "Quel âge légal de départ de droit commun propose le projet de retraites de Marine Le Pen ?"
+  }
+ ]
+}
