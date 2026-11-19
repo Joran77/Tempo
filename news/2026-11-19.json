@@ -1,0 +1,256 @@
+{
+ "date": "2026-11-19",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 18/11",
+   "note": "−0,85 % sur la séance, après −1,62 % la veille",
+   "source": "Boursorama / Agefi-Dow Jones",
+   "value": "8 146,83 pts"
+  },
+  {
+   "label": "Inflation, octobre 2026 (sur un an)",
+   "note": "Après 3,1 % en septembre ; résultats définitifs",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage, T3 2026",
+   "note": "+0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "PIB, T3 2026 (sur un trimestre)",
+   "note": "Première estimation, après 0,0 % au T2",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Déficit de la Sécu 2027, version Sénat",
+   "note": "Contre 12,7 Md€ visés par le gouvernement",
+   "source": "AFP via Quartz",
+   "value": "14 Md€"
+  },
+  {
+   "label": "Smic net mensuel au 1er décembre 2026",
+   "note": "Hausse de 1,6 %, soit environ 24 € par mois",
+   "source": "Gouvernement, via Le JDD",
+   "value": "1 502 €"
+  }
+ ],
+ "generatedAt": "2026-11-19T06:41:40+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Quartz (d'après l'AFP)",
+     "url": "https://fr.qz.com/senat-adopte-budget-securite-sociale-2027-premiere-lecture-111826"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/le-senat-adopte-en-premiere-lecture-le-projet-de-budget-de-la-securite-sociale-pour-2027_8288699.html"
+    }
+   ],
+   "summary": "Mercredi 18 novembre, le Sénat a voté le projet de loi de financement de la Sécurité sociale (PLFSS) pour 2027 par 201 voix contre 124. Les sénateurs ont notamment rétabli la réforme des retraites de 2023, suspendue l'an dernier, et rejeté la sous-indexation des pensions. Leur version prévoit un déficit de 14 milliards d'euros, contre 12,7 milliards dans le texte du gouvernement. Une commission mixte paritaire doit maintenant chercher un texte commun avec l'Assemblée, qui avait rejeté le projet.",
+   "title": "Le Sénat adopte le budget 2027 de la Sécurité sociale en première lecture",
+   "why": "Le PLFSS fixe les recettes et les dépenses de la protection sociale : cotisations, retraites, assurance maladie. Le suivre aide à comprendre la navette parlementaire et l'impact des décisions sur les charges sociales des entreprises."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/politique/edouard-philippe/priorite-donnee-a-l-ecole-retablissement-des-comptes-publics-edouard-philippe-met-en-lumiere-plusieurs-mesures-de-son-programme-presidentiel_8287970.html"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/presidentielle-2027-edouard-philippe-promet-des-reformes-radicales-pour-relancer-sa"
+    }
+   ],
+   "summary": "Le candidat d'Horizons a présenté mercredi, en conférence de presse, un premier volume de 142 propositions. Il dit vouloir ramener le déficit public nettement sous 3 % du PIB et propose un âge légal de départ à 65 ans avec 45 années de cotisations, complété par une part de capitalisation. L'école figure parmi ses priorités, avec une hausse annoncée de 20 % des salaires des enseignants. Il a de nouveau écarté l'idée d'une primaire.",
+   "title": "Présidentielle 2027 : Édouard Philippe présente le premier volume de son programme",
+   "why": "Les programmes des candidats sur les comptes publics et les retraites sont des sujets d'actualité fréquents dans les épreuves de culture économique et les entretiens de master."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-pour-2027.html"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/l-assemblee-nationale-rejette-a-l-unanimite-le-budget-de-l-etat-2027-en-premiere-lecture_8268527.html"
+    }
+   ],
+   "summary": "Rejeté à l'unanimité par l'Assemblée nationale le 4 novembre, le projet de loi de finances pour 2027 sera débattu au Sénat dans sa version initiale à partir du 20 novembre. Le texte du gouvernement vise un déficit public de 5 % du PIB en 2027, avec une hypothèse de croissance de 1,8 %. Il prévoit une dette à 121,7 % du PIB et une charge de la dette de 91,2 milliards d'euros, contre 79,2 milliards en 2026.",
+   "title": "Budget de l'État 2027 : le Sénat commence son examen vendredi",
+   "why": "La charge de la dette qui augmente réduit les marges de manœuvre budgétaires : c'est un indicateur clé à connaître pour tout futur contrôleur de gestion ou financier."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Le JDD",
+     "url": "https://www.lejdd.fr/Societe/greve-du-17-novembre-et-colere-lyceenne-les-rendez-vous-les-perturbations-et-la-reponse-du-gouvernement-188895"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/politique/"
+    }
+   ],
+   "summary": "Le gouvernement a confirmé une revalorisation du Smic de 1,6 % au 1er décembre, qui le porte à environ 1 502 euros net par mois, soit près de 24 euros de plus. La mesure combine une anticipation de la hausse automatique liée à l'inflation et un « coup de pouce » de 0,6 %. La CGT juge l'effort insuffisant et réclame aussi une hausse du point d'indice des fonctionnaires, tandis que la CFDT, FO et la CFTC saluent l'ouverture de négociations de branche.",
+   "title": "Smic : hausse de 1,6 % au 1er décembre, les syndicats poursuivent la mobilisation",
+   "why": "En paie, une hausse du Smic se répercute sur les bulletins, les grilles conventionnelles et le calcul de certains allègements de charges : un point concret pour un alternant en comptabilité."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Prixdubaril.com",
+     "url": "https://prixdubaril.com/news-petrole/75226-le-brent-repasse-sous-92-dollars-l-excedent-d-offre-pese-plus-qu-ormuz.html"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/cotation/XBRUSDu"
+    }
+   ],
+   "summary": "Le baril de Brent est revenu sous 92 dollars mercredi matin, en baisse d'environ 1,5 %, après une forte volatilité ces dernières semaines. Les perspectives d'un excédent d'offre ont pesé davantage que les tensions autour du détroit d'Ormuz. Le cours reste nettement au-dessus de son niveau de début d'année.",
+   "title": "Pétrole : le Brent repasse sous les 92 dollars",
+   "why": "Le prix de l'énergie a fortement contribué à l'inflation d'octobre (3,4 %) : il influence les coûts des entreprises et donc les budgets et les prévisions."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/accueil"
+    },
+    {
+     "name": "Insee (septembre 2026)",
+     "url": "https://www.insee.fr/fr/statistiques/9078876"
+    }
+   ],
+   "summary": "L'Insee a publié le 18 novembre ses chiffres de créations d'entreprises, en forte progression sur un an pour la période d'août à octobre 2026. Sur la période juillet-septembre, les créations avaient déjà augmenté de 16 % par rapport à un an plus tôt. Les micro-entrepreneurs représentent une large majorité de ces immatriculations. L'Insee publiera vendredi ses enquêtes de conjoncture de novembre (climat des affaires).",
+   "title": "Insee : forte hausse sur un an des créations d'entreprises d'août à octobre",
+   "why": "Le dynamisme des créations d'entreprises est un indicateur de conjoncture et signale aussi une demande croissante en services comptables et de gestion."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24 (AFP)",
+     "url": "https://www.france24.com/fr/info-en-continu/20261118-l-ue-propose-un-nouveau-pr%C3%AAt-de-45-milliards-d-euros-%C3%A0-l-ukraine-pour-2027"
+    },
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/bruxelles-propose-un-nouveau-pret-de-45-mds-a-l-ukraine-1430c099a071eda6ebee15ca924661ad"
+    }
+   ],
+   "summary": "Ursula von der Leyen a annoncé mercredi que la Commission proposera aux 27 un prêt de 45 milliards d'euros pour couvrir une partie d'un besoin de financement ukrainien estimé à 70 milliards en 2027. Jusqu'à 25 milliards pourraient aller à l'aide militaire et 20 milliards au soutien budgétaire. La Commission emprunterait sur les marchés au nom de l'UE, et Kiev ne rembourserait qu'après le versement de réparations par la Russie. La proposition doit être approuvée par les États membres.",
+   "title": "L'UE propose un nouveau prêt de 45 milliards d'euros à l'Ukraine pour 2027",
+   "why": "L'endettement commun de l'UE sur les marchés est un mécanisme de finance publique européenne à connaître, avec des effets possibles sur les taux et le budget européen."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/monde/direct-sommet-entre-donald-trump-vladimir-poutine-et-xi-jinping-la-reunion-sur-la-paix-mondiale-va-commencer-1e30eadd-2a4c-40cd-8758-0b8d6da2cdf3"
+    },
+    {
+     "name": "Al Jazeera",
+     "url": "https://www.aljazeera.com/news/liveblog/2026/11/19/apec-live-trump-xi-and-putin-to-meet-in-historic-three-way-china-summit"
+    }
+   ],
+   "summary": "Les présidents américain, chinois et russe doivent tenir ce jeudi 19 novembre une rencontre à trois à Shenzhen, en Chine, lors de la seconde journée du sommet de l'Apec. Selon Al Jazeera, les discussions devraient porter sur la guerre en Ukraine, le conflit avec l'Iran, les armes nucléaires, le commerce et l'intelligence artificielle. Il s'agit de la première rencontre entre Donald Trump et Vladimir Poutine depuis leur sommet en Alaska en août 2025. L'Union européenne n'est pas associée à cette réunion.",
+   "title": "Trump, Xi et Poutine réunis à Shenzhen en marge de l'Apec",
+   "why": "Les décisions des trois premières puissances sur le commerce et l'énergie peuvent influencer les marchés, les prix des matières premières et les échanges des entreprises européennes."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Sud Ouest (via Headtopics)",
+     "url": "https://fr.headtopics.com/news/soldats-francais-en-ukraine-ce-ne-sont-pas-des-unites-89960090"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/environnement/meteo/bulletins-meteo/meteo-france-2/meteo-france-2-du-jeudi-19-novembre-2026-a-02h50_8289173.html"
+    }
+   ],
+   "summary": "La présence en Ukraine de militaires français chargés de formation et de maintenance d'équipements a été révélée lundi. Le chef de la diplomatie russe y a vu une participation directe à la guerre. Devant les députés mardi, puis sur RMC mercredi, la ministre déléguée aux Armées, Alice Rufo, a qualifié cette affirmation d'« absurde » et assuré qu'il ne s'agit pas d'unités combattantes.",
+   "title": "Militaires français en Ukraine : Paris rejette les accusations de Moscou",
+   "why": "Les tensions diplomatiques entre la France et la Russie font partie du contexte géopolitique qui pèse sur les budgets de défense et les marchés."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Nvidia (communiqué, SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000088/q3fy27pr.htm"
+    },
+    {
+     "name": "Zonebourse (Agefi-Dow Jones)",
+     "url": "https://www.zonebourse.com/actualite-bourse/cac-40-la-bourse-de-paris-prolonge-son-repli-nvidia-pese-sur-la-tendance-ce785edddd8af625"
+    },
+    {
+     "name": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/la-bourse-de-paris-termine-dans-le-rouge-0692f2cf5b61cac9ed1d93c1f5dd71f0"
+    }
+   ],
+   "summary": "Nvidia a annoncé mardi soir un chiffre d'affaires trimestriel de 115,8 milliards de dollars, en hausse de 103 % sur un an, et prévoit 130 milliards pour le trimestre en cours. Ce sont les premiers résultats depuis le départ de son patron Jensen Huang, remplacé par intérim par Colette Kress. Malgré ces chiffres, l'action a reculé à Wall Street et le CAC 40 a cédé 0,85 % mercredi, à 8 146,83 points. Accor a perdu 4,2 % après l'annonce du rachat, pour 1,6 milliard d'euros, des minoritaires de sa filiale Ennismore.",
+   "title": "Nvidia publie un chiffre d'affaires record, la Bourse de Paris recule",
+   "why": "Ce cas illustre l'écart possible entre performance comptable et réaction du marché : les investisseurs valorisent les perspectives, pas seulement les résultats publiés."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/societe/manifestation/colere-sociale-retraites-le-19-novembre-acte-vi-le-21-novembre-a-quoi-sattendre-pour-la-suite-du-mouvement-5e7c7f5a-e333-11f1-a3b1-0c6de532ce7d"
+    }
+   ],
+   "summary": "Sept organisations de retraités, dont la CGT, la FSU, Solidaires et la CFE-CGC, appellent à manifester le 19 novembre contre la baisse de leur pouvoir d'achat et la dégradation des services publics. Cette journée s'inscrit dans un mouvement social plus large, après la grève du 17 novembre. D'autres mobilisations sont annoncées, dont un « Acte VI » des Gilets jaunes le 21 novembre.",
+   "title": "Les retraités manifestent ce jeudi pour leur pouvoir d'achat",
+   "why": "L'indexation des pensions est au cœur des débats budgétaires : le Sénat vient de rejeter leur sous-indexation dans le budget de la Sécurité sociale."
+  }
+ ],
+ "lede": "Le Sénat a adopté mercredi en première lecture le budget de la Sécurité sociale pour 2027, avant d'entamer vendredi l'examen du budget de l'État. À l'international, la Commission européenne propose un nouveau prêt de 45 milliards d'euros à l'Ukraine, tandis que Donald Trump, Xi Jinping et Vladimir Poutine se réunissent à Shenzhen.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Le Sénat a voté le PLFSS 2027 par 201 voix contre 124 le 18 novembre. Une commission mixte paritaire doit désormais chercher un texte commun.",
+   "options": [
+    "176 voix contre 161",
+    "215 voix contre 110",
+    "201 voix contre 124",
+    "188 voix contre 137"
+   ],
+   "q": "Par quel score le Sénat a-t-il adopté le budget 2027 de la Sécurité sociale ?"
+  },
+  {
+   "answer": 1,
+   "explain": "Le nouveau prêt est de 45 milliards d'euros. Il couvre une partie d'un besoin estimé à 70 milliards ; 90 milliards correspond au prêt précédent pour 2026-2027.",
+   "options": [
+    "25 milliards d'euros",
+    "45 milliards d'euros",
+    "70 milliards d'euros",
+    "90 milliards d'euros"
+   ],
+   "q": "Quel montant de prêt la Commission européenne propose-t-elle d'accorder à l'Ukraine pour 2027 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "La rencontre a lieu à Shenzhen, ville hôte du sommet de l'Apec 2026 les 18 et 19 novembre.",
+   "options": [
+    "Pékin",
+    "Shanghai",
+    "Canton",
+    "Shenzhen"
+   ],
+   "q": "Dans quelle ville chinoise Donald Trump, Xi Jinping et Vladimir Poutine se réunissent-ils ?"
+  }
+ ]
+}
