@@ -1,0 +1,286 @@
+{
+ "date": "2026-11-20",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 19 novembre",
+   "note": "-0,81 % sur la séance, 4e baisse d'affilée",
+   "source": "Euronext (via ABC Bourse)",
+   "value": "8 080,74 pts"
+  },
+  {
+   "label": "Inflation zone euro, octobre 2026",
+   "note": "Sur un an, après 3,8 % en septembre ; 3,7 % pour la France (IPCH)",
+   "source": "Eurostat",
+   "value": "4,0 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Inchangé le 29 octobre ; prochaine réunion le 17 décembre",
+   "source": "BCE",
+   "value": "2,50 %"
+  },
+  {
+   "label": "Taux de chômage France, T3 2026",
+   "note": "-0,1 point sur le trimestre, +0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Brent, clôture du 19 novembre",
+   "note": "Baril proche de son plus bas depuis fin août",
+   "source": "ICE (via Courspetrole.com)",
+   "value": "91,98 $"
+  },
+  {
+   "label": "Euro/dollar, taux BCE du 19 novembre",
+   "note": "L'euro évolue près de son plus bas en 19 mois",
+   "source": "BCE",
+   "value": "1,0992 $"
+  },
+  {
+   "label": "Action Anthropic, 1re clôture au Nasdaq",
+   "note": "+17 % par rapport au prix d'introduction de 83 $",
+   "source": "CBS News / CNBC",
+   "value": "97,17 $"
+  }
+ ],
+ "generatedAt": "2026-11-20T06:58:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-pour-2027.html"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    },
+    {
+     "name": "Outre-mer La 1ère (franceinfo)",
+     "url": "https://la1ere.franceinfo.fr/nouvellecaledonie/vote-du-budget-2027-au-senat-des-dizaines-de-milliards-de-francs-en-jeu-pour-la-nouvelle-caledonie-1759668.html"
+    }
+   ],
+   "summary": "Rejeté à l'unanimité par l'Assemblée nationale le 4 novembre, le projet de loi de finances pour 2027 arrive au Sénat dans sa version initiale. Les sénateurs examinent la partie recettes jusqu'au 28 ou 29 novembre, puis les dépenses jusqu'au 9 décembre, date du vote solennel. Le gouvernement vise un déficit public de 5 % du PIB en 2027, contre 5,4 % cette année, et Sébastien Lecornu dit chercher un compromis pour éviter une censure ou le recours aux ordonnances.",
+   "title": "Budget 2027 : le Sénat entame aujourd'hui l'examen du projet de loi de finances",
+   "why": "Le PLF fixe la fiscalité des ménages et des entreprises pour 2027 : c'est le texte de référence pour suivre l'évolution du déficit, de la dette et des mesures fiscales étudiées en cours de fiscalité."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-de-la-securite-sociale-les-modifications-a-retenir-apres-le-passage-du-projet-de-loi-au-senat"
+    },
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/vie-politique-des-etats-membres/le-senat-adopte-le-budget-2027-de-la-securite-sociale-en-premiere-lecture/"
+    }
+   ],
+   "summary": "Le Sénat, à majorité de droite et du centre, a adopté mercredi le projet de loi de financement de la Sécurité sociale pour 2027 en première lecture, avec 15 abstentions. Sa version aboutit à un déficit prévisionnel de 14 milliards d'euros, contre 12,7 milliards dans le texte du gouvernement et 21,8 milliards attendus en 2026. Les sénateurs ont notamment voté une indexation complète des pensions et le retour sur la suspension de la réforme des retraites de 2023 ; les groupes de gauche et le groupe RN-UDR ont voté contre. Une commission mixte paritaire est prévue le 26 novembre.",
+   "title": "Le Sénat adopte le budget de la Sécurité sociale 2027 par 201 voix contre 124",
+   "why": "Le budget de la Sécu pèse sur le coût du travail, les cotisations et les pensions : des notions directement mobilisées en paie et en gestion des ressources humaines."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Assemblée nationale",
+     "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2026-2027/premiere-seance-du-jeudi-19-novembre-2026"
+    }
+   ],
+   "summary": "Les députés ont adopté jeudi, par 258 voix contre 3 et sans modification, la version du Sénat de la proposition de loi pérennisant ce dispositif expérimenté depuis 2016. Le vote conforme rend le texte définitif et le nouveau cadre s'appliquera au 1er janvier 2027, alors que l'expérimentation devait s'arrêter le 31 décembre. Environ 4 000 salariés en CDI travaillent dans des entreprises à but d'emploi réparties sur 85 territoires. Le texte rend facultative la participation financière des départements, un point regretté par plusieurs groupes.",
+   "title": "L'Assemblée pérennise définitivement « Territoires zéro chômeur de longue durée »",
+   "why": "Le dispositif repose sur l'idée de réorienter les dépenses liées au chômage vers le financement d'emplois : un cas concret d'arbitrage entre coût et efficacité d'une politique publique."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/direct-sebastien-lecornu-preside-une-reunion-interministerielle-relative-a-la-cybersecurite-avant-une-conference-de-presse_8290133.html"
+    },
+    {
+     "name": "Quartz (édition française)",
+     "url": "https://fr.qz.com/lecornu-annonce-plan-renforcement-cybersecurite-etat-111926"
+    }
+   ],
+   "summary": "À l'issue d'une réunion interministérielle jeudi, le Premier ministre a qualifié la menace cyber de particulièrement grave et annoncé un « serrage de vis » dans les ministères. Des crédits seront fléchés vers la cybersécurité, quitte à retarder certaines nouvelles applications, et le gouvernement prévoit 200 millions d'euros pour mieux utiliser l'IA contre les cyberattaques. Un « 17 Cyber » avec un parcours dédié aux victimes doit aussi être créé.",
+   "title": "Cybersécurité : Sébastien Lecornu annonce un durcissement des règles dans l'État",
+   "why": "Les services comptables et financiers sont des cibles fréquentes (fraude au virement, faux fournisseurs) : la sécurité informatique devient un enjeu de contrôle interne."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "France Épargne",
+     "url": "https://www.france-epargne.fr/news/inflation-confirmee-a-4-les-nouveaux-depots-a-terme-des-menages-rapportent-2-53-brut"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/11/04/eurozone-inflation-hits-4-which-countries-saw-prices-jump-the-most"
+    }
+   ],
+   "summary": "Eurostat a confirmé mercredi que les prix ont augmenté de 4,0 % sur un an en octobre dans la zone euro, après 3,8 % en septembre, un niveau inédit depuis 2023. L'inflation atteint 3,7 % en France selon l'indice harmonisé, 5,6 % en Italie et 2,9 % en Allemagne. L'énergie explique près de la moitié de la hausse, tandis que l'inflation sous-jacente, hors énergie et alimentation, a été révisée à 2,6 %. La prochaine estimation rapide, pour novembre, est attendue le 1er décembre.",
+   "title": "Zone euro : Eurostat confirme une inflation de 4,0 % en octobre",
+   "why": "L'inflation érode le pouvoir d'achat et sert de base à la revalorisation de nombreux indices (Smic, loyers, Livret A) : un indicateur clé pour toute analyse de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "France Épargne",
+     "url": "https://www.france-epargne.fr/news/inflation-confirmee-a-4-les-nouveaux-depots-a-terme-des-menages-rapportent-2-53-brut"
+    },
+    {
+     "name": "Admiral Markets",
+     "url": "https://admiralmarkets.com/analytics/traders-blog/ecb-rate-decision-december-2026-preview"
+    }
+   ],
+   "summary": "La BCE a laissé ses taux inchangés le 29 octobre, avec un taux de dépôt à 2,50 %. Dans un sondage Reuters réalisé du 10 au 12 novembre, les 71 économistes interrogés prévoient un relèvement à 2,75 % lors de la réunion du 17 décembre, et les marchés monétaires intègrent une probabilité d'environ 91 %. Christine Lagarde a indiqué que l'inflation resterait élevée dans les trimestres à venir, sans s'engager à l'avance sur une décision.",
+   "title": "BCE : les économistes anticipent une hausse des taux le 17 décembre",
+   "why": "Une hausse des taux directeurs renchérit le crédit pour les entreprises et les ménages et modifie le coût du capital utilisé dans les choix d'investissement."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "TMGM / FXStreet",
+     "url": "https://www.tmgm.com/fr/analysis/market-news/article/eur-usd-price-forecast-downside-extends-to-near-10960-as-us-dollar-rallies-further-202611180927"
+    },
+    {
+     "name": "FXStreet",
+     "url": "https://www.fxstreet.com/news/euro-edges-back-to-110-from-a-19-month-low-as-the-dollar-eases-202611172145"
+    }
+   ],
+   "summary": "L'euro est tombé cette semaine sous 1,10 dollar, touchant mercredi environ 1,0960, son niveau le plus faible depuis 19 mois. Le dollar est soutenu par les anticipations de hausses de taux de la Réserve fédérale américaine. Le taux de référence publié par la BCE pour jeudi s'établit à 1,0992 dollar pour un euro.",
+   "title": "L'euro sous 1,10 dollar, au plus bas depuis 19 mois",
+   "why": "Un euro plus faible renchérit les importations, notamment l'énergie facturée en dollars, mais favorise les exportateurs : un effet à intégrer dans les budgets et la gestion du risque de change."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9118603"
+    },
+    {
+     "name": "Banque de France",
+     "url": "https://www.banque-france.fr/fr/publications-et-statistiques/publications/enquete-mensuelle-de-conjoncture-debut-novembre-2026"
+    }
+   ],
+   "summary": "Selon l'Insee, le taux de chômage s'établit à 8,2 % au troisième trimestre 2026, en recul de 0,1 point sur le trimestre mais en hausse de 0,4 point sur un an ; le chômage de longue durée reste à 2,1 %. Après un PIB en recul de 0,1 % au troisième trimestre, la Banque de France estime, dans son enquête de début novembre, que l'activité progresserait modérément au quatrième trimestre. L'Insee publie ce matin à 8 h 45 ses indicateurs de climat des affaires de novembre.",
+   "title": "Chômage à 8,2 % : la Banque de France table sur une croissance modérée fin 2026",
+   "why": "Chômage, PIB et climat des affaires forment le tableau de bord conjoncturel de base, utile pour comprendre l'environnement des entreprises et les prévisions budgétaires."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "RTS",
+     "url": "https://www.rts.ch/info/monde/2026/article/sommet-de-shenzhen-trump-poutine-et-xi-dessinent-l-ordre-mondial-29421165.html"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/usa/presidentielle/donald-trump/direct-rencontre-donald-trump-vladimir-poutine-xi-jinping-suivez-l-entretien-inedit-entre-les-trois-presidents-en-chine_8288564.html"
+    },
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/monde/direct-apres-sa-rencontre-avec-trump-et-xi-poutine-juge-quune-cooperation-militaire-ukraine-europe-pose-probleme-1e30eadd-2a4c-40cd-8758-0b8d6da2cdf3"
+    }
+   ],
+   "summary": "Les présidents américain, russe et chinois ont tenu jeudi leur première réunion à trois, d'environ 80 minutes, en marge du sommet de l'Apec à Shenzhen. Leur déclaration commune prévoit notamment un dialogue sur la réduction des risques nucléaires et évoque la stabilité des flux énergétiques, mais ne comporte ni cessez-le-feu en Ukraine ni calendrier. Vladimir Poutine a jugé les échanges utiles ; le ministre français des Affaires étrangères, Jean-Noël Barrot, a estimé que les trois dirigeants étaient trop divisés pour obtenir des résultats.",
+   "title": "À Shenzhen, Trump, Poutine et Xi adoptent une « déclaration de paix »",
+   "why": "Les relations entre les trois premières puissances influencent l'énergie, les échanges commerciaux et les marchés : un contexte à suivre pour toute analyse de risques."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/monde/iran/guerre-au-moyen-orient-nouvelles-attaques-dans-le-golf-washington-alerte-ses-ressortissants-les-dernieres-infos-39dc90ca-e3c6-11f1-a3b1-0c6de532ce7d"
+    },
+    {
+     "name": "La Presse de Tunisie",
+     "url": "https://www.lapresse.tn/2026/11/19/moyen-orient-nouvelle-escalade-apres-des-frappes-americaines-contre-une-ile-iranienne-des-pays-du-golfe-attaques-liran-menace-dune-riposte-plus-devastatrice"
+    }
+   ],
+   "summary": "Après des frappes américaines visant l'île iranienne de Qeshm, dans le détroit d'Ormuz, Bahreïn et le Koweït ont déclaré mercredi avoir contré des attaques aériennes iraniennes. La filiale logistique du groupe émirati Adnoc a annoncé qu'un de ses navires avait été attaqué dans le détroit, avec un marin porté disparu et onze blessés. Le chef de l'armée iranienne a menacé d'une riposte plus large en cas de nouvelles frappes, et Washington appelle ses ressortissants à la vigilance.",
+   "title": "Golfe : nouvelle escalade autour du détroit d'Ormuz",
+   "why": "Une part importante du pétrole mondial transite par Ormuz : chaque tension pèse sur le prix du baril, donc sur l'inflation et les coûts des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "CBS News",
+     "url": "https://www.cbsnews.com/news/anthropic-ipo-nasdaq-debut-claude-ai/"
+    },
+    {
+     "name": "CNBC",
+     "url": "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html"
+    }
+   ],
+   "summary": "La société américaine d'intelligence artificielle, qui développe Claude, a fait ses débuts jeudi au Nasdaq sous le symbole ANT. Introduite à 83 dollars, au-dessus de la fourchette initiale de 70 à 78 dollars, l'action a ouvert à 111,50 dollars et clôturé à 97,17 dollars, soit +17 %. L'opération a levé environ 81,3 milliards de dollars, devant celle de SpaceX en juin, pour une capitalisation d'environ 1 800 milliards de dollars sur une base entièrement diluée. Le même jour, le Nasdaq a reculé d'environ 2,3 % et le S&P 500 de 2 %.",
+   "title": "Anthropic réalise la plus grosse introduction en Bourse de l'histoire",
+   "why": "Une introduction en Bourse illustre le passage du prix d'offre à la valorisation de marché : prime de première cotation, flottant et capitalisation diluée sont des notions de finance d'entreprise."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Investing.com",
+     "url": "https://fr.investing.com/news/stock-market-news/cac-40--4-seances-de-baisse-les-8-000-pts-en-vue--on-repasse-a-lachat--3705983"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/cotation/PX1p"
+    },
+    {
+     "name": "Courspetrole.com",
+     "url": "https://courspetrole.com/"
+    }
+   ],
+   "summary": "La Bourse de Paris a fini jeudi en baisse de 0,81 %, à 8 080,74 points, après avoir progressé en début de séance ; l'indice cède environ 3,4 % depuis lundi. Sanofi (-2,85 %), pénalisé par des informations de presse sur un possible rachat d'Insmed, Capgemini (-2,68 %) et EssilorLuxottica (-2,21 %) figurent parmi les plus fortes baisses. Le Brent a terminé la séance autour de 92 dollars le baril.",
+   "title": "Le CAC 40 recule de 0,81 % et aligne une quatrième séance de baisse",
+   "why": "Suivre l'indice phare et ses principales valeurs aide à relier les annonces des entreprises (rachats, résultats) à leur valorisation boursière."
+  }
+ ],
+ "lede": "Le Sénat ouvre ce vendredi l'examen du budget de l'État pour 2027, deux jours après avoir adopté celui de la Sécurité sociale. À l'international, Trump, Poutine et Xi ont adopté à Shenzhen une « déclaration de paix » sans cessez-le-feu, tandis qu'Anthropic a réussi la plus grosse introduction en Bourse jamais réalisée.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Eurostat a confirmé une inflation de 4,0 % en octobre, après 3,8 % en septembre. Le chiffre de 3,7 % correspond à la France (indice harmonisé).",
+   "options": [
+    "3,7 %",
+    "3,8 %",
+    "4,0 %",
+    "4,3 %"
+   ],
+   "q": "À quel niveau Eurostat a-t-il confirmé l'inflation annuelle de la zone euro en octobre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Rejeté par l'Assemblée le 4 novembre, le texte est examiné par le Sénat du 20 novembre au 9 décembre, date du vote solennel.",
+   "options": [
+    "Examen en séance au Sénat",
+    "Nouvelle lecture à l'Assemblée",
+    "Réunion de la commission mixte",
+    "Saisine du Conseil constitutionnel"
+   ],
+   "q": "Quelle étape franchit le projet de loi de finances pour 2027 à partir du 20 novembre ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le prix a été fixé à 83 dollars, au-dessus de la fourchette initiale de 70 à 78 dollars ; l'action a ouvert à 111,50 dollars puis clôturé à 97,17 dollars.",
+   "options": [
+    "70 dollars",
+    "78 dollars",
+    "111 dollars",
+    "83 dollars"
+   ],
+   "q": "À quel prix par action Anthropic a-t-elle fixé son introduction en Bourse ?"
+  }
+ ]
+}
