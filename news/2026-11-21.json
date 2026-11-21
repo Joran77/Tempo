@@ -1,0 +1,284 @@
+{
+ "date": "2026-11-21",
+ "figures": [
+  {
+   "label": "Climat des affaires en France (novembre 2026)",
+   "note": "−2 points sur un mois ; moyenne de long terme : 100",
+   "source": "Insee",
+   "value": "95"
+  },
+  {
+   "label": "Climat des affaires dans l'industrie (novembre 2026)",
+   "note": "−1 point, seul secteur au-dessus de sa moyenne",
+   "source": "Insee",
+   "value": "104"
+  },
+  {
+   "label": "CAC 40 à la clôture (20 novembre)",
+   "note": "−1,89 % sur la séance, 5e baisse d'affilée",
+   "source": "Boursorama / AFP",
+   "value": "7 927,75 pts"
+  },
+  {
+   "label": "CAC 40 sur la semaine (16-20 novembre)",
+   "note": "Pire semaine depuis début mars",
+   "source": "Boursorama / AFP",
+   "value": "−5,27 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE (novembre 2026)",
+   "note": "Inchangé ; prochaine décision le 17 décembre",
+   "source": "BCE",
+   "value": "2,50 %"
+  },
+  {
+   "label": "Action Ubisoft (séance du 20 novembre)",
+   "note": "Clôture à 3,20 €, plus bas depuis 2011",
+   "source": "Reuters / Boursorama",
+   "value": "−23,24 %"
+  }
+ ],
+ "generatedAt": "2026-11-21T06:52:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-calendrier-49-3-ordonnancesquelles-sont-les-echeances-a-venir-et-les-scenarios-possibles"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/l-assemblee-nationale-rejette-a-l-unanimite-le-budget-de-l-etat-2027-en-premiere-lecture_8268527.html"
+    },
+    {
+     "name": "CNews",
+     "url": "https://www.cnews.fr/france/2026-11-20/budget-2027-le-senat-examine-le-projet-de-loi-de-finances-ce-vendredi-alors-que"
+    }
+   ],
+   "summary": "Après le rejet unanime du texte par l'Assemblée nationale le 4 novembre, les sénateurs ont commencé vendredi à examiner la version initiale du gouvernement. Le projet vise un déficit public de 5 % du PIB en 2027, contre 5,4 % attendus cette année. Les débats doivent durer jusqu'au 8 décembre, avec un vote solennel prévu le 9 décembre. Le gouvernement de Sébastien Lecornu dit chercher un compromis, tandis que l'hypothèse d'un recours au 49.3 est évoquée.",
+   "title": "Budget 2027 : le Sénat ouvre l'examen du projet de loi de finances",
+   "why": "Le PLF fixe les recettes et dépenses de l'État : son issue conditionne la fiscalité des entreprises et des ménages en 2027. C'est un cas concret de procédure budgétaire et de finances publiques."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Le JDD",
+     "url": "https://www.lejdd.fr/politique/presidentielle-2027-tondelier-demande-a-melenchon-de-sortir-de-son-couloir-de-natation-189207"
+    },
+    {
+     "name": "Reporterre",
+     "url": "https://reporterre.net/Marine-Tondelier-prete-a-rallier-Jean-Luc-Melenchon-de-nombreux-soutiens-et-quelques"
+    }
+   ],
+   "summary": "Mercredi sur France 2, la secrétaire nationale des Écologistes s'est dite prête à travailler à une coalition autour de la candidature de Jean-Luc Mélenchon, qui a accueilli favorablement cette perspective jeudi. Vendredi à Lyon, elle a demandé au candidat insoumis des signes d'ouverture. Les adhérents des Écologistes voteront début décembre entre sa propre candidature, un soutien à Raphaël Glucksmann ou un ralliement à LFI.",
+   "title": "Présidentielle 2027 : Marine Tondelier attend des gestes de Jean-Luc Mélenchon",
+   "why": "Les recompositions à gauche pèseront sur le paysage de l'élection présidentielle d'avril 2027 et sur les programmes économiques en concurrence."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/france-le-climat-des-affaires-repart-a-la-baisse-en-novembre-dans-tous-les-secteurs-selon-l-insee-02329d8b166a06c8cb79794abd85316e"
+    },
+    {
+     "name": "Économie Matin",
+     "url": "https://www.economiematin.fr/insee-climat-affaires-novembre-2026-commerce-90-industrie-104"
+    }
+   ],
+   "summary": "L'indicateur synthétique du climat des affaires perd deux points, à 95 (94,6 avant arrondi), et s'éloigne de sa moyenne de long terme fixée à 100. Le repli touche tous les secteurs : le commerce de détail tombe à 90, les services à 97, et l'industrie, à 104, reste la seule au-dessus de la moyenne. L'indicateur du climat de l'emploi progresse en revanche légèrement.",
+   "title": "Insee : le climat des affaires recule à 95 en novembre, dans tous les secteurs",
+   "why": "Ces enquêtes auprès des chefs d'entreprise sont un indicateur avancé de l'activité : elles éclairent les prévisions de chiffre d'affaires et les budgets que construit un contrôleur de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Économie Matin",
+     "url": "https://www.economiematin.fr/grossistes-commandes-perspectives-insee-novembre-2026"
+    },
+    {
+     "name": "Insee (calendrier des publications)",
+     "url": "https://www.insee.fr/fr/information/5235017"
+    }
+   ],
+   "summary": "Dans le commerce de gros, le climat des affaires recule à 92 et le solde sur les perspectives générales d'activité chute à −51, contre −38 en septembre et une moyenne historique de −23. Dans l'industrie manufacturière, le solde sur les commandes étrangères passe de −1 à −4, tout en restant au-dessus de sa moyenne. Les grossistes envisagent aussi moins de hausses de prix.",
+   "title": "Commerce de gros et industrie : les perspectives se dégradent selon l'Insee",
+   "why": "Un solde d'opinion mesure l'écart entre réponses positives et négatives : savoir le lire est utile pour analyser la conjoncture d'un secteur client ou fournisseur."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "BCE",
+     "url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261120~e52bcc4db2.fr.html"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/lagarde-plaide-pour-des-dirigeants-prets-a-lutter-pour-l-europe-573941113d6dceb07403fb230720d05d"
+    },
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/bce-lagarde-met-en-garde-contre-les-cybermenaces-amplifiees-par-l-ia-46775c5957ec45742a9734023f7bd0e0"
+    }
+   ],
+   "summary": "Pour sa huitième et dernière intervention au Congrès bancaire européen en tant que présidente de la BCE, Christine Lagarde a plaidé pour une action européenne plus rapide face aux dépendances économiques. Elle a aussi désigné les cybermenaces amplifiées par l'IA comme un risque majeur pour la finance. Elle quittera la BCE en février ; le taux de dépôt reste à 2,5 % avant la décision du 17 décembre.",
+   "title": "Lagarde appelle l'Europe à « agir à temps » lors de son dernier congrès de Francfort",
+   "why": "La politique de la BCE détermine le coût du crédit pour les entreprises et les ménages ; une hausse de taux en décembre est attendue par une majorité d'économistes."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Axios",
+     "url": "https://axios.com/2026/11/19/trump-iran-attacks-israel-new-year"
+    },
+    {
+     "name": "Connaissance des Énergies (AFP)",
+     "url": "https://www.connaissancedesenergies.org/afp/le-petrole-baisse-donald-trump-repoussant-toute-decision-sur-liran-a-2027-261120"
+    }
+   ],
+   "summary": "Interrogé jeudi par Axios, le président américain a affirmé qu'il ne prendrait pas de décision rapide sur l'Iran et attendrait le début de l'année. Le New York Times avait rapporté mercredi qu'il étudiait une nouvelle campagne de frappes, Israël poussant à intervenir. Une rencontre de ses émissaires avec des médiateurs qataris à Berlin n'a pas permis d'avancée majeure, selon Axios. Le pétrole a reculé vendredi.",
+   "title": "Iran : Donald Trump dit ne pas se précipiter sur de nouvelles frappes",
+   "why": "Le conflit avec l'Iran pèse sur les prix de l'énergie, donc sur l'inflation, les coûts des entreprises et les décisions des banques centrales."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/europe/ukraine/guerre-en-ukraine-trois-morts-et-deux-ponts-endommages-a-kiev-apres-de-nouvelles-frappes-russes-bd3a5172-e4a3-11f1-afa7-9a0bb82a33d1"
+    },
+    {
+     "name": "Ukrinform",
+     "url": "https://www.ukrinform.fr/"
+    }
+   ],
+   "summary": "Des frappes russes ont fait au moins huit morts vendredi, dont six à Kiev et deux à Lviv, selon les autorités ukrainiennes. Trois ponts de la capitale ont été touchés. Selon la diplomatie française, deux ambassades ont été atteintes et Paris a demandé une réunion d'urgence du Conseil de sécurité de l'ONU. Ces frappes interviennent au lendemain de menaces de représailles de Vladimir Poutine.",
+   "title": "Ukraine : nouvelles frappes russes meurtrières sur Kiev et Lviv",
+   "why": "La guerre en Ukraine reste un facteur de risque pour l'économie européenne, l'énergie et les dépenses de défense."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Conseil de l'UE",
+     "url": "https://www.consilium.europa.eu/en/meetings/international-summit/2026/11/20/"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/le-royaume-uni-et-l-ue-celebrent-a-bruxelles-un-tournant-dans-leurs-relations-4b017714a2a01d11d062ad5eb7509672"
+    }
+   ],
+   "summary": "Le Premier ministre britannique Andy Burnham a rencontré Ursula von der Leyen et António Costa pour le deuxième sommet UE-Royaume-Uni. Les dirigeants ont adopté une déclaration commune et salué un tournant dans leurs relations. Andy Burnham a estimé que l'accord apporterait environ 17 milliards de livres (20,3 milliards d'euros) à l'économie britannique.",
+   "title": "Sommet UE-Royaume-Uni à Bruxelles : de premiers accords conclus",
+   "why": "Le rapprochement commercial avec le Royaume-Uni peut alléger les formalités douanières et réglementaires pour les entreprises françaises qui y exportent."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/bourse/actualites/semaine-eprouvante-pour-le-cac-40-qui-repasse-sous-les-8-000-points-949d8cc886dc0345eefa122492dc3dc0"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/marches/le-cac-40-chute-de-plus-de-5-et-signe-sa-deuxieme-pire-semaine-de-l-annee_706467"
+    }
+   ],
+   "summary": "L'indice parisien a cédé 1,89 % vendredi, à 7 927,75 points, sa cinquième baisse consécutive et sa première clôture sous 8 000 points depuis le 30 octobre. Sur la semaine, le repli atteint 5,27 %, le plus fort depuis début mars. Les doutes sur la rentabilité des investissements dans l'IA ont pesé, notamment sur Schneider Electric et Legrand.",
+   "title": "Le CAC 40 repasse sous 8 000 points et perd 5,27 % sur la semaine",
+   "why": "Une baisse des marchés affecte la valorisation des entreprises cotées et le coût de leurs levées de fonds ; c'est aussi un rappel concret de la notion de risque de marché."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-20-worldline-plonge-apres-des-revelations-sur-sa-tresorerie-le-groupe-se-defend.html"
+    },
+    {
+     "name": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/worldline-plonge-apres-des-revelations-sur-sa-tresorerie-le-groupe-se-defend-d0a935fcc248b6de264a9937b159490a"
+    }
+   ],
+   "summary": "Selon le Financial Times, Worldline aurait, entre 2021 et 2023, retardé des paiements fournisseurs et sollicité des avances clients avant ses clôtures pour améliorer ses flux de trésorerie publiés. Un rapport de PwC cité par le journal chiffre l'effet à 200 millions d'euros pour 2022 : 320 millions au lieu des 520 publiés. Worldline affirme que ses comptes sont conformes et maintient ses objectifs 2026. L'action a perdu 15,47 %.",
+   "title": "Worldline chute après des révélations sur la gestion de sa trésorerie",
+   "why": "Retarder les règlements fournisseurs améliore temporairement la trésorerie et le BFR affichés : un sujet directement lié à la comptabilité fournisseurs et à l'analyse financière."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/ubisoft-chute-apres-des-previsions-inferieures-aux-attentes-au-t3-3768e3cdadb949f1fc8161f675d28096"
+    },
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-20-ubisoft-plonge-les-tensions-financieres-inquietent-les-analystes.html"
+    },
+    {
+     "name": "La Libre (AFP)",
+     "url": "https://www.lalibre.be/economie/placements/2026/11/20/le-geant-des-jeux-videos-francais-ubisoft-secrase-a-la-bourse-de-paris-BAXZYK32IZAY5ORXBFGEZUBUSU/"
+    }
+   ],
+   "summary": "L'éditeur de jeux vidéo a publié une perte opérationnelle non-IFRS de 155,9 millions d'euros au premier semestre, contre un bénéfice de 27,1 millions un an plus tôt. Ses net bookings du deuxième trimestre ont reculé de 20,8 %, même s'ils dépassent son objectif. Ubisoft annonce 166 suppressions de postes au Québec et doit rembourser 675 millions d'euros d'obligations en novembre 2027. L'action a clôturé à 3,20 €.",
+   "title": "Ubisoft s'effondre de 23 % en Bourse après ses résultats semestriels",
+   "why": "Ce cas illustre l'impact d'une forte consommation de trésorerie et d'une échéance de dette sur la confiance des investisseurs."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "L'Usine Digitale",
+     "url": "https://www.usine-digitale.fr/intelligence-artificielle/anthropic/anthropic-entre-en-bourse-revelant-les-liens-financiers-qui-alimentent-la-bulle-de-lia.LWGIRXQYC5EIPJVOTZA7C3BIL4.html"
+    },
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/actualites/informations-societes/la-plus-grosse-introduction-en-bourse-de-l-histoire-on-vous-explique-comment-acheter-des-actions-anthropic-des-ce-jeudi-actions-etf-compte-titres-1173946.html"
+    }
+   ],
+   "summary": "Le créateur de Claude a été introduit jeudi à 83 dollars par action, au-dessus de sa fourchette indicative de 70 à 78 dollars. L'opération porte sur 81,34 milliards de dollars, auxquels s'ajoutent 26 milliards de placements privés auprès d'entreprises technologiques. L'action a terminé sa première séance à 97,17 dollars, en hausse de 17,1 %.",
+   "title": "Anthropic fait son entrée au Nasdaq avec une levée de plus de 81 milliards de dollars",
+   "why": "Une introduction en Bourse illustre la fixation d'un prix par la demande (book-building) et la valorisation d'une entreprise à forte croissance."
+  }
+ ],
+ "lede": "Le Sénat a ouvert vendredi l'examen du budget 2027 tandis que la Bourse de Paris a clôturé sa pire semaine depuis mars, repassant sous les 8 000 points. L'Insee signale un recul du climat des affaires dans tous les secteurs, et Ubisoft comme Worldline ont fortement chuté en Bourse.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Il perd deux points, à 95, sous sa moyenne de long terme de 100. Le 104 correspond à l'industrie seule.",
+   "options": [
+    "97 points",
+    "95 points",
+    "100 points",
+    "104 points"
+   ],
+   "q": "À quel niveau l'indicateur Insee du climat des affaires s'établit-il en novembre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Un rapport de PwC cité par le FT évalue l'effet à 200 millions d'euros : 320 millions au lieu des 520 publiés.",
+   "options": [
+    "50 millions d'euros",
+    "120 millions d'euros",
+    "320 millions d'euros",
+    "200 millions d'euros"
+   ],
+   "q": "Selon le Financial Times, de combien les flux de trésorerie 2022 de Worldline auraient-ils été améliorés ?"
+  },
+  {
+   "answer": 0,
+   "explain": "Les sénateurs examinent le texte du 20 novembre au 8 décembre, puis votent sur l'ensemble le 9 décembre.",
+   "options": [
+    "Le 9 décembre",
+    "Le 17 décembre",
+    "Le 1er décembre",
+    "Le 15 décembre"
+   ],
+   "q": "À quelle date le vote solennel du Sénat sur le PLF 2027 est-il prévu ?"
+  }
+ ]
+}
