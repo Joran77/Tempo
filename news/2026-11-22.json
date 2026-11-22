@@ -1,0 +1,274 @@
+{
+ "date": "2026-11-22",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 20 novembre",
+   "note": "−1,89 % sur la séance, −5,27 % sur la semaine",
+   "source": "Boursorama / Euronext",
+   "value": "7 927,75 pts"
+  },
+  {
+   "label": "Climat des affaires, novembre 2026",
+   "note": "−2 points sur un mois ; moyenne de long terme : 100",
+   "source": "Insee",
+   "value": "95"
+  },
+  {
+   "label": "Inflation sur un an, octobre 2026",
+   "note": "Glissement annuel des prix à la consommation",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage, 3e trimestre 2026",
+   "note": "Au sens du BIT",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Croissance du PIB, 3e trimestre 2026",
+   "note": "Variation sur un trimestre",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "Taux de l'OAT à 10 ans, 20 novembre",
+   "note": "En baisse de 6,8 points de base sur la séance",
+   "source": "Reuters",
+   "value": "4,87 %"
+  },
+  {
+   "label": "Euro face au dollar, 20 novembre",
+   "note": "+0,16 % sur la séance",
+   "source": "Reuters",
+   "value": "1,098 $"
+  }
+ ],
+ "generatedAt": "2026-11-22T06:50:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-pour-2027.html"
+    },
+    {
+     "name": "franceinfo (Outre-mer La 1ère)",
+     "url": "https://la1ere.franceinfo.fr/nouvellecaledonie/vote-du-budget-2027-au-senat-des-dizaines-de-milliards-de-francs-en-jeu-pour-la-nouvelle-caledonie-1759668.html"
+    }
+   ],
+   "summary": "Les sénateurs ont commencé vendredi 20 novembre l'examen en séance du projet de loi de finances pour 2027, rejeté le 4 novembre par l'Assemblée nationale. Ils repartent du texte initial du gouvernement. Le volet recettes est examiné jusqu'au 28 ou 29 novembre, le volet dépenses jusqu'au vote sur l'ensemble prévu le 9 décembre. Le gouvernement vise un déficit public de 5 % du PIB en 2027.",
+   "title": "Le Sénat ouvre l'examen du projet de budget de l'État pour 2027",
+   "why": "La loi de finances fixe les impôts et dépenses de l'État pour l'année : c'est la base de la fiscalité des ménages et des entreprises que tu étudies en GEA."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-de-fin-de-gestion-pour-2026.html"
+    },
+    {
+     "name": "Quartz (d'après l'AFP)",
+     "url": "https://fr.qz.com/deputes-senateurs-concluent-accord-budget-fin-gestion-2026-112026"
+    }
+   ],
+   "summary": "La commission mixte paritaire (7 députés, 7 sénateurs) est parvenue vendredi soir à un accord sur le projet de loi de finances de fin de gestion pour 2026, rejeté par l'Assemblée puis adopté par le Sénat. Selon l'AFP, huit parlementaires de droite et du centre ont voté pour, cinq élus de gauche et du RN contre. Le texte prévoit notamment des crédits pour les armées et le recrutement de 920 enseignants contractuels. Une adoption définitive est possible mardi 24 novembre.",
+   "title": "Accord entre députés et sénateurs sur le budget de fin de gestion 2026",
+   "why": "Ce texte ajuste les crédits de l'année en cours ; il acte un déficit public de 5,4 % du PIB en 2026, au-dessus de l'objectif initial de 5 %."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/accueil"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/france-le-climat-des-affaires-repart-a-la-baisse-en-novembre-dans-tous-les-secteurs-selon-l-insee-02329d8b166a06c8cb79794abd85316e"
+    }
+   ],
+   "summary": "L'indicateur synthétique du climat des affaires de l'Insee perd deux points en novembre, à 95, contre 97 en octobre. Il baisse dans tous les secteurs interrogés : le commerce de détail est au plus bas (90), les services à 97, le bâtiment à 94, tandis que l'industrie reste au-dessus de sa moyenne, à 104. Seul le climat de l'emploi progresse d'un point.",
+   "title": "Le climat des affaires recule dans tous les secteurs en novembre",
+   "why": "Cet indicateur, issu des réponses des chefs d'entreprise, donne une tendance avancée de l'activité : un outil utile en contrôle de gestion pour anticiper la demande."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Politique Matin",
+     "url": "https://www.politiquematin.fr/budget-2027-deficit-etat-1564-milliards-rapport-senat-20261121"
+    },
+    {
+     "name": "Le Conseil Patrimoine",
+     "url": "https://www.leconseilpatrimoine.fr/actualites/budget-2027-senat-examen-20-novembre-mesures-fiscales/"
+    }
+   ],
+   "summary": "Dans son rapport général déposé le 19 novembre, la commission des finances du Sénat évalue le solde budgétaire de l'État pour 2027 à −156,4 milliards d'euros, contre −137,2 milliards dans la prévision révisée pour 2026. Le gouvernement défend un effort global de 54 milliards d'euros, dont 43 milliards de mesures nouvelles.",
+   "title": "Budget 2027 : la commission des finances du Sénat chiffre le déficit de l'État",
+   "why": "Il faut distinguer le déficit de l'État (en milliards) et le déficit public total (en % du PIB) : deux notions clés en finances publiques."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/l-europe-finit-en-nette-baisse-l-ia-secoue-le-nasdaq-565f40a60daf883161dd9a503cc6889f"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/10/29/ecb-holds-rates-at-25-as-lagarde-announces-early-exit-with-inflation-near-double-the-targe"
+    },
+    {
+     "name": "Admiral Markets",
+     "url": "https://admiralmarkets.com/analytics/traders-blog/ecb-rate-decision-december-2026-preview"
+    }
+   ],
+   "summary": "Le rendement de l'OAT française à 10 ans a reculé vendredi à 4,87 %, celui du Bund allemand à 3,30 %, selon Reuters. L'euro s'est établi autour de 1,098 dollar. La BCE a laissé son taux de dépôt à 2,5 % le 29 octobre ; selon un sondage Reuters, les économistes interrogés anticipent une hausse à 2,75 % lors de la réunion du 17 décembre.",
+   "title": "Taux d'emprunt et euro : légère détente vendredi, la BCE attendue le 17 décembre",
+   "why": "L'écart entre taux français et allemands mesure le coût de financement de l'État ; les taux directeurs influencent aussi le coût du crédit des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/semaine-eprouvante-pour-le-cac-40-qui-repasse-sous-les-8-000-points-949d8cc886dc0345eefa122492dc3dc0"
+    },
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/%C3%A9co-tech/20261120-apr%C3%A8s-une-introduction-en-bourse-record-l-action-d-anthropic-chute-de-9"
+    },
+    {
+     "name": "CNN",
+     "url": "https://www.cnn.com/2026/11/20/investing/us-stocks-anthropic-ai"
+    }
+   ],
+   "summary": "Le CAC 40 a clôturé vendredi à 7 927,75 points (−1,89 %), sa cinquième baisse consécutive et sa pire semaine depuis début mars. Les valeurs exposées à l'intelligence artificielle ont reculé, comme STMicroelectronics, Legrand et Schneider Electric. À New York, le Nasdaq a perdu 5,28 % vendredi ; l'action Anthropic, introduite en Bourse la veille, a baissé d'environ 8,5 %.",
+   "title": "Le CAC 40 repasse sous 8 000 points après une semaine à −5,27 %",
+   "why": "Illustre comment les anticipations sur un secteur (ici l'IA) se propagent aux marchés mondiaux et à la valorisation des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/ubisoft-chute-apres-des-previsions-inferieures-aux-attentes-au-t3-3768e3cdadb949f1fc8161f675d28096"
+    },
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-20-ubisoft-plonge-les-tensions-financieres-inquietent-les-analystes.html"
+    }
+   ],
+   "summary": "L'action Ubisoft a perdu 23,24 % vendredi, à 3,20 euros, son plus bas depuis 2011. L'éditeur a publié une perte opérationnelle non-IFRS de 155,9 millions d'euros au premier semestre de son exercice 2026-2027 et des réservations nettes en baisse de 16,5 %. Il prévoit environ 250 millions d'euros de chiffre d'affaires au troisième trimestre, sous le consensus de 361 millions cité par TD Cowen. Une échéance obligataire de 675 millions d'euros l'attend en novembre 2027.",
+   "title": "Ubisoft chute de 23 % en Bourse après ses résultats semestriels",
+   "why": "Un cas concret d'analyse financière : résultat, trésorerie, endettement et prévisions pèsent directement sur la valeur boursière."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/guerre-en-ukraine-des-frappes-russes-font-deux-morts-et-58-blesses-a-kryvyi-rih-ville-natale-de-volodymyr-zelensky_8293700.html"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://fr.euronews.com/2026/11/21/bombardement-meurtrier-sur-la-ville-de-naissance-de-volodymyr-zelensky"
+    }
+   ],
+   "summary": "La Russie a lancé le 20 novembre plus de 400 drones et plus de 110 missiles contre l'Ukraine, selon Volodymyr Zelensky ; trois ponts de Kyiv ont été touchés. Dans la nuit suivante, une frappe sur Kryvyï Rih a tué deux personnes, dont un enfant de 7 ans, et en a blessé une soixantaine. Vladimir Poutine avait annoncé une riposte après des attaques ukrainiennes contre le pont de Crimée.",
+   "title": "Ukraine : frappes russes massives, des ponts de Kyiv touchés",
+   "why": "La guerre pèse sur les prix de l'énergie et les dépenses de défense européennes, deux variables des budgets publics actuels."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/europe/20261120-deux-missiles-chutent-pologne-premier-ministre-donald-tusk-d%C3%A9nonce-provocation-russie"
+    },
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/11/20/unidentified-object-falls-in-eastern-poland-amid-major-russian-attack-on-ukraine"
+    }
+   ],
+   "summary": "Deux missiles russes et probablement un drone à réaction sont tombés vendredi dans le sud-est de la Pologne, sans faire de blessés, selon le ministre polonais de la Défense. Le Premier ministre Donald Tusk a parlé de provocation, possiblement liée à des exercices militaires alliés sur le sol polonais. Le secrétaire général de l'Otan, Mark Rutte, a dénoncé de graves violations de l'espace aérien.",
+   "title": "Des missiles russes tombent en Pologne, Varsovie dénonce une provocation",
+   "why": "Un incident sur le territoire d'un membre de l'Otan et de l'UE accroît le risque géopolitique, surveillé de près par les marchés."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/deux-nouveaux-petroliers-touches-dans-le-detroit-d-ormuz-212293de8f3ac2d38e69f8deebf0ce97"
+    },
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/deux-petroliers-touches-par-des-projectiles-dans-le-detroit-d-ormuz-ukmto-05b982b26261a90252f635326e1b3991"
+    },
+    {
+     "name": "U.S. News (Reuters)",
+     "url": "https://usnews.com/news/world/articles/2026-11-20/araqchi-says-iran-wants-diplomacy-to-end-war-trump-says-terms-unacceptable"
+    }
+   ],
+   "summary": "Deux pétroliers ont été touchés samedi dans le détroit d'Ormuz, au large de Khasab (Oman), selon l'agence britannique UKMTO ; aucun blessé n'a été signalé. L'Iran affirme qu'un navire a heurté une mine. Donald Trump a déclaré que l'Iran voulait un accord mais à des conditions qu'il juge inacceptables ; le ministre iranien Abbas Araghchi a exclu de transférer à l'étranger l'uranium hautement enrichi tout en disant possible une solution équitable.",
+   "title": "Ormuz : nouveaux pétroliers touchés, négociations Iran–États-Unis bloquées",
+   "why": "Avant la guerre, environ un cinquième du pétrole et du GNL mondiaux transitait par Ormuz : cela pèse sur l'inflation et donc sur les taux."
+  },
+  {
+   "cat": "societe",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/actualite-economique/"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/greve/organisations-presentes-dispositif-de-securite-a-quoi-faut-il-s-attendre-pour-les-manifestations-du-samedi-21-novembre_8292461.html"
+    }
+   ],
+   "summary": "Syndicats, organisations de jeunesse et coordination des « gilets jaunes » ont de nouveau manifesté samedi 21 novembre contre la vie chère, pour le sixième week-end consécutif. Le ministère de l'Intérieur a compté 82 500 manifestants en France, les syndicats 150 000. Le 14 novembre, l'Intérieur en avait recensé 106 000.",
+   "title": "Sixième samedi de mobilisation contre la vie chère, en baisse",
+   "why": "Le pouvoir d'achat, lié à une inflation de 3,4 % sur un an, pèse sur la consommation et sur les arbitrages budgétaires en cours."
+  }
+ ],
+ "lede": "Le Sénat a ouvert l'examen du budget 2027 tandis que députés et sénateurs se sont accordés sur le budget de fin de gestion 2026. Sur les marchés, le CAC 40 a perdu plus de 5 % en une semaine, entraîné par la défiance envers l'IA, et les tensions persistent en Ukraine et dans le détroit d'Ormuz.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "L'indicateur perd deux points, à 95, sous sa moyenne de long terme (100). 104 correspond à l'industrie, 90 au commerce de détail.",
+   "options": [
+    "97 points",
+    "104 points",
+    "95 points",
+    "90 points"
+   ],
+   "q": "À combien s'établit l'indicateur synthétique du climat des affaires de l'Insee en novembre 2026 ?"
+  },
+  {
+   "answer": 1,
+   "explain": "Le CAC 40 a cédé 5,27 % sur la semaine ; −1,89 % est la baisse de la seule séance du vendredi.",
+   "options": [
+    "−1,89 %",
+    "−5,27 %",
+    "−3,45 %",
+    "−9,45 %"
+   ],
+   "q": "Quelle a été la baisse du CAC 40 sur l'ensemble de la semaine du 16 au 20 novembre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le déficit public atteindrait 5,4 % du PIB en 2026, au-dessus de l'objectif initial de 5 %.",
+   "options": [
+    "5,0 % du PIB",
+    "4,6 % du PIB",
+    "5,8 % du PIB",
+    "5,4 % du PIB"
+   ],
+   "q": "Quel déficit public pour 2026 retient le budget de fin de gestion approuvé en CMP ?"
+  }
+ ]
+}
