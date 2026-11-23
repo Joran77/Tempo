@@ -1,0 +1,288 @@
+{
+ "date": "2026-11-23",
+ "figures": [
+  {
+   "label": "Climat des affaires, novembre 2026",
+   "note": "−2 points sur un mois ; moyenne de long terme : 100",
+   "source": "Insee",
+   "value": "95"
+  },
+  {
+   "label": "Inflation sur un an, octobre 2026",
+   "note": "Plus haut depuis janvier 2024, tirée par l'énergie",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage (BIT), 3e trimestre 2026",
+   "note": "−0,1 point sur le trimestre, +0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "PIB, 3e trimestre 2026",
+   "note": "Variation sur un trimestre, première estimation",
+   "source": "Insee",
+   "value": "−0,1 %"
+  },
+  {
+   "label": "CAC 40, clôture du 20 novembre 2026",
+   "note": "−1,89 % sur la séance, −5,27 % sur la semaine",
+   "source": "Euronext / Boursorama",
+   "value": "7 927,75 points"
+  },
+  {
+   "label": "Taux de dépôt de la BCE, novembre 2026",
+   "note": "Inchangé le 29 octobre ; prochaine réunion le 17 décembre",
+   "source": "BCE",
+   "value": "2,5 %"
+  }
+ ],
+ "generatedAt": "2026-11-23T06:50:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/dossier-legislatif/pjlf2027.html"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    },
+    {
+     "name": "Politique Matin",
+     "url": "https://www.politiquematin.fr/budget-2027-senat-rejette-question-prealable-249-voix-20-novembre"
+    }
+   ],
+   "summary": "Après le rejet du projet de loi de finances par l'Assemblée nationale le 4 novembre (458 voix contre), le Sénat examine le texte dans sa version initiale. Le 20 novembre, les sénateurs ont rejeté par 249 voix contre 19 une motion visant à interrompre l'examen. La partie recettes est discutée jusqu'au 28 ou 29 novembre, les dépenses du 30 novembre au 9 décembre, date du vote sur l'ensemble.",
+   "title": "Budget 2027 : le Sénat entame sa première semaine pleine de débats sur les recettes",
+   "why": "La loi de finances fixe les impôts et les crédits de l'État pour 2027 : barème de l'impôt sur le revenu, fiscalité des entreprises, facturation électronique. Si le Parlement ne se prononce pas d'ici le 17 décembre, le gouvernement pourra recourir aux ordonnances, ce qui serait une première."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/faits-divers/police/violences-policieres/presomption-d-usage-legal-des-armes-par-les-forces-de-l-ordre-la-loi-definitivement-adoptee_8293631.html"
+    },
+    {
+     "name": "CNews",
+     "url": "https://www.cnews.fr/france/2026-11-20/le-parlement-adopte-la-loi-sur-la-presomption-dusage-legal-des-armes-par-les"
+    }
+   ],
+   "summary": "Le Parlement a définitivement adopté le 20 novembre, après un ultime vote au Sénat (205 voix contre 110), la loi instaurant une présomption d'usage légal des armes pour les policiers et gendarmes. Ses partisans y voient un cadre juridique plus sûr pour les interventions. La gauche, qui s'y oppose, a annoncé saisir le Conseil constitutionnel, ce qui suspendrait la promulgation pendant un mois au plus.",
+   "title": "Usage des armes par les forces de l'ordre : la loi de présomption définitivement adoptée",
+   "why": "Exemple concret de procédure législative : adoption définitive, saisine du Conseil constitutionnel, puis promulgation dans un délai de 15 jours prévu par l'article 10 de la Constitution."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo (AFP)",
+     "url": "https://www.franceinfo.fr/replay-jt/franceinfo/le-fil-info-apres-midi/le-fil-info-apres-midi-du-dimanche-22-novembre-2026_8264987.html"
+    },
+    {
+     "name": "Orange Actu (BFMTV)",
+     "url": "https://actu.orange.fr/france/les-trois-infos-a-retenir-du-dimanche-22-novembre-l-express-via-6medias-CNT000002tZ0QO.html"
+    },
+    {
+     "name": "Brut (AFP)",
+     "url": "https://www.brut.media/fr/articles/soupcons-de-violation-du-secret-professionnel-des-juges-d-instruction-ont-perquisitionne-le-siege-du-rn"
+    }
+   ],
+   "summary": "Hugues Moutouh, préfet du Loiret et ancien secrétaire général du ministère de l'Intérieur, est soupçonné d'avoir transmis au Rassemblement national des informations liées à des enquêtes ; des juges d'instruction ont perquisitionné le siège du parti et le ministère. Selon l'AFP, il a demandé à être démis de ses fonctions. Marine Le Pen a affirmé dimanche sur France Inter et France 2 n'avoir jamais reçu ni demandé d'informations confidentielles de sa part.",
+   "title": "Soupçons de fuites vers le RN : le préfet du Loiret demande à être démis",
+   "why": "L'affaire touche au devoir de réserve et au secret professionnel des hauts fonctionnaires, à moins de six mois de l'élection présidentielle."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "France 24 (AFP)",
+     "url": "https://www.france24.com/fr/info-en-continu/20261122-le-pen-attaque-lisnard-et-son-projet-de-broyer-le-code-du-travail"
+    },
+    {
+     "name": "Entrevue",
+     "url": "https://entrevue.fr/politique/presidentielle-2027/je-ne-gouvernerai-pas-avec-le-rn-lisnard-riposte-a-marine-le-pen/"
+    }
+   ],
+   "summary": "Invitée dimanche de France 2 et France Inter, Marine Le Pen (RN) a critiqué le projet du maire de Cannes David Lisnard de refondre le code du travail, en défendant les protections inscrites dans la loi. David Lisnard, candidat de la droite libérale, défend de son côté une place plus large pour les accords d'entreprise, notamment sur la durée du travail, et a déclaré qu'il ne gouvernerait pas avec le RN.",
+   "title": "Présidentielle 2027 : Marine Le Pen et David Lisnard s'opposent sur le code du travail",
+   "why": "Le débat oppose deux approches du droit du travail : la règle fixée par la loi ou la négociation au niveau de l'entreprise, un sujet central pour les services RH et paie."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9151162"
+    },
+    {
+     "name": "Insee – Tableau de bord de la conjoncture",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    }
+   ],
+   "summary": "L'indicateur synthétique de l'Insee perd deux points en novembre, à 95, sous sa moyenne de long terme (100). Le commerce de détail tombe à 90, les services à 97 et le bâtiment à 94 ; seule l'industrie reste au-dessus de la moyenne, à 104. Le climat de l'emploi gagne en revanche un point, à 95.",
+   "title": "Le climat des affaires recule à 95 en novembre, dans tous les secteurs",
+   "why": "Cet indicateur, tiré des réponses des chefs d'entreprise, est un signal avancé de l'activité. L'Insee publiera le 27 novembre l'inflation provisoire de novembre et le détail du PIB du 3e trimestre."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Sénat – Rapport général",
+     "url": "https://www.senat.fr/rap/l26-156-1/l26-156-113.html"
+    },
+    {
+     "name": "Sénat – La loi en clair",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-pour-2027.html"
+    }
+   ],
+   "summary": "Selon le rapport de la commission des finances du Sénat, les dépenses de l'État sous norme atteindraient 511 milliards d'euros en 2027, en hausse de 1,6 %, un rythme proche de l'inflation prévue (1,8 %). Le gouvernement vise un déficit public de 5 % du PIB en 2027, après 5,4 % estimés en 2026. La dette atteindrait 121,7 % du PIB et sa charge 91,2 milliards d'euros, contre 79,2 milliards en 2026.",
+   "title": "Finances publiques : les grands chiffres du budget 2027 discuté au Sénat",
+   "why": "La hausse de la charge de la dette, liée à la remontée des taux, réduit les marges de l'État : une notion clé en finance publique et pour comprendre le coût du financement."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Euronews",
+     "url": "https://www.euronews.com/2026/10/29/ecb-holds-rates-at-25-as-lagarde-announces-early-exit-with-inflation-near-double-the-targe"
+    },
+    {
+     "name": "Investing.com",
+     "url": "https://fr.investing.com/news/economy-news/la-bce-maintient-ses-taux-et-lagarde-annonce-son-depart-3662576"
+    },
+    {
+     "name": "Admiral Markets",
+     "url": "https://admiralmarkets.com/analytics/traders-blog/ecb-rate-decision-december-2026-preview"
+    }
+   ],
+   "summary": "La BCE a laissé son taux de dépôt à 2,5 % le 29 octobre, après deux hausses en juin et septembre, alors que l'inflation de la zone euro atteignait 3,8 %. Christine Lagarde a annoncé le même jour son départ anticipé en février. Dans un sondage Reuters publié mi-novembre, les 71 économistes interrogés anticipaient tous un relèvement à 2,75 % en décembre.",
+   "title": "BCE : une hausse des taux largement anticipée pour le 17 décembre",
+   "why": "Une hausse des taux directeurs renchérit le crédit pour les ménages et les entreprises et pèse sur la valorisation des actifs."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/asie-pacifique/20261122-climat-accord-incertain-%C3%A0-la-cop31-des-pays-d%C3%A9noncent-l-absence-de-sortie-des-%C3%A9nergies-fossiles"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/environnement/crise-climatique/cop-climat/faute-d-accord-entre-les-pays-la-cop31-joue-les-prolongations_8294987.html"
+    }
+   ],
+   "summary": "La conférence de l'ONU sur le climat s'est terminée dimanche en Turquie sans déclaration finale, après plus de 49 heures de prolongation, un record. Plusieurs pays, dont les États de l'Union européenne, ont refusé un texte ne mentionnant pas la sortie des énergies fossiles, que soutenaient notamment l'Arabie saoudite et 22 États arabes. L'ONU fait état d'un accord sur la transition juste.",
+   "title": "La COP31 s'achève sans accord à Antalya après 49 heures de prolongation",
+   "why": "L'absence d'accord pèse sur les engagements climatiques des États et donc sur le reporting RSE et les plans de transition des entreprises."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France (AFP)",
+     "url": "https://www.ouest-france.fr/monde/iran/guerre-au-moyen-orient-frappe-iranienne-sur-bahrein-penuries-energetiques-en-iran-les-dernieres-infos-aafb54f0-e626-11f1-bd4e-6f30b8f49e21"
+    },
+    {
+     "name": "La DH (AFP)",
+     "url": "https://www.dhnet.be/dernieres-depeches/2026/11/21/deux-nouveaux-petroliers-touches-dans-le-detroit-dormuz-VVETON5HBREPTGAN52XLR6OEBU/"
+    }
+   ],
+   "summary": "Une frappe iranienne a provoqué samedi un incendie sur un site industriel civil à Bahreïn, déjà visé à plusieurs reprises depuis la mi-novembre ; Téhéran affirme riposter à des tirs américains. Deux pétroliers ont été touchés le même jour dans le détroit d'Ormuz, selon l'agence maritime britannique UKMTO. Le ministre iranien des Affaires étrangères a lié toute discussion sur l'ouverture du détroit à la satisfaction des demandes de l'Iran.",
+   "title": "Moyen-Orient : frappe iranienne sur Bahreïn et nouveaux pétroliers touchés à Ormuz",
+   "why": "Une large part du pétrole mondial transite par Ormuz : les tensions influencent directement les prix de l'énergie, l'inflation et les coûts des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Zonebourse)",
+     "url": "https://www.boursorama.com/bourse/actualites/semaine-eprouvante-pour-le-cac-40-qui-repasse-sous-les-8-000-points-949d8cc886dc0345eefa122492dc3dc0"
+    },
+    {
+     "name": "Investing.com",
+     "url": "https://fr.investing.com/news/stock-market-news/le-cac-40-sous-8000-pts-5-en-1-semaine--ceder-a-la-panique-ou-profiter-des-soldes-3707782"
+    }
+   ],
+   "summary": "La Bourse de Paris a clôturé vendredi à 7 927,75 points (−1,89 %), cinquième séance de baisse consécutive et pire semaine depuis début mars. La défiance envers les valeurs liées à l'intelligence artificielle a fait chuter le Nasdaq de plus de 5 % vendredi. À Paris, STMicroelectronics, Legrand et Schneider Electric figurent parmi les plus fortes baisses.",
+   "title": "Le CAC 40 perd 5,27 % en une semaine et repasse sous les 8 000 points",
+   "why": "Une correction généralisée illustre le risque de valorisation : des anticipations de bénéfices élevées rendent les cours sensibles au moindre doute."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/ubisoft-chute-apres-des-previsions-inferieures-aux-attentes-au-t3-3768e3cdadb949f1fc8161f675d28096"
+    },
+    {
+     "name": "Option Finance (Zonebourse)",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-20-ubisoft-plonge-les-tensions-financieres-inquietent-les-analystes.html"
+    },
+    {
+     "name": "La Libre (AFP)",
+     "url": "https://www.lalibre.be/economie/placements/2026/11/20/le-geant-des-jeux-videos-francais-ubisoft-secrase-a-la-bourse-de-paris-BAXZYK32IZAY5ORXBFGEZUBUSU/"
+    }
+   ],
+   "summary": "L'action Ubisoft a reculé de 23,24 % vendredi, à 3,20 euros, son plus bas niveau depuis 2011. Sur le premier semestre de son exercice 2026-2027, les réservations nettes baissent de 16,5 %, à 644,7 millions d'euros, et l'objectif de chiffre d'affaires du 3e trimestre est inférieur aux attentes. Le groupe confirme ses perspectives annuelles mais doit rembourser 675 millions d'euros d'obligations en novembre 2027.",
+   "title": "Ubisoft chute de 23 % en Bourse après une perte semestrielle creusée",
+   "why": "Cas d'école d'analyse financière : consommation de trésorerie, échéances de dette et confiance des marchés dans un plan de redressement."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "France Épargne",
+     "url": "https://www.france-epargne.fr/news/bahrein-frappe-par-liran-et-sept-petroliers-touches-a-ormuz-depuis-le-16-novembre"
+    },
+    {
+     "name": "Invezz",
+     "url": "https://invezz.com/news/2026/11/20/oil-price-today-brent-pares-losses-hormuz-tensions/"
+    }
+   ],
+   "summary": "Le Brent a fini la semaine autour de 90 dollars le baril, en recul pour la troisième semaine consécutive. Les perspectives d'excédent d'offre mondiale ont pesé davantage que les tensions dans le Golfe. Les cotations reprennent ce lundi après un week-end marqué par de nouvelles attaques autour du détroit d'Ormuz.",
+   "title": "Pétrole : le Brent termine une troisième semaine de baisse, autour de 90 dollars",
+   "why": "Le prix du baril se répercute sur les coûts de transport et d'énergie des entreprises et sur l'inflation, que la BCE surveille avant sa décision de décembre."
+  }
+ ],
+ "lede": "Le Sénat poursuit cette semaine l'examen du budget 2027, rejeté par l'Assemblée, sur fond de climat des affaires dégradé et de forte baisse des marchés. À l'international, la COP31 s'est achevée sans accord à Antalya, tandis que les frappes se poursuivent autour du détroit d'Ormuz.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "L'indicateur a perdu deux points pour s'établir à 95, sous sa moyenne de long terme fixée à 100.",
+   "options": [
+    "93",
+    "95",
+    "97",
+    "99"
+   ],
+   "q": "À quel niveau l'Insee a-t-il mesuré l'indicateur du climat des affaires en novembre 2026 ?"
+  },
+  {
+   "answer": 2,
+   "explain": "La COP31 s'est tenue à Antalya, en Turquie ; elle s'est terminée après plus de 49 heures de prolongation.",
+   "options": [
+    "Belém",
+    "Bakou",
+    "Antalya",
+    "Dubaï"
+   ],
+   "q": "Dans quelle ville s'est tenue la COP31, achevée dimanche sans accord ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Le titre a chuté de 23,24 % à 3,20 euros après une perte semestrielle creusée et une prévision trimestrielle décevante.",
+   "options": [
+    "−11,49 %",
+    "−15,47 %",
+    "−18,92 %",
+    "−23,24 %"
+   ],
+   "q": "De combien l'action Ubisoft a-t-elle reculé lors de la séance du 20 novembre ?"
+  }
+ ]
+}
