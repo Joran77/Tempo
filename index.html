@@ -17,6 +17,8 @@
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tempo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
@@ -1391,6 +1393,33 @@ nav.tabs .in.n5>button{display:flex!important}
 .fcr{display:flex;align-items:center;gap:8px}.fsnd{font-size:16px}
 #fs-snd .chipbtn{margin-left:auto}
 #fs-vol{width:100%;accent-color:var(--accent)}
+.bk-bar{display:flex;align-items:center;gap:8px;margin:2px 0 10px}.bk-bar .bk-pn{flex:1;text-align:center;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.bk-page{position:relative;background:linear-gradient(90deg,color-mix(in srgb,var(--fg) 7%,var(--surface)) 0,var(--surface) 16px);border:1px solid var(--line);border-radius:6px 16px 16px 6px;box-shadow:var(--shadow),3px 3px 0 color-mix(in srgb,var(--line) 70%,transparent),6px 6px 0 color-mix(in srgb,var(--line) 40%,transparent);padding:30px 18px 46px 24px;margin:0 6px 14px 0;min-height:62vh;transform-origin:left center}
+.bk-page.turn-next{animation:bkn .35s var(--ease-out)}.bk-page.turn-prev{animation:bkp .35s var(--ease-out)}
+@keyframes bkn{from{transform:perspective(1200px) rotateY(-16deg);opacity:.3}to{transform:none;opacity:1}}
+@keyframes bkp{from{transform:perspective(1200px) rotateY(12deg);opacity:.3}to{transform:none;opacity:1}}
+.bk-run{position:absolute;top:10px;left:24px;right:18px;display:flex;justify-content:space-between;gap:10px;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden}.bk-run span{overflow:hidden;text-overflow:ellipsis}.bk-run span+span{flex:none}
+.bk-folio{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-style:italic;color:var(--muted);font-size:13px}
+.bk-h{font-family:var(--f-display);font-size:26px;line-height:1.15;margin:8px 0 10px}
+.bk-toc{display:flex;align-items:baseline;gap:6px;width:100%;text-align:left;padding:7px 2px;border:0;background:none;color:var(--fg);font:inherit;border-radius:8px;cursor:pointer}
+.bk-toc:active{background:var(--line)}.bk-toc .t{flex:none;max-width:80%}.bk-toc .dots{flex:1;border-bottom:1.5px dotted var(--muted);opacity:.5;transform:translateY(-4px)}.bk-toc .pg{flex:none;font-weight:700;color:var(--muted);min-width:22px;text-align:right}
+.bk-toc.l1{font-weight:700;margin-top:8px;font-size:16px}.bk-toc.l1 .t{display:flex;align-items:center;gap:7px}.bk-toc.l2{padding-left:16px;font-size:14.5px}
+.bk-sw{display:inline-block;width:11px;height:11px;border-radius:3px}.bk-star{color:var(--accent);font-weight:800}
+.bk-chap .bk-n{font-family:var(--f-display);font-size:72px;line-height:1;font-weight:800;color:var(--bc);margin-top:10px}.bk-d{color:var(--muted);font-style:italic;margin:0 0 12px}
+.bk-theme{margin-top:14px;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bc)}
+.bk-rule{height:3px;width:56px;border-radius:2px;background:var(--bc);margin:0 0 14px}.bk-desc{font-family:var(--f-display);font-size:18px;line-height:1.5;margin:0 0 14px}
+.bk-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}.bk-tag{font-size:12px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--line);color:var(--muted)}.bk-tag.c5{background:var(--accent);color:var(--accent-ink)}
+.bk-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.bk-btns a{text-decoration:none}.bk-btns a.btn:not(.primary){color:var(--fg)}
+.bk-lu{display:inline-flex;align-items:center;gap:8px;font-weight:600;padding:9px 12px;border-radius:12px;background:var(--line);cursor:pointer}.bk-lu input{width:20px;height:20px;accent-color:var(--ok)}
+.bk-note{font-size:13px;font-style:italic;color:var(--muted);border-left:3px solid var(--amber);padding:4px 10px;margin:14px 0 0}.bk-see{margin-top:14px}
+.bk-L{font-family:var(--f-display);font-size:20px;font-weight:800;color:var(--accent);margin:10px 0 0}
+.bk-page.is-cover{background:linear-gradient(135deg,#17284f,#0f1a33);color:#f5ecd7;border:0;padding:20px}
+.bk-frame{border:1.5px solid rgba(214,180,106,.6);border-radius:8px;padding:34px 16px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
+.bk-frame h2{font-family:var(--f-display);font-size:34px;line-height:1.05;margin:0;color:#f5ecd7}.bk-k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#d6b46a}
+.bk-s{font-style:italic;color:#e8dcc0;margin:0}.bk-orn{color:#d6b46a;font-size:22px}
+.bk-start{border:0;border-radius:99px;padding:11px 18px;background:#d6b46a;color:#17284f;font:inherit;font-weight:700;cursor:pointer}.bk-start.alt{background:transparent;color:#f5ecd7;border:1.5px solid #d6b46a}
+.bk-ft{text-align:center;color:#c9bda2;font-size:13px;margin:14px 0 6px}.bk-prog{height:6px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden;margin:0 20px 10px}.bk-prog i{display:block;height:100%;background:#d6b46a}
+.is-cover .bk-folio{color:#c9bda2}
 .tlexc{background:color-mix(in srgb,#3B5BA9 14%,var(--surface))}.tlexc svg{color:#3B5BA9}
 .tlc{background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--tc) 16%,var(--surface)) 0 8px,color-mix(in srgb,var(--tc) 22%,var(--surface)) 8px 16px)}.tlc .tlbody{padding-left:2px}
 /* Interactions */
@@ -7185,7 +7214,7 @@ function vRepasJour(D, S, T, goal, sp){
 }
 
 /* ---------- Organisation en 5 onglets : Aujourd'hui, Réviser, Agenda, Santé, Moi ---------- */
-const RV_TABS = ['rv','rv-train','rv-cas','cartes','calcul','sudoku','iae'];
+const RV_TABS = ['rv','rv-train','rv-cas','cartes','calcul','sudoku','iae','biblio'];
 const navGroup = t => t==='today' || t==='accueil' || t==='actu' ? 'today' : RV_TABS.includes(t) ? 'rv' : t==='agenda' ? 'agenda' : String(t).startsWith('h-') ? 'h-jour' : t==='moi' || t==='params' ? 'moi' : 'today';
 function syncModeFromTab(){
   const m = navGroup(ui.tab)==='h-jour' ? 'health' : 'study';
@@ -7214,6 +7243,7 @@ function vRvEx(){
 function vRvTrain(){
   return `<div class="tdshort">
     <button class="wide" data-hub="rv-cas" style="--qc:var(--c-alt)"><span class="qi">${bicon('cards')}</span><span class="qtx"><b>Cas pratiques corrigés</b><span>Droit public, droit du numérique, fiscalité · méthode majeure / mineure</span></span><span class="go">${CHEV_R}</span></button>
+    <button class="wide" data-hub="biblio" style="--qc:var(--c-cours)"><span class="qi">${bicon('star')}</span><span class="qtx"><b>Bibliothèque éco</b><span>Le livre des ${BIB_F.length} fiches de la Banque de France · ${Object.keys(bibDone()).filter(k => bibDone()[k]).length} lues</span></span><span class="go">${CHEV_R}</span></button>
     <button class="wide" data-cas="1" style="--qc:var(--ok)"><span class="qi">${bicon('tasks')}</span><span class="qtx"><b>Cas chiffrés mélangés</b><span>TVA, amortissements, IS, BFR, CAF, écarts, point mort · 8 cas</span></span><span class="go">${CHEV_R}</span></button>
     <button class="wide xbtn" data-express="1" style="--qc:var(--amber)"><span class="qi">${bicon('bolt')}</span><span class="qtx"><b>Révision express · 5 min</b><span>Cartes et calculs mélangés, pour les temps morts</span></span><span class="go">${CHEV_R}</span></button>
     ${quickTiles()}
@@ -7229,6 +7259,7 @@ function vMoi(){
     ${row('data-v3="td-goals"', 'Objectifs', `${(state.goals||[]).length} en cours`)}
     ${row('data-wr="open"', 'Bilan de la semaine', 'et planning de la suivante')}
     ${row('data-journal="1"', 'Journal du soir', 'bilans écrits et vocaux')}
+    ${row('data-hub="biblio"', 'Bibliothèque éco', `${BIB_F.length} fiches de la Banque de France`)}
     ${row('data-hub="h-prog"', 'Poids et mensurations', 'Santé · Progrès')}
   </div></section>
   ${bilanHtml()}
@@ -7777,8 +7808,153 @@ function microDayHtml(D){
 }
 view.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('[data-fold-micday]')) ui.micDayOpen = e.target.open; }, true);
 
+
+/* ---------- Bibliothèque : le livre des fiches Banque de France ---------- */
+const BIB_BF='https://www.banque-france.fr/fr/publications-et-statistiques/publications/';
+const BIB_T=[
+ {id:'mon',name:'Monnaie et politique monétaire',col:'var(--c-cours)',d:'Le cœur de ton chapitre 5 : taux de change, SMI, création monétaire, inflation, BCE.'},
+ {id:'eco',name:'Économie générale',col:'var(--ok)',d:'Balance des paiements, crises économiques, dette, épargne et financement.'},
+ {id:'fin',name:'Finance et stabilité financière',col:'var(--c-alt)',d:'Banques, marchés, crypto-actifs, régulation et supervision.'},
+ {id:'dd',name:'Développement durable',col:'var(--c-perso)',d:'Finance verte et responsable, RSE, nouveaux indicateurs de richesse.'}
+];
+// [thème, titre, description, ch5?, type, pdf, page]
+const BIB_F=[
+ ['mon','Le taux de change','Cotation au certain et à l\'incertain, régimes de change, déterminants, effets d\'une dépréciation.',1,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/Eco-en-bref_Taux_de_change.pdf',BIB_BF+'le-taux-de-change'],
+ ['mon','Le système monétaire international','De l\'étalon-or à aujourd\'hui : Bretton Woods, 1971, Jamaïque, FMI, DTS, enjeux actuels.',1,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/Eco-en-bref_SMI.pdf',BIB_BF+'le-systeme-monetaire-international'],
+ ['mon','Qu\'est-ce que la politique monétaire ?','Objectif de stabilité des prix et instruments de la banque centrale.',1,'Éco en bref','',BIB_BF+'quest-ce-que-la-politique-monetaire'],
+ ['mon','La transmission de la politique monétaire','Les 4 canaux (taux, anticipations, prix des actifs, taux de change), les délais.',1,'Éco en bref','https://www.banque-france.fr/system/files/2025-06/Eco-en-Bref-Transmission-politique-monetaire.pdf',BIB_BF+'la-transmission-de-la-politique-monetaire'],
+ ['mon','Les taux directeurs','Les 3 taux de la BCE, corridor et plancher, hausses de 2022-2023.',1,'Éco en bref','https://www.banque-france.fr/system/files/2026-07/Taux_directeurs.pdf',BIB_BF+'les-taux-directeurs'],
+ ['mon','Masse monétaire, agrégats monétaires et base monétaire','M1, M2, M3, contreparties de la création monétaire, MV = PT.',1,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/Eco-en-bref_Masse_monetaire.pdf',''],
+ ['mon','Inflation et déflation','Définitions, IPC et IPCH, causes (dont l\'inflation importée), spirale déflationniste.',1,'Éco en bref','https://banque-france.fr/system/files/2024-08/eeb-inflation-deflation.pdf',BIB_BF+'inflation-et-deflation'],
+ ['mon','Qu\'est-ce qu\'une banque centrale ?','Missions, indépendance, comparaison Eurosystème et FED.',1,'Éco en bref','https://banque-france.fr/system/files/2024-09/eco-bref-quest-ce-qu-une-banque-centrale.pdf',''],
+ ['mon','Comment est créée la monnaie ?','Monnaie fiduciaire et scripturale, « les crédits font les dépôts ».',1,'Éco en bref','https://www.banque-france.fr/system/files/2024-08/eeb_monnaie.pdf',''],
+ ['mon','Monnaie fiduciaire, scripturale, commerciale, centrale : de quoi parle-t-on ?','Les trois fonctions de la monnaie et ses différentes formes.',1,'Mot de l\'actu','https://www.banque-france.fr/system/files/2024-08/20230602_mot_actu_monnaie-de-quoi-parle-t-on.pdf',BIB_BF+'monnaie-de-quoi-parle-t-on'],
+ ['mon','La politique monétaire conventionnelle','Le pilotage par les taux avant la crise de 2008.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-07/Eco-en-bref_Politique_monetaire_conventionnelle.pdf',''],
+ ['mon','Les politiques monétaires non conventionnelles','Taux négatifs, forward guidance, TLTRO, QE (2008-2022).',0,'Éco en bref','https://www.banque-france.fr/system/files/2024-08/les-politiques-monetaires-non-conventionnelles.pdf',BIB_BF+'les-politiques-monetaires-non-conventionnelles'],
+ ['mon','Le quantitative easing (QE)','L\'assouplissement quantitatif : principe, effets, fin en 2022.',0,'Mot de l\'actu','https://www.banque-france.fr/system/files/2026-08/826247%20Mot-Actu%20Quantitative%20easing.pdf',BIB_BF+'quantitative-easing'],
+ ['mon','L\'euro','Histoire, 21 pays membres, avantages, défis, rôle international.',1,'Éco en bref','https://www.banque-france.fr/system/files/2026-03/Eco_Bref_Euro.pdf',BIB_BF+'leuro'],
+ ['mon','La Banque de France et l\'Europe','Place de la Banque de France dans l\'Eurosystème.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/826220%20Eco-en-bref%20Europe%20v2.pdf',BIB_BF+'la-banque-de-france-et-leurope'],
+ ['mon','Que fait la Banque de France ?','Ses missions : monnaie, stabilité financière, services à l\'économie.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/Eco-en-bref_Que-fait-la-BDF.pdf',''],
+ ['mon','Les billets en euros','Fabrication, circulation, sécurité des billets.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/Billets_euros.pdf',''],
+ ['mon','Monnaie numérique de banque centrale (MNBC)','L\'euro numérique et la monnaie numérique interbancaire.',0,'Éco en bref','',BIB_BF+'monnaie-numerique-de-banque-centrale-MNBC'],
+ ['mon','Interdépendances entre politique budgétaire et politique monétaire','Le policy mix : comment budget et monnaie se combinent.',0,'Éco en bref','https://www.banque-france.fr/system/files/2025-01/eeb_interdependances-pol.pdf',''],
+ ['mon','La mesure du pouvoir d\'achat','Revenus, prix et pouvoir d\'achat : comment on le calcule.',0,'Éco en bref','',BIB_BF+'la-mesure-du-pouvoir-dachat'],
+ ['mon','L\'or','Le rôle de l\'or dans l\'histoire monétaire et les réserves.',1,'Fiche','',''],
+ ['mon','L\'Union économique et monétaire (UEM)','Les étapes de l\'intégration monétaire européenne.',0,'Fiche','',''],
+ ['mon','Forward guidance (guidage prospectif)','Quand la banque centrale annonce ses décisions futures.',0,'Fiche','',''],
+ ['mon','Les taux d\'intérêt négatifs','Pourquoi la BCE a appliqué des taux négatifs de 2014 à 2022.',0,'Mot de l\'actu','',''],
+ ['mon','Taux d\'intérêt nominal et réel','Taux réel ≈ taux nominal − inflation, exemples chiffrés.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/826260%20Eco-en-bref%20Taux%20interet%20nominal%20reel.pdf',''],
+ ['mon','Le seigneuriage','Le revenu tiré par la banque centrale de l\'émission de monnaie.',0,'Fiche','',''],
+ ['mon','Les moyens de paiement','Carte, virement, chèque, espèces : panorama et chiffres.',0,'Fiche','',''],
+ ['mon','Les monnaies locales','Monnaies complémentaires utilisées sur un territoire.',0,'Fiche','',''],
+ ['mon','Les coopérations monétaires Afrique-France','La zone franc et ses évolutions.',0,'Fiche','',''],
+ ['mon','Les systèmes de paiement de gros montant','Les infrastructures qui règlent les paiements entre banques.',0,'Fiche','',''],
+ ['eco','La balance des paiements et la position extérieure','Les 3 comptes, la position extérieure, les chiffres de la France.',1,'Éco en bref','https://www.banque-france.fr/system/files/2025-01/Fiche_Balance_paiements.pdf',''],
+ ['eco','La crise de 1929','Krach, faillites bancaires, protectionnisme, New Deal.',0,'Éco en bref','https://www.banque-france.fr/system/files/2025-07/EEB_VF_Crise-29.pdf',BIB_BF+'la-crise-de-1929'],
+ ['eco','La crise de 2008','Subprimes, titrisation, Lehman Brothers, réponses publiques.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/Eco-en-bref_Crise_2008_.pdf',BIB_BF+'la-crise-de-2008'],
+ ['eco','La crise des dettes souveraines de la zone euro (2010-2012)','Grèce, contagion, MES, OMT, Union bancaire.',0,'Éco en bref','https://www.banque-france.fr/system/files/2026-08/826268%20Eco-en-bref%20Crise%20dettes%20souveraines.pdf',BIB_BF+'la-crise-des-dettes-souveraines-de-la-zone-euro-2010-2012'],
+ ['eco','La crise économique liée au Covid-19','Choc sanitaire, réponses monétaires et budgétaires.',0,'Éco en bref','',BIB_BF+'comprendre-la-crise-economique-liee-au-covid-19'],
+ ['eco','La dette publique','Déficit et dette, critères de Maastricht, effet boule de neige.',0,'Éco en bref','https://www.banque-france.fr/system/files/2025-06/Eco-Bref_Dette-publique.%20DEFpdf.pdf',BIB_BF+'la-dette-publique'],
+ ['eco','L\'endettement financier des entreprises','Niveau et structure de la dette des entreprises.',0,'Éco en bref','',BIB_BF+'lendettement-financier-des-entreprises'],
+ ['eco','L\'endettement des ménages','Crédits immobiliers et à la consommation des ménages.',0,'Éco en bref','',BIB_BF+'lendettement-des-menages'],
+ ['eco','L\'épargne des ménages','Taux d\'épargne et placements des Français.',0,'Fiche','',''],
+ ['eco','Le financement des entreprises','Crédit bancaire, marchés, fonds propres.',0,'Fiche','',''],
+ ['eco','Les inégalités de revenus','Mesurer et comprendre les écarts de revenus.',0,'Fiche','',''],
+ ['eco','Décrypter les graphiques économiques','Lire et interpréter un graphique économique.',0,'Fiche','',''],
+ ['eco','La blockchain','Le fonctionnement de la technologie et ses usages.',0,'Fiche','',''],
+ ['eco','La crise des tulipes','Première bulle spéculative de l\'histoire (fiche annoncée « à venir »).',0,'À venir','',''],
+ ['fin','Crypto-actifs et stablecoins','Pourquoi ce ne sont pas des monnaies, risques, règlement MiCA.',0,'Mot de l\'actu','https://banque-france.fr/system/files/2024-08/mot-actu_crypto-actifs-et-stable-coins.pdf',BIB_BF+'crypto-actifs-et-stable-coins'],
+ ['fin','Les crises bancaires','Faillites bancaires de Law à 2008, et leur gestion.',0,'Éco en bref','https://www.banque-france.fr/system/files/2024-12/Eco_Bref-Crises-bancaires.pdf',''],
+ ['fin','Le shadow banking (intermédiation financière non bancaire)','Les acteurs financiers hors banques et leurs risques.',0,'Éco en bref','',BIB_BF+'shadow-banking-ou-intermediation-financiere-non-bancaire'],
+ ['fin','La titrisation','Transformer des crédits en titres : principe et risques.',0,'Éco en bref','',BIB_BF+'titrisation'],
+ ['fin','La bulle spéculative','Comment une bulle se forme et éclate.',0,'Mot de l\'actu','',BIB_BF+'bulle-speculative'],
+ ['fin','La stabilité financière','Prévenir les crises du système financier.',0,'Fiche','',''],
+ ['fin','L\'accord de Bâle III','Les règles de solidité imposées aux banques après 2008.',0,'Fiche','',''],
+ ['fin','L\'Union bancaire','Supervision et résolution bancaires dans la zone euro.',0,'Fiche','',''],
+ ['fin','Le bitcoin','Le premier crypto-actif : fonctionnement et limites.',0,'Fiche','',''],
+ ['fin','Les chambres de compensation','Les intermédiaires qui sécurisent les transactions de marché.',0,'Fiche','',''],
+ ['fin','Les infrastructures de marché','Systèmes de paiement, de règlement et de compensation.',0,'Fiche','',''],
+ ['fin','Les fintechs','Les start-up de la finance et leur régulation.',0,'Fiche','',''],
+ ['fin','Les hedge funds','Les fonds spéculatifs : stratégies et risques.',0,'Fiche','',''],
+ ['fin','La lutte contre le blanchiment et le financement du terrorisme (LCB-FT)','Obligations des banques et contrôles.',0,'Fiche','',''],
+ ['fin','La supervision des assurances','Le contrôle des assureurs par l\'ACPR.',0,'Fiche','',''],
+ ['fin','Le surendettement','La procédure de surendettement des ménages.',0,'Fiche','',''],
+ ['dd','La finance durable','Intégrer les critères environnementaux et sociaux à la finance.',0,'Fiche','',''],
+ ['dd','La finance verte','Financer la transition écologique.',0,'Fiche','',''],
+ ['dd','La finance responsable','Investissement responsable et critères ESG.',0,'Fiche','',''],
+ ['dd','La finance solidaire','Épargne et placements à impact social.',0,'Fiche','',''],
+ ['dd','L\'obligation verte','Les « green bonds » : principe et marché.',0,'Fiche','',''],
+ ['dd','La taxonomie verte européenne','La classification européenne des activités durables.',0,'Fiche','',''],
+ ['dd','La RSE','La responsabilité sociétale des entreprises (utile pour ton projet Com & RSE).',0,'Fiche','',''],
+ ['dd','Le microcrédit','Petits prêts pour créer une activité ou s\'insérer.',0,'Fiche','',''],
+ ['dd','Les nouveaux indicateurs de richesse','Au-delà du PIB : bien-être, environnement, inégalités.',0,'Fiche','','']
+];
+
+const BIB_ROM = ['I','II','III','IV'];
+let BIB = null;
+function bibBuild(){
+  if (BIB) return BIB;
+  const P = [{k:'cover'},{k:'toc'},{k:'ch5'}], start = {}, fp = {};
+  BIB_T.forEach((th, ti) => { start[th.id] = P.length + 1; P.push({k:'chap', th, ti});
+    BIB_F.map((f, i) => ({f, i})).filter(x => x.f[0]===th.id).sort((a, b) => b.f[3] - a.f[3]).forEach(({f, i}) => { fp[i] = P.length + 1; P.push({k:'fiche', f, i, th, ti}); }); });
+  const idx = P.length + 1; P.push({k:'index'});
+  return BIB = { P, start, fp, idx };
+}
+const bibDone = () => { state.biblio = state.biblio || { done:{} }; return state.biblio.done; };
+const bibSearch = t => 'https://www.google.com/search?q=' + encodeURIComponent('site:banque-france.fr "ABC de l\'économie" ' + t);
+function bibToc(t, pg, cls){ return `<button class="bk-toc ${cls||''}" data-bib="${pg}"><span class="t">${t}</span><span class="dots"></span><span class="pg">${pg}</span></button>`; }
+function bibPage(n){
+  const B = bibBuild(), p = B.P[n-1], D = bibDone(), star = '<span class="bk-star">★</span> ';
+  const head = (l, r) => `<div class="bk-run"><span>${l}</span><span>${r || ''}</span></div>`;
+  const list = th => BIB_F.map((f, i) => ({f, i})).filter(x => x.f[0]===th.id).sort((a, b) => B.fp[a.i] - B.fp[b.i]);
+  if (p.k==='cover'){ const d = Object.keys(D).filter(k => D[k]).length;
+    return `<div class="bk-cover"><div class="bk-frame"><div class="bk-orn">❦</div><div class="bk-k">Banque de France · ABC de l’économie</div><h2>Le livre des fiches d’économie</h2><p class="bk-s">${BIB_F.length} fiches pédagogiques réunies, classées et reliées</p><div class="bk-orn">❦</div>
+      <button class="bk-start" data-bib="2">Ouvrir le sommaire</button><button class="bk-start alt" data-bib="3">★ Fiches du chapitre 5</button></div>
+      <p class="bk-ft">${d} fiche${d>1?'s':''} lue${d>1?'s':''} sur ${BIB_F.length}</p><div class="bk-prog"><i style="width:${100*d/BIB_F.length}%"></i></div></div>`; }
+  if (p.k==='toc') return `${head('Sommaire')}<h2 class="bk-h">Sommaire</h2>
+    ${bibToc(star + 'Parcours révision : les fiches du chapitre 5', 3)}
+    ${BIB_T.map((th, ti) => bibToc(`<i class="bk-sw" style="background:${th.col}"></i>${BIB_ROM[ti]}. ${th.name}`, B.start[th.id], 'l1') + list(th).map(({f, i}) => bibToc((D[i] ? '✓ ' : '') + (f[3] ? star : '') + esc(f[1]), B.fp[i], 'l2')).join('')).join('')}
+    ${bibToc('Index alphabétique', B.idx, 'l1')}`;
+  if (p.k==='ch5'){ const L = BIB_F.map((f, i) => ({f, i})).filter(x => x.f[3]).sort((a, b) => B.fp[a.i] - B.fp[b.i]);
+    return `${head('Parcours révision', 'Chapitre 5')}<h2 class="bk-h">★ Les fiches du chapitre 5</h2><p class="fine">Les ${L.length} fiches qui complètent ton cours « Les systèmes de paiement internationaux », dans l’ordre du livre.</p>
+    ${L.map(({f, i}) => bibToc((D[i] ? '✓ ' : '') + esc(f[1]), B.fp[i], 'l2')).join('')}`; }
+  if (p.k==='chap') return `<div class="bk-chap" style="--bc:${p.th.col}">${head('Chapitre ' + BIB_ROM[p.ti], p.th.name)}<div class="bk-n">${BIB_ROM[p.ti]}</div><h2 class="bk-h">${p.th.name}</h2><p class="bk-d">${p.th.d}</p>
+    ${list(p.th).map(({f, i}) => bibToc((D[i] ? '✓ ' : '') + (f[3] ? star : '') + esc(f[1]), B.fp[i], 'l2')).join('')}</div>`;
+  if (p.k==='fiche'){ const [, t, d, c5, typ, pdf, page] = p.f, i = p.i;
+    const same = BIB_F.map((f, j) => ({f, j})).filter(x => x.f[0]===p.th.id && x.j!==i && x.f[3]===c5).slice(0, 3);
+    return `<div class="bk-fiche" style="--bc:${p.th.col}">${head('Chapitre ' + BIB_ROM[p.ti] + ' · ' + p.th.name, typ)}
+      <div class="bk-theme">${p.th.name}</div><h2 class="bk-h">${esc(t)}</h2><div class="bk-rule"></div><p class="bk-desc">${esc(d)}</p>
+      <div class="bk-tags">${c5 ? '<span class="bk-tag c5">★ Ch. 5 · à lire avant l’éval</span>' : ''}<span class="bk-tag">${typ}</span></div>
+      <div class="bk-btns">${pdf ? `<a class="btn primary" href="${pdf}" target="_blank" rel="noopener">Ouvrir le PDF</a>` : ''}${page ? `<a class="btn" href="${page}" target="_blank" rel="noopener">Page de la fiche</a>` : ''}${!pdf && !page ? `<a class="btn" href="${bibSearch(t)}" target="_blank" rel="noopener">Rechercher sur le site</a>` : ''}</div>
+      <label class="bk-lu"><input type="checkbox" data-bib-lu="${i}"${D[i] ? ' checked' : ''}> J’ai lu cette fiche</label>
+      ${!pdf && !page ? '<p class="bk-note">Adresse non vérifiée : le bouton lance une recherche limitée au site de la Banque de France.</p>' : ''}
+      ${same.length ? `<p class="fine bk-see">Voir aussi : ${same.map(({f, j}) => `<button class="link" data-bib="${B.fp[j]}">${esc(f[1])} (p. ${B.fp[j]})</button>`).join(' · ')}</p>` : ''}</div>`; }
+  if (p.k==='index'){ const L = BIB_F.map((f, i) => ({f, i, k:f[1].replace(/^(L'|L’|Le |La |Les |Qu'est-ce qu'|Qu'est-ce que |Comment est |Que fait |Décrypter )/i, '')})).sort((a, b) => a.k.localeCompare(b.k, 'fr'));
+    let last = '', h = ''; L.forEach(({f, i, k}) => { const c = k[0].toUpperCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); if (c!==last){ h += `<div class="bk-L">${c}</div>`; last = c; } h += bibToc((f[3] ? star : '') + esc(k.charAt(0).toUpperCase() + k.slice(1)), B.fp[i], 'l2'); });
+    return `${head('Index')}<h2 class="bk-h">Index alphabétique</h2>${h}`; }
+  return '';
+}
+function vBiblio(){
+  const B = bibBuild(), N = B.P.length; ui.bib = Math.max(1, Math.min(N, ui.bib || 1)); const n = ui.bib;
+  const bar = `<div class="bk-bar"><button class="icon-btn" data-bib="${n-1}" ${n===1 ? 'disabled' : ''} aria-label="Page précédente">${CHEV_L}</button><button class="btn sm" data-bib="2">Sommaire</button><span class="bk-pn">${n} / ${N}</span><button class="icon-btn" data-bib="${n+1}" ${n===N ? 'disabled' : ''} aria-label="Page suivante">${CHEV_R}</button></div>`;
+  const dir = ui.bibDir ? ' turn-' + ui.bibDir : ''; ui.bibDir = null;
+  return `${bar}<div class="bk-page${n===1 ? ' is-cover' : ''}${motionOK() ? dir : ''}" id="bk-page">${bibPage(n)}<div class="bk-folio">— ${n} —</div></div>${n > 1 ? bar : ''}`;
+}
+view.addEventListener('click', e => {
+  if (ui.tab!=='biblio') return; const b = e.target.closest('[data-bib]'); if (!b || b.disabled) return;
+  const to = +b.dataset.bib; ui.bibDir = to > (ui.bib || 1) ? 'next' : 'prev'; ui.bib = to; render(); window.scrollTo(0,0);
+});
+view.addEventListener('change', e => {
+  const c = e.target.closest('[data-bib-lu]'); if (!c) return; bibDone()[c.dataset.bibLu] = c.checked; save(); CLOUD.soon(); toast(c.checked ? 'Fiche marquée comme lue' : 'Fiche marquée comme non lue');
+});
+(() => { let sx = null, sy = 0;
+  view.addEventListener('touchstart', e => { if (ui.tab==='biblio' && e.target.closest('#bk-page')){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; } else sx = null; }, { passive:true });
+  view.addEventListener('touchend', e => { if (sx==null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5*Math.abs(dy)){ const N = bibBuild().P.length, to = Math.max(1, Math.min(N, (ui.bib||1) + (dx < 0 ? 1 : -1))); if (to!==ui.bib){ ui.bibDir = dx < 0 ? 'next' : 'prev'; ui.bib = to; render(); window.scrollTo(0,0); } } }, { passive:true });
+})();
+
 /* ---------- Rendu ---------- */
-const TITLES = { 'rv-cas':'Cas pratiques', rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
+const TITLES = { biblio:'Bibliothèque', 'rv-cas':'Cas pratiques', rv:'Réviser', 'rv-train':'S’entraîner', moi:'Moi', today:'Aujourd’hui', iae:'Score IAE', params:'Paramètres', accueil:'Tempo', agenda:'Agenda', calcul:'Calcul mental', sudoku:'Sudoku', cartes:'Flashcards', actu:'Actualité', 'h-jour':'Santé', 'h-repas':'Repas', 'h-sport':'Activité', 'h-suivi':'Suivi', 'h-prog':'Progrès' };
 function render(){
   if (ui.tab==='accueil') ui.tab = 'today';
   if (ui.tab==='h-sport') ui.tab = 'h-jour';
@@ -7791,7 +7967,7 @@ function render(){
   const miss = tabNeeds(ui.tab); if (miss.length){ view.innerHTML = '<div class="card empty"><b>Chargement…</b>Un instant, Tempo prépare cette page.</div>'; Promise.all(miss.map(needData)).then(() => render()); return; }
   const vk = [ui.tab, ui.tab==='agenda' ? ui.seg+ui.day+ui.weekStart : '', ui.tab==='calcul' ? ui.calc.phase : '', ui.tab==='sudoku' ? ui.su.view : '', ui.tab==='cartes' ? (ui.fc.view==='review' ? 'review' : ui.fc.view+ui.fc.deck+(ui.fc.home||'')) : '', ui.tab==='today' && ui.express ? 'x'+(ui.express.done?'d':'') : '', ui.tab==='actu' ? (NEWS.sel||'') : ''].join('|');
   isEntering = vk !== lastVK; lastVK = vk;
-  view.innerHTML = hubHtml() + (ui.tab==='rv-cas' ? vCases() : ui.tab==='rv' ? vRvEx() : ui.tab==='rv-train' ? vRvTrain() : ui.tab==='moi' ? vMoi() : ui.tab==='today' ? vTodayNew() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes());
+  view.innerHTML = hubHtml() + (ui.tab==='biblio' ? vBiblio() : ui.tab==='rv-cas' ? vCases() : ui.tab==='rv' ? vRvEx() : ui.tab==='rv-train' ? vRvTrain() : ui.tab==='moi' ? vMoi() : ui.tab==='today' ? vTodayNew() : ui.tab==='iae' ? vIae() : ui.tab==='params' ? vParams() : ui.tab.startsWith('h-') ? vHealth() : ui.tab==='accueil' ? vAccueil() : ui.tab==='agenda' ? vAgenda() : ui.tab==='calcul' ? vCalcul() : ui.tab==='sudoku' ? vSudoku() : ui.tab==='actu' ? vActu() : vCartes());
   view.classList.remove('anim');
   if (isEntering && motionOK()){ void view.offsetWidth; [...view.children].forEach((c,i)=>c.style.setProperty('--i', Math.min(i,8))); view.classList.add('anim'); clearTimeout(animT); animT = setTimeout(()=>view.classList.remove('anim'), 1400); }
   if (view.querySelector('canvas[data-b3]')) body3dMount(view, window.__b3ms || {});
@@ -8159,6 +8335,7 @@ if (!state.profile) setTimeout(() => onbSeen() >= ONB_V ? welcomeSheet() : onboa
 })();
 </script>
 
+</body></html>
 <script>
 if ('serviceWorker' in navigator) {
   const hadController = !!navigator.serviceWorker.controller; let reloaded = false;
