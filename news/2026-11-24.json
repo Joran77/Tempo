@@ -1,0 +1,310 @@
+{
+ "date": "2026-11-24",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 23 novembre",
+   "note": "+1,48 % sur la séance, après une baisse de 5,27 % la semaine précédente",
+   "source": "Euronext / Zonebourse",
+   "value": "8 044,84 pts"
+  },
+  {
+   "label": "PMI composite France, flash novembre",
+   "note": "Contre 46,6 en octobre ; sous 50 = contraction",
+   "source": "S&P Global / HCOB",
+   "value": "46,2"
+  },
+  {
+   "label": "Climat des affaires Insee, novembre",
+   "note": "−2 points sur un mois ; moyenne de long terme : 100",
+   "source": "Insee",
+   "value": "95"
+  },
+  {
+   "label": "Brent, clôture du 23 novembre",
+   "note": "−3,46 % sur la journée",
+   "source": "AFP via L'Énergeek",
+   "value": "89,37 $"
+  },
+  {
+   "label": "Taux de l'OAT 10 ans (TEC 10), 23 novembre",
+   "note": "Taux d'emprunt de l'État à 10 ans",
+   "source": "Agence France Trésor",
+   "value": "4,83 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Depuis le 16 septembre 2026 ; prochaine réunion le 17 décembre",
+   "source": "BCE",
+   "value": "2,50 %"
+  },
+  {
+   "label": "Déficit public visé pour 2027 (projet du gouvernement)",
+   "note": "Contre 5,4 % attendus en 2026",
+   "source": "Gouvernement / Sénat",
+   "value": "5,0 % du PIB"
+  }
+ ],
+ "generatedAt": "2026-11-24T06:52:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "L'Express via Orange Actu",
+     "url": "https://actu.orange.fr/politique/budget-le-gouvernement-veut-ce-compromis-et-s-y-engagera-pleinement-sebastien-lecornu-presse-les-deputes-a-trouver-un-accord-l-express-via-6medias-CNT000002u16ev.html"
+    },
+    {
+     "name": "Quartz (d'après Le Monde)",
+     "url": "https://fr.qz.com/sebastien-lecornu-appelle-compromis-budget-2027-lettre-112326"
+    }
+   ],
+   "summary": "Le Premier ministre a adressé lundi 23 novembre une lettre aux députés et sénateurs pour les inciter à s'accorder sur le budget 2027, rejeté en première lecture par l'Assemblée. Il y propose cinq thèmes de discussion : agriculture, éducation, pouvoir d'achat, logement et collectivités, en se disant ouvert à d'autres sujets. Il maintient l'objectif d'un déficit public de 5 % du PIB en 2027 et met en garde contre une loi spéciale prolongée. Le ministre des Comptes publics, David Amiel, avait indiqué le 20 novembre qu'au moins 6 milliards d'euros d'économies supplémentaires étaient nécessaires.",
+   "title": "Budget 2027 : Sébastien Lecornu écrit aux parlementaires pour obtenir un compromis",
+   "why": "Sans loi de finances votée, l'État fonctionne sous « loi spéciale », ce qui gèle les mesures nouvelles. Un bon exemple concret de la procédure budgétaire étudiée en finances publiques."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat (communiqué de la commission des finances)",
+     "url": "https://www.senat.fr/salle-de-presse/communiques-de-presse/presse/23-11-2026/davantage-defforts-en-depenses-et-plus-de-justice-fiscale-et-sociale-le-senat-sempare-du-budget-2027.html"
+    },
+    {
+     "name": "Sénat (ordre du jour)",
+     "url": "https://www.senat.fr/ordre-du-jour/ordre-du-jour.html"
+    },
+    {
+     "name": "NosParlementaires",
+     "url": "https://nosparlementaires.fr/actualites/budget-2027-calendrier-assemblee-cinq-semaines"
+    }
+   ],
+   "summary": "La discussion des articles du projet de loi de finances 2027 a commencé lundi en séance publique au Sénat, dans sa version initiale après le rejet unanime de l'Assemblée le 4 novembre (458 voix contre). La commission des finances, dont la rapporteure générale est Christine Lavarde (LR), propose de ramener le déficit à 4,8 % du PIB, soit 7 milliards d'euros d'amélioration, principalement par des baisses de dépenses. Le Sénat a déjà voté l'indexation de toutes les pensions sur l'inflation, financée par la suppression proposée de l'abattement de 10 % des retraités. Le vote sur la partie recettes est prévu le 28 novembre et le vote sur l'ensemble le 9 décembre.",
+   "title": "Le Sénat examine le budget 2027 et vise un déficit de 4,8 % du PIB",
+   "why": "Les mesures discutées (prime d'activité, niches fiscales, surtaxe d'impôt sur les sociétés, LMNP) touchent directement la fiscalité des ménages et des entreprises au programme du BUT GEA."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/vie-politique-des-etats-membres/le-senat-adopte-le-budget-2027-de-la-securite-sociale-en-premiere-lecture/"
+    },
+    {
+     "name": "Assemblée nationale (dossier législatif)",
+     "url": "https://www.assemblee-nationale.fr/dyn/17/dossiers/PLFSS_2027"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/le-senat-adopte-en-premiere-lecture-le-projet-de-budget-de-la-securite-sociale-pour-2027_8288699.html"
+    }
+   ],
+   "summary": "Adopté par le Sénat le 18 novembre (201 voix pour, 124 contre) après son rejet à l'Assemblée, le PLFSS 2027 doit passer en commission mixte paritaire le 26 novembre, date d'expiration du délai constitutionnel de 50 jours. Sept députés et sept sénateurs y chercheront une version commune. La copie du Sénat prévoit un déficit de la Sécurité sociale de 14 milliards d'euros en 2027, contre 12,7 milliards dans le texte du gouvernement. Plusieurs observateurs jugent un accord peu probable.",
+   "title": "Budget de la Sécurité sociale : commission mixte paritaire le 26 novembre",
+   "why": "Le PLFSS fixe notamment les cotisations et exonérations sociales, ce qui pèse sur le coût du travail et la paie, un domaine que tu as pratiqué en alternance."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "S&P Global PMI",
+     "url": "https://www.pmi.spglobal.com/Public?language=fr"
+    },
+    {
+     "name": "investingLive",
+     "url": "https://investinglive.com/news/france-november-flash-services-pmi-46-6-vs-47-5-expected/"
+    },
+    {
+     "name": "MLQ (d'après Reuters)",
+     "url": "https://mlq.ai/news/flash-pmis-germanys-growth-hits-a-56-month-high-as-france-slumps-and-the-euro-zone-holds-steady/"
+    }
+   ],
+   "summary": "Selon les enquêtes flash de S&P Global publiées lundi, l'indice PMI composite de la France est tombé à 46,2 en novembre, contre 46,6 en octobre, sous le seuil de 50 qui sépare contraction et expansion. L'industrie (47,9) a reculé plus fortement, et les entreprises réduisent leurs effectifs pour le septième mois consécutif. À l'inverse, l'Allemagne monte à 55,0, un plus haut depuis 56 mois, et la zone euro reste stable à 51,7. L'économiste de HCOB estime que ces chiffres accroissent le risque d'une récession technique en France au quatrième trimestre.",
+   "title": "PMI flash : l'activité privée française recule à 46,2 en novembre",
+   "why": "Le PMI est un indicateur avancé de la conjoncture : il anticipe la croissance du PIB avant les chiffres officiels de l'Insee."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/accueil"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/france-le-climat-des-affaires-repart-a-la-baisse-en-novembre-dans-tous-les-secteurs-selon-l-insee-02329d8b166a06c8cb79794abd85316e"
+    },
+    {
+     "name": "Économie Matin",
+     "url": "https://www.economiematin.fr/insee-climat-affaires-novembre-2026-commerce-90-industrie-104"
+    }
+   ],
+   "summary": "L'indicateur synthétique du climat des affaires publié par l'Insee le 20 novembre perd deux points, à 95, et s'éloigne de sa moyenne de long terme fixée à 100. La baisse touche tous les secteurs interrogés : services, commerce de détail, commerce de gros, bâtiment et industrie. L'industrie reste toutefois au-dessus de sa moyenne. L'indicateur du climat de l'emploi progresse en revanche d'un point.",
+   "title": "Insee : le climat des affaires recule à 95 en novembre",
+   "why": "Cet indicateur, construit à partir d'enquêtes auprès des chefs d'entreprise, sert à anticiper l'investissement et l'activité : utile pour l'analyse conjoncturelle en contrôle de gestion."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "L'Énergeek (d'après l'AFP)",
+     "url": "https://lenergeek.com/2026/11/24/petrole-sous-80-dollars-opep-excedent-2026/"
+    },
+    {
+     "name": "Économie Matin (d'après Reuters)",
+     "url": "https://www.economiematin.fr/petrole-brent-sous-91-dollars-plein-carburant-cher-23-novembre-2026"
+    }
+   ],
+   "summary": "Le baril de Brent a terminé lundi à 89,37 dollars, en baisse de 3,46 % sur la journée, et le WTI américain a brièvement glissé sous 80 dollars, selon l'AFP. Le pétrole enchaîne une troisième semaine de baisse, après un pic d'environ 136 dollars pour le brut physique de mer du Nord début octobre, selon l'Agence internationale de l'énergie. Reuters relève toutefois que les contrats européens sur le diesel restent autour de 160 dollars le baril. Une réunion de l'OPEP+ est attendue dans les prochains jours.",
+   "title": "Le Brent passe sous les 90 dollars, le diesel reste cher",
+   "why": "Le prix de l'énergie pèse sur les coûts des entreprises et sur l'inflation, donc sur les décisions de taux de la BCE."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Agence France Trésor",
+     "url": "https://www.aft.gouv.fr/fr"
+    },
+    {
+     "name": "Admiral Markets (sondage Reuters)",
+     "url": "https://admiralmarkets.com/analytics/traders-blog/ecb-rate-decision-december-2026-preview"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/bourse/actualites/bce-statu-quo-attendu-sur-les-taux-les-regards-tournes-vers-l-apres-lagarde-85fa5968dfdf52496264aebed23b00ce"
+    }
+   ],
+   "summary": "Le taux de l'emprunt d'État français à 10 ans (TEC 10) s'établissait à 4,83 % le 23 novembre selon l'Agence France Trésor, après avoir dépassé 5 % fin octobre pour la première fois depuis 2002. Le taux de dépôt de la BCE est de 2,50 % depuis le 16 septembre, après deux hausses en 2026. Selon les marchés monétaires, une hausse de 0,25 point le 17 décembre est jugée très probable, et un sondage Reuters auprès de 71 économistes table unanimement sur 2,75 %.",
+   "title": "Taux : l'OAT 10 ans à 4,83 %, la BCE attendue le 17 décembre",
+   "why": "Le coût de la dette de l'État et les taux directeurs se répercutent sur les crédits aux entreprises et aux ménages, donc sur le coût du capital utilisé en finance d'entreprise."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Zonebourse",
+     "url": "https://www.zonebourse.com/cours/indice/CAC-40-4941/"
+    },
+    {
+     "name": "Investing.com",
+     "url": "https://fr.investing.com/news/stock-market-news/le-cac-40-repasse-les-8-000-points--les-9-meilleures-actions-pour-jouer-la-reprise-3710022"
+    }
+   ],
+   "summary": "Le CAC 40 a clôturé lundi à 8 044,84 points, en hausse de 1,48 %, après avoir perdu 5,27 % la semaine précédente. STMicroelectronics a mené la hausse (+8,96 %), suivi d'ArcelorMittal (+5,39 %) et de Legrand (+4,20 %), et 30 des 40 valeurs ont fini en positif. Le rebond a été porté par le retour d'intérêt pour les semi-conducteurs aux États-Unis.",
+   "title": "La Bourse de Paris rebondit de 1,48 % et repasse les 8 000 points",
+   "why": "Illustre la corrélation entre marchés européens et valeurs technologiques américaines, et la sensibilité des valeurs cycliques au sentiment de marché."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Nvidia (formulaire 8-K, SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000090/nov23pressrelease.htm"
+    },
+    {
+     "name": "CNBC",
+     "url": "https://www.cnbc.com/2026/11/23/nvidia-jensen-huang-ceo.html"
+    },
+    {
+     "name": "TechCrunch",
+     "url": "https://techcrunch.com/2026/11/23/nvidia-reverses-course-and-brings-jensen-huang-back-as-ceo/"
+    }
+   ],
+   "summary": "Le conseil d'administration de Nvidia a annoncé lundi, à l'unanimité, le retour de Jensen Huang comme président-directeur général et administrateur, moins de deux semaines après sa démission. Le groupe indique avoir consulté de hauts responsables du gouvernement américain avant cette décision. La directrice financière Colette Kress, qui assurait l'intérim, conserve ses fonctions financières. Nvidia annonce aussi le recrutement d'un directeur de la conformité, et l'action a clôturé en hausse de 31 %.",
+   "title": "Nvidia réintègre Jensen Huang comme PDG, l'action bondit de 31 %",
+   "why": "Un cas concret de gouvernance d'entreprise : rôle du conseil d'administration, risque lié à l'homme-clé et réaction du marché à un changement de dirigeant."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/europe/20261123-navires-russes-cibl%C3%A9s-libye-face-moscou-ukraine-%C3%A9tend-domaine-lutte"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/une-operation-exemplaire-ce-que-l-on-sait-de-l-attaque-de-deux-navires-au-large-de-la-libye-revendiquee-par-l-ukraine_8295566.html"
+    },
+    {
+     "name": "Euronews (AP)",
+     "url": "https://www.euronews.com/2026/11/23/un-mission-in-libya-urges-probe-after-russian-ship-hit-by-drones-off-benghazi"
+    }
+   ],
+   "summary": "Volodymyr Zelensky a affirmé lundi que des drones navals ukrainiens avaient coulé dimanche la corvette russe Merkury, en escale dans le port de Benghazi, en Libye, et endommagé le cargo russe MV Angara. Les autorités de l'est libyen ont confirmé une explosion à bord d'un navire amarré au port. La mission de l'ONU en Libye a demandé une enquête indépendante, et le Kremlin a accusé l'Ukraine d'activités terroristes après une autre attaque contre un cargo en mer Baltique.",
+   "title": "L'Ukraine revendique la destruction d'une corvette russe dans le port de Benghazi",
+   "why": "L'extension du conflit en Méditerranée accroît les risques sur le transport maritime, avec des effets sur les primes d'assurance et les coûts logistiques."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "ONU (UNRIC)",
+     "url": "https://unric.org/fr/deception-alors-que-la-cop31-sacheve-sans-accord/"
+    },
+    {
+     "name": "Vert",
+     "url": "https://vert.eco/climat/lune-des-pires-de-lhistoire-la-cop31-sacheve-sans-accord/"
+    }
+   ],
+   "summary": "La conférence de l'ONU sur le climat, organisée en Turquie, s'est achevée le 22 novembre sans texte de consensus, après deux jours de prolongation. L'Union européenne et des pays vulnérables ont refusé un projet d'accord qui ne mentionnait pas les énergies fossiles. Le secrétaire général de l'ONU, António Guterres, s'est dit profondément déçu, tandis que le cabinet de la ministre française de la Transition écologique a estimé qu'une absence d'accord valait mieux qu'un mauvais accord.",
+   "title": "La COP31 d'Antalya se termine sans accord final",
+   "why": "Les engagements climatiques orientent la réglementation RSE et le reporting extra-financier des entreprises (CSRD), sujets proches de ton projet Com & RSE."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Le Temps (UKMTO)",
+     "url": "https://www.letemps.ch/monde/moyenorient/deux-petroliers-frappes-par-des-projectiles-d-origine-inconnue-en-sortant-du-detroit-d-ormuz"
+    },
+    {
+     "name": "Mediacongo (d'après ABC News et l'OMI)",
+     "url": "https://www.mediacongo.net/article-actualite-169809_guerre_en_iran_le_nombre_de_navires_frappes_dans_le_detroit_d_ormuz_ne_fait_qu_augmenter.html"
+    },
+    {
+     "name": "Armées.com",
+     "url": "https://armees.com/ormuz-crise-iran-routes-petrole-2026/"
+    }
+   ],
+   "summary": "Au moins trois navires ont été touchés par des projectiles le week-end dernier en tentant de traverser le détroit d'Ormuz, selon les agences maritimes, dans le cadre du conflit entre l'Iran et les États-Unis. Selon le Washington Institute, environ une attaque par jour a été recensée sur les seize premiers jours de novembre. L'Organisation maritime internationale compte au moins 25 marins tués depuis le début des hostilités. Téhéran réclame la levée du blocus naval américain, tandis que Washington conditionne tout accord à l'arrêt du programme nucléaire iranien.",
+   "title": "Détroit d'Ormuz : nouvelles attaques contre des navires marchands",
+   "why": "Une part importante du pétrole mondial transite par ce détroit : la situation y influence directement les prix de l'énergie et l'inflation."
+  }
+ ],
+ "lede": "Sébastien Lecornu a écrit aux parlementaires pour appeler à un compromis sur le budget 2027, alors que le Sénat examine le texte article par article. Côté économie, les indicateurs de novembre se dégradent en France, tandis que la Bourse de Paris a rebondi lundi, portée par le retour de Jensen Huang à la tête de Nvidia.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "La commission propose 4,8 % du PIB, soit 7 milliards d'euros de mieux que le texte du gouvernement, qui vise 5,0 %.",
+   "options": [
+    "4,6 % du PIB",
+    "4,8 % du PIB",
+    "5,0 % du PIB",
+    "5,4 % du PIB"
+   ],
+   "q": "Quel déficit public pour 2027 la commission des finances du Sénat propose-t-elle ?"
+  },
+  {
+   "answer": 2,
+   "explain": "Le PMI composite français recule à 46,2 ; 51,7 correspond à la zone euro et 55,0 à l'Allemagne.",
+   "options": [
+    "51,7",
+    "55,0",
+    "46,2",
+    "49,9"
+   ],
+   "q": "À combien s'établit le PMI composite flash de la France en novembre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Selon Volodymyr Zelensky, sept drones navals ont visé la corvette Merkury dans le port de Benghazi, dans l'est de la Libye.",
+   "options": [
+    "Tartous (Syrie)",
+    "Sébastopol (Crimée)",
+    "Novorossiïsk (Russie)",
+    "Benghazi (Libye)"
+   ],
+   "q": "Dans quel port la corvette russe Merkury a-t-elle été frappée par des drones ukrainiens ?"
+  }
+ ]
+}
