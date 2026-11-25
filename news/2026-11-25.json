@@ -1,0 +1,236 @@
+{
+ "date": "2026-11-25",
+ "figures": [
+  {
+   "label": "Déficit public visé pour 2026",
+   "note": "Objectif maintenu par la loi de fin de gestion adoptée le 24/11 (5 % visés en janvier)",
+   "source": "Parlement / AFP",
+   "value": "5,4 % du PIB"
+  },
+  {
+   "label": "CAC 40 – clôture du 24/11",
+   "note": "-0,05 % sur la séance, après +1,48 % la veille",
+   "source": "Euronext / AFP",
+   "value": "8 040,49 pts"
+  },
+  {
+   "label": "Prix des logements anciens – T3 2026",
+   "note": "Sur un an ; -0,3 % sur le trimestre (données provisoires CVS)",
+   "source": "Notaires-Insee",
+   "value": "-1,2 %"
+  },
+  {
+   "label": "Inflation en France – octobre 2026",
+   "note": "Sur un an, résultat définitif ; énergie +24,1 %",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de chômage – T3 2026",
+   "note": "-0,1 point sur le trimestre, +0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Climat des affaires – novembre 2026",
+   "note": "-2 points sur un mois ; moyenne de long terme : 100",
+   "source": "Insee",
+   "value": "95"
+  }
+ ],
+ "generatedAt": "2026-11-25T06:50:00+01:00",
+ "items": [
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/le-parlement-enterine-le-projet-de-loi-qui-procede-aux-derniers-ajustements-budgetaires"
+    },
+    {
+     "name": "Quartz (d'après AFP)",
+     "url": "https://fr.qz.com/parlement-adopte-definitivement-loi-fin-gestion-2026-112426"
+    }
+   ],
+   "summary": "Le Sénat puis l'Assemblée nationale ont définitivement adopté mardi le projet de loi de fin de gestion pour 2026, issu d'un accord en commission mixte paritaire. Les députés l'ont approuvé par 135 voix contre 64, sans recours au 49.3, le groupe socialiste et le RN s'abstenant. Le texte procède aux derniers ajustements de l'année, ouvre notamment 700 millions d'euros pour les armées et des crédits pour les agriculteurs, pêcheurs et transporteurs.",
+   "title": "Le Parlement adopte la loi de fin de gestion 2026, déficit maintenu à 5,4 %",
+   "why": "La loi de fin de gestion est l'équivalent public d'un ajustement de fin d'exercice : comparer 5,4 % de déficit réalisé aux 5 % prévus en janvier illustre l'écart entre budget prévisionnel et exécution."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/sebastien-lecornu-recevra-les-presidents-des-groupes-parlementaires-la-semaine-prochaine-pour-prolonger-les-discussions-sur-le-budget-2027_8298285.html"
+    },
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/economie/budget-collectivites-etat/budget-sebastien-lecornu-recevra-les-presidents-des-groupes-parlementaires-la-semaine-prochaine-57f1cd74-e848-11f1-86c1-70195b4d2e52"
+    }
+   ],
+   "summary": "Le Premier ministre a annoncé mardi sur X qu'il recevrait la semaine prochaine chacun des présidents de groupe pour poursuivre les discussions budgétaires, une première cet automne. La veille, il avait proposé aux parlementaires cinq thèmes de compromis, à condition de ne pas dépasser un déficit de 5 % en 2027. Selon l'AFP, les députés socialistes n'envisagent pas de nouvel accord à ce stade et le RN n'exclut pas la censure.",
+   "title": "Budget 2027 : Lecornu recevra chaque président de groupe parlementaire",
+   "why": "Sans majorité absolue, l'issue des négociations déterminera si la France dispose d'un budget voté au 1er janvier ou doit recourir à des procédures d'exception (49.3, ordonnances, loi spéciale)."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-le-senat-vote-la-fiscalisation-integrale-des-indemnites-pour-affections-de-longue-duree"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/travaux-parlementaires/textes-legislatifs/la-loi-en-clair/projet-de-loi-de-finances-pour-2027.html"
+    }
+   ],
+   "summary": "Rejeté en première lecture par l'Assemblée le 4 novembre, le projet de loi de finances pour 2027 est examiné au Sénat dans sa version gouvernementale depuis le 20 novembre. La majorité sénatoriale de droite et du centre a voté la soumission intégrale à l'impôt sur le revenu des indemnités journalières liées aux affections de longue durée. Le vote solennel du Sénat est attendu le 9 décembre ; l'Assemblée nationale garde le dernier mot.",
+   "title": "Au Sénat, l'examen du projet de budget 2027 se poursuit jusqu'au 9 décembre",
+   "why": "Les amendements fiscaux votés au Sénat (indemnités journalières, dons familiaux, niches fiscales) peuvent modifier la fiscalité applicable en 2027 aux ménages et aux entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9149846"
+    },
+    {
+     "name": "Europe 1",
+     "url": "https://www.europe1.fr/immobilier/immobilier-les-prix-des-logements-anciens-reculent-de-12-sur-un-an-au-troisieme-trimestre-2026-1243507"
+    }
+   ],
+   "summary": "Selon les indices Notaires-Insee publiés mardi, les prix des logements anciens baissent de 0,3 % au troisième trimestre 2026, après -1,0 % au deuxième. Sur un an, le recul atteint 1,2 % (-1,3 % pour les maisons, -1,0 % pour les appartements). La baisse est plus marquée en Île-de-France (-0,9 % sur le trimestre) qu'en province, où les prix sont stables.",
+   "title": "Immobilier ancien : les prix reculent de 1,2 % sur un an au troisième trimestre",
+   "why": "La remontée des taux de crédit pèse sur la valeur des actifs immobiliers, ce qui touche les bilans des ménages, les garanties bancaires et les recettes de droits de mutation des collectivités."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Boursorama",
+     "url": "https://www.boursorama.com/bourse/matieres-premieres/cours/8xBRN/"
+    },
+    {
+     "name": "Kotak Neo",
+     "url": "https://www.kotakneo.com/news/commodities/oil-price-today-24-november-2026-brent-falls-below-90-us-iran-talks-supply-risks/"
+    }
+   ],
+   "summary": "Le baril de Brent a terminé la séance du 23 novembre à 89,37 dollars, en baisse de 3,5 %, son plus bas niveau depuis trois mois, avant de se stabiliser mardi. Le cours a perdu plus de 20 % en un mois mais reste nettement plus élevé qu'il y a un an. Les opérateurs anticipent un excédent d'offre et suivent les discussions entre les États-Unis et l'Iran.",
+   "title": "Pétrole : le Brent oscille autour de 90 $ après un plus bas de trois mois",
+   "why": "Le prix de l'énergie explique plus de la moitié de l'inflation française d'octobre : sa baisse pourrait alléger les coûts des entreprises et l'inflation des prochains mois."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Sanofi (communiqué, SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001121404/000119312526473314/d130092dex991.htm"
+    },
+    {
+     "name": "Quartz (d'après AFP)",
+     "url": "https://fr.qz.com/cac-40-recule-sanofi-bourse-paris-clariane-112526"
+    }
+   ],
+   "summary": "Sanofi a annoncé mardi un accord pour acquérir la biotech américaine Insmed, spécialisée dans les maladies respiratoires, à 175 dollars par action, soit 41 milliards de dollars payés en numéraire. Le groupe vise à préparer la perte d'exclusivité de Dupixent, qui représente près de 40 % de son chiffre d'affaires trimestriel. L'action Sanofi a clôturé en hausse de plus de 9 % à 93,58 euros.",
+   "title": "Sanofi annonce le rachat de l'américain Insmed pour 37,6 milliards d'euros",
+   "why": "C'est un cas d'école de croissance externe : prime d'acquisition, financement en cash, effet attendu sur le bénéfice par action (relutif d'ici fin 2028 selon Sanofi) et maintien de la notation de crédit."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Nvidia (communiqué, SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000090/nov23pressrelease.htm"
+    },
+    {
+     "name": "Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/l-europe-finit-dans-le-rouge-le-rebond-lie-a-nvidia-decline-ce7851dbdd88f124"
+    }
+   ],
+   "summary": "Le CAC 40 a fini mardi à 8 040,49 points (-0,05 %), après +1,48 % lundi. Le conseil d'administration de Nvidia a réintégré lundi Jensen Huang comme directeur général, dix jours après sa démission, et l'action avait bondi de plus de 30 %. Mardi, les valeurs technologiques ont reculé à Paris, dont STMicroelectronics (-10,22 %), tandis que Sanofi limitait la baisse de l'indice.",
+   "title": "CAC 40 stable après le rebond lié au retour de Jensen Huang chez Nvidia",
+   "why": "L'épisode montre le poids de la gouvernance et du « risque dirigeant » dans la valorisation d'une entreprise, ainsi que la contagion d'une seule valeur américaine aux marchés européens."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Reuters (via Zonebourse)",
+     "url": "https://ch.zonebourse.com/actualite-bourse/la-russie-accuse-l-estonie-d-etre-sur-le-point-de-declencher-une-guerre-ouverte-ce7851dadc88f022"
+    },
+    {
+     "name": "Democracy Now!",
+     "url": "https://www.democracynow.org/2026/11/24/headlines/russia_threatens_open_war_with_estonia_a_former_soviet_republic_turned_nato_member"
+    }
+   ],
+   "summary": "Le ministère russe des Affaires étrangères a accusé lundi l'Estonie, membre de l'OTAN, d'actions hostiles, après l'annonce par Tallinn de la fermeture de sa frontière terrestre avec la Russie à partir du 1er décembre, pour au moins six mois. L'Estonie justifie cette décision par une tentative d'incendie contre une entreprise de défense, qu'elle impute aux services russes ; Moscou dément. Tallinn nie autoriser l'Ukraine à utiliser son territoire, et le secrétaire général de l'OTAN, Mark Rutte, a indiqué que l'Alliance ajusterait au besoin sa posture.",
+   "title": "Moscou accuse l'Estonie de risquer une « guerre ouverte »",
+   "why": "Une tension directe entre la Russie et un pays de l'OTAN accroît le risque géopolitique, qui se répercute sur les marchés, les prix de l'énergie et les budgets de défense européens."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/direct-guerre-en-ukraine-volodymyr-zelensky-revendique-les-attaques-contre-deux-navires-russes-menees-au-large-de-la-libye_8295668.html"
+    },
+    {
+     "name": "Agence Europe",
+     "url": "https://agenceurope.eu/en/bulletin/article/13988/13/european-commission-presents-its-22nd-sanctions-package-which-includes-measures-against-russian-ex-combatants-and-athletes"
+    }
+   ],
+   "summary": "La Commission européenne a présenté lundi un 22e paquet de sanctions visant une soixantaine de banques russes, exclues de SWIFT, des plateformes de cryptomonnaies et plus de 70 navires de la « flotte fantôme ». Il prévoit aussi d'interdire l'entrée dans l'UE aux anciens combattants russes et de restreindre la participation des sportifs russes aux compétitions organisées dans l'Union. Le paquet doit être approuvé à l'unanimité des 27 États membres.",
+   "title": "L'UE propose un 22e paquet de sanctions contre la Russie",
+   "why": "Les sanctions financières (SWIFT, intermédiaires de pays tiers) imposent aux banques européennes, dont les groupes comme BPCE, des contrôles de conformité renforcés sur les paiements."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Impact.sn",
+     "url": "https://www.impact.sn/Round-up-de-l-actualite-du-24-novembre-2026-en-Afrique-centrale-et-de-l-Est_a59897.html"
+    }
+   ],
+   "summary": "Kinshasa a annoncé mardi une nouvelle suspension des exportations de cobalt, effective au 30 novembre, afin de réguler l'offre mondiale et de favoriser la transformation locale. La République démocratique du Congo est le premier producteur mondial de ce métal utilisé dans les batteries. Selon Reuters, les prix du cobalt en Chine ont atteint leur plus haut niveau depuis trois mois après l'annonce.",
+   "title": "La RDC suspend de nouveau ses exportations de cobalt à partir du 30 novembre",
+   "why": "Une restriction d'offre sur une matière première stratégique fait monter les coûts d'approvisionnement des industriels (batteries, automobile) et illustre le risque de dépendance d'une chaîne de valeur."
+  }
+ ],
+ "lede": "Le Parlement a définitivement adopté la loi de fin de gestion 2026, qui fixe le déficit public à 5,4 % du PIB, et Sébastien Lecornu reçoit la semaine prochaine les présidents de groupe sur le budget 2027. À la Bourse, Sanofi s'envole après l'annonce du rachat d'Insmed pour 37,6 milliards d'euros.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Le texte maintient l'objectif à 5,4 % du PIB, alors que la cible fixée en janvier était de 5 %.",
+   "options": [
+    "5,0 % du PIB",
+    "5,4 % du PIB",
+    "4,7 % du PIB",
+    "5,8 % du PIB"
+   ],
+   "q": "Quel déficit public pour 2026 la loi de fin de gestion adoptée le 24 novembre maintient-elle ?"
+  },
+  {
+   "answer": 2,
+   "explain": "Sanofi paiera 41 milliards de dollars, soit 37,6 milliards d'euros, entièrement en numéraire (175 $ par action).",
+   "options": [
+    "29,8 milliards d'euros",
+    "41,0 milliards d'euros",
+    "37,6 milliards d'euros",
+    "33,4 milliards d'euros"
+   ],
+   "q": "Pour quel montant Sanofi a-t-il annoncé le rachat de la biotech américaine Insmed ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Tallinn prévoit de fermer sa frontière terrestre le 1er décembre, pour une durée d'au moins six mois.",
+   "options": [
+    "Le 15 décembre",
+    "Le 30 novembre",
+    "Le 1er janvier",
+    "Le 1er décembre"
+   ],
+   "q": "À partir de quelle date l'Estonie prévoit-elle de fermer sa frontière terrestre avec la Russie ?"
+  }
+ ]
+}
