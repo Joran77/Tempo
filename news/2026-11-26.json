@@ -1,0 +1,278 @@
+{
+ "date": "2026-11-26",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 25 novembre",
+   "note": "-0,75 % sur la séance",
+   "source": "Euronext / Zonebourse",
+   "value": "7 980,57 pts"
+  },
+  {
+   "label": "Confiance des ménages, novembre 2026",
+   "note": "+1 point, moyenne de long terme : 100",
+   "source": "Insee",
+   "value": "82"
+  },
+  {
+   "label": "SMIC horaire brut au 1er décembre 2026",
+   "note": "+1,6 %, contre 12,31 € auparavant",
+   "source": "Ministère du Travail",
+   "value": "12,51 €"
+  },
+  {
+   "label": "Taux de chômage, 3e trimestre 2026",
+   "note": "+0,4 point sur un an",
+   "source": "Insee",
+   "value": "8,2 %"
+  },
+  {
+   "label": "Inflation sur un an, octobre 2026",
+   "note": "Indice des prix à la consommation",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Taux de dépôt de la BCE",
+   "note": "Prochaine décision le 17 décembre",
+   "source": "BCE / Reuters",
+   "value": "2,5 %"
+  },
+  {
+   "label": "Rachat d'Insmed par Sanofi",
+   "note": "En numéraire, finalisation visée au 1er semestre 2027",
+   "source": "AFP / Reuters",
+   "value": "37,6 Md€"
+  }
+ ],
+ "generatedAt": "2026-11-26T06:58:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "L'Échiquier social",
+     "url": "https://www.lechiquiersocial.com/budget-de-la-securite-sociale-2027-un-improbable-compromis-ce-jeudi-en-commission-mixte-paritaire/"
+    },
+    {
+     "name": "Moneyvox (AFP)",
+     "url": "https://www.moneyvox.fr/votre-argent/actualites/111327/budget-2027-de-la-secu-la-cmp-planifiee-pour-le-26-novembre"
+    },
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/vie-politique-des-etats-membres/le-senat-adopte-le-budget-2027-de-la-securite-sociale-en-premiere-lecture/"
+    }
+   ],
+   "summary": "Sept députés et sept sénateurs tentent ce 26 novembre de trouver une version commune du budget de la Sécurité sociale pour 2027. Le texte avait été rejeté par l'Assemblée puis adopté par le Sénat le 18 novembre (201 voix contre 124), avec un déficit porté à 14 milliards d'euros contre 12,7 milliards dans la copie du gouvernement. La réunion coïncide avec l'expiration du délai constitutionnel de 50 jours, au-delà duquel le budget peut être mis en œuvre par ordonnances. En cas d'échec, le texte repartira en nouvelle lecture.",
+   "title": "Budget de la Sécu : la commission mixte paritaire se réunit ce jeudi",
+   "why": "C'est un cas d'école de procédure budgétaire (article 47-1, CMP, 49.3, ordonnances). Le niveau de déficit voté conditionne les cotisations et les dépenses sociales que les entreprises intègrent dans leurs prévisions."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/une-regle-dor-emmanuel-macron-a-transforme-lor-en-plomb-patrick-kanner-et-sebastien-lecornu-secharpent-sur-leurs-bilans-respecti"
+    },
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/ordre-du-jour/ordre-du-jour.html"
+    }
+   ],
+   "summary": "Lors des questions au gouvernement du 25 novembre, le président du groupe socialiste Patrick Kanner a critiqué le bilan budgétaire de l'exécutif et le projet présidentiel de soumettre une règle d'or au Congrès. Il a dénoncé une ponction de plus de 10 milliards d'euros sur les collectivités. Le Premier ministre a répondu en rappelant les baisses de dotations décidées sous François Hollande et a ouvert la porte à une discussion sur la taxe d'habitation dans le cadre d'un compromis. Le Sénat poursuit l'examen du projet de loi de finances jusqu'au 9 décembre.",
+   "title": "Collectivités locales : échange entre Patrick Kanner et Sébastien Lecornu au Sénat",
+   "why": "Les dotations de l'État pèsent directement sur l'investissement local et les finances publiques ; la règle d'or est une notion clé de la gestion budgétaire publique."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-le-senat-vote-la-fiscalisation-integrale-des-indemnites-pour-affections-de-longue-duree"
+    },
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/taxation-totale-des-indemnites-pour-affections-de-longue-duree-les-senateurs-lr-font-machine-arriere-et-vont-demander-un-nouveau-vote"
+    }
+   ],
+   "summary": "Lundi 23 novembre, le Sénat avait adopté par 194 voix contre 146 un amendement de la rapporteure générale Christine Lavarde (LR) soumettant entièrement à l'impôt sur le revenu les indemnités journalières versées au titre des affections de longue durée. Les groupes de gauche, le RN-UDR et une partie des centristes s'y étaient opposés. Le 25 novembre, le groupe LR a annoncé qu'il demanderait une seconde délibération sur cet amendement.",
+   "title": "Indemnités pour ALD : les sénateurs LR demandent un second vote",
+   "why": "Illustre l'arbitrage entre rendement fiscal et acceptabilité sociale, ainsi que le traitement fiscal des revenus de remplacement, utile en fiscalité des particuliers."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/david-lisnard-reelu-a-la-tete-de-lamf-ca-ne-peut-pas-nuire-a-sa-demarche-pour-la-presidentielle-reconnait-herve-marseille"
+    }
+   ],
+   "summary": "Le maire de Cannes a été réélu président de l'AMF avec 72 % des voix lors du 108e Congrès des maires. Hervé Marseille (UDI) a estimé que ce score pouvait servir sa démarche présidentielle et a de nouveau plaidé pour une candidature unique à droite. Gérard Larcher doit réunir en début de semaine prochaine David Lisnard, Bruno Retailleau, Gabriel Attal et Édouard Philippe pour chercher une méthode de départage.",
+   "title": "David Lisnard réélu à la tête de l'Association des maires de France",
+   "why": "Le calendrier de la présidentielle 2027 et le rôle des maires dans les parrainages structurent le débat budgétaire et fiscal des prochains mois."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9156257"
+    }
+   ],
+   "summary": "Selon l'Insee, l'indicateur synthétique de confiance des ménages gagne un point en novembre, à 82, loin de sa moyenne de long terme fixée à 100. L'opinion sur la situation financière personnelle future et sur le niveau de vie futur en France rebondit de cinq points chacune. La part des ménages qui anticipent une accélération des prix recule nettement.",
+   "title": "La confiance des ménages reste nettement sous sa moyenne",
+   "why": "La confiance des ménages est un indicateur avancé de la consommation, premier moteur de la croissance française ; elle sert à anticiper le chiffre d'affaires dans le commerce et les services."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Gouvernement (info.gouv.fr)",
+     "url": "https://www.info.gouv.fr/conseil-des-ministres/compte-rendu-du-conseil-des-ministres-du-25-11-2026"
+    },
+    {
+     "name": "Code du travail numérique",
+     "url": "https://code.travail.gouv.fr/actualite/smic-une-augmentation-au-1er-decembre-2026-quelles-consequences-sur-les-salaires"
+    },
+    {
+     "name": "La finance pour tous",
+     "url": "https://www.lafinancepourtous.com/2026/11/12/smic-annonce-dune-hausse-de-16-au-1er-decembre-2026/"
+    }
+   ],
+   "summary": "Le ministre du Travail Jean-Pierre Farandou a présenté le 25 novembre le décret relevant le SMIC de manière anticipée au 1er décembre. Le taux horaire brut passe de 12,31 € à 12,51 €, soit 1 897,35 € brut par mois pour 35 heures et environ 1 502 € net. La hausse comprend un coup de pouce de 0,6 point et constitue la troisième revalorisation de 2026.",
+   "title": "SMIC : le décret de hausse de 1,6 % au 1er décembre présenté en Conseil des ministres",
+   "why": "Impact direct sur la paie de décembre, sur les grilles conventionnelles et sur le calcul des allègements de cotisations patronales indexés sur le SMIC."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee – tableau de bord",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    },
+    {
+     "name": "Insee – calendrier",
+     "url": "https://www.insee.fr/fr/information/5235017"
+    }
+   ],
+   "summary": "L'Insee publiera le 27 novembre l'estimation provisoire de l'inflation de novembre ainsi que les résultats détaillés du PIB du 3e trimestre. En octobre, les prix à la consommation avaient progressé de 3,4 % sur un an. Au 3e trimestre, le PIB a reculé de 0,1 %, après une stagnation au trimestre précédent.",
+   "title": "Inflation et PIB : l'Insee publie de nouveaux chiffres vendredi",
+   "why": "Inflation et croissance déterminent la trajectoire des taux, la revalorisation des salaires et les hypothèses retenues dans les budgets prévisionnels des entreprises."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "La DH (AFP)",
+     "url": "https://www.dhnet.be/dernieres-depeches/2026/11/25/guerre-au-moyen-orient-liran-fait-etat-dexplosions-sur-trois-navires-dans-le-detroit-dormuz-D5ZHISBEO5ERHJWVVTOXB6CEME/"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/monde/iran/crise-dans-le-detroit-d-ormuz/"
+    }
+   ],
+   "summary": "Les Gardiens de la révolution iraniens ont annoncé mercredi que deux pétroliers avaient heurté des mines dans le détroit et qu'un méthanier avait également été touché ; ces affirmations n'ont pas été confirmées de façon indépendante. L'Iran revendique le contrôle du passage, tandis que les États-Unis maintiennent un blocus naval des ports iraniens et escortent des pétroliers le long des côtes omanaises.",
+   "title": "Détroit d'Ormuz : l'Iran fait état d'explosions sur trois navires",
+   "why": "Une part importante du pétrole et du gaz naturel liquéfié mondiaux transite par Ormuz : les tensions s'y répercutent sur les prix de l'énergie, l'inflation et les coûts de transport."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/am%C3%A9riques/20261125-union-europ%C3%A9enne-chine-br%C3%A9sil-administration-am%C3%A9ricaine-donald-trump-propose-nouvelle-s%C3%A9rie-droits-douane-%C3%A9tats-unis"
+    },
+    {
+     "name": "LaPresse (AP)",
+     "url": "https://ma.lapresse.it/etranger/2026/11/25/droits-de-douane-trump-propose-de-nouveaux-tarifs-douaniers-visant-la-chine-lue-et-12-autres-pays/"
+    }
+   ],
+   "summary": "L'administration Trump a proposé le 25 novembre de nouveaux droits de douane contre 14 partenaires commerciaux, dont la Chine, l'Union européenne et le Brésil, qu'elle accuse de subventionner leur industrie. Selon AP, la Chine serait visée par une hausse supplémentaire de 20 %. La Commission européenne a indiqué contester le bien-fondé de ces mesures.",
+   "title": "Washington propose de nouveaux droits de douane visant l'UE et 13 autres partenaires",
+   "why": "Des droits de douane plus élevés renchérissent les exportations européennes et peuvent peser sur les marges, les prix de transfert et les choix de chaîne d'approvisionnement."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/europe/ukraine/guerre-en-ukraine-base-militaire-russe-bombardee-des-missiles-balistiques-frappent-kiev-le-point-sur-la-nuit-42fe3d44-e893-11f1-9b33-2f81462d3339"
+    }
+   ],
+   "summary": "Selon l'état-major ukrainien, des forces spéciales ont frappé la base aérienne russe de Savasleïka, dans la région de Nijni Novgorod, endommageant cinq appareils dont deux bombardiers. Dans la nuit du 25 au 26 novembre, la Russie a visé Kiev avec des missiles balistiques, faisant au moins quatre blessés.",
+   "title": "Ukraine : frappe sur une base aérienne russe, missiles sur Kiev",
+   "why": "La poursuite du conflit maintient l'incertitude sur l'énergie, les dépenses de défense européennes et les sanctions, autant de facteurs suivis par les directions financières."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Idéal Investisseur",
+     "url": "https://www.ideal-investisseur.fr/bourse-cryptos/le-cac-40-recule-en-cloture-plombe-par-les-semi-conducteurs-et-lelectrique-34079.html"
+    },
+    {
+     "name": "Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/l-europe-finit-dans-le-rouge-entrainee-par-les-pertes-de-wall-street-ce7851d8da88f02c"
+    },
+    {
+     "name": "Option Finance",
+     "url": "https://www.optionfinance.fr/info-financiere-en-continu/d/2026-11-25-wall-street-resiste-malgre-la-rechute-de-nvidia-et-le-retour-des-droits-de-douane.html"
+    }
+   ],
+   "summary": "Le CAC 40 a terminé mercredi à 7 980,57 points (-0,75 %), dans un mouvement de baisse européen lié aux valeurs technologiques. Schneider Electric a perdu 4,18 % et Legrand 3,27 %, tandis que Bureau Veritas a gagné 6,6 % après des informations de presse sur un possible rachat par le fonds Advent International. À Wall Street, le Nasdaq a cédé 0,62 % et le Dow Jones a gagné 0,33 % ; les marchés américains sont fermés ce jeudi pour Thanksgiving.",
+   "title": "Bourse : le CAC 40 recule de 0,75 %, Bureau Veritas en tête",
+   "why": "La volatilité des valeurs liées à l'IA et aux centres de données influence la valorisation des entreprises et le coût des financements par actions."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/bourse/actualites/sanofi-va-racheter-l-americain-insmed-pour-37-6-milliards-d-euros-98cfd61e56c4101b147839375d6f3976"
+    },
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites-amp/sanofi-va-racheter-le-groupe-americain-insmed-pour-37-6-milliards-d-euros-bced0ea8530a2acb43c81d85a2867b8c"
+    }
+   ],
+   "summary": "Sanofi a annoncé mardi un accord pour acquérir la biotech américaine Insmed, spécialisée dans les maladies respiratoires, pour 37,6 milliards d'euros en numéraire. Le groupe récupère deux médicaments déjà commercialisés et prévoit une finalisation au premier semestre 2027, sous réserve des autorisations. Selon Reuters, l'opération serait légèrement dilutive sur le bénéfice par action en 2028 avant de devenir relutive. L'action Sanofi a progressé de 9,27 % le jour de l'annonce.",
+   "title": "Sanofi va racheter l'américain Insmed pour 37,6 milliards d'euros",
+   "why": "Cas concret de croissance externe financée par dette : notions de prime d'acquisition, d'effet relutif ou dilutif sur le BPA et de goodwill."
+  }
+ ],
+ "lede": "Députés et sénateurs se réunissent ce jeudi en commission mixte paritaire sur le budget de la Sécurité sociale, le jour même où le gouvernement peut légalement recourir aux ordonnances. Sur les marchés, la nervosité autour des valeurs technologiques et de nouveaux droits de douane américains a fait reculer Paris et le Nasdaq.",
+ "quiz": [
+  {
+   "answer": 1,
+   "explain": "Le décret présenté le 25 novembre porte le SMIC horaire brut de 12,31 € à 12,51 €, soit une hausse de 1,6 %.",
+   "options": [
+    "12,31 €",
+    "12,51 €",
+    "12,71 €",
+    "12,02 €"
+   ],
+   "q": "Quel sera le montant du SMIC horaire brut à partir du 1er décembre 2026 ?"
+  },
+  {
+   "answer": 2,
+   "explain": "L'indicateur gagne un point, à 82, mais reste bien en dessous de sa moyenne de long terme (100).",
+   "options": [
+    "80",
+    "85",
+    "82",
+    "90"
+   ],
+   "q": "À quel niveau s'établit l'indicateur de confiance des ménages de l'Insee en novembre 2026 ?"
+  },
+  {
+   "answer": 3,
+   "explain": "Sanofi paiera 37,6 milliards d'euros en numéraire (environ 41 milliards de dollars), sa plus grosse acquisition depuis Aventis.",
+   "options": [
+    "29,8 Md€",
+    "41,2 Md€",
+    "45,3 Md€",
+    "37,6 Md€"
+   ],
+   "q": "Pour quel montant Sanofi a-t-il annoncé le rachat de l'américain Insmed ?"
+  }
+ ]
+}
