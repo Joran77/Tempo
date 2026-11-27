@@ -1,0 +1,262 @@
+{
+ "date": "2026-11-27",
+ "figures": [
+  {
+   "label": "CAC 40, clôture du 26 novembre",
+   "note": "+1,61 % sur la séance, 39 valeurs sur 40 en hausse",
+   "source": "AFP / BFM Bourse",
+   "value": "8 108,74 pts"
+  },
+  {
+   "label": "Brent, 26 novembre",
+   "note": "+1,8 % sur la séance (baril de mer du Nord)",
+   "source": "Reuters",
+   "value": "96,31 $"
+  },
+  {
+   "label": "Euro / dollar, 26 novembre",
+   "note": "Quasi stable (-0,02 %)",
+   "source": "Reuters",
+   "value": "1,0969 $"
+  },
+  {
+   "label": "Inflation France, octobre 2026",
+   "note": "Sur un an, plus haut depuis janvier 2024 ; chiffre de novembre attendu ce matin",
+   "source": "Insee",
+   "value": "3,4 %"
+  },
+  {
+   "label": "Inflation zone euro, octobre 2026",
+   "note": "Plus haut niveau depuis septembre 2023, tirée par l'énergie",
+   "source": "Eurostat",
+   "value": "4,0 %"
+  },
+  {
+   "label": "Confiance des ménages, novembre 2026",
+   "note": "+1 point sur un mois, moyenne de long terme à 100",
+   "source": "Insee",
+   "value": "82"
+  },
+  {
+   "label": "Climat des affaires, novembre 2026",
+   "note": "-2 points sur un mois, moyenne de long terme à 100",
+   "source": "Insee",
+   "value": "95"
+  }
+ ],
+ "generatedAt": "2026-11-27T06:55:00+01:00",
+ "items": [
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites"
+    }
+   ],
+   "summary": "La commission mixte paritaire réunissant sept députés et sept sénateurs sur le projet de loi de financement de la Sécurité sociale pour 2027 s'est conclue par un échec le 26 novembre. Le texte repart en nouvelle lecture à l'Assemblée nationale, à partir du 7 décembre selon Public Sénat. Le Sénat avait adopté sa version le 18 novembre, après le rejet du texte par l'Assemblée en octobre.",
+   "title": "Budget de la Sécu 2027 : pas d'accord entre députés et sénateurs en CMP",
+   "why": "Le PLFSS fixe les recettes et dépenses de la Sécurité sociale (cotisations, pensions, santé) : son issue conditionne le coût du travail et les charges sociales que traitent les services paie et comptabilité."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/reunion-du-congres-pour-la-regle-dor-aucune-decision-nest-prise-insiste-sebastien-lecornu"
+    },
+    {
+     "name": "Petites Affiches",
+     "url": "https://www.petitesaffiches.fr/politique,104/l-essentiel-de-l-actualite-de-ce,47982.html?lang=fr"
+    }
+   ],
+   "summary": "Au dernier jour du Congrès des maires, le Premier ministre Sébastien Lecornu s'est dit favorable sur le principe à l'inscription d'une règle d'or budgétaire dans la Constitution, en précisant qu'une réunion du Parlement en Congrès n'était pas arbitrée. Le président du Sénat, Gérard Larcher, a indiqué qu'il refuserait tout prélèvement supérieur à 2,5 milliards d'euros sur les collectivités. David Lisnard a été réélu président de l'Association des maires de France avec 72 % des voix, face à Philippe Laurent (UDI).",
+   "title": "Congrès des maires : Lecornu ouvert à une « règle d'or », Lisnard réélu à l'AMF",
+   "why": "Une règle d'or encadrerait le déficit public dans la Constitution : un sujet central de finances publiques, qui pèse aussi sur les budgets des collectivités locales."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-le-senat-reconduit-la-surtaxe-sur-les-grandes-entreprises-allegee-de-2-milliards-deuros"
+    },
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/actualite-economique/actualites/surtaxe-sur-les-grandes-entreprises-le-senat-valide-un-effort-de-5-milliards-d-euros-dans-le-budget-2027-6bf226b01fe926eb63ac42bbb1bf87ce"
+    }
+   ],
+   "summary": "Le Sénat a adopté le 25 novembre au soir la prolongation en 2027 de la surtaxe d'impôt sur les sociétés visant les groupes réalisant au moins 1,5 milliard d'euros de chiffre d'affaires. Son rendement attendu est ramené à environ 5 milliards d'euros, contre plus de 7 milliards en 2026. Le ministre de l'Économie Roland Lescure a soutenu la mesure ; la gauche s'est abstenue en jugeant l'effort trop réduit, tandis que des sénateurs centristes et UDR ont critiqué la reconduction d'un impôt présenté comme temporaire.",
+   "title": "Budget 2027 : le Sénat reconduit la surtaxe sur les grandes entreprises",
+   "why": "C'est un cas concret d'impôt sur les sociétés et de contribution exceptionnelle : il touche directement le résultat net et la trésorerie des grands groupes."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/apprentissage-les-fraudes-et-les-abus-pourraient-couter-3-milliards-d-euros-selon-la-cour-des-comptes_8300244.html"
+    },
+    {
+     "name": "L'Étudiant / Educpros",
+     "url": "https://www.letudiant.fr/educpros/actualite/aides-a-l-apprentissage-la-cour-des-comptes-pointe-des-fraudes-et-abus-importants.html"
+    }
+   ],
+   "summary": "Dans un rapport publié le 25 novembre, la Cour des comptes estime qu'entre 10 % et 20 % des aides publiques à l'apprentissage, soit 1,5 à 3 milliards d'euros par an, sont exposés à des fraudes ou à des abus. Ces aides ont atteint environ 16 milliards d'euros en 2024, contre 5,8 milliards en 2018. La Cour relève notamment des maîtres d'apprentissage encadrant bien plus que les deux apprentis autorisés et recommande de simplifier le dispositif. Il s'agit d'estimations, non de fraudes avérées.",
+   "title": "Apprentissage : la Cour des comptes estime jusqu'à 3 milliards d'euros exposés aux abus",
+   "why": "En tant qu'alternant, tu es directement concerné : ce rapport peut entraîner des contrôles renforcés et une révision des aides versées aux employeurs d'apprentis."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/fonctionnement-de-l-ue/budget-europeen-ukraine-bce-les-grands-dossiers-du-sommet-europeen-des-26-et-27-novembre/"
+    },
+    {
+     "name": "RTS (AFP)",
+     "url": "https://www.rts.ch/info/economie/2026/article/bce-pablo-hernandez-de-cos-succede-a-christine-lagarde-29428976.html"
+    }
+   ],
+   "summary": "Les pays de la zone euro ont retenu le 26 novembre l'Espagnol Pablo Hernández de Cos, ancien gouverneur de la Banque d'Espagne et actuel directeur général de la BRI, pour présider la BCE. Il doit prendre ses fonctions le 8 février 2027 pour un mandat de huit ans non renouvelable, après consultation du Parlement européen et du Conseil des gouverneurs. Emmanuel Macron a salué un trio associant aussi Laurence Boone et Markus Brunnermeier au directoire.",
+   "title": "BCE : Pablo Hernández de Cos choisi pour succéder à Christine Lagarde",
+   "why": "Le président de la BCE pèse sur les taux directeurs, donc sur le coût du crédit des entreprises et le rendement de l'épargne, alors que l'inflation de la zone euro est proche de 4 %."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9156257"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/inflation/l-inflation-en-france-a-atteint-3-4-sur-un-an-en-octobre_8280635.html"
+    }
+   ],
+   "summary": "Selon l'Insee, l'indicateur de confiance des ménages gagne un point en novembre, à 82, nettement sous sa moyenne de longue période (100). L'opinion sur la situation financière personnelle future progresse de cinq points et les craintes liées au chômage reculent. L'Insee publie ce matin sa première estimation de l'inflation de novembre, après 3,4 % sur un an en octobre.",
+   "title": "Confiance des ménages : 82 en novembre, toujours loin de sa moyenne",
+   "why": "Cet indicateur avancé aide à anticiper la consommation des ménages, premier moteur de la croissance française : utile pour lire la conjoncture en contrôle de gestion."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/fonctionnement-de-l-ue/budget-europeen-ukraine-bce-les-grands-dossiers-du-sommet-europeen-des-26-et-27-novembre/"
+    },
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/les-dirigeants-de-l-ue-vont-se-pencher-jeudi-sur-le-budget-pluriannuel-731aacdd7d564668d0b08b88c2590ceb"
+    }
+   ],
+   "summary": "Les Vingt-Sept sont réunis à Bruxelles les 26 et 27 novembre pour un Conseil européen extraordinaire. Le président António Costa propose un cadre financier pluriannuel d'environ 1 780 milliards d'euros, soit 204 milliards de moins que la proposition initiale de la Commission ; la France s'y est opposée et le chancelier Friedrich Merz juge le volume global encore trop élevé. Les dirigeants examinent aussi un nouveau prêt à l'Ukraine pouvant atteindre 45 milliards d'euros en 2027.",
+   "title": "Sommet européen : budget 2028-2034 et nouvel appui financier à l'Ukraine",
+   "why": "Le budget européen finance la PAC, la cohésion ou l'innovation sur sept ans et repose en partie sur les contributions nationales, donc sur les finances publiques françaises."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Boursorama (Reuters)",
+     "url": "https://www.boursorama.com/bourse/actualites/trump-annonce-de-nouveaux-droits-de-douane-pour-lutter-contre-les-surcapacites-industrielles-sans-se-laisser-decourager-par-sa-defaite-aux-elections-de-mi-mandat-91b45111106af364ea8dc443bb0a8cb8"
+    },
+    {
+     "name": "Zonebourse (Reuters)",
+     "url": "https://ch.zonebourse.com/actualite-bourse/cinq-enseignements-a-retenir-des-nouveaux-droits-de-douane-de-trump-ce7851d8d088f423"
+    }
+   ],
+   "summary": "L'administration Trump a proposé le 25 novembre de nouveaux droits de douane visant 14 grands partenaires commerciaux, en invoquant la section 301 du Trade Act de 1974 et des surcapacités industrielles subventionnées. Les taux restent plafonnés à 15 % pour l'UE, le Japon, la Corée du Sud et Taïwan, et pourraient atteindre 20 % pour la Chine. Les mesures n'entreront pas en vigueur avant une audition publique prévue le 25 janvier ; plusieurs pays visés ont protesté.",
+   "title": "États-Unis : nouveaux droits de douane proposés contre 14 partenaires, dont l'UE",
+   "why": "Les droits de douane renchérissent les exportations européennes vers les États-Unis et influencent marges, prix de vente et choix d'implantation des entreprises."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-alors-que-wall-street-celebre-thanksgiving-le-cac-40-cede-a-l-euphorie-et-termine-en-hausse-d-16-1174500.html"
+    },
+    {
+     "name": "ABC Bourse",
+     "url": "https://www.abcbourse.com/marches/newsContent/706736"
+    }
+   ],
+   "summary": "Le CAC 40 a clôturé le 26 novembre à 8 108,74 points, en hausse de 1,61 %, après un recul de 0,75 % la veille. Wall Street était fermée pour Thanksgiving ; Paris a profité d'un rattrapage de la séance américaine du 25 novembre. Stellantis (+8,91 %), Alstom (+6,98 %) et Renault (+5,74 %) ont mené la hausse, EssilorLuxottica étant la seule valeur en baisse.",
+   "title": "Bourse de Paris : le CAC 40 rebondit de 1,61 % et repasse les 8 100 points",
+   "why": "Le CAC 40 sert de baromètre de la valorisation des grandes entreprises françaises, utile pour suivre le coût des fonds propres et le contexte des marchés."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "Boursorama (AFP)",
+     "url": "https://www.boursorama.com/bourse/actualites/bernard-arnault-pourra-diriger-la-holding-familiale-de-lvmh-jusqu-a-ses-95-ans-b348245855f02764ccc512142c08c3a8"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/replay-radio/histoire-du-jour/l-immortel-bernard-arnault-pourra-diriger-son-empire-du-luxe-lvmh-jusqu-a-ses-95-ans_8295896.html"
+    }
+   ],
+   "summary": "Les projets de statuts d'Agache SCA, nouvelle structure de contrôle de LVMH, fixent à 95 ans la limite d'âge du gérant, fonction que doit exercer Bernard Arnault, 77 ans. Cette société détiendrait directement 49,76 % du capital et 65,55 % des droits de vote de LVMH. Une assemblée générale doit valider ces changements le 30 décembre ; les statuts de LVMH plafonnent quant à eux l'âge du PDG à 85 ans.",
+   "title": "LVMH : Bernard Arnault pourra diriger la holding familiale jusqu'à 95 ans",
+   "why": "Un bon exemple de gouvernance d'entreprise : la société en commandite par actions permet de garder le contrôle d'un groupe coté avec une part minoritaire du capital total."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/automobile/pourquoi-le-constructeur-chinois-byd-veut-il-s-implanter-en-france-alors-que-le-marche-automobile-europeen-est-en-panne_8299377.html"
+    },
+    {
+     "name": "Yahoo Finance (AFP)",
+     "url": "https://fr.finance.yahoo.com/actualites/chinois-byd-vise-france-premi%C3%A8re-222738826.html"
+    }
+   ],
+   "summary": "Le constructeur chinois BYD a annoncé le 24 novembre des négociations exclusives pour racheter l'usine d'Ineos Automotive à Hambach, ancien site de production des Smart. Le projet dépend encore de la consultation des représentants du personnel. Selon le ministre délégué à l'Industrie Sébastien Martin, la production pourrait démarrer vers fin 2027-2028 ; Emmanuel Macron a salué l'annonce.",
+   "title": "BYD en négociations exclusives pour l'usine Ineos de Hambach, en Moselle",
+   "why": "Produire en Europe permet aux constructeurs chinois de limiter l'effet des barrières commerciales : un enjeu d'emploi industriel et de concurrence pour Renault et Stellantis."
+  }
+ ],
+ "lede": "Les dirigeants européens ont retenu l'Espagnol Pablo Hernández de Cos pour présider la BCE à partir de février 2027, lors d'un sommet consacré au budget 2028-2034 et à l'aide à l'Ukraine. En France, députés et sénateurs ont échoué à s'accorder sur le budget de la Sécurité sociale, tandis que le CAC 40 a rebondi.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "Pablo Hernández de Cos, ancien gouverneur de la Banque d'Espagne, doit succéder à Christine Lagarde le 8 février 2027.",
+   "options": [
+    "Néerlandaise",
+    "Allemande",
+    "Espagnole",
+    "Italienne"
+   ],
+   "q": "Quelle est la nationalité du futur président de la BCE retenu le 26 novembre ?"
+  },
+  {
+   "answer": 0,
+   "explain": "La surtaxe est reconduite à un taux réduit : environ 5 milliards d'euros attendus en 2027, contre plus de 7 milliards en 2026.",
+   "options": [
+    "Environ 5 milliards d'euros",
+    "Environ 3 milliards d'euros",
+    "Environ 7 milliards d'euros",
+    "Environ 9 milliards d'euros"
+   ],
+   "q": "Quel rendement est attendu en 2027 de la surtaxe sur les grandes entreprises votée par le Sénat ?"
+  },
+  {
+   "answer": 3,
+   "explain": "La Cour estime que 10 à 20 % des quelque 16 milliards d'euros d'aides sont exposés, soit 1,5 à 3 milliards par an.",
+   "options": [
+    "Entre 0,5 et 1 milliard d'euros",
+    "Entre 4 et 6 milliards d'euros",
+    "Entre 8 et 10 milliards d'euros",
+    "Entre 1,5 et 3 milliards d'euros"
+   ],
+   "q": "Selon la Cour des comptes, combien d'aides à l'apprentissage seraient exposées chaque année aux fraudes et abus ?"
+  }
+ ]
+}
