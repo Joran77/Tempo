@@ -1,0 +1,246 @@
+{
+ "date": "2026-11-28",
+ "figures": [
+  {
+   "label": "PIB France, 3e trimestre 2026",
+   "note": "Révisé contre -0,1 % en première estimation ; acquis 2026 : +0,1 %",
+   "source": "Insee",
+   "value": "-0,2 %"
+  },
+  {
+   "label": "Inflation France, novembre 2026",
+   "note": "Sur un an, estimation provisoire (3,4 % en octobre)",
+   "source": "Insee",
+   "value": "2,9 %"
+  },
+  {
+   "label": "Inflation harmonisée France, novembre 2026",
+   "note": "Indice IPCH, après 3,7 % en octobre",
+   "source": "Insee",
+   "value": "3,2 %"
+  },
+  {
+   "label": "Confiance des ménages, novembre 2026",
+   "note": "+1 point ; moyenne de longue période : 100",
+   "source": "Insee",
+   "value": "82"
+  },
+  {
+   "label": "CAC 40, clôture du 27 novembre",
+   "note": "+0,58 % sur la séance, +2,88 % sur la semaine",
+   "source": "BFM Bourse",
+   "value": "8 156,09 pts"
+  },
+  {
+   "label": "Euro/dollar, 27 novembre",
+   "note": "Vers 21 h, en léger recul sur la journée",
+   "source": "Boursorama",
+   "value": "1,0935 $"
+  },
+  {
+   "label": "Note de la France chez S&P",
+   "note": "Perspective abaissée de stable à négative le 27 novembre",
+   "source": "Reuters",
+   "value": "A+"
+  }
+ ],
+ "generatedAt": "2026-11-28T06:50:00+01:00",
+ "items": [
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9165918"
+    },
+    {
+     "name": "France 24",
+     "url": "https://www.france24.com/fr/france/20261127-la-france-entre-en-r%C3%A9cession-le-pib-continue-de-reculer"
+    }
+   ],
+   "summary": "Dans ses comptes détaillés publiés le 27 novembre, l'Insee a revu à -0,2 % l'évolution du PIB au troisième trimestre, contre -0,1 % en première estimation. Le deuxième trimestre, affiché à 0,0 % après arrondi, est très légèrement négatif, ce qui correspond à deux trimestres de baisse consécutifs. Le commerce extérieur a retiré 0,6 point à la croissance et l'investissement a de nouveau reculé. L'acquis de croissance pour 2026 est de +0,1 %.",
+   "title": "La France en récession technique : le PIB recule de 0,2 % au troisième trimestre",
+   "why": "La récession technique se définit par deux trimestres consécutifs de baisse du PIB : une notion de base en macroéconomie. Une croissance faible réduit les recettes fiscales et complique la réduction du déficit."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Reuters via Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/s-p-assortit-la-note-souveraine-de-la-france-d-une-perspective-negative-480ecf2212c42e72497c6bc0bc15ec88"
+    },
+    {
+     "name": "franceinfo",
+     "url": "https://www.franceinfo.fr/economie/budget/l-agende-de-notation-standard-poor-s-menace-de-degrader-prochainement-la-note-de-la-france_8302788.html"
+    }
+   ],
+   "summary": "L'agence S&P Global Ratings a confirmé vendredi soir la note souveraine de la France à A+, en abaissant sa perspective de stable à négative. Elle invoque la hausse de la dette publique dans un contexte de croissance modérée et s'attend à une augmentation progressive des intérêts d'ici 2029. Le ministre de l'Économie Roland Lescure a pris acte de la décision et appelé à adopter rapidement un budget ramenant le déficit à 5 % du PIB au plus. Moody's (Aa3) et Fitch (A+) avaient déjà une perspective négative.",
+   "title": "S&P maintient la note A+ de la France mais passe la perspective à négative",
+   "why": "Une perspective négative signale un risque de dégradation à moyen terme, ce qui peut renchérir le coût d'emprunt de l'État et, par ricochet, celui des banques et des entreprises."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9161375"
+    },
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/economie/inflation/linflation-ralentit-a-2-9-pourcent-sur-un-an-en-novembre-selon-linsee-e3978588-ea2f-11f1-bb2d-c71dc7920c2a"
+    }
+   ],
+   "summary": "D'après l'estimation provisoire de l'Insee publiée le 27 novembre, les prix à la consommation augmenteraient de 2,9 % sur un an en novembre, après 3,4 % en octobre. Sur un mois, ils reculeraient de 0,7 %, notamment sous l'effet de la baisse saisonnière des prix des transports. L'indice harmonisé (IPCH), utilisé pour les comparaisons européennes, progresserait de 3,2 %. Les résultats définitifs sont attendus le 11 décembre.",
+   "title": "L'inflation ralentit à 2,9 % sur un an en novembre selon l'Insee",
+   "why": "L'inflation sert à indexer de nombreux contrats et pèse sur le pouvoir d'achat ; distinguer IPC et IPCH est utile pour lire les comparaisons européennes et les décisions de la BCE."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Insee",
+     "url": "https://www.insee.fr/fr/statistiques/9156257"
+    },
+    {
+     "name": "Insee – tableau de bord de la conjoncture",
+     "url": "https://www.insee.fr/fr/statistiques/2107840"
+    }
+   ],
+   "summary": "L'indicateur de confiance des ménages calculé par l'Insee gagne un point en novembre, à 82, loin de sa moyenne de longue période fixée à 100. Les ménages sont moins nombreux à anticiper une accélération des prix et leurs craintes sur le chômage se replient. Le climat des affaires, tous secteurs confondus, recule quant à lui à 95.",
+   "title": "La confiance des ménages reste nettement sous sa moyenne, à 82 en novembre",
+   "why": "Ces enquêtes de conjoncture sont des indicateurs avancés de la consommation, premier moteur de la croissance française."
+  },
+  {
+   "cat": "economie",
+   "sources": [
+    {
+     "name": "Zonebourse",
+     "url": "https://www.zonebourse.com/actualite-bourse/la-bce-pourrait-devoir-relever-davantage-ses-taux-la-inflation-restant-superieure-a-3--ce7851d9df8df720"
+    },
+    {
+     "name": "France Transactions",
+     "url": "https://www.francetransactions.com/actus/news-finances/inflation-en-zone-euro-octobre-2026.html"
+    }
+   ],
+   "summary": "Joachim Nagel, membre du Conseil des gouverneurs de la BCE, a estimé vendredi que l'institution pourrait devoir relever encore ses taux directeurs dès le mois prochain. Il anticipe une inflation supérieure à 3 % dans la zone euro pendant une partie de 2027. Selon Eurostat, l'inflation de la zone euro avait atteint 4 % en octobre ; l'estimation rapide pour novembre est attendue la semaine prochaine.",
+   "title": "BCE : un membre du Conseil évoque une nouvelle hausse des taux dès décembre",
+   "why": "Les taux directeurs de la BCE déterminent le coût du crédit pour les ménages et les entreprises, et donc les conditions de financement et d'investissement."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Sénat",
+     "url": "https://www.senat.fr/ordre-du-jour/ordre-du-jour.html"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/budget-2027-rejete-quelles-sont-les-prochaines-etapes-au-parlement-444753"
+    }
+   ],
+   "summary": "Le Sénat examine depuis le 20 novembre le projet de loi de finances pour 2027, transmis dans sa version initiale après le rejet de la partie recettes par l'Assemblée nationale le 4 novembre. Selon l'ordre du jour du Sénat, les débats sur la première partie se poursuivent ce samedi et éventuellement dimanche, avant l'examen des dépenses à partir du 30 novembre. Le vote sur l'ensemble du texte est prévu le 9 décembre. Le gouvernement vise un déficit public de 5,0 % du PIB en 2027.",
+   "title": "Budget 2027 : le Sénat termine ce week-end l'examen de la partie recettes",
+   "why": "Le projet de loi de finances fixe les impôts et les dépenses de l'État : sa trajectoire de déficit est suivie de près par les agences de notation et les marchés."
+  },
+  {
+   "cat": "politique",
+   "sources": [
+    {
+     "name": "Public Sénat",
+     "url": "https://www.publicsenat.fr/actualites/politique/budget-2027-de-la-securite-sociale-echec-de-la-tentative-de-compromis-entre-deputes-et-senateurs"
+    },
+    {
+     "name": "LCP",
+     "url": "https://lcp.fr/actualites/info-lcp-budget-de-la-secu-echec-de-la-reunion-de-conciliation-entre-deputes-et"
+    }
+   ],
+   "summary": "Les sept députés et sept sénateurs réunis le 26 novembre en commission mixte paritaire n'ont pas trouvé de compromis sur le budget de la Sécurité sociale pour 2027. Selon l'AFP, les sénateurs ont notamment rejeté la désindexation partielle des pensions supérieures à 1 260 euros, que l'exécutif chiffrait à 4,1 milliards d'euros. Le texte revient en nouvelle lecture à l'Assemblée, en commission le 30 novembre puis en séance à partir du 7 décembre. Le Premier ministre Sébastien Lecornu a demandé que les points de convergence servent de base à un compromis.",
+   "title": "Budget de la Sécurité sociale : échec de la commission mixte paritaire",
+   "why": "La CMP est l'étape de conciliation entre les deux chambres ; son échec allonge la navette et laisse ouverte l'option des ordonnances budgétaires évoquée par LCP."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Toute l'Europe",
+     "url": "https://www.touteleurope.eu/economie-et-social/droits-de-douane-les-etats-unis-annoncent-de-nouvelles-taxes-visant-notamment-l-union-europeenne/"
+    },
+    {
+     "name": "Ouest-France",
+     "url": "https://www.ouest-france.fr/economie/droits-de-douane/les-etats-unis-annoncent-de-nouveaux-droits-de-douane-contre-ses-principaux-partenaires-commerciaux-dont-lue-666993ba-e8d3-11f1-86c1-70195b4d2e52"
+    }
+   ],
+   "summary": "L'administration Trump a annoncé son intention de taxer davantage les importations de 14 partenaires commerciaux, dont l'Union européenne, la Chine, le Japon et l'Inde. Pour l'UE, les droits resteraient plafonnés à 15 %, conformément à l'accord de juillet 2025, contre 10 % appliqués aujourd'hui sur une grande partie des exportations. Une consultation est ouverte jusqu'au 5 janvier 2027. La Commission européenne conteste les griefs américains.",
+   "title": "Washington propose de nouveaux droits de douane, plafonnés à 15 % pour l'UE",
+   "why": "Les droits de douane modifient les prix de revient et les marges des exportateurs ; les Incoterms et clauses de prix des contrats déterminent qui supporte le surcoût."
+  },
+  {
+   "cat": "international",
+   "sources": [
+    {
+     "name": "Reuters via Boursorama",
+     "url": "https://www.boursorama.com/bourse/actualites/le-petrole-en-passe-de-mettre-fin-a-une-serie-de-baisses-de-trois-semaines-en-raison-des-craintes-liees-a-l-offre-6622d879983fe8429273b7ff361d642f"
+    },
+    {
+     "name": "Connaissance des Énergies (AFP)",
+     "url": "https://www.connaissancedesenergies.org/afp/le-petrole-hesite-entre-prevision-de-surplus-et-attaques-au-moyen-orient-261125"
+    }
+   ],
+   "summary": "Des pétroliers continuent d'être visés dans le détroit d'Ormuz, selon l'agence maritime britannique UKMTO, tandis que les Houthis yéménites ont revendiqué des frappes contre la raffinerie saoudienne de Ras Tanura. Selon Reuters, ces incidents ont fait remonter les cours du brut cette semaine, après trois semaines de baisse. Le Brent cotait autour de 94 à 95 dollars vendredi soir, contre plus de 110 dollars fin octobre.",
+   "title": "Ormuz et Arabie saoudite : les attaques maintiennent la tension sur le pétrole",
+   "why": "Le prix du pétrole pèse sur l'inflation, les coûts de transport et les marges de nombreuses entreprises ; c'est une variable clé des prévisions budgétaires."
+  },
+  {
+   "cat": "entreprises",
+   "sources": [
+    {
+     "name": "BFM Bourse",
+     "url": "https://www.tradingsat.com/cac-40-FR0003500008/actualites/cac-40-en-attendant-la-decision-de-sp-sur-la-note-de-credit-de-la-france-le-cac-40-termine-en-hausse-ce-vendredi-et-reprend-pres-de-3-sur-la-semaine-1174568.html"
+    },
+    {
+     "name": "Quartz (AFP)",
+     "url": "https://fr.qz.com/cac-40-cloture-hausse-8000-points-stellantis-112726"
+    }
+   ],
+   "summary": "La Bourse de Paris a gagné 0,58 % vendredi, à 8 156,09 points, et 2,88 % sur la semaine. Jeudi, l'indice avait bondi de 1,61 %, porté par Stellantis (+8,91 %), Alstom et Renault, après des droits de douane américains jugés moins lourds que prévu. Vendredi, ArcelorMittal et STMicroelectronics ont mené la hausse, tandis que Pernod Ricard, Michelin et Sanofi ont reculé.",
+   "title": "Le CAC 40 finit la semaine en hausse de près de 3 %, à 8 156 points",
+   "why": "Les réactions boursières aux annonces commerciales montrent comment les marchés intègrent un risque dans la valorisation des entreprises exportatrices."
+  }
+ ],
+ "lede": "La France est entrée en récession technique : l'Insee a révisé le PIB du troisième trimestre à -0,2 %. Dans la foulée, S&P a maintenu la note A+ du pays mais l'a assortie d'une perspective négative, alors que le Sénat poursuit l'examen du budget 2027 et que l'inflation ralentit à 2,9 %.",
+ "quiz": [
+  {
+   "answer": 2,
+   "explain": "L'Insee a révisé le troisième trimestre à -0,2 % (contre -0,1 % en première estimation), ce qui place la France en récession technique.",
+   "options": [
+    "+0,1 %",
+    "0,0 %",
+    "-0,2 %",
+    "-0,4 %"
+   ],
+   "q": "Selon l'Insee, quelle a été l'évolution du PIB français au troisième trimestre 2026 ?"
+  },
+  {
+   "answer": 0,
+   "explain": "S&P a confirmé la note A+ mais a abaissé la perspective de stable à négative, signalant un risque de dégradation.",
+   "options": [
+    "A+ maintenue, perspective négative",
+    "A+ abaissée à A, perspective stable",
+    "A+ relevée à AA-, perspective stable",
+    "A+ maintenue, perspective positive"
+   ],
+   "q": "Quelle décision S&P a-t-elle prise le 27 novembre sur la note de la France ?"
+  },
+  {
+   "answer": 3,
+   "explain": "L'IPC progresserait de 2,9 % sur un an (après 3,4 % en octobre) ; 3,2 % correspond à l'indice harmonisé IPCH.",
+   "options": [
+    "3,4 %",
+    "3,2 %",
+    "2,4 %",
+    "2,9 %"
+   ],
+   "q": "Quel est le taux d'inflation provisoire en France sur un an en novembre 2026 ?"
+  }
+ ]
+}
